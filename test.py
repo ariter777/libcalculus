@@ -1,4 +1,4 @@
 import libcalculus
 
-f = libcalculus.Function()
-print(f(1 + 3j))
+f = libcalculus.Function.Identity()
+print((7 * f)(1 + 3j))
