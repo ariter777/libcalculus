@@ -9,17 +9,18 @@ using function = std::function<std::complex<double>(std::complex<double>)>;
 
 namespace libcalculus {
     class CFunction {
-    private:
-        function f = [](std::complex<double> z) { return z; };
     public:
+        function f = [](std::complex<double> z) { return z; };
+
         CFunction() {}
         CFunction(function f) : f{f} {}
-        std::complex<double> operator()(std::complex<double> z);
-    };
+        CFunction(CFunction const &cf) : f{cf.f} {}
+        std::complex<double> operator()(std::complex<double> z) const;
 
-    auto const identity = CFunction([](std::complex<double> z) { return z; });
-    CFunction mulconst(std::complex<double> a) {
-        return CFunction([a](std::complex<double> z) { return a * z; });
-    }
+        void addconst(std::complex<double> a) noexcept;
+        void mulconst(std::complex<double> a) noexcept;
+        void divconst(std::complex<double> a);
+        void ldivconst(std::complex<double> a);
+    };
 }
 #endif

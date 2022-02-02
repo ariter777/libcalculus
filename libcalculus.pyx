@@ -10,10 +10,15 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     function[complex_t[double](complex_t[double])] f
 
     CFunction() except +
+    CFunction(CFunction &cf) except +
     complex_t[double] operator()(complex_t[double] z) except +
 
+    void mulconst(complex_t[double] a)
+    void addconst(complex_t[double] a)
+    void divconst(complex_t[double] a) except +
+    void ldivconst(complex_t[double] a) except +
+
   cdef CFunction identity
-  cdef CFunction mulconst(complex_t[double] a) except +
 
 cdef class Function:
   cdef CFunction cfunction
@@ -24,18 +29,48 @@ cdef class Function:
   def __call__(self, complex_t[double] z):
     return self.cfunction(z)
 
+  def _mulconst(self, complex_t[double] a):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction)
+    F.cfunction.mulconst(a)
+    return F
+
+  def _addconst(self, complex_t[double] a):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction)
+    F.cfunction.addconst(a)
+    return F
+
+  def _divconst(self, complex_t[double] a):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction)
+    F.cfunction.divconst(a)
+    return F
+
+  def _ldivconst(self, complex_t[double] a):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction)
+    F.cfunction.ldivconst(a)
+    return F
+
   @staticmethod
   def Identity():
-    F = Function()
-    F.cfunction = identity
-    return F
+    return Function()
 
   def __mul__(lhs, rhs):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
-      F = Function()
-      F.cfunction = mulconst(complex(lhs))
-      return F
+      return rhs._mulconst(lhs)
     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
-      F = Function()
-      F.cfunction = mulconst(complex(rhs))
-      return F
+      return lhs._mulconst(rhs)
+
+  def __add__(lhs, rhs):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+      return rhs._addconst(lhs)
+    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+      return lhs._addconst(rhs)
+
+  def __truediv__(lhs, rhs):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+      return rhs._ldivconst(lhs)
+    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+      return lhs._divconst(rhs)
