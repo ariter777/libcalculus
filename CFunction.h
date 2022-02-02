@@ -18,6 +18,8 @@ namespace libcalculus {
         std::complex<double> operator()(std::complex<double> z) const;
 
         void addconst(std::complex<double> a) noexcept;
+        void subconst(std::complex<double> a) noexcept;
+        void lsubconst(std::complex<double> a) noexcept;
         void mulconst(std::complex<double> a) noexcept;
         void divconst(std::complex<double> a);
         void ldivconst(std::complex<double> a);
