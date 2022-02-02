@@ -16,6 +16,10 @@ namespace libcalculus {
         CFunction(function f) : f{f} {}
         CFunction(CFunction const &cf) : f{cf.f} {}
         std::complex<double> operator()(std::complex<double> z) const;
+        CFunction operator+(CFunction const &rhs) noexcept;
+        CFunction operator-(CFunction const &rhs) noexcept;
+        CFunction operator*(CFunction const &rhs) noexcept;
+        CFunction operator/(CFunction const &rhs) noexcept;
 
         void addconst(std::complex<double> a) noexcept;
         void subconst(std::complex<double> a) noexcept;
