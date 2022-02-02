@@ -10,7 +10,7 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     function[complex_t[double](complex_t[double])] f
 
     CFunction() except +
-    CFunction(CFunction &cf) except +
+    CFunction(CFunction cf) except +
     complex_t[double] operator()(complex_t[double] z) except +
 
     CFunction operator+(CFunction rhs)
