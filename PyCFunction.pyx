@@ -252,9 +252,11 @@ cdef class ComplexFunction:
 
 cdef class Contour:
   cdef CFunction[double, complex_t[double]] cfunction
+  cdef double start, end
 
-  def __cinit__(self):
-    pass
+  def __cinit__(self, start=0., end=1.):
+    self.start = start
+    self.end = end
 
   def __call__(self, double t):
     return self.cfunction(t)
