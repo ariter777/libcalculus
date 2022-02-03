@@ -1,43 +1,47 @@
 #include "CFunction.h"
 
 namespace libcalculus {
-
-    std::complex<double> CFunction::operator()(std::complex<double> z) const {
+    dtype CFunction::operator()(dtype z) const {
         return this->f(z);
     }
 
     CFunction CFunction::operator+(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        return CFunction([=](std::complex<double> z) { return old_f(z) + rhs.f(z); });
+        return CFunction([=](dtype z) { return old_f(z) + rhs.f(z); });
     }
 
     CFunction CFunction::operator-(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        return CFunction([=](std::complex<double> z) { return old_f(z) - rhs.f(z); });
+        return CFunction([=](dtype z) { return old_f(z) - rhs.f(z); });
     }
 
     CFunction CFunction::operator*(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        return CFunction([=](std::complex<double> z) { return old_f(z) * rhs.f(z); });
+        return CFunction([=](dtype z) { return old_f(z) * rhs.f(z); });
     }
 
     CFunction CFunction::operator/(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        return CFunction([=](std::complex<double> z) { return old_f(z) / rhs.f(z); });
+        return CFunction([=](dtype z) { return old_f(z) / rhs.f(z); });
     }
 
     CFunction CFunction::reciprocal() const noexcept {
         auto const old_f  = this->f;
-        return CFunction([=](std::complex<double> z) { return 1. / old_f(z); });
+        return CFunction([=](dtype z) { return 1. / old_f(z); });
     }
 
-    CFunction CFunction::addconst(std::complex<double> a) const noexcept {
+    CFunction CFunction::addconst(dtype a) const noexcept {
         auto const old_f = this->f;
-        return CFunction([=](std::complex<double> z) { return a + old_f(z); });
+        return CFunction([=](dtype z) { return a + old_f(z); });
     }
 
-    CFunction CFunction::mulconst(std::complex<double> a) const noexcept {
+    CFunction CFunction::mulconst(dtype a) const noexcept {
         auto const old_f = this->f;
-        return CFunction([=](std::complex<double> z) { return a * old_f(z); });
+        return CFunction([=](dtype z) { return a * old_f(z); });
+    }
+
+    CFunction CFunction::powconst(dtype a) const noexcept {
+        auto const old_f = this->f;
+        return CFunction([=](dtype z) { return std::pow(old_f(z), a); });
     }
 }

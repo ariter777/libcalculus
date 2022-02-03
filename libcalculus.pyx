@@ -2,6 +2,8 @@
 from libcpp.complex cimport complex as complex_t
 from libcpp.functional cimport function
 
+ctypedef complex_t[double] dtype
+
 cdef extern from "CFunction.cpp":
   pass
 
@@ -9,7 +11,7 @@ cdef extern from "CFunction.h" namespace "libcalculus":
   cdef cppclass CFunction:
     CFunction() except +
     CFunction(CFunction cf) except +
-    complex_t[double] operator()(complex_t[double] z) except +
+    dtype operator()(dtype z) except +
 
     CFunction operator+(CFunction rhs)
     CFunction operator-(CFunction rhs)
@@ -17,8 +19,9 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction operator/(CFunction rhs)
     CFunction reciprocal()
 
-    CFunction mulconst(complex_t[double] a)
-    CFunction addconst(complex_t[double] a)
+    CFunction mulconst(dtype a)
+    CFunction addconst(dtype a)
+    CFunction powconst(dtype a)
 
   cdef CFunction identity
 
@@ -28,7 +31,7 @@ cdef class Function:
   def __cinit__(self):
     pass
 
-  def __call__(self, complex_t[double] z):
+  def __call__(self, dtype z):
     return self.cfunction(z)
 
   def _add(self, Function rhs):
@@ -51,34 +54,39 @@ cdef class Function:
     F.cfunction = CFunction(self.cfunction) / rhs.cfunction
     return F
 
-  def _addconst(self, complex_t[double] a):
+  def _addconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).addconst(a)
     return F
 
-  def _subconst(self, complex_t[double] a):
+  def _subconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).addconst(0 - a)
     return F
 
-  def _lsubconst(self, complex_t[double] a):
+  def _lsubconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)
     return F
 
-  def _mulconst(self, complex_t[double] a):
+  def _mulconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).mulconst(a)
     return F
 
-  def _divconst(self, complex_t[double] a):
+  def _divconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).mulconst(1 / a)
     return F
 
-  def _ldivconst(self, complex_t[double] a):
+  def _ldivconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)
+    return F
+
+  def _powconst(self, dtype a):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction).powconst(a)
     return F
 
   @staticmethod
@@ -116,3 +124,11 @@ cdef class Function:
       return lhs._divconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._div(rhs)
+
+  def __pow__(lhs, rhs, mod):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+      return None
+    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+      return lhs._powconst(rhs)
+    elif isinstance(lhs, Function) and isinstance(rhs, Function):
+      return None

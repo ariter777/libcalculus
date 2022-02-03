@@ -4,18 +4,18 @@
 #include <complex>
 #include <functional>
 
-using namespace std::complex_literals;
-using function = std::function<std::complex<double>(std::complex<double>)>;
-
 namespace libcalculus {
+    using namespace std::complex_literals;
+    using dtype = std::complex<double>;
+    using function = std::function<dtype(dtype)>;
     class CFunction {
     public:
-        function f = [](std::complex<double> z) { return z; };
+        function f = [](dtype z) { return z; };
 
         CFunction() {}
         CFunction(function f) : f{f} {}
         CFunction(CFunction const &cf) : f{cf.f} {}
-        std::complex<double> operator()(std::complex<double> z) const;
+        dtype operator()(dtype z) const;
 
         CFunction operator+(CFunction const &rhs) const noexcept;
         CFunction operator-(CFunction const &rhs) const noexcept;
@@ -23,8 +23,9 @@ namespace libcalculus {
         CFunction operator/(CFunction const &rhs) const noexcept;
         CFunction reciprocal() const noexcept;
 
-        CFunction addconst(std::complex<double> a) const noexcept;
-        CFunction mulconst(std::complex<double> a) const noexcept;
+        CFunction addconst(dtype a) const noexcept;
+        CFunction mulconst(dtype a) const noexcept;
+        CFunction powconst(dtype a) const noexcept;
     };
 }
 #endif
