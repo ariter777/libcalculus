@@ -10,8 +10,6 @@
 
 namespace libcalculus {
     using namespace std::complex_literals;
-    using dtype = std::complex<double>;
-    using function = std::function<dtype(dtype)>;
     #define LATEX_VAR "%var"
 
     enum OP_TYPE {
@@ -34,7 +32,8 @@ namespace libcalculus {
             return result;
         }
 
-        std::string fmt_const(dtype a, bool parenthesize = false) {
+        template<typename T> std::string fmt_const(T a, bool parenthesize = false);
+        template<> std::string fmt_const(std::complex<double> a, bool parenthesize) {
             std::ostringstream oss;
             if (std::imag(a) == 0.) {
                 oss << std::real(a);
@@ -55,9 +54,11 @@ namespace libcalculus {
         }
     }
 
+    template <typename Dom, typename Ran>
     class CFunction {
+        using function = std::function<Ran(Dom)>;
     private:
-        function _f = [](dtype z) { return z; };
+        function _f = [](Dom z) { return z; };
         std::string _latex = LATEX_VAR;
         char _last_op = OP_TYPE::NOP;
     public:
@@ -65,34 +66,34 @@ namespace libcalculus {
         CFunction(function f) : _f{f} {}
         CFunction(CFunction const &cf) : _f{cf._f}, _latex{cf._latex}, _last_op{cf._last_op} {}
         CFunction(function f, std::string const &latex, char last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
-        dtype operator()(dtype z) const;
+        Ran operator()(Dom z) const;
         std::string latex(std::string const &varname = "z") const;
 
-        CFunction compose(CFunction const &rhs) const;
-        CFunction operator+(CFunction const &rhs) const;
-        CFunction operator-(CFunction const &rhs) const;
-        CFunction operator*(CFunction const &rhs) const;
-        CFunction operator/(CFunction const &rhs) const;
-        CFunction pow(CFunction const &rhs) const;
+        CFunction<Dom, Ran> compose(CFunction<Dom, Ran> const &rhs) const;
+        CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const;
+        CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const;
+        CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &rhs) const;
+        CFunction<Dom, Ran> operator/(CFunction<Dom, Ran> const &rhs) const;
+        CFunction<Dom, Ran> pow(CFunction<Dom, Ran> const &rhs) const;
 
-        CFunction addconst(dtype a) const;
-        CFunction subconst(dtype a) const;
-        CFunction lsubconst(dtype a) const;
-        CFunction divconst(dtype a) const;
-        CFunction ldivconst(dtype a) const;
-        CFunction mulconst(dtype a) const;
-        CFunction powconst(dtype a) const;
-        CFunction lpowconst(dtype a) const;
+        CFunction<Dom, Ran> addconst(Ran a) const;
+        CFunction<Dom, Ran> subconst(Ran a) const;
+        CFunction<Dom, Ran> lsubconst(Ran a) const;
+        CFunction<Dom, Ran> divconst(Ran a) const;
+        CFunction<Dom, Ran> ldivconst(Ran a) const;
+        CFunction<Dom, Ran> mulconst(Ran a) const;
+        CFunction<Dom, Ran> powconst(Ran a) const;
+        CFunction<Dom, Ran> lpowconst(Ran a) const;
 
-        static CFunction Exp() { return CFunction([](dtype z) { return std::exp(z); }, "e^{" LATEX_VAR "}", 0); }
-        static CFunction Sin() { return CFunction([](dtype z) { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", 0); }
-        static CFunction Cos() { return CFunction([](dtype z) { return std::cos(z); }, "\\cos\\left(" LATEX_VAR "\\right)", 0); }
-        static CFunction Tan() { return CFunction([](dtype z) { return std::tan(z); }, "\\tan\\left(" LATEX_VAR "\\right)", 0); }
-        static CFunction Sec() { return CFunction([](dtype z) { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", 0); }
-        static CFunction Csc() { return CFunction([](dtype z) { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", 0); }
-        static CFunction Cot() { return CFunction([](dtype z) { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", 0); }
-        static CFunction Pi() { return CFunction([](dtype z) { return M_PI; }, "\\pi", OP_TYPE::NOP); }
-        static CFunction E() { return CFunction([](dtype z) { return M_E; }, "e", OP_TYPE::NOP); }
+        static CFunction<Dom, Ran> Exp() { return CFunction<Dom, Ran>([](Dom z) { return std::exp(z); }, "e^{" LATEX_VAR "}", 0); }
+        static CFunction<Dom, Ran> Sin() { return CFunction([](Dom z) { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", 0); }
+        static CFunction<Dom, Ran> Cos() { return CFunction([](Dom z) { return std::cos(z); }, "\\cos\\left(" LATEX_VAR "\\right)", 0); }
+        static CFunction<Dom, Ran> Tan() { return CFunction([](Dom z) { return std::tan(z); }, "\\tan\\left(" LATEX_VAR "\\right)", 0); }
+        static CFunction<Dom, Ran> Sec() { return CFunction([](Dom z) { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", 0); }
+        static CFunction<Dom, Ran> Csc() { return CFunction([](Dom z) { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", 0); }
+        static CFunction<Dom, Ran> Cot() { return CFunction([](Dom z) { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", 0); }
+        static CFunction<Dom, Ran> Pi() { return CFunction([](Dom z) { return M_PI; }, "\\pi", OP_TYPE::NOP); }
+        static CFunction<Dom, Ran> E() { return CFunction([](Dom z) { return M_E; }, "e", OP_TYPE::NOP); }
     };
 }
 #endif

@@ -2,61 +2,60 @@
 from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
 
-ctypedef complex_t[double] dtype
+ctypedef complex_t[double] DTYPE
 
 cdef extern from "CFunction.cpp":
   pass
 
 cdef extern from "CFunction.h" namespace "libcalculus":
-  cdef cppclass CFunction:
+  cdef cppclass CFunction[Dom, Ran]:
     CFunction() except +
-    CFunction(CFunction cf) except +
-    dtype operator()(dtype z) except +
-    CFunction compose(CFunction rhs)
+    CFunction(CFunction[Dom, Ran] cf) except +
+    Ran operator()(Dom z) except +
+    CFunction[Dom, Ran] compose(CFunction[Dom, Ran] rhs)
     string latex(string varname) except +
 
-    CFunction operator+(CFunction rhs)
-    CFunction operator-(CFunction rhs)
-    CFunction operator*(CFunction rhs)
-    CFunction operator/(CFunction rhs)
-    CFunction pow(CFunction rhs)
-    CFunction reciprocal()
+    CFunction[Dom, Ran] operator+(CFunction[Dom, Ran] rhs)
+    CFunction[Dom, Ran] operator-(CFunction[Dom, Ran] rhs)
+    CFunction[Dom, Ran] operator*(CFunction[Dom, Ran] rhs)
+    CFunction[Dom, Ran] operator/(CFunction[Dom, Ran] rhs)
+    CFunction[Dom, Ran] pow(CFunction[Dom, Ran] rhs)
 
-    CFunction mulconst(dtype a)
-    CFunction addconst(dtype a)
-    CFunction subconst(dtype a)
-    CFunction lsubconst(dtype a)
-    CFunction divconst(dtype a)
-    CFunction ldivconst(dtype a)
-    CFunction powconst(dtype a)
-    CFunction lpowconst(dtype a)
+    CFunction[Dom, Ran] mulconst(Ran a)
+    CFunction[Dom, Ran] addconst(Ran a)
+    CFunction[Dom, Ran] subconst(Ran a)
+    CFunction[Dom, Ran] lsubconst(Ran a)
+    CFunction[Dom, Ran] divconst(Ran a)
+    CFunction[Dom, Ran] ldivconst(Ran a)
+    CFunction[Dom, Ran] powconst(Ran a)
+    CFunction[Dom, Ran] lpowconst(Ran a)
 
     @staticmethod
-    CFunction Exp()
+    CFunction[Dom, Ran] Exp()
     @staticmethod
-    CFunction Sin()
+    CFunction[Dom, Ran] Sin()
     @staticmethod
-    CFunction Cos()
+    CFunction[Dom, Ran] Cos()
     @staticmethod
-    CFunction Tan()
+    CFunction[Dom, Ran] Tan()
     @staticmethod
-    CFunction Sec()
+    CFunction[Dom, Ran] Sec()
     @staticmethod
-    CFunction Csc()
+    CFunction[Dom, Ran] Csc()
     @staticmethod
-    CFunction Cot()
+    CFunction[Dom, Ran] Cot()
     @staticmethod
-    CFunction Pi()
+    CFunction[Dom, Ran] Pi()
     @staticmethod
-    CFunction E()
+    CFunction[Dom, Ran] E()
 
 cdef class Function:
-  cdef CFunction cfunction
+  cdef CFunction[DTYPE, DTYPE] cfunction
 
   def __cinit__(self):
     pass
 
-  def __call__(self, dtype z):
+  def __call__(self, DTYPE z):
     return self.cfunction(z)
 
   def latex(self, str varname = "z"):
@@ -64,72 +63,72 @@ cdef class Function:
 
   def _add(self, Function rhs):
     F = Function()
-    F.cfunction = CFunction(self.cfunction) + rhs.cfunction
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) + rhs.cfunction
     return F
 
   def _sub(self, Function rhs):
     F = Function()
-    F.cfunction = CFunction(self.cfunction) - rhs.cfunction
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) - rhs.cfunction
     return F
 
   def _mul(self, Function rhs):
     F = Function()
-    F.cfunction = CFunction(self.cfunction) * rhs.cfunction
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) * rhs.cfunction
     return F
 
   def _div(self, Function rhs):
     F = Function()
-    F.cfunction = CFunction(self.cfunction) / rhs.cfunction
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) / rhs.cfunction
     return F
 
   def _pow(self, Function rhs):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).pow(rhs.cfunction)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).pow(rhs.cfunction)
     return F
 
   def _compose(self, Function rhs):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).compose(rhs.cfunction)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).compose(rhs.cfunction)
     return F
 
-  def _addconst(self, dtype a):
+  def _addconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).addconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).addconst(a)
     return F
 
-  def _subconst(self, dtype a):
+  def _subconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).subconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).subconst(a)
     return F
 
-  def _lsubconst(self, dtype a):
+  def _lsubconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).lsubconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).lsubconst(a)
     return F
 
-  def _mulconst(self, dtype a):
+  def _mulconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).mulconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).mulconst(a)
     return F
 
-  def _divconst(self, dtype a):
+  def _divconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).divconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).divconst(a)
     return F
 
-  def _ldivconst(self, dtype a):
+  def _ldivconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).ldivconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).ldivconst(a)
     return F
 
-  def _powconst(self, dtype a):
+  def _powconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).powconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).powconst(a)
     return F
 
-  def _lpowconst(self, dtype a):
+  def _lpowconst(self, DTYPE a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).lpowconst(a)
+    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).lpowconst(a)
     return F
 
   def __add__(lhs, rhs):
@@ -195,55 +194,55 @@ cdef class Function:
   @staticmethod
   def Exp():
     F = Function()
-    F.cfunction = CFunction.Exp()
+    F.cfunction = CFunction[DTYPE, DTYPE].Exp()
     return F
 
   @staticmethod
   def Sin():
     F = Function()
-    F.cfunction = CFunction.Sin()
+    F.cfunction = CFunction[DTYPE, DTYPE].Sin()
     return F
 
   @staticmethod
   def Cos():
     F = Function()
-    F.cfunction = CFunction.Cos()
+    F.cfunction = CFunction[DTYPE, DTYPE].Cos()
     return F
 
   @staticmethod
   def Tan():
     F = Function()
-    F.cfunction = CFunction.Tan()
+    F.cfunction = CFunction[DTYPE, DTYPE].Tan()
     return F
 
   @staticmethod
   def Sec():
     F = Function()
-    F.cfunction = CFunction.Sec()
+    F.cfunction = CFunction[DTYPE, DTYPE].Sec()
     return F
 
   @staticmethod
   def Csc():
     F = Function()
-    F.cfunction = CFunction.Csc()
+    F.cfunction = CFunction[DTYPE, DTYPE].Csc()
     return F
 
   @staticmethod
   def Cot():
     F = Function()
-    F.cfunction = CFunction.Cot()
+    F.cfunction = CFunction[DTYPE, DTYPE].Cot()
     return F
 
   @staticmethod
   def _Pi():
     F = Function()
-    F.cfunction = CFunction.Pi()
+    F.cfunction = CFunction[DTYPE, DTYPE].Pi()
     return F
 
   @staticmethod
   def _E():
     F = Function()
-    F.cfunction = CFunction.E()
+    F.cfunction = CFunction[DTYPE, DTYPE].E()
     return F
 
 pi = Function._Pi()
