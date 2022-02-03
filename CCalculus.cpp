@@ -12,8 +12,8 @@ namespace libcalculus {
             prev_result = result;
             result = 0.;
             std::complex<double> z, prev_z = contour(start);
-            for (double t = start + 1. / n; t <= end; t += 1. / n) {
-                z = contour(t);
+            for (double k = 1; k <= n; ++k) {
+                z = contour(start + (end - start) * k / n);
                 result += f(z) * (z - prev_z);
                 prev_z = z;
             }
