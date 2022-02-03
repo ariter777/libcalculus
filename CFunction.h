@@ -3,6 +3,7 @@
 #include <iostream>
 #include <complex>
 #include <functional>
+#include <string>
 
 namespace libcalculus {
     using namespace std::complex_literals;
@@ -10,11 +11,14 @@ namespace libcalculus {
     using function = std::function<dtype(dtype)>;
     class CFunction {
     private:
-        function f = [](dtype z) { return z; };
+        function _f = [](dtype z) { return z; };
+        std::string _latex = "";
+        char _last_op = 0;
     public:
         CFunction() {}
-        CFunction(function f) : f{f} {}
-        CFunction(CFunction const &cf) : f{cf.f} {}
+        CFunction(function f) : _f{f} {}
+        CFunction(CFunction const &cf) : _f{cf._f} {}
+        CFunction(CFunction const &cf, std::string const &latex, char last_op) : _f{cf._f}, _latex{latex}, _last_op{last_op} {}
         dtype operator()(dtype z) const;
         CFunction compose(CFunction const &rhs) const noexcept;
 
