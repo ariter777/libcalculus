@@ -1,6 +1,5 @@
 # distutils: language = c++
 from libcpp.complex cimport complex as complex_t
-from libcpp.functional cimport function
 cimport libc.math
 
 cdef double e = libc.math.exp(1.)
