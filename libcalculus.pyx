@@ -30,6 +30,8 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction lpowconst(dtype a)
 
     @staticmethod
+    CFunction Exp()
+    @staticmethod
     CFunction Sin()
     @staticmethod
     CFunction Cos()
@@ -179,7 +181,9 @@ cdef class Function:
 
   @staticmethod
   def Exp():
-    return exp(Function.Identity())
+    F = Function()
+    F.cfunction = CFunction.Exp()
+    return F
 
   @staticmethod
   def Sin():
@@ -216,6 +220,3 @@ cdef class Function:
     F = Function()
     F.cfunction = CFunction.Tan().reciprocal()
     return F
-
-def exp(Function f):
-  return e ** f
