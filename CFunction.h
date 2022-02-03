@@ -26,20 +26,15 @@ namespace libcalculus {
         MULCONST, // Multiplication by a constant
     };
 
-    class CFunction {
-    private:
-        function _f = [](dtype z) { return z; };
-        std::string _latex = LATEX_VAR;
-        char _last_op = OP_TYPE::NOP;
-
-        static std::string _parenthesize(std::string const &expr) {
+    namespace Latex {
+        std::string _parenthesize(std::string const &expr) {
             std::string result = " \\left( ";
             result.append(expr);
             result.append(" \\right) ");
             return result;
         }
 
-        static std::string fmt_const(dtype a, bool parenthesize = false) {
+        std::string fmt_const(dtype a, bool parenthesize = false) {
             std::ostringstream oss;
             if (std::imag(a) == 0.) {
                 oss << std::real(a);
@@ -48,16 +43,23 @@ namespace libcalculus {
             } else {
                 oss << std::real(a) << (std::imag(a) > 0 ? " + " : "") << std::imag(a) << " i";
             }
-            return (parenthesize && (std::real(a) != 0. && std::imag(a) != 0.)) ? CFunction::_parenthesize(oss.str()) : oss.str();
+            return (parenthesize && (std::real(a) != 0. && std::imag(a) != 0.)) ? Latex::_parenthesize(oss.str()) : oss.str();
         }
 
-        static std::string parenthesize_if(std::string const &expr, char new_op, char last_op) {
+        std::string parenthesize_if(std::string const &expr, char new_op, char last_op) {
             if (new_op == OP_TYPE::FUNCTION || new_op == OP_TYPE::DIV || new_op == OP_TYPE::RPOW) return expr;
             else if (((last_op == OP_TYPE::ADD || last_op == OP_TYPE::SUB) && new_op == OP_TYPE::MUL)
                      || (last_op != OP_TYPE::NOP && new_op == OP_TYPE::LPOW))
-                return CFunction::_parenthesize(expr);
+                return Latex::_parenthesize(expr);
             else return expr;
         }
+    }
+
+    class CFunction {
+    private:
+        function _f = [](dtype z) { return z; };
+        std::string _latex = LATEX_VAR;
+        char _last_op = OP_TYPE::NOP;
     public:
         CFunction() {}
         CFunction(function f) : _f{f} {}
