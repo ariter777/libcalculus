@@ -21,10 +21,10 @@ namespace libcalculus {
         CFunction operator-(CFunction const &rhs) const noexcept;
         CFunction operator*(CFunction const &rhs) const noexcept;
         CFunction operator/(CFunction const &rhs) const noexcept;
+        CFunction reciprocal() const noexcept;
 
         CFunction addconst(std::complex<double> a) const noexcept;
         CFunction mulconst(std::complex<double> a) const noexcept;
-        CFunction ldivconst(std::complex<double> a) const;
     };
 }
 #endif

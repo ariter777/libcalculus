@@ -15,10 +15,10 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction operator-(CFunction rhs)
     CFunction operator*(CFunction rhs)
     CFunction operator/(CFunction rhs)
+    CFunction reciprocal()
 
     CFunction mulconst(complex_t[double] a)
     CFunction addconst(complex_t[double] a)
-    CFunction ldivconst(complex_t[double] a) except +
 
   cdef CFunction identity
 
@@ -78,7 +78,7 @@ cdef class Function:
 
   def _ldivconst(self, complex_t[double] a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).ldivconst(a)
+    F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)
     return F
 
   @staticmethod
