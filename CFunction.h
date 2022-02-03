@@ -9,9 +9,9 @@ namespace libcalculus {
     using dtype = std::complex<double>;
     using function = std::function<dtype(dtype)>;
     class CFunction {
-    public:
+    private:
         function f = [](dtype z) { return z; };
-
+    public:
         CFunction() {}
         CFunction(function f) : f{f} {}
         CFunction(CFunction const &cf) : f{cf.f} {}
