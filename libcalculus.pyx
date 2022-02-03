@@ -1,6 +1,9 @@
 # distutils: language = c++
 from libcpp.complex cimport complex as complex_t
 from libcpp.functional cimport function
+cimport libc.math
+
+cdef double e = libc.math.exp(1.)
 
 ctypedef complex_t[double] dtype
 
@@ -144,3 +147,6 @@ cdef class Function:
       return lhs._powconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._pow(rhs)
+
+def exp(Function f):
+  return e ** f
