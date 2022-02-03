@@ -2,8 +2,6 @@
 from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
 
-ctypedef complex_t[double] DTYPE
-
 cdef extern from "CFunction.cpp":
   pass
 
@@ -49,201 +47,386 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     @staticmethod
     CFunction[Dom, Ran] E()
 
-cdef class Function:
-  cdef CFunction[DTYPE, DTYPE] cfunction
+cdef class ComplexFunction:
+  cdef CFunction[complex_t[double], complex_t[double]] cfunction
 
   def __cinit__(self):
     pass
 
-  def __call__(self, DTYPE z):
+  def __call__(self, complex_t[double] z):
     return self.cfunction(z)
 
   def latex(self, str varname = "z"):
     return self.cfunction.latex(varname.encode()).decode()
 
-  def _add(self, Function rhs):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) + rhs.cfunction
+  def _add(self, ComplexFunction rhs):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction) + rhs.cfunction
     return F
 
-  def _sub(self, Function rhs):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) - rhs.cfunction
+  def _sub(self, ComplexFunction rhs):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction) - rhs.cfunction
     return F
 
-  def _mul(self, Function rhs):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) * rhs.cfunction
+  def _mul(self, ComplexFunction rhs):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction) * rhs.cfunction
     return F
 
-  def _div(self, Function rhs):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction) / rhs.cfunction
+  def _div(self, ComplexFunction rhs):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction) / rhs.cfunction
     return F
 
-  def _pow(self, Function rhs):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).pow(rhs.cfunction)
+  def _pow(self, ComplexFunction rhs):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).pow(rhs.cfunction)
     return F
 
-  def _compose(self, Function rhs):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).compose(rhs.cfunction)
+  def _compose(self, ComplexFunction rhs):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).compose(rhs.cfunction)
     return F
 
-  def _addconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).addconst(a)
+  def _addconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).addconst(a)
     return F
 
-  def _subconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).subconst(a)
+  def _subconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).subconst(a)
     return F
 
-  def _lsubconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).lsubconst(a)
+  def _lsubconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).lsubconst(a)
     return F
 
-  def _mulconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).mulconst(a)
+  def _mulconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).mulconst(a)
     return F
 
-  def _divconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).divconst(a)
+  def _divconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).divconst(a)
     return F
 
-  def _ldivconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).ldivconst(a)
+  def _ldivconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).ldivconst(a)
     return F
 
-  def _powconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).powconst(a)
+  def _powconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).powconst(a)
     return F
 
-  def _lpowconst(self, DTYPE a):
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE](self.cfunction).lpowconst(a)
+  def _lpowconst(self, complex_t[double] a):
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).lpowconst(a)
     return F
 
   def __add__(lhs, rhs):
-    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       return rhs._addconst(lhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, (int, float, complex)):
       return lhs._addconst(rhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, Function):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       return lhs._add(rhs)
     else:
       raise NotImplementedError
 
   def __sub__(lhs, rhs):
-    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       return rhs._lsubconst(lhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, (int, float, complex)):
       return lhs._subconst(rhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, Function):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       return lhs._sub(rhs)
     else:
       raise NotImplementedError
 
   def __mul__(lhs, rhs):
-    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       return rhs._mulconst(lhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, (int, float, complex)):
       return lhs._mulconst(rhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, Function):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       return lhs._mul(rhs)
     else:
       raise NotImplementedError
 
   def __truediv__(lhs, rhs):
-    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       return rhs._ldivconst(lhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, (int, float, complex)):
       return lhs._divconst(rhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, Function):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       return lhs._div(rhs)
     else:
       raise NotImplementedError
 
   def __pow__(lhs, rhs, mod):
-    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       return rhs._lpowconst(lhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, (int, float, complex)):
       return lhs._powconst(rhs)
-    elif isinstance(lhs, Function) and isinstance(rhs, Function):
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       return lhs._pow(rhs)
     else:
       raise NotImplementedError
 
   def __matmul__(lhs, rhs):
-    if isinstance(lhs, Function) and isinstance(rhs, Function):
+    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       return lhs._compose(rhs)
     else:
       raise NotImplementedError
 
   @staticmethod
   def Identity():
-    return Function()
+    return ComplexFunction()
 
   @staticmethod
   def Exp():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Exp()
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Exp()
     return F
 
   @staticmethod
   def Sin():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Sin()
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Sin()
     return F
 
   @staticmethod
   def Cos():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Cos()
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Cos()
     return F
 
   @staticmethod
   def Tan():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Tan()
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Tan()
     return F
 
   @staticmethod
   def Sec():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Sec()
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Sec()
     return F
 
   @staticmethod
   def Csc():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Csc()
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Csc()
     return F
 
   @staticmethod
   def Cot():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Cot()
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Cot()
     return F
 
   @staticmethod
-  def _Pi():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].Pi()
+  def Pi():
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].Pi()
     return F
 
   @staticmethod
-  def _E():
-    F = Function()
-    F.cfunction = CFunction[DTYPE, DTYPE].E()
+  def E():
+    F = ComplexFunction()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]].E()
     return F
 
-pi = Function._Pi()
-e = Function._E()
+cdef class Contour:
+  cdef CFunction[double, complex_t[double]] cfunction
+
+  def __cinit__(self):
+    pass
+
+  def __call__(self, double t):
+    return self.cfunction(t)
+
+  def latex(self, str varname = "t"):
+    return self.cfunction.latex(varname.encode()).decode()
+
+  def _add(self, Contour rhs):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction) + rhs.cfunction
+    return F
+
+  def _sub(self, Contour rhs):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction) - rhs.cfunction
+    return F
+
+  def _mul(self, Contour rhs):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction) * rhs.cfunction
+    return F
+
+  def _div(self, Contour rhs):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction) / rhs.cfunction
+    return F
+
+  def _pow(self, Contour rhs):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).pow(rhs.cfunction)
+    return F
+
+  def _addconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).addconst(a)
+    return F
+
+  def _subconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).subconst(a)
+    return F
+
+  def _lsubconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).lsubconst(a)
+    return F
+
+  def _mulconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).mulconst(a)
+    return F
+
+  def _divconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).divconst(a)
+    return F
+
+  def _ldivconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).ldivconst(a)
+    return F
+
+  def _powconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).powconst(a)
+    return F
+
+  def _lpowconst(self, complex_t[double] a):
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]](self.cfunction).lpowconst(a)
+    return F
+
+  def __add__(lhs, rhs):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
+      return rhs._addconst(lhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
+      return lhs._addconst(rhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, Contour):
+      return lhs._add(rhs)
+    else:
+      raise NotImplementedError
+
+  def __sub__(lhs, rhs):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
+      return rhs._lsubconst(lhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
+      return lhs._subconst(rhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, Contour):
+      return lhs._sub(rhs)
+    else:
+      raise NotImplementedError
+
+  def __mul__(lhs, rhs):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
+      return rhs._mulconst(lhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
+      return lhs._mulconst(rhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, Contour):
+      return lhs._mul(rhs)
+    else:
+      raise NotImplementedError
+
+  def __truediv__(lhs, rhs):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
+      return rhs._ldivconst(lhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
+      return lhs._divconst(rhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, Contour):
+      return lhs._div(rhs)
+    else:
+      raise NotImplementedError
+
+  def __pow__(lhs, rhs, mod):
+    if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
+      return rhs._lpowconst(lhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
+      return lhs._powconst(rhs)
+    elif isinstance(lhs, Contour) and isinstance(rhs, Contour):
+      return lhs._pow(rhs)
+    else:
+      raise NotImplementedError
+
+  def __matmul__(lhs, rhs):
+    raise NotImplementedError
+
+  @staticmethod
+  def Identity():
+    return Contour()
+
+  @staticmethod
+  def Exp():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Exp()
+    return F
+
+  @staticmethod
+  def Sin():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Sin()
+    return F
+
+  @staticmethod
+  def Cos():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Cos()
+    return F
+
+  @staticmethod
+  def Tan():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Tan()
+    return F
+
+  @staticmethod
+  def Sec():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Sec()
+    return F
+
+  @staticmethod
+  def Csc():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Csc()
+    return F
+
+  @staticmethod
+  def Cot():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Cot()
+    return F
+
+  @staticmethod
+  def Pi():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].Pi()
+    return F
+
+  @staticmethod
+  def E():
+    F = Contour()
+    F.cfunction = CFunction[double, complex_t[double]].E()
+    return F
