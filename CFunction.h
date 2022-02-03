@@ -21,11 +21,13 @@ namespace libcalculus {
         CFunction operator-(CFunction const &rhs) const noexcept;
         CFunction operator*(CFunction const &rhs) const noexcept;
         CFunction operator/(CFunction const &rhs) const noexcept;
+        CFunction pow(CFunction const &rhs) const noexcept;
         CFunction reciprocal() const noexcept;
 
         CFunction addconst(dtype a) const noexcept;
         CFunction mulconst(dtype a) const noexcept;
         CFunction powconst(dtype a) const noexcept;
+        CFunction lpowconst(dtype a) const noexcept;
     };
 }
 #endif

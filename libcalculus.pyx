@@ -17,11 +17,13 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction operator-(CFunction rhs)
     CFunction operator*(CFunction rhs)
     CFunction operator/(CFunction rhs)
+    CFunction pow(CFunction rhs)
     CFunction reciprocal()
 
     CFunction mulconst(dtype a)
     CFunction addconst(dtype a)
     CFunction powconst(dtype a)
+    CFunction lpowconst(dtype a)
 
   cdef CFunction identity
 
@@ -52,6 +54,11 @@ cdef class Function:
   def _div(self, Function rhs):
     F = Function()
     F.cfunction = CFunction(self.cfunction) / rhs.cfunction
+    return F
+
+  def _pow(self, Function rhs):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction).pow(rhs.cfunction)
     return F
 
   def _addconst(self, dtype a):
@@ -87,6 +94,11 @@ cdef class Function:
   def _powconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).powconst(a)
+    return F
+
+  def _lpowconst(self, dtype a):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction).lpowconst(a)
     return F
 
   @staticmethod
@@ -127,8 +139,8 @@ cdef class Function:
 
   def __pow__(lhs, rhs, mod):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
-      return None
+      return rhs._lpowconst(lhs)
     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
       return lhs._powconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
-      return None
+      return lhs._pow(rhs)
