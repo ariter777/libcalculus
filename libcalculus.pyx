@@ -2,7 +2,8 @@
 from libcpp.complex cimport complex as complex_t
 cimport libc.math
 
-cdef double e = libc.math.exp(1.)
+cdef double e = libc.math.e
+cdef double pi = libc.math.pi
 
 ctypedef complex_t[double] dtype
 
