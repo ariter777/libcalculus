@@ -141,6 +141,11 @@ namespace libcalculus {
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> CFunction<Dom, Ran>::lpowconst(Ran a) const {
         auto const old_f = this->_f;
-        return CFunction([=](Dom z) { return std::pow(a, old_f(z)); });
+        std::string new_latex = "{";
+        new_latex.append(Latex::fmt_const(a, false));
+        new_latex.append("}^{");
+        new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::LPOW, this->_last_op));
+        new_latex.append("}");
+        return CFunction([=](Dom z) { return std::pow(a, old_f(z)); }, new_latex, OP_TYPE::LPOW);
     }
 }
