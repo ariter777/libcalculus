@@ -5,6 +5,11 @@ namespace libcalculus {
         return this->f(z);
     }
 
+    CFunction CFunction::compose(CFunction const &rhs) const noexcept {
+        auto const lhs_f = this->f, rhs_f = rhs.f;
+        return CFunction([=](dtype z) { return lhs_f(rhs_f(z)); });
+    }
+
     CFunction CFunction::operator+(CFunction const &rhs) const noexcept {
         auto const lhs_f = this->f, rhs_f = rhs.f;
         return CFunction([=](dtype z) { return lhs_f(z) + rhs_f(z); });

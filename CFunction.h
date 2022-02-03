@@ -16,6 +16,7 @@ namespace libcalculus {
         CFunction(function f) : f{f} {}
         CFunction(CFunction const &cf) : f{cf.f} {}
         dtype operator()(dtype z) const;
+        CFunction compose(CFunction const &rhs) const noexcept;
 
         CFunction operator+(CFunction const &rhs) const noexcept;
         CFunction operator-(CFunction const &rhs) const noexcept;

@@ -2,4 +2,4 @@ import libcalculus
 
 f = (1 + libcalculus.Function.Identity()) / 4.
 g = 2 + libcalculus.Function.Identity()
-print((libcalculus.Function.Cot())(5 + 3j))
+print((libcalculus.Function.Cot() @ libcalculus.Function.Exp())(5 + 3j))

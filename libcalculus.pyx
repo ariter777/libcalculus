@@ -15,6 +15,7 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction() except +
     CFunction(CFunction cf) except +
     dtype operator()(dtype z) except +
+    CFunction compose(CFunction rhs)
 
     CFunction operator+(CFunction rhs)
     CFunction operator-(CFunction rhs)
@@ -71,6 +72,11 @@ cdef class Function:
     F.cfunction = CFunction(self.cfunction).pow(rhs.cfunction)
     return F
 
+  def _compose(self, Function rhs):
+    F = Function()
+    F.cfunction = CFunction(self.cfunction).compose(rhs.cfunction)
+    return F
+
   def _addconst(self, dtype a):
     F = Function()
     F.cfunction = CFunction(self.cfunction).addconst(a)
@@ -118,6 +124,8 @@ cdef class Function:
       return lhs._addconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._add(rhs)
+    else:
+      raise NotImplementedError
 
   def __sub__(lhs, rhs):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
@@ -126,6 +134,8 @@ cdef class Function:
       return lhs._subconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._sub(rhs)
+    else:
+      raise NotImplementedError
 
   def __mul__(lhs, rhs):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
@@ -134,6 +144,8 @@ cdef class Function:
       return lhs._mulconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._mul(rhs)
+    else:
+      raise NotImplementedError
 
   def __truediv__(lhs, rhs):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
@@ -142,6 +154,8 @@ cdef class Function:
       return lhs._divconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._div(rhs)
+    else:
+      raise NotImplementedError
 
   def __pow__(lhs, rhs, mod):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
@@ -150,6 +164,14 @@ cdef class Function:
       return lhs._powconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._pow(rhs)
+    else:
+      raise NotImplementedError
+
+  def __matmul__(lhs, rhs):
+    if isinstance(lhs, Function) and isinstance(rhs, Function):
+      return lhs._compose(rhs)
+    else:
+      raise NotImplementedError
 
   @staticmethod
   def Identity():
