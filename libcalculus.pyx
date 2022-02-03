@@ -10,23 +10,23 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction() except +
     CFunction(CFunction[Dom, Ran] cf) except +
     Ran operator()(Dom z) except +
-    CFunction[Dom, Ran] compose(CFunction[Dom, Ran] rhs)
+    CFunction[Predom, Ran] compose[Predom](CFunction[Predom, Dom] rhs) except +
     string latex(string varname) except +
 
-    CFunction[Dom, Ran] operator+(CFunction[Dom, Ran] rhs)
-    CFunction[Dom, Ran] operator-(CFunction[Dom, Ran] rhs)
-    CFunction[Dom, Ran] operator*(CFunction[Dom, Ran] rhs)
-    CFunction[Dom, Ran] operator/(CFunction[Dom, Ran] rhs)
-    CFunction[Dom, Ran] pow(CFunction[Dom, Ran] rhs)
+    CFunction[Dom, Ran] operator+(CFunction[Dom, Ran] rhs) except +
+    CFunction[Dom, Ran] operator-(CFunction[Dom, Ran] rhs) except +
+    CFunction[Dom, Ran] operator*(CFunction[Dom, Ran] rhs) except +
+    CFunction[Dom, Ran] operator/(CFunction[Dom, Ran] rhs) except +
+    CFunction[Dom, Ran] pow(CFunction[Dom, Ran] rhs) except +
 
-    CFunction[Dom, Ran] mulconst(Ran a)
-    CFunction[Dom, Ran] addconst(Ran a)
-    CFunction[Dom, Ran] subconst(Ran a)
-    CFunction[Dom, Ran] lsubconst(Ran a)
-    CFunction[Dom, Ran] divconst(Ran a)
-    CFunction[Dom, Ran] ldivconst(Ran a)
-    CFunction[Dom, Ran] powconst(Ran a)
-    CFunction[Dom, Ran] lpowconst(Ran a)
+    CFunction[Dom, Ran] mulconst(Ran a) except +
+    CFunction[Dom, Ran] addconst(Ran a) except +
+    CFunction[Dom, Ran] subconst(Ran a) except +
+    CFunction[Dom, Ran] lsubconst(Ran a) except +
+    CFunction[Dom, Ran] divconst(Ran a) except +
+    CFunction[Dom, Ran] ldivconst(Ran a) except +
+    CFunction[Dom, Ran] powconst(Ran a) except +
+    CFunction[Dom, Ran] lpowconst(Ran a) except +
 
     @staticmethod
     CFunction[Dom, Ran] Exp()
@@ -86,7 +86,12 @@ cdef class ComplexFunction:
 
   def _compose(self, ComplexFunction rhs):
     F = ComplexFunction()
-    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).compose(rhs.cfunction)
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).compose[complex_t[double]](rhs.cfunction)
+    return F
+
+  def _compose_contour(self, Contour rhs):
+    F = Contour()
+    F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).compose[double](rhs.cfunction)
     return F
 
   def _addconst(self, complex_t[double] a):
@@ -182,6 +187,8 @@ cdef class ComplexFunction:
   def __matmul__(lhs, rhs):
     if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       return lhs._compose(rhs)
+    if isinstance(lhs, ComplexFunction) and isinstance(rhs, Contour):
+      return lhs._compose_contour(rhs)
     else:
       raise NotImplementedError
 

@@ -61,6 +61,7 @@ namespace libcalculus {
         function _f = [](Dom z) { return z; };
         std::string _latex = LATEX_VAR;
         char _last_op = OP_TYPE::NOP;
+        template<typename Dom2, typename Ran2> friend class CFunction;
     public:
         CFunction() {}
         CFunction(function f) : _f{f} {}
@@ -69,7 +70,7 @@ namespace libcalculus {
         Ran operator()(Dom z) const;
         std::string latex(std::string const &varname = "z") const;
 
-        CFunction<Dom, Ran> compose(CFunction<Dom, Ran> const &rhs) const;
+        template<typename Predom> CFunction<Predom, Ran> compose(CFunction<Predom, Dom> const &rhs) const;
         CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &rhs) const;

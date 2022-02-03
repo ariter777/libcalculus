@@ -12,12 +12,13 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::compose(CFunction const &rhs) const {
+    template<typename Predom>
+    CFunction<Predom, Ran> CFunction<Dom, Ran>::compose(CFunction<Predom, Dom> const &rhs) const {
         auto const lhs_f = this->_f, rhs_f = rhs._f;
 
         std::string new_latex = std::regex_replace(this->_latex, std::regex(LATEX_VAR),
                                 Latex::parenthesize_if(rhs._latex, OP_TYPE::FUNCTION, rhs._last_op));
-        return CFunction([=](Dom z) { return lhs_f(rhs_f(z)); }, new_latex, this->_last_op);
+        return CFunction<Predom, Ran>([=](Predom z) { return lhs_f(rhs_f(z)); }, new_latex, this->_last_op);
     }
 
     template<typename Dom, typename Ran>
