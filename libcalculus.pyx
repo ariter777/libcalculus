@@ -28,6 +28,13 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction powconst(dtype a)
     CFunction lpowconst(dtype a)
 
+    @staticmethod
+    CFunction Sin()
+    @staticmethod
+    CFunction Cos()
+    @staticmethod
+    CFunction Tan()
+
   cdef CFunction identity
 
 cdef class Function:
@@ -104,10 +111,6 @@ cdef class Function:
     F.cfunction = CFunction(self.cfunction).lpowconst(a)
     return F
 
-  @staticmethod
-  def Identity():
-    return Function()
-
   def __add__(lhs, rhs):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
       return rhs._addconst(lhs)
@@ -147,6 +150,50 @@ cdef class Function:
       return lhs._powconst(rhs)
     elif isinstance(lhs, Function) and isinstance(rhs, Function):
       return lhs._pow(rhs)
+
+  @staticmethod
+  def Identity():
+    return Function()
+
+  @staticmethod
+  def Exp():
+    return exp(Function.Identity())
+
+  @staticmethod
+  def Sin():
+    F = Function()
+    F.cfunction = CFunction.Sin()
+    return F
+
+  @staticmethod
+  def Cos():
+    F = Function()
+    F.cfunction = CFunction.Cos()
+    return F
+
+  @staticmethod
+  def Tan():
+    F = Function()
+    F.cfunction = CFunction.Tan()
+    return F
+
+  @staticmethod
+  def Sec():
+    F = Function()
+    F.cfunction = CFunction.Cos().reciprocal()
+    return F
+
+  @staticmethod
+  def Csc():
+    F = Function()
+    F.cfunction = CFunction.Sin().reciprocal()
+    return F
+
+  @staticmethod
+  def Cot():
+    F = Function()
+    F.cfunction = CFunction.Tan().reciprocal()
+    return F
 
 def exp(Function f):
   return e ** f

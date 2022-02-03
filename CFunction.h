@@ -28,6 +28,10 @@ namespace libcalculus {
         CFunction mulconst(dtype a) const noexcept;
         CFunction powconst(dtype a) const noexcept;
         CFunction lpowconst(dtype a) const noexcept;
+
+        static CFunction Sin() { return CFunction([](dtype z) { return std::sin(z); }); }
+        static CFunction Cos() { return CFunction([](dtype z) { return std::cos(z); }); }
+        static CFunction Tan() { return CFunction([](dtype z) { return std::tan(z); }); }
     };
 }
 #endif
