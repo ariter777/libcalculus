@@ -976,7 +976,7 @@ struct __pyx_obj_11libcalculus_Function;
  */
 typedef std::complex<double>  __pyx_t_11libcalculus_dtype;
 
-/* "libcalculus.pyx":51
+/* "libcalculus.pyx":55
  *   cdef CFunction identity
  * 
  * cdef class Function:             # <<<<<<<<<<<<<<
@@ -1615,28 +1615,26 @@ static PyObject *__pyx_pf_11libcalculus_8Function_60Cot(void); /* proto */
 static PyObject *__pyx_pf_11libcalculus_8Function_62__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11libcalculus_Function *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11libcalculus_8Function_64__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11libcalculus_Function *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11libcalculus_Function(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_int_neg_1;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
-static PyObject *__pyx_tuple__3;
-static PyObject *__pyx_tuple__5;
-static PyObject *__pyx_tuple__7;
-static PyObject *__pyx_tuple__9;
-static PyObject *__pyx_tuple__11;
-static PyObject *__pyx_tuple__13;
-static PyObject *__pyx_tuple__15;
-static PyObject *__pyx_tuple__17;
-static PyObject *__pyx_codeobj__4;
-static PyObject *__pyx_codeobj__6;
-static PyObject *__pyx_codeobj__8;
-static PyObject *__pyx_codeobj__10;
-static PyObject *__pyx_codeobj__12;
-static PyObject *__pyx_codeobj__14;
-static PyObject *__pyx_codeobj__16;
-static PyObject *__pyx_codeobj__18;
+static PyObject *__pyx_tuple__4;
+static PyObject *__pyx_tuple__6;
+static PyObject *__pyx_tuple__8;
+static PyObject *__pyx_tuple__10;
+static PyObject *__pyx_tuple__12;
+static PyObject *__pyx_tuple__14;
+static PyObject *__pyx_tuple__16;
+static PyObject *__pyx_codeobj__3;
+static PyObject *__pyx_codeobj__5;
+static PyObject *__pyx_codeobj__7;
+static PyObject *__pyx_codeobj__9;
+static PyObject *__pyx_codeobj__11;
+static PyObject *__pyx_codeobj__13;
+static PyObject *__pyx_codeobj__15;
+static PyObject *__pyx_codeobj__17;
 /* Late includes */
 
-/* "libcalculus.pyx":54
+/* "libcalculus.pyx":58
  *   cdef CFunction cfunction
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1671,7 +1669,7 @@ static int __pyx_pf_11libcalculus_8Function___cinit__(CYTHON_UNUSED struct __pyx
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":57
+/* "libcalculus.pyx":61
  *     pass
  * 
  *   def __call__(self, dtype z):             # <<<<<<<<<<<<<<
@@ -1708,18 +1706,18 @@ static PyObject *__pyx_pw_11libcalculus_8Function_3__call__(PyObject *__pyx_v_se
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__call__") < 0)) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__call__") < 0)) __PYX_ERR(0, 61, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
     }
-    __pyx_v_z = __pyx_convert_complex_from_py_double(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 57, __pyx_L3_error)
+    __pyx_v_z = __pyx_convert_complex_from_py_double(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 61, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__call__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 57, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__call__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 61, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("libcalculus.Function.__call__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1742,7 +1740,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_2__call__(struct __pyx_obj_11l
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__call__", 0);
 
-  /* "libcalculus.pyx":58
+  /* "libcalculus.pyx":62
  * 
  *   def __call__(self, dtype z):
  *     return self.cfunction(z)             # <<<<<<<<<<<<<<
@@ -1754,15 +1752,15 @@ static PyObject *__pyx_pf_11libcalculus_8Function_2__call__(struct __pyx_obj_11l
     __pyx_t_1 = __pyx_v_self->cfunction(__pyx_v_z);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 58, __pyx_L1_error)
+    __PYX_ERR(0, 62, __pyx_L1_error)
   }
-  __pyx_t_2 = __pyx_convert_complex_to_py_double(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_complex_to_py_double(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":57
+  /* "libcalculus.pyx":61
  *     pass
  * 
  *   def __call__(self, dtype z):             # <<<<<<<<<<<<<<
@@ -1781,7 +1779,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_2__call__(struct __pyx_obj_11l
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":60
+/* "libcalculus.pyx":64
  *     return self.cfunction(z)
  * 
  *   def latex(self, str varname = "z"):             # <<<<<<<<<<<<<<
@@ -1821,7 +1819,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_5latex(PyObject *__pyx_v_self,
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "latex") < 0)) __PYX_ERR(0, 60, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "latex") < 0)) __PYX_ERR(0, 64, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -1835,13 +1833,13 @@ static PyObject *__pyx_pw_11libcalculus_8Function_5latex(PyObject *__pyx_v_self,
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("latex", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 60, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("latex", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 64, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("libcalculus.Function.latex", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_varname), (&PyUnicode_Type), 1, "varname", 1))) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_varname), (&PyUnicode_Type), 1, "varname", 1))) __PYX_ERR(0, 64, __pyx_L1_error)
   __pyx_r = __pyx_pf_11libcalculus_8Function_4latex(((struct __pyx_obj_11libcalculus_Function *)__pyx_v_self), __pyx_v_varname);
 
   /* function exit code */
@@ -1864,7 +1862,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_4latex(struct __pyx_obj_11libc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("latex", 0);
 
-  /* "libcalculus.pyx":61
+  /* "libcalculus.pyx":65
  * 
  *   def latex(self, str varname = "z"):
  *     return self.cfunction.latex(varname.encode()).decode()             # <<<<<<<<<<<<<<
@@ -1874,25 +1872,25 @@ static PyObject *__pyx_pf_11libcalculus_8Function_4latex(struct __pyx_obj_11libc
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_varname == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "encode");
-    __PYX_ERR(0, 61, __pyx_L1_error)
+    __PYX_ERR(0, 65, __pyx_L1_error)
   }
-  __pyx_t_1 = PyUnicode_AsEncodedString(__pyx_v_varname, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = PyUnicode_AsEncodedString(__pyx_v_varname, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   try {
     __pyx_t_3 = __pyx_v_self->cfunction.latex(__pyx_t_2);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 61, __pyx_L1_error)
+    __PYX_ERR(0, 65, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_t_3, 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_t_3, 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":60
+  /* "libcalculus.pyx":64
  *     return self.cfunction(z)
  * 
  *   def latex(self, str varname = "z"):             # <<<<<<<<<<<<<<
@@ -1911,7 +1909,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_4latex(struct __pyx_obj_11libc
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":63
+/* "libcalculus.pyx":67
  *     return self.cfunction.latex(varname.encode()).decode()
  * 
  *   def _add(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -1928,7 +1926,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_7_add(PyObject *__pyx_v_self, 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_add (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 67, __pyx_L1_error)
   __pyx_r = __pyx_pf_11libcalculus_8Function_6_add(((struct __pyx_obj_11libcalculus_Function *)__pyx_v_self), ((struct __pyx_obj_11libcalculus_Function *)__pyx_v_rhs));
 
   /* function exit code */
@@ -1951,19 +1949,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_6_add(struct __pyx_obj_11libca
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_add", 0);
 
-  /* "libcalculus.pyx":64
+  /* "libcalculus.pyx":68
  * 
  *   def _add(self, Function rhs):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction) + rhs.cfunction
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":65
+  /* "libcalculus.pyx":69
  *   def _add(self, Function rhs):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) + rhs.cfunction             # <<<<<<<<<<<<<<
@@ -1974,11 +1972,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_6_add(struct __pyx_obj_11libca
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 65, __pyx_L1_error)
+    __PYX_ERR(0, 69, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = (__pyx_t_2 + __pyx_v_rhs->cfunction);
 
-  /* "libcalculus.pyx":66
+  /* "libcalculus.pyx":70
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) + rhs.cfunction
  *     return F             # <<<<<<<<<<<<<<
@@ -1990,7 +1988,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_6_add(struct __pyx_obj_11libca
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":63
+  /* "libcalculus.pyx":67
  *     return self.cfunction.latex(varname.encode()).decode()
  * 
  *   def _add(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2010,7 +2008,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_6_add(struct __pyx_obj_11libca
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":68
+/* "libcalculus.pyx":72
  *     return F
  * 
  *   def _sub(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2027,7 +2025,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_9_sub(PyObject *__pyx_v_self, 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_sub (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 72, __pyx_L1_error)
   __pyx_r = __pyx_pf_11libcalculus_8Function_8_sub(((struct __pyx_obj_11libcalculus_Function *)__pyx_v_self), ((struct __pyx_obj_11libcalculus_Function *)__pyx_v_rhs));
 
   /* function exit code */
@@ -2050,19 +2048,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_8_sub(struct __pyx_obj_11libca
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_sub", 0);
 
-  /* "libcalculus.pyx":69
+  /* "libcalculus.pyx":73
  * 
  *   def _sub(self, Function rhs):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction) - rhs.cfunction
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":70
+  /* "libcalculus.pyx":74
  *   def _sub(self, Function rhs):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) - rhs.cfunction             # <<<<<<<<<<<<<<
@@ -2073,11 +2071,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_8_sub(struct __pyx_obj_11libca
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 70, __pyx_L1_error)
+    __PYX_ERR(0, 74, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = (__pyx_t_2 - __pyx_v_rhs->cfunction);
 
-  /* "libcalculus.pyx":71
+  /* "libcalculus.pyx":75
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) - rhs.cfunction
  *     return F             # <<<<<<<<<<<<<<
@@ -2089,7 +2087,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_8_sub(struct __pyx_obj_11libca
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":68
+  /* "libcalculus.pyx":72
  *     return F
  * 
  *   def _sub(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2109,7 +2107,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_8_sub(struct __pyx_obj_11libca
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":73
+/* "libcalculus.pyx":77
  *     return F
  * 
  *   def _mul(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2126,7 +2124,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_11_mul(PyObject *__pyx_v_self,
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_mul (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
   __pyx_r = __pyx_pf_11libcalculus_8Function_10_mul(((struct __pyx_obj_11libcalculus_Function *)__pyx_v_self), ((struct __pyx_obj_11libcalculus_Function *)__pyx_v_rhs));
 
   /* function exit code */
@@ -2149,19 +2147,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_10_mul(struct __pyx_obj_11libc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_mul", 0);
 
-  /* "libcalculus.pyx":74
+  /* "libcalculus.pyx":78
  * 
  *   def _mul(self, Function rhs):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction) * rhs.cfunction
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":75
+  /* "libcalculus.pyx":79
  *   def _mul(self, Function rhs):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) * rhs.cfunction             # <<<<<<<<<<<<<<
@@ -2172,11 +2170,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_10_mul(struct __pyx_obj_11libc
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 75, __pyx_L1_error)
+    __PYX_ERR(0, 79, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = (__pyx_t_2 * __pyx_v_rhs->cfunction);
 
-  /* "libcalculus.pyx":76
+  /* "libcalculus.pyx":80
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) * rhs.cfunction
  *     return F             # <<<<<<<<<<<<<<
@@ -2188,7 +2186,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_10_mul(struct __pyx_obj_11libc
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":73
+  /* "libcalculus.pyx":77
  *     return F
  * 
  *   def _mul(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2208,7 +2206,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_10_mul(struct __pyx_obj_11libc
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":78
+/* "libcalculus.pyx":82
  *     return F
  * 
  *   def _div(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2225,7 +2223,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_13_div(PyObject *__pyx_v_self,
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_div (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 82, __pyx_L1_error)
   __pyx_r = __pyx_pf_11libcalculus_8Function_12_div(((struct __pyx_obj_11libcalculus_Function *)__pyx_v_self), ((struct __pyx_obj_11libcalculus_Function *)__pyx_v_rhs));
 
   /* function exit code */
@@ -2248,19 +2246,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_12_div(struct __pyx_obj_11libc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_div", 0);
 
-  /* "libcalculus.pyx":79
+  /* "libcalculus.pyx":83
  * 
  *   def _div(self, Function rhs):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction) / rhs.cfunction
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":80
+  /* "libcalculus.pyx":84
  *   def _div(self, Function rhs):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) / rhs.cfunction             # <<<<<<<<<<<<<<
@@ -2271,11 +2269,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_12_div(struct __pyx_obj_11libc
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 80, __pyx_L1_error)
+    __PYX_ERR(0, 84, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = (__pyx_t_2 / __pyx_v_rhs->cfunction);
 
-  /* "libcalculus.pyx":81
+  /* "libcalculus.pyx":85
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction) / rhs.cfunction
  *     return F             # <<<<<<<<<<<<<<
@@ -2287,7 +2285,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_12_div(struct __pyx_obj_11libc
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":78
+  /* "libcalculus.pyx":82
  *     return F
  * 
  *   def _div(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2307,7 +2305,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_12_div(struct __pyx_obj_11libc
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":83
+/* "libcalculus.pyx":87
  *     return F
  * 
  *   def _pow(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2324,7 +2322,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_15_pow(PyObject *__pyx_v_self,
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_pow (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 87, __pyx_L1_error)
   __pyx_r = __pyx_pf_11libcalculus_8Function_14_pow(((struct __pyx_obj_11libcalculus_Function *)__pyx_v_self), ((struct __pyx_obj_11libcalculus_Function *)__pyx_v_rhs));
 
   /* function exit code */
@@ -2347,19 +2345,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_14_pow(struct __pyx_obj_11libc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_pow", 0);
 
-  /* "libcalculus.pyx":84
+  /* "libcalculus.pyx":88
  * 
  *   def _pow(self, Function rhs):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction).pow(rhs.cfunction)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":85
+  /* "libcalculus.pyx":89
  *   def _pow(self, Function rhs):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).pow(rhs.cfunction)             # <<<<<<<<<<<<<<
@@ -2370,11 +2368,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_14_pow(struct __pyx_obj_11libc
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 85, __pyx_L1_error)
+    __PYX_ERR(0, 89, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = __pyx_t_2.pow(__pyx_v_rhs->cfunction);
 
-  /* "libcalculus.pyx":86
+  /* "libcalculus.pyx":90
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).pow(rhs.cfunction)
  *     return F             # <<<<<<<<<<<<<<
@@ -2386,7 +2384,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_14_pow(struct __pyx_obj_11libc
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":83
+  /* "libcalculus.pyx":87
  *     return F
  * 
  *   def _pow(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2406,7 +2404,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_14_pow(struct __pyx_obj_11libc
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":88
+/* "libcalculus.pyx":92
  *     return F
  * 
  *   def _compose(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2423,7 +2421,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_17_compose(PyObject *__pyx_v_s
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_compose (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rhs), __pyx_ptype_11libcalculus_Function, 1, "rhs", 0))) __PYX_ERR(0, 92, __pyx_L1_error)
   __pyx_r = __pyx_pf_11libcalculus_8Function_16_compose(((struct __pyx_obj_11libcalculus_Function *)__pyx_v_self), ((struct __pyx_obj_11libcalculus_Function *)__pyx_v_rhs));
 
   /* function exit code */
@@ -2446,19 +2444,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_16_compose(struct __pyx_obj_11
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_compose", 0);
 
-  /* "libcalculus.pyx":89
+  /* "libcalculus.pyx":93
  * 
  *   def _compose(self, Function rhs):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction).compose(rhs.cfunction)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":90
+  /* "libcalculus.pyx":94
  *   def _compose(self, Function rhs):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).compose(rhs.cfunction)             # <<<<<<<<<<<<<<
@@ -2469,11 +2467,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_16_compose(struct __pyx_obj_11
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 90, __pyx_L1_error)
+    __PYX_ERR(0, 94, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = __pyx_t_2.compose(__pyx_v_rhs->cfunction);
 
-  /* "libcalculus.pyx":91
+  /* "libcalculus.pyx":95
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).compose(rhs.cfunction)
  *     return F             # <<<<<<<<<<<<<<
@@ -2485,7 +2483,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_16_compose(struct __pyx_obj_11
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":88
+  /* "libcalculus.pyx":92
  *     return F
  * 
  *   def _compose(self, Function rhs):             # <<<<<<<<<<<<<<
@@ -2505,7 +2503,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_16_compose(struct __pyx_obj_11
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":93
+/* "libcalculus.pyx":97
  *     return F
  * 
  *   def _addconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -2524,7 +2522,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_19_addconst(PyObject *__pyx_v_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_addconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 97, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2550,19 +2548,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_18_addconst(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_addconst", 0);
 
-  /* "libcalculus.pyx":94
+  /* "libcalculus.pyx":98
  * 
  *   def _addconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction).addconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":95
+  /* "libcalculus.pyx":99
  *   def _addconst(self, dtype a):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).addconst(a)             # <<<<<<<<<<<<<<
@@ -2573,11 +2571,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_18_addconst(struct __pyx_obj_1
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 95, __pyx_L1_error)
+    __PYX_ERR(0, 99, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = __pyx_t_2.addconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":96
+  /* "libcalculus.pyx":100
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).addconst(a)
  *     return F             # <<<<<<<<<<<<<<
@@ -2589,7 +2587,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_18_addconst(struct __pyx_obj_1
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":93
+  /* "libcalculus.pyx":97
  *     return F
  * 
  *   def _addconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -2609,12 +2607,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_18_addconst(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":98
+/* "libcalculus.pyx":102
  *     return F
  * 
  *   def _subconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).addconst(0 - a)
+ *     F.cfunction = CFunction(self.cfunction).subconst(a)
  */
 
 /* Python wrapper */
@@ -2628,7 +2626,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_21_subconst(PyObject *__pyx_v_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_subconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 102, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2654,22 +2652,22 @@ static PyObject *__pyx_pf_11libcalculus_8Function_20_subconst(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_subconst", 0);
 
-  /* "libcalculus.pyx":99
+  /* "libcalculus.pyx":103
  * 
  *   def _subconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
- *     F.cfunction = CFunction(self.cfunction).addconst(0 - a)
+ *     F.cfunction = CFunction(self.cfunction).subconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":100
+  /* "libcalculus.pyx":104
  *   def _subconst(self, dtype a):
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).addconst(0 - a)             # <<<<<<<<<<<<<<
+ *     F.cfunction = CFunction(self.cfunction).subconst(a)             # <<<<<<<<<<<<<<
  *     return F
  * 
  */
@@ -2677,13 +2675,13 @@ static PyObject *__pyx_pf_11libcalculus_8Function_20_subconst(struct __pyx_obj_1
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 104, __pyx_L1_error)
   }
-  __pyx_v_F->cfunction = __pyx_t_2.addconst((0.0 - __pyx_v_a));
+  __pyx_v_F->cfunction = __pyx_t_2.subconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":101
+  /* "libcalculus.pyx":105
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).addconst(0 - a)
+ *     F.cfunction = CFunction(self.cfunction).subconst(a)
  *     return F             # <<<<<<<<<<<<<<
  * 
  *   def _lsubconst(self, dtype a):
@@ -2693,12 +2691,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_20_subconst(struct __pyx_obj_1
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":98
+  /* "libcalculus.pyx":102
  *     return F
  * 
  *   def _subconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).addconst(0 - a)
+ *     F.cfunction = CFunction(self.cfunction).subconst(a)
  */
 
   /* function exit code */
@@ -2713,12 +2711,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_20_subconst(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":103
+/* "libcalculus.pyx":107
  *     return F
  * 
  *   def _lsubconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)
+ *     F.cfunction = CFunction(self.cfunction).lsubconst(a)
  */
 
 /* Python wrapper */
@@ -2732,7 +2730,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_23_lsubconst(PyObject *__pyx_v
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_lsubconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 103, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2753,28 +2751,27 @@ static PyObject *__pyx_pf_11libcalculus_8Function_22_lsubconst(struct __pyx_obj_
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   libcalculus::CFunction __pyx_t_2;
-  __pyx_t_11libcalculus_dtype __pyx_t_3;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_lsubconst", 0);
 
-  /* "libcalculus.pyx":104
+  /* "libcalculus.pyx":108
  * 
  *   def _lsubconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
- *     F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)
+ *     F.cfunction = CFunction(self.cfunction).lsubconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":105
+  /* "libcalculus.pyx":109
  *   def _lsubconst(self, dtype a):
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)             # <<<<<<<<<<<<<<
+ *     F.cfunction = CFunction(self.cfunction).lsubconst(a)             # <<<<<<<<<<<<<<
  *     return F
  * 
  */
@@ -2782,17 +2779,13 @@ static PyObject *__pyx_pf_11libcalculus_8Function_22_lsubconst(struct __pyx_obj_
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 105, __pyx_L1_error)
+    __PYX_ERR(0, 109, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyComplex_Type)), __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __pyx_convert_complex_from_py_double(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_F->cfunction = __pyx_t_2.mulconst(__pyx_t_3).addconst(__pyx_v_a);
+  __pyx_v_F->cfunction = __pyx_t_2.lsubconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":106
+  /* "libcalculus.pyx":110
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)
+ *     F.cfunction = CFunction(self.cfunction).lsubconst(a)
  *     return F             # <<<<<<<<<<<<<<
  * 
  *   def _mulconst(self, dtype a):
@@ -2802,12 +2795,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_22_lsubconst(struct __pyx_obj_
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":103
+  /* "libcalculus.pyx":107
  *     return F
  * 
  *   def _lsubconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)
+ *     F.cfunction = CFunction(self.cfunction).lsubconst(a)
  */
 
   /* function exit code */
@@ -2822,7 +2815,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_22_lsubconst(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":108
+/* "libcalculus.pyx":112
  *     return F
  * 
  *   def _mulconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -2841,7 +2834,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_25_mulconst(PyObject *__pyx_v_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_mulconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 112, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2867,19 +2860,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_24_mulconst(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_mulconst", 0);
 
-  /* "libcalculus.pyx":109
+  /* "libcalculus.pyx":113
  * 
  *   def _mulconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction).mulconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":110
+  /* "libcalculus.pyx":114
  *   def _mulconst(self, dtype a):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).mulconst(a)             # <<<<<<<<<<<<<<
@@ -2890,11 +2883,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_24_mulconst(struct __pyx_obj_1
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 110, __pyx_L1_error)
+    __PYX_ERR(0, 114, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = __pyx_t_2.mulconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":111
+  /* "libcalculus.pyx":115
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).mulconst(a)
  *     return F             # <<<<<<<<<<<<<<
@@ -2906,7 +2899,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_24_mulconst(struct __pyx_obj_1
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":108
+  /* "libcalculus.pyx":112
  *     return F
  * 
  *   def _mulconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -2926,12 +2919,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_24_mulconst(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":113
+/* "libcalculus.pyx":117
  *     return F
  * 
  *   def _divconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(1 / a)
+ *     F.cfunction = CFunction(self.cfunction).divconst(a)
  */
 
 /* Python wrapper */
@@ -2945,7 +2938,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_27_divconst(PyObject *__pyx_v_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_divconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 113, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 117, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2971,22 +2964,22 @@ static PyObject *__pyx_pf_11libcalculus_8Function_26_divconst(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_divconst", 0);
 
-  /* "libcalculus.pyx":114
+  /* "libcalculus.pyx":118
  * 
  *   def _divconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
- *     F.cfunction = CFunction(self.cfunction).mulconst(1 / a)
+ *     F.cfunction = CFunction(self.cfunction).divconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":115
+  /* "libcalculus.pyx":119
  *   def _divconst(self, dtype a):
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(1 / a)             # <<<<<<<<<<<<<<
+ *     F.cfunction = CFunction(self.cfunction).divconst(a)             # <<<<<<<<<<<<<<
  *     return F
  * 
  */
@@ -2994,13 +2987,13 @@ static PyObject *__pyx_pf_11libcalculus_8Function_26_divconst(struct __pyx_obj_1
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 115, __pyx_L1_error)
+    __PYX_ERR(0, 119, __pyx_L1_error)
   }
-  __pyx_v_F->cfunction = __pyx_t_2.mulconst((1.0 / __pyx_v_a));
+  __pyx_v_F->cfunction = __pyx_t_2.divconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":116
+  /* "libcalculus.pyx":120
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(1 / a)
+ *     F.cfunction = CFunction(self.cfunction).divconst(a)
  *     return F             # <<<<<<<<<<<<<<
  * 
  *   def _ldivconst(self, dtype a):
@@ -3010,12 +3003,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_26_divconst(struct __pyx_obj_1
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":113
+  /* "libcalculus.pyx":117
  *     return F
  * 
  *   def _divconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(1 / a)
+ *     F.cfunction = CFunction(self.cfunction).divconst(a)
  */
 
   /* function exit code */
@@ -3030,12 +3023,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_26_divconst(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":118
+/* "libcalculus.pyx":122
  *     return F
  * 
  *   def _ldivconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)
+ *     F.cfunction = CFunction(self.cfunction).ldivconst(a)
  */
 
 /* Python wrapper */
@@ -3049,7 +3042,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_29_ldivconst(PyObject *__pyx_v
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_ldivconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 118, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 122, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3075,22 +3068,22 @@ static PyObject *__pyx_pf_11libcalculus_8Function_28_ldivconst(struct __pyx_obj_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_ldivconst", 0);
 
-  /* "libcalculus.pyx":119
+  /* "libcalculus.pyx":123
  * 
  *   def _ldivconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
- *     F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)
+ *     F.cfunction = CFunction(self.cfunction).ldivconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":120
+  /* "libcalculus.pyx":124
  *   def _ldivconst(self, dtype a):
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)             # <<<<<<<<<<<<<<
+ *     F.cfunction = CFunction(self.cfunction).ldivconst(a)             # <<<<<<<<<<<<<<
  *     return F
  * 
  */
@@ -3098,13 +3091,13 @@ static PyObject *__pyx_pf_11libcalculus_8Function_28_ldivconst(struct __pyx_obj_
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 120, __pyx_L1_error)
+    __PYX_ERR(0, 124, __pyx_L1_error)
   }
-  __pyx_v_F->cfunction = __pyx_t_2.reciprocal().mulconst(__pyx_v_a);
+  __pyx_v_F->cfunction = __pyx_t_2.ldivconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":121
+  /* "libcalculus.pyx":125
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)
+ *     F.cfunction = CFunction(self.cfunction).ldivconst(a)
  *     return F             # <<<<<<<<<<<<<<
  * 
  *   def _powconst(self, dtype a):
@@ -3114,12 +3107,12 @@ static PyObject *__pyx_pf_11libcalculus_8Function_28_ldivconst(struct __pyx_obj_
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":118
+  /* "libcalculus.pyx":122
  *     return F
  * 
  *   def _ldivconst(self, dtype a):             # <<<<<<<<<<<<<<
  *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)
+ *     F.cfunction = CFunction(self.cfunction).ldivconst(a)
  */
 
   /* function exit code */
@@ -3134,7 +3127,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_28_ldivconst(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":123
+/* "libcalculus.pyx":127
  *     return F
  * 
  *   def _powconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -3153,7 +3146,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_31_powconst(PyObject *__pyx_v_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_powconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 123, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 127, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3179,19 +3172,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_30_powconst(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_powconst", 0);
 
-  /* "libcalculus.pyx":124
+  /* "libcalculus.pyx":128
  * 
  *   def _powconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction).powconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":125
+  /* "libcalculus.pyx":129
  *   def _powconst(self, dtype a):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).powconst(a)             # <<<<<<<<<<<<<<
@@ -3202,11 +3195,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_30_powconst(struct __pyx_obj_1
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 125, __pyx_L1_error)
+    __PYX_ERR(0, 129, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = __pyx_t_2.powconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":126
+  /* "libcalculus.pyx":130
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).powconst(a)
  *     return F             # <<<<<<<<<<<<<<
@@ -3218,7 +3211,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_30_powconst(struct __pyx_obj_1
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":123
+  /* "libcalculus.pyx":127
  *     return F
  * 
  *   def _powconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -3238,7 +3231,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_30_powconst(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":128
+/* "libcalculus.pyx":132
  *     return F
  * 
  *   def _lpowconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -3257,7 +3250,7 @@ static PyObject *__pyx_pw_11libcalculus_8Function_33_lpowconst(PyObject *__pyx_v
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_lpowconst (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 128, __pyx_L3_error)
+    __pyx_v_a = __pyx_convert_complex_from_py_double(__pyx_arg_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 132, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3283,19 +3276,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_32_lpowconst(struct __pyx_obj_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_lpowconst", 0);
 
-  /* "libcalculus.pyx":129
+  /* "libcalculus.pyx":133
  * 
  *   def _lpowconst(self, dtype a):
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction(self.cfunction).lpowconst(a)
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":130
+  /* "libcalculus.pyx":134
  *   def _lpowconst(self, dtype a):
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).lpowconst(a)             # <<<<<<<<<<<<<<
@@ -3306,11 +3299,11 @@ static PyObject *__pyx_pf_11libcalculus_8Function_32_lpowconst(struct __pyx_obj_
     __pyx_t_2 = libcalculus::CFunction(__pyx_v_self->cfunction);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 130, __pyx_L1_error)
+    __PYX_ERR(0, 134, __pyx_L1_error)
   }
   __pyx_v_F->cfunction = __pyx_t_2.lpowconst(__pyx_v_a);
 
-  /* "libcalculus.pyx":131
+  /* "libcalculus.pyx":135
  *     F = Function()
  *     F.cfunction = CFunction(self.cfunction).lpowconst(a)
  *     return F             # <<<<<<<<<<<<<<
@@ -3322,7 +3315,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_32_lpowconst(struct __pyx_obj_
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":128
+  /* "libcalculus.pyx":132
  *     return F
  * 
  *   def _lpowconst(self, dtype a):             # <<<<<<<<<<<<<<
@@ -3342,7 +3335,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_32_lpowconst(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":133
+/* "libcalculus.pyx":137
  *     return F
  * 
  *   def __add__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -3378,7 +3371,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__add__", 0);
 
-  /* "libcalculus.pyx":134
+  /* "libcalculus.pyx":138
  * 
  *   def __add__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3415,7 +3408,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":135
+    /* "libcalculus.pyx":139
  *   def __add__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._addconst(lhs)             # <<<<<<<<<<<<<<
@@ -3423,7 +3416,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
  *       return lhs._addconst(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_addconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_addconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 139, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3437,14 +3430,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_lhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_lhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 139, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":134
+    /* "libcalculus.pyx":138
  * 
  *   def __add__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3453,7 +3446,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":136
+  /* "libcalculus.pyx":140
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._addconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -3490,7 +3483,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
   __pyx_L9_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":137
+    /* "libcalculus.pyx":141
  *       return rhs._addconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._addconst(rhs)             # <<<<<<<<<<<<<<
@@ -3498,7 +3491,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
  *       return lhs._add(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_addconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_addconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 141, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3512,14 +3505,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":136
+    /* "libcalculus.pyx":140
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._addconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -3528,7 +3521,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":138
+  /* "libcalculus.pyx":142
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._addconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3548,7 +3541,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
   __pyx_L14_bool_binop_done:;
   if (likely(__pyx_t_1)) {
 
-    /* "libcalculus.pyx":139
+    /* "libcalculus.pyx":143
  *       return lhs._addconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):
  *       return lhs._add(rhs)             # <<<<<<<<<<<<<<
@@ -3556,7 +3549,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
  *       raise NotImplementedError
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_add); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_add); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 143, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3570,14 +3563,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 139, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":138
+    /* "libcalculus.pyx":142
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._addconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3586,7 +3579,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":141
+  /* "libcalculus.pyx":145
  *       return lhs._add(rhs)
  *     else:
  *       raise NotImplementedError             # <<<<<<<<<<<<<<
@@ -3595,10 +3588,10 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
  */
   /*else*/ {
     __Pyx_Raise(__pyx_builtin_NotImplementedError, 0, 0, 0);
-    __PYX_ERR(0, 141, __pyx_L1_error)
+    __PYX_ERR(0, 145, __pyx_L1_error)
   }
 
-  /* "libcalculus.pyx":133
+  /* "libcalculus.pyx":137
  *     return F
  * 
  *   def __add__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -3619,7 +3612,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_34__add__(PyObject *__pyx_v_lh
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":143
+/* "libcalculus.pyx":147
  *       raise NotImplementedError
  * 
  *   def __sub__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -3655,7 +3648,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__sub__", 0);
 
-  /* "libcalculus.pyx":144
+  /* "libcalculus.pyx":148
  * 
  *   def __sub__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3692,7 +3685,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":145
+    /* "libcalculus.pyx":149
  *   def __sub__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._lsubconst(lhs)             # <<<<<<<<<<<<<<
@@ -3700,7 +3693,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
  *       return lhs._subconst(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_lsubconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_lsubconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 149, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3714,14 +3707,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_lhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_lhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 145, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":144
+    /* "libcalculus.pyx":148
  * 
  *   def __sub__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3730,7 +3723,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":146
+  /* "libcalculus.pyx":150
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._lsubconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -3767,7 +3760,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
   __pyx_L9_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":147
+    /* "libcalculus.pyx":151
  *       return rhs._lsubconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._subconst(rhs)             # <<<<<<<<<<<<<<
@@ -3775,7 +3768,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
  *       return lhs._sub(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_subconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 147, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_subconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3789,14 +3782,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":146
+    /* "libcalculus.pyx":150
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._lsubconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -3805,7 +3798,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":148
+  /* "libcalculus.pyx":152
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._subconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3825,7 +3818,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
   __pyx_L14_bool_binop_done:;
   if (likely(__pyx_t_1)) {
 
-    /* "libcalculus.pyx":149
+    /* "libcalculus.pyx":153
  *       return lhs._subconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):
  *       return lhs._sub(rhs)             # <<<<<<<<<<<<<<
@@ -3833,7 +3826,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
  *       raise NotImplementedError
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_sub); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_sub); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3847,14 +3840,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":148
+    /* "libcalculus.pyx":152
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._subconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3863,7 +3856,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":151
+  /* "libcalculus.pyx":155
  *       return lhs._sub(rhs)
  *     else:
  *       raise NotImplementedError             # <<<<<<<<<<<<<<
@@ -3872,10 +3865,10 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
  */
   /*else*/ {
     __Pyx_Raise(__pyx_builtin_NotImplementedError, 0, 0, 0);
-    __PYX_ERR(0, 151, __pyx_L1_error)
+    __PYX_ERR(0, 155, __pyx_L1_error)
   }
 
-  /* "libcalculus.pyx":143
+  /* "libcalculus.pyx":147
  *       raise NotImplementedError
  * 
  *   def __sub__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -3896,7 +3889,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_36__sub__(PyObject *__pyx_v_lh
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":153
+/* "libcalculus.pyx":157
  *       raise NotImplementedError
  * 
  *   def __mul__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -3932,7 +3925,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mul__", 0);
 
-  /* "libcalculus.pyx":154
+  /* "libcalculus.pyx":158
  * 
  *   def __mul__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -3969,7 +3962,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":155
+    /* "libcalculus.pyx":159
  *   def __mul__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._mulconst(lhs)             # <<<<<<<<<<<<<<
@@ -3977,7 +3970,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
  *       return lhs._mulconst(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_mulconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 155, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_mulconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3991,14 +3984,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_lhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_lhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":154
+    /* "libcalculus.pyx":158
  * 
  *   def __mul__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4007,7 +4000,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":156
+  /* "libcalculus.pyx":160
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._mulconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -4044,7 +4037,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
   __pyx_L9_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":157
+    /* "libcalculus.pyx":161
  *       return rhs._mulconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._mulconst(rhs)             # <<<<<<<<<<<<<<
@@ -4052,7 +4045,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
  *       return lhs._mul(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_mulconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_mulconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 161, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4066,14 +4059,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 157, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 161, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":156
+    /* "libcalculus.pyx":160
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._mulconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -4082,7 +4075,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":158
+  /* "libcalculus.pyx":162
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._mulconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4102,7 +4095,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
   __pyx_L14_bool_binop_done:;
   if (likely(__pyx_t_1)) {
 
-    /* "libcalculus.pyx":159
+    /* "libcalculus.pyx":163
  *       return lhs._mulconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):
  *       return lhs._mul(rhs)             # <<<<<<<<<<<<<<
@@ -4110,7 +4103,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
  *       raise NotImplementedError
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_mul); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 159, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_mul); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4124,14 +4117,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 159, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":158
+    /* "libcalculus.pyx":162
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._mulconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4140,7 +4133,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":161
+  /* "libcalculus.pyx":165
  *       return lhs._mul(rhs)
  *     else:
  *       raise NotImplementedError             # <<<<<<<<<<<<<<
@@ -4149,10 +4142,10 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
  */
   /*else*/ {
     __Pyx_Raise(__pyx_builtin_NotImplementedError, 0, 0, 0);
-    __PYX_ERR(0, 161, __pyx_L1_error)
+    __PYX_ERR(0, 165, __pyx_L1_error)
   }
 
-  /* "libcalculus.pyx":153
+  /* "libcalculus.pyx":157
  *       raise NotImplementedError
  * 
  *   def __mul__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -4173,7 +4166,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_38__mul__(PyObject *__pyx_v_lh
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":163
+/* "libcalculus.pyx":167
  *       raise NotImplementedError
  * 
  *   def __truediv__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -4209,7 +4202,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__truediv__", 0);
 
-  /* "libcalculus.pyx":164
+  /* "libcalculus.pyx":168
  * 
  *   def __truediv__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4246,7 +4239,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":165
+    /* "libcalculus.pyx":169
  *   def __truediv__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._ldivconst(lhs)             # <<<<<<<<<<<<<<
@@ -4254,7 +4247,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
  *       return lhs._divconst(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_ldivconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_ldivconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 169, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4268,14 +4261,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_lhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_lhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 169, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":164
+    /* "libcalculus.pyx":168
  * 
  *   def __truediv__(lhs, rhs):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4284,7 +4277,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
  */
   }
 
-  /* "libcalculus.pyx":166
+  /* "libcalculus.pyx":170
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._ldivconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -4321,7 +4314,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
   __pyx_L9_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":167
+    /* "libcalculus.pyx":171
  *       return rhs._ldivconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._divconst(rhs)             # <<<<<<<<<<<<<<
@@ -4329,7 +4322,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
  *       return lhs._div(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_divconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_divconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 171, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4343,14 +4336,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 167, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 171, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":166
+    /* "libcalculus.pyx":170
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._ldivconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -4359,7 +4352,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
  */
   }
 
-  /* "libcalculus.pyx":168
+  /* "libcalculus.pyx":172
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._divconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4379,7 +4372,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
   __pyx_L14_bool_binop_done:;
   if (likely(__pyx_t_1)) {
 
-    /* "libcalculus.pyx":169
+    /* "libcalculus.pyx":173
  *       return lhs._divconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):
  *       return lhs._div(rhs)             # <<<<<<<<<<<<<<
@@ -4387,7 +4380,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
  *       raise NotImplementedError
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_div); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_div); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 173, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4401,14 +4394,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 169, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 173, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":168
+    /* "libcalculus.pyx":172
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._divconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4417,7 +4410,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
  */
   }
 
-  /* "libcalculus.pyx":171
+  /* "libcalculus.pyx":175
  *       return lhs._div(rhs)
  *     else:
  *       raise NotImplementedError             # <<<<<<<<<<<<<<
@@ -4426,10 +4419,10 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
  */
   /*else*/ {
     __Pyx_Raise(__pyx_builtin_NotImplementedError, 0, 0, 0);
-    __PYX_ERR(0, 171, __pyx_L1_error)
+    __PYX_ERR(0, 175, __pyx_L1_error)
   }
 
-  /* "libcalculus.pyx":163
+  /* "libcalculus.pyx":167
  *       raise NotImplementedError
  * 
  *   def __truediv__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -4450,7 +4443,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_40__truediv__(PyObject *__pyx_
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":173
+/* "libcalculus.pyx":177
  *       raise NotImplementedError
  * 
  *   def __pow__(lhs, rhs, mod):             # <<<<<<<<<<<<<<
@@ -4486,7 +4479,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__pow__", 0);
 
-  /* "libcalculus.pyx":174
+  /* "libcalculus.pyx":178
  * 
  *   def __pow__(lhs, rhs, mod):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4523,7 +4516,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":175
+    /* "libcalculus.pyx":179
  *   def __pow__(lhs, rhs, mod):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._lpowconst(lhs)             # <<<<<<<<<<<<<<
@@ -4531,7 +4524,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
  *       return lhs._powconst(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_lpowconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 175, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_rhs, __pyx_n_s_lpowconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4545,14 +4538,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_lhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_lhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 175, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":174
+    /* "libcalculus.pyx":178
  * 
  *   def __pow__(lhs, rhs, mod):
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4561,7 +4554,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":176
+  /* "libcalculus.pyx":180
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._lpowconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -4598,7 +4591,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
   __pyx_L9_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "libcalculus.pyx":177
+    /* "libcalculus.pyx":181
  *       return rhs._lpowconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._powconst(rhs)             # <<<<<<<<<<<<<<
@@ -4606,7 +4599,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
  *       return lhs._pow(rhs)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_powconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 177, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_powconst); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 181, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4620,14 +4613,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 177, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 181, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":176
+    /* "libcalculus.pyx":180
  *     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Function):
  *       return rhs._lpowconst(lhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):             # <<<<<<<<<<<<<<
@@ -4636,7 +4629,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":178
+  /* "libcalculus.pyx":182
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._powconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4656,7 +4649,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
   __pyx_L14_bool_binop_done:;
   if (likely(__pyx_t_1)) {
 
-    /* "libcalculus.pyx":179
+    /* "libcalculus.pyx":183
  *       return lhs._powconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):
  *       return lhs._pow(rhs)             # <<<<<<<<<<<<<<
@@ -4664,7 +4657,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
  *       raise NotImplementedError
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_pow); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_pow); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 183, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -4678,14 +4671,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 179, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 183, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":178
+    /* "libcalculus.pyx":182
  *     elif isinstance(lhs, Function) and isinstance(rhs, (int, float, complex)):
  *       return lhs._powconst(rhs)
  *     elif isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4694,7 +4687,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
  */
   }
 
-  /* "libcalculus.pyx":181
+  /* "libcalculus.pyx":185
  *       return lhs._pow(rhs)
  *     else:
  *       raise NotImplementedError             # <<<<<<<<<<<<<<
@@ -4703,10 +4696,10 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
  */
   /*else*/ {
     __Pyx_Raise(__pyx_builtin_NotImplementedError, 0, 0, 0);
-    __PYX_ERR(0, 181, __pyx_L1_error)
+    __PYX_ERR(0, 185, __pyx_L1_error)
   }
 
-  /* "libcalculus.pyx":173
+  /* "libcalculus.pyx":177
  *       raise NotImplementedError
  * 
  *   def __pow__(lhs, rhs, mod):             # <<<<<<<<<<<<<<
@@ -4727,7 +4720,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_42__pow__(PyObject *__pyx_v_lh
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":183
+/* "libcalculus.pyx":187
  *       raise NotImplementedError
  * 
  *   def __matmul__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -4765,7 +4758,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_44__matmul__(PyObject *__pyx_v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__matmul__", 0);
 
-  /* "libcalculus.pyx":184
+  /* "libcalculus.pyx":188
  * 
  *   def __matmul__(lhs, rhs):
  *     if isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4785,7 +4778,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_44__matmul__(PyObject *__pyx_v
   __pyx_L4_bool_binop_done:;
   if (likely(__pyx_t_1)) {
 
-    /* "libcalculus.pyx":185
+    /* "libcalculus.pyx":189
  *   def __matmul__(lhs, rhs):
  *     if isinstance(lhs, Function) and isinstance(rhs, Function):
  *       return lhs._compose(rhs)             # <<<<<<<<<<<<<<
@@ -4793,7 +4786,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_44__matmul__(PyObject *__pyx_v
  *       raise NotImplementedError
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_compose); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_lhs, __pyx_n_s_compose); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -4807,14 +4800,14 @@ static PyObject *__pyx_pf_11libcalculus_8Function_44__matmul__(PyObject *__pyx_v
     }
     __pyx_t_4 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_v_rhs) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_rhs);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_r = __pyx_t_4;
     __pyx_t_4 = 0;
     goto __pyx_L0;
 
-    /* "libcalculus.pyx":184
+    /* "libcalculus.pyx":188
  * 
  *   def __matmul__(lhs, rhs):
  *     if isinstance(lhs, Function) and isinstance(rhs, Function):             # <<<<<<<<<<<<<<
@@ -4823,7 +4816,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_44__matmul__(PyObject *__pyx_v
  */
   }
 
-  /* "libcalculus.pyx":187
+  /* "libcalculus.pyx":191
  *       return lhs._compose(rhs)
  *     else:
  *       raise NotImplementedError             # <<<<<<<<<<<<<<
@@ -4832,10 +4825,10 @@ static PyObject *__pyx_pf_11libcalculus_8Function_44__matmul__(PyObject *__pyx_v
  */
   /*else*/ {
     __Pyx_Raise(__pyx_builtin_NotImplementedError, 0, 0, 0);
-    __PYX_ERR(0, 187, __pyx_L1_error)
+    __PYX_ERR(0, 191, __pyx_L1_error)
   }
 
-  /* "libcalculus.pyx":183
+  /* "libcalculus.pyx":187
  *       raise NotImplementedError
  * 
  *   def __matmul__(lhs, rhs):             # <<<<<<<<<<<<<<
@@ -4857,7 +4850,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_44__matmul__(PyObject *__pyx_v
 }
 #endif /*!(#if PY_VERSION_HEX >= 0x03050000)*/
 
-/* "libcalculus.pyx":190
+/* "libcalculus.pyx":194
  * 
  *   @staticmethod
  *   def Identity():             # <<<<<<<<<<<<<<
@@ -4891,7 +4884,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_46Identity(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Identity", 0);
 
-  /* "libcalculus.pyx":191
+  /* "libcalculus.pyx":195
  *   @staticmethod
  *   def Identity():
  *     return Function()             # <<<<<<<<<<<<<<
@@ -4899,13 +4892,13 @@ static PyObject *__pyx_pf_11libcalculus_8Function_46Identity(void) {
  *   @staticmethod
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":190
+  /* "libcalculus.pyx":194
  * 
  *   @staticmethod
  *   def Identity():             # <<<<<<<<<<<<<<
@@ -4924,7 +4917,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_46Identity(void) {
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":194
+/* "libcalculus.pyx":198
  * 
  *   @staticmethod
  *   def Exp():             # <<<<<<<<<<<<<<
@@ -4959,19 +4952,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_48Exp(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Exp", 0);
 
-  /* "libcalculus.pyx":195
+  /* "libcalculus.pyx":199
  *   @staticmethod
  *   def Exp():
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction.Exp()
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":196
+  /* "libcalculus.pyx":200
  *   def Exp():
  *     F = Function()
  *     F.cfunction = CFunction.Exp()             # <<<<<<<<<<<<<<
@@ -4980,7 +4973,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_48Exp(void) {
  */
   __pyx_v_F->cfunction = libcalculus::CFunction::Exp();
 
-  /* "libcalculus.pyx":197
+  /* "libcalculus.pyx":201
  *     F = Function()
  *     F.cfunction = CFunction.Exp()
  *     return F             # <<<<<<<<<<<<<<
@@ -4992,7 +4985,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_48Exp(void) {
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":194
+  /* "libcalculus.pyx":198
  * 
  *   @staticmethod
  *   def Exp():             # <<<<<<<<<<<<<<
@@ -5012,7 +5005,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_48Exp(void) {
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":200
+/* "libcalculus.pyx":204
  * 
  *   @staticmethod
  *   def Sin():             # <<<<<<<<<<<<<<
@@ -5047,19 +5040,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_50Sin(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Sin", 0);
 
-  /* "libcalculus.pyx":201
+  /* "libcalculus.pyx":205
  *   @staticmethod
  *   def Sin():
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction.Sin()
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":202
+  /* "libcalculus.pyx":206
  *   def Sin():
  *     F = Function()
  *     F.cfunction = CFunction.Sin()             # <<<<<<<<<<<<<<
@@ -5068,7 +5061,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_50Sin(void) {
  */
   __pyx_v_F->cfunction = libcalculus::CFunction::Sin();
 
-  /* "libcalculus.pyx":203
+  /* "libcalculus.pyx":207
  *     F = Function()
  *     F.cfunction = CFunction.Sin()
  *     return F             # <<<<<<<<<<<<<<
@@ -5080,7 +5073,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_50Sin(void) {
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":200
+  /* "libcalculus.pyx":204
  * 
  *   @staticmethod
  *   def Sin():             # <<<<<<<<<<<<<<
@@ -5100,7 +5093,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_50Sin(void) {
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":206
+/* "libcalculus.pyx":210
  * 
  *   @staticmethod
  *   def Cos():             # <<<<<<<<<<<<<<
@@ -5135,19 +5128,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_52Cos(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Cos", 0);
 
-  /* "libcalculus.pyx":207
+  /* "libcalculus.pyx":211
  *   @staticmethod
  *   def Cos():
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction.Cos()
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":208
+  /* "libcalculus.pyx":212
  *   def Cos():
  *     F = Function()
  *     F.cfunction = CFunction.Cos()             # <<<<<<<<<<<<<<
@@ -5156,7 +5149,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_52Cos(void) {
  */
   __pyx_v_F->cfunction = libcalculus::CFunction::Cos();
 
-  /* "libcalculus.pyx":209
+  /* "libcalculus.pyx":213
  *     F = Function()
  *     F.cfunction = CFunction.Cos()
  *     return F             # <<<<<<<<<<<<<<
@@ -5168,7 +5161,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_52Cos(void) {
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":206
+  /* "libcalculus.pyx":210
  * 
  *   @staticmethod
  *   def Cos():             # <<<<<<<<<<<<<<
@@ -5188,7 +5181,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_52Cos(void) {
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":212
+/* "libcalculus.pyx":216
  * 
  *   @staticmethod
  *   def Tan():             # <<<<<<<<<<<<<<
@@ -5223,19 +5216,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_54Tan(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Tan", 0);
 
-  /* "libcalculus.pyx":213
+  /* "libcalculus.pyx":217
  *   @staticmethod
  *   def Tan():
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction.Tan()
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":214
+  /* "libcalculus.pyx":218
  *   def Tan():
  *     F = Function()
  *     F.cfunction = CFunction.Tan()             # <<<<<<<<<<<<<<
@@ -5244,7 +5237,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_54Tan(void) {
  */
   __pyx_v_F->cfunction = libcalculus::CFunction::Tan();
 
-  /* "libcalculus.pyx":215
+  /* "libcalculus.pyx":219
  *     F = Function()
  *     F.cfunction = CFunction.Tan()
  *     return F             # <<<<<<<<<<<<<<
@@ -5256,7 +5249,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_54Tan(void) {
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":212
+  /* "libcalculus.pyx":216
  * 
  *   @staticmethod
  *   def Tan():             # <<<<<<<<<<<<<<
@@ -5276,7 +5269,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_54Tan(void) {
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":218
+/* "libcalculus.pyx":222
  * 
  *   @staticmethod
  *   def Sec():             # <<<<<<<<<<<<<<
@@ -5311,19 +5304,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_56Sec(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Sec", 0);
 
-  /* "libcalculus.pyx":219
+  /* "libcalculus.pyx":223
  *   @staticmethod
  *   def Sec():
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction.Sec()
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":220
+  /* "libcalculus.pyx":224
  *   def Sec():
  *     F = Function()
  *     F.cfunction = CFunction.Sec()             # <<<<<<<<<<<<<<
@@ -5332,7 +5325,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_56Sec(void) {
  */
   __pyx_v_F->cfunction = libcalculus::CFunction::Sec();
 
-  /* "libcalculus.pyx":221
+  /* "libcalculus.pyx":225
  *     F = Function()
  *     F.cfunction = CFunction.Sec()
  *     return F             # <<<<<<<<<<<<<<
@@ -5344,7 +5337,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_56Sec(void) {
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":218
+  /* "libcalculus.pyx":222
  * 
  *   @staticmethod
  *   def Sec():             # <<<<<<<<<<<<<<
@@ -5364,7 +5357,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_56Sec(void) {
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":224
+/* "libcalculus.pyx":228
  * 
  *   @staticmethod
  *   def Csc():             # <<<<<<<<<<<<<<
@@ -5399,19 +5392,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_58Csc(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Csc", 0);
 
-  /* "libcalculus.pyx":225
+  /* "libcalculus.pyx":229
  *   @staticmethod
  *   def Csc():
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction.Csc()
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":226
+  /* "libcalculus.pyx":230
  *   def Csc():
  *     F = Function()
  *     F.cfunction = CFunction.Csc()             # <<<<<<<<<<<<<<
@@ -5420,7 +5413,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_58Csc(void) {
  */
   __pyx_v_F->cfunction = libcalculus::CFunction::Csc();
 
-  /* "libcalculus.pyx":227
+  /* "libcalculus.pyx":231
  *     F = Function()
  *     F.cfunction = CFunction.Csc()
  *     return F             # <<<<<<<<<<<<<<
@@ -5432,7 +5425,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_58Csc(void) {
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":224
+  /* "libcalculus.pyx":228
  * 
  *   @staticmethod
  *   def Csc():             # <<<<<<<<<<<<<<
@@ -5452,7 +5445,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_58Csc(void) {
   return __pyx_r;
 }
 
-/* "libcalculus.pyx":230
+/* "libcalculus.pyx":234
  * 
  *   @staticmethod
  *   def Cot():             # <<<<<<<<<<<<<<
@@ -5487,19 +5480,19 @@ static PyObject *__pyx_pf_11libcalculus_8Function_60Cot(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Cot", 0);
 
-  /* "libcalculus.pyx":231
+  /* "libcalculus.pyx":235
  *   @staticmethod
  *   def Cot():
  *     F = Function()             # <<<<<<<<<<<<<<
  *     F.cfunction = CFunction.Cot()
  *     return F
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_11libcalculus_Function)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Function *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "libcalculus.pyx":232
+  /* "libcalculus.pyx":236
  *   def Cot():
  *     F = Function()
  *     F.cfunction = CFunction.Cot()             # <<<<<<<<<<<<<<
@@ -5507,7 +5500,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_60Cot(void) {
  */
   __pyx_v_F->cfunction = libcalculus::CFunction::Cot();
 
-  /* "libcalculus.pyx":233
+  /* "libcalculus.pyx":237
  *     F = Function()
  *     F.cfunction = CFunction.Cot()
  *     return F             # <<<<<<<<<<<<<<
@@ -5517,7 +5510,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_60Cot(void) {
   __pyx_r = ((PyObject *)__pyx_v_F);
   goto __pyx_L0;
 
-  /* "libcalculus.pyx":230
+  /* "libcalculus.pyx":234
  * 
  *   @staticmethod
  *   def Cot():             # <<<<<<<<<<<<<<
@@ -5571,7 +5564,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_62__reduce_cython__(CYTHON_UNU
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5627,7 +5620,7 @@ static PyObject *__pyx_pf_11libcalculus_8Function_64__setstate_cython__(CYTHON_U
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6376,8 +6369,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 189, __pyx_L1_error)
-  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) __PYX_ERR(0, 145, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -6388,128 +6381,117 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "libcalculus.pyx":105
- *   def _lsubconst(self, dtype a):
- *     F = Function()
- *     F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)             # <<<<<<<<<<<<<<
- *     return F
- * 
- */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_neg_1); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 105, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple_);
-  __Pyx_GIVEREF(__pyx_tuple_);
-
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(1, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__2);
-  __Pyx_GIVEREF(__pyx_tuple__2);
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple_)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple_);
+  __Pyx_GIVEREF(__pyx_tuple_);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__2);
+  __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "libcalculus.pyx":190
+  /* "libcalculus.pyx":194
  * 
  *   @staticmethod
  *   def Identity():             # <<<<<<<<<<<<<<
  *     return Function()
  * 
  */
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Identity, 190, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Identity, 194, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 194, __pyx_L1_error)
 
-  /* "libcalculus.pyx":194
+  /* "libcalculus.pyx":198
  * 
  *   @staticmethod
  *   def Exp():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Exp()
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 194, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Exp, 194, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Exp, 198, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 198, __pyx_L1_error)
 
-  /* "libcalculus.pyx":200
+  /* "libcalculus.pyx":204
  * 
  *   @staticmethod
  *   def Sin():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Sin()
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 200, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Sin, 200, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Sin, 204, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 204, __pyx_L1_error)
 
-  /* "libcalculus.pyx":206
+  /* "libcalculus.pyx":210
  * 
  *   @staticmethod
  *   def Cos():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Cos()
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 206, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Cos, 206, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Cos, 210, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 210, __pyx_L1_error)
 
-  /* "libcalculus.pyx":212
+  /* "libcalculus.pyx":216
  * 
  *   @staticmethod
  *   def Tan():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Tan()
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 212, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Tan, 212, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Tan, 216, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 216, __pyx_L1_error)
 
-  /* "libcalculus.pyx":218
+  /* "libcalculus.pyx":222
  * 
  *   @staticmethod
  *   def Sec():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Sec()
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 218, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Sec, 218, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 222, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Sec, 222, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 222, __pyx_L1_error)
 
-  /* "libcalculus.pyx":224
+  /* "libcalculus.pyx":228
  * 
  *   @staticmethod
  *   def Csc():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Csc()
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 224, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Csc, 224, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 228, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Csc, 228, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 228, __pyx_L1_error)
 
-  /* "libcalculus.pyx":230
+  /* "libcalculus.pyx":234
  * 
  *   @staticmethod
  *   def Cot():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Cot()
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Cot, 230, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_n_s_F); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_libcalculus_pyx, __pyx_n_s_Cot, 234, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -6519,7 +6501,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -6564,15 +6545,15 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_11libcalculus_Function) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_11libcalculus_Function) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_11libcalculus_Function.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_11libcalculus_Function.tp_dictoffset && __pyx_type_11libcalculus_Function.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_11libcalculus_Function.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Function, (PyObject *)&__pyx_type_11libcalculus_Function) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_11libcalculus_Function) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Function, (PyObject *)&__pyx_type_11libcalculus_Function) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_11libcalculus_Function) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
   __pyx_ptype_11libcalculus_Function = &__pyx_type_11libcalculus_Function;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -6824,235 +6805,235 @@ if (!__Pyx_RefNanny) {
  */
   __pyx_v_11libcalculus_pi = M_PI;
 
-  /* "libcalculus.pyx":190
+  /* "libcalculus.pyx":194
  * 
  *   @staticmethod
  *   def Identity():             # <<<<<<<<<<<<<<
  *     return Function()
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_47Identity, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_47Identity, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Identity, __pyx_t_1) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Identity, __pyx_t_1) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":189
+  /* "libcalculus.pyx":193
  *       raise NotImplementedError
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Identity():
  *     return Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Identity); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Identity); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Identity, __pyx_t_2) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Identity, __pyx_t_2) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":194
+  /* "libcalculus.pyx":198
  * 
  *   @staticmethod
  *   def Exp():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Exp()
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_49Exp, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_49Exp, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Exp, __pyx_t_2) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Exp, __pyx_t_2) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":193
+  /* "libcalculus.pyx":197
  *     return Function()
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Exp():
  *     F = Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Exp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Exp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Exp, __pyx_t_1) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Exp, __pyx_t_1) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":200
+  /* "libcalculus.pyx":204
  * 
  *   @staticmethod
  *   def Sin():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Sin()
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_51Sin, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_51Sin, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sin, __pyx_t_1) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sin, __pyx_t_1) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":199
+  /* "libcalculus.pyx":203
  *     return F
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Sin():
  *     F = Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Sin); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Sin); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sin, __pyx_t_2) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sin, __pyx_t_2) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":206
+  /* "libcalculus.pyx":210
  * 
  *   @staticmethod
  *   def Cos():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Cos()
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_53Cos, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_53Cos, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cos, __pyx_t_2) < 0) __PYX_ERR(0, 206, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cos, __pyx_t_2) < 0) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":205
+  /* "libcalculus.pyx":209
  *     return F
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Cos():
  *     F = Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Cos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Cos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cos, __pyx_t_1) < 0) __PYX_ERR(0, 206, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cos, __pyx_t_1) < 0) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":212
+  /* "libcalculus.pyx":216
  * 
  *   @staticmethod
  *   def Tan():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Tan()
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_55Tan, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_55Tan, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Tan, __pyx_t_1) < 0) __PYX_ERR(0, 212, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Tan, __pyx_t_1) < 0) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":211
+  /* "libcalculus.pyx":215
  *     return F
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Tan():
  *     F = Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Tan); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Tan); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Tan, __pyx_t_2) < 0) __PYX_ERR(0, 212, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Tan, __pyx_t_2) < 0) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":218
+  /* "libcalculus.pyx":222
  * 
  *   @staticmethod
  *   def Sec():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Sec()
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_57Sec, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_57Sec, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sec, __pyx_t_2) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sec, __pyx_t_2) < 0) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":217
+  /* "libcalculus.pyx":221
  *     return F
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Sec():
  *     F = Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Sec); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Sec); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sec, __pyx_t_1) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Sec, __pyx_t_1) < 0) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":224
+  /* "libcalculus.pyx":228
  * 
  *   @staticmethod
  *   def Csc():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Csc()
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_59Csc, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_59Csc, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Csc, __pyx_t_1) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Csc, __pyx_t_1) < 0) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":223
+  /* "libcalculus.pyx":227
  *     return F
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Csc():
  *     F = Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Csc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Csc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Csc, __pyx_t_2) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Csc, __pyx_t_2) < 0) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":230
+  /* "libcalculus.pyx":234
  * 
  *   @staticmethod
  *   def Cot():             # <<<<<<<<<<<<<<
  *     F = Function()
  *     F.cfunction = CFunction.Cot()
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_61Cot, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_11libcalculus_8Function_61Cot, NULL, __pyx_n_s_libcalculus); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cot, __pyx_t_2) < 0) __PYX_ERR(0, 230, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cot, __pyx_t_2) < 0) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 
-  /* "libcalculus.pyx":229
+  /* "libcalculus.pyx":233
  *     return F
  * 
  *   @staticmethod             # <<<<<<<<<<<<<<
  *   def Cot():
  *     F = Function()
  */
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Cot); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_11libcalculus_Function, __pyx_n_s_Cot); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cot, __pyx_t_1) < 0) __PYX_ERR(0, 230, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_11libcalculus_Function->tp_dict, __pyx_n_s_Cot, __pyx_t_1) < 0) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_11libcalculus_Function);
 

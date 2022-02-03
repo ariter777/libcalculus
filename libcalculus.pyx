@@ -28,6 +28,10 @@ cdef extern from "CFunction.h" namespace "libcalculus":
 
     CFunction mulconst(dtype a)
     CFunction addconst(dtype a)
+    CFunction subconst(dtype a)
+    CFunction lsubconst(dtype a)
+    CFunction divconst(dtype a)
+    CFunction ldivconst(dtype a)
     CFunction powconst(dtype a)
     CFunction lpowconst(dtype a)
 
@@ -97,12 +101,12 @@ cdef class Function:
 
   def _subconst(self, dtype a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).addconst(0 - a)
+    F.cfunction = CFunction(self.cfunction).subconst(a)
     return F
 
   def _lsubconst(self, dtype a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)
+    F.cfunction = CFunction(self.cfunction).lsubconst(a)
     return F
 
   def _mulconst(self, dtype a):
@@ -112,12 +116,12 @@ cdef class Function:
 
   def _divconst(self, dtype a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).mulconst(1 / a)
+    F.cfunction = CFunction(self.cfunction).divconst(a)
     return F
 
   def _ldivconst(self, dtype a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction).reciprocal().mulconst(a)
+    F.cfunction = CFunction(self.cfunction).ldivconst(a)
     return F
 
   def _powconst(self, dtype a):

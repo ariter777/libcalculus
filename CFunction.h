@@ -46,7 +46,7 @@ namespace libcalculus {
             } else if (std::real(a) == 0.) {
                 oss << std::imag(a) << " i";
             } else {
-                oss << std::real(a) << " + " << std::imag(a) << " i";
+                oss << std::real(a) << (std::imag(a) > 0 ? " + " : "") << std::imag(a) << " i";
             }
             return (parenthesize && (std::real(a) != 0. && std::imag(a) != 0.)) ? CFunction::_parenthesize(oss.str()) : oss.str();
         }
@@ -66,18 +66,22 @@ namespace libcalculus {
         dtype operator()(dtype z) const;
         std::string latex(std::string const &varname = "z") const;
 
-        CFunction compose(CFunction const &rhs) const noexcept;
-        CFunction operator+(CFunction const &rhs) const noexcept;
-        CFunction operator-(CFunction const &rhs) const noexcept;
-        CFunction operator*(CFunction const &rhs) const noexcept;
-        CFunction operator/(CFunction const &rhs) const noexcept;
-        CFunction pow(CFunction const &rhs) const noexcept;
-        CFunction reciprocal() const noexcept;
+        CFunction compose(CFunction const &rhs) const;
+        CFunction operator+(CFunction const &rhs) const;
+        CFunction operator-(CFunction const &rhs) const;
+        CFunction operator*(CFunction const &rhs) const;
+        CFunction operator/(CFunction const &rhs) const;
+        CFunction pow(CFunction const &rhs) const;
+        CFunction reciprocal() const;
 
-        CFunction addconst(dtype a) const noexcept;
-        CFunction mulconst(dtype a) const noexcept;
-        CFunction powconst(dtype a) const noexcept;
-        CFunction lpowconst(dtype a) const noexcept;
+        CFunction addconst(dtype a) const;
+        CFunction subconst(dtype a) const;
+        CFunction lsubconst(dtype a) const;
+        CFunction divconst(dtype a) const;
+        CFunction ldivconst(dtype a) const;
+        CFunction mulconst(dtype a) const;
+        CFunction powconst(dtype a) const;
+        CFunction lpowconst(dtype a) const;
 
         static CFunction Exp() { return CFunction([](dtype z) { return std::exp(z); }, "e^{" LATEX_VAR "}", 0); }
         static CFunction Sin() { return CFunction([](dtype z) { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", 0); }
