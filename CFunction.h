@@ -90,6 +90,8 @@ namespace libcalculus {
         static CFunction Sec() { return CFunction([](dtype z) { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", 0); }
         static CFunction Csc() { return CFunction([](dtype z) { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", 0); }
         static CFunction Cot() { return CFunction([](dtype z) { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", 0); }
+        static CFunction Pi() { return CFunction([](dtype z) { return M_PI; }, "\\pi", OP_TYPE::NOP); }
+        static CFunction E() { return CFunction([](dtype z) { return M_E; }, "e", OP_TYPE::NOP); }
     };
 }
 #endif

@@ -1,10 +1,6 @@
 # distutils: language = c++
 from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
-cimport libc.math
-
-cdef double e = libc.math.e
-cdef double pi = libc.math.pi
 
 ctypedef complex_t[double] dtype
 
@@ -49,8 +45,10 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction Csc()
     @staticmethod
     CFunction Cot()
-
-  cdef CFunction identity
+    @staticmethod
+    CFunction Pi()
+    @staticmethod
+    CFunction E()
 
 cdef class Function:
   cdef CFunction cfunction
@@ -235,3 +233,18 @@ cdef class Function:
     F = Function()
     F.cfunction = CFunction.Cot()
     return F
+
+  @staticmethod
+  def _Pi():
+    F = Function()
+    F.cfunction = CFunction.Pi()
+    return F
+
+  @staticmethod
+  def _E():
+    F = Function()
+    F.cfunction = CFunction.E()
+    return F
+
+pi = Function._Pi()
+e = Function._E()
