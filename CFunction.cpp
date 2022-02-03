@@ -6,57 +6,38 @@ namespace libcalculus {
         return this->f(z);
     }
 
-    CFunction CFunction::operator+(CFunction const &rhs) noexcept {
+    CFunction CFunction::operator+(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return old_f(z) + rhs.f(z); };
-        return *this;
+        return CFunction([=](std::complex<double> z) { return old_f(z) + rhs.f(z); });
     }
 
-    CFunction CFunction::operator-(CFunction const &rhs) noexcept {
+    CFunction CFunction::operator-(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return old_f(z) - rhs.f(z); };
-        return *this;
+        return CFunction([=](std::complex<double> z) { return old_f(z) - rhs.f(z); });
     }
 
-    CFunction CFunction::operator*(CFunction const &rhs) noexcept {
+    CFunction CFunction::operator*(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return old_f(z) * rhs.f(z); };
-        return *this;
+        return CFunction([=](std::complex<double> z) { return old_f(z) * rhs.f(z); });
     }
 
-    CFunction CFunction::operator/(CFunction const &rhs) noexcept {
+    CFunction CFunction::operator/(CFunction const &rhs) const noexcept {
         auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return old_f(z) / rhs.f(z); };
-        return *this;
+        return CFunction([=](std::complex<double> z) { return old_f(z) / rhs.f(z); });
     }
 
-    void CFunction::addconst(std::complex<double> a) noexcept {
+    CFunction CFunction::addconst(std::complex<double> a) const noexcept {
         auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return a + old_f(z); };
+        return CFunction([=](std::complex<double> z) { return a + old_f(z); });
     }
 
-    void CFunction::subconst(std::complex<double> a) noexcept {
+    CFunction CFunction::mulconst(std::complex<double> a) const noexcept {
         auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return old_f(z) - a; };
+        return CFunction([=](std::complex<double> z) { return a * old_f(z); });
     }
 
-    void CFunction::lsubconst(std::complex<double> a) noexcept {
+    CFunction CFunction::ldivconst(std::complex<double> a) const {
         auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return a - old_f(z); };
-    }
-
-    void CFunction::mulconst(std::complex<double> a) noexcept {
-        auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return a * old_f(z); };
-    }
-
-    void CFunction::divconst(std::complex<double> a) {
-        auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return old_f(z) / a; };
-    }
-
-    void CFunction::ldivconst(std::complex<double> a) {
-        auto const old_f = this->f;
-        this->f = [=](std::complex<double> z) { return a / old_f(z); };
+        return CFunction([=](std::complex<double> z) { return a / old_f(z); });
     }
 }

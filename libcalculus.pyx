@@ -16,12 +16,9 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction operator*(CFunction rhs)
     CFunction operator/(CFunction rhs)
 
-    void mulconst(complex_t[double] a)
-    void addconst(complex_t[double] a)
-    void subconst(complex_t[double] a)
-    void lsubconst(complex_t[double] a)
-    void divconst(complex_t[double] a) except +
-    void ldivconst(complex_t[double] a) except +
+    CFunction mulconst(complex_t[double] a)
+    CFunction addconst(complex_t[double] a)
+    CFunction ldivconst(complex_t[double] a) except +
 
   cdef CFunction identity
 
@@ -56,38 +53,32 @@ cdef class Function:
 
   def _addconst(self, complex_t[double] a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction)
-    F.cfunction.addconst(a)
+    F.cfunction = CFunction(self.cfunction).addconst(a)
     return F
 
   def _subconst(self, complex_t[double] a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction)
-    F.cfunction.subconst(a)
+    F.cfunction = CFunction(self.cfunction).addconst(0 - a)
     return F
 
   def _lsubconst(self, complex_t[double] a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction)
-    F.cfunction.lsubconst(a)
+    F.cfunction = CFunction(self.cfunction).mulconst(complex(-1)).addconst(a)
     return F
 
   def _mulconst(self, complex_t[double] a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction)
-    F.cfunction.mulconst(a)
+    F.cfunction = CFunction(self.cfunction).mulconst(a)
     return F
 
   def _divconst(self, complex_t[double] a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction)
-    F.cfunction.divconst(a)
+    F.cfunction = CFunction(self.cfunction).mulconst(1 / a)
     return F
 
   def _ldivconst(self, complex_t[double] a):
     F = Function()
-    F.cfunction = CFunction(self.cfunction)
-    F.cfunction.ldivconst(a)
+    F.cfunction = CFunction(self.cfunction).ldivconst(a)
     return F
 
   @staticmethod
