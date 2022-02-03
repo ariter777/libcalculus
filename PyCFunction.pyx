@@ -437,3 +437,7 @@ cdef class Contour:
     F = Contour()
     F.cfunction = CFunction[double, complex_t[double]].E()
     return F
+
+  @staticmethod
+  def Sphere(complex center=0., double radius=1., ccw=False):
+    return (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity()))

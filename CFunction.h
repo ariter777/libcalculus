@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CFUNCTION_H
 #define CFUNCTION_H
 #include <iostream>
