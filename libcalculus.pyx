@@ -1,5 +1,6 @@
 # distutils: language = c++
 from libcpp.complex cimport complex as complex_t
+from libcpp.string cimport string
 cimport libc.math
 
 cdef double e = libc.math.e
@@ -16,6 +17,7 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction(CFunction cf) except +
     dtype operator()(dtype z) except +
     CFunction compose(CFunction rhs)
+    string latex(string varname) except +
 
     CFunction operator+(CFunction rhs)
     CFunction operator-(CFunction rhs)
@@ -37,6 +39,12 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction Cos()
     @staticmethod
     CFunction Tan()
+    @staticmethod
+    CFunction Sec()
+    @staticmethod
+    CFunction Csc()
+    @staticmethod
+    CFunction Cot()
 
   cdef CFunction identity
 
@@ -48,6 +56,9 @@ cdef class Function:
 
   def __call__(self, dtype z):
     return self.cfunction(z)
+
+  def latex(self, str varname = "z"):
+    return self.cfunction.latex(varname.encode()).decode()
 
   def _add(self, Function rhs):
     F = Function()
@@ -206,17 +217,17 @@ cdef class Function:
   @staticmethod
   def Sec():
     F = Function()
-    F.cfunction = CFunction.Cos().reciprocal()
+    F.cfunction = CFunction.Sec()
     return F
 
   @staticmethod
   def Csc():
     F = Function()
-    F.cfunction = CFunction.Sin().reciprocal()
+    F.cfunction = CFunction.Csc()
     return F
 
   @staticmethod
   def Cot():
     F = Function()
-    F.cfunction = CFunction.Tan().reciprocal()
+    F.cfunction = CFunction.Cot()
     return F
