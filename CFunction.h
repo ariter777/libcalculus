@@ -74,7 +74,6 @@ namespace libcalculus {
         CFunction operator*(CFunction const &rhs) const;
         CFunction operator/(CFunction const &rhs) const;
         CFunction pow(CFunction const &rhs) const;
-        CFunction reciprocal() const;
 
         CFunction addconst(dtype a) const;
         CFunction subconst(dtype a) const;
