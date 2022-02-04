@@ -1,6 +1,8 @@
 #include "CFunction.h"
 
 namespace libcalculus {
+    using REAL = double;
+    using COMPLEX = std::complex<REAL>;
     namespace Latex {
         std::string _parenthesize(std::string const &expr) {
             std::string result = " \\left( ";
@@ -9,7 +11,7 @@ namespace libcalculus {
             return result;
         }
 
-        template<> std::string fmt_const(std::complex<double> a, bool parenthesize) {
+        template<> std::string fmt_const(COMPLEX a, bool parenthesize) {
             std::ostringstream oss;
             if (std::imag(a) == 0.) {
                 oss << std::real(a);
