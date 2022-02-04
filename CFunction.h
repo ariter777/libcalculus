@@ -26,33 +26,8 @@ namespace libcalculus {
     };
 
     namespace Latex {
-        std::string _parenthesize(std::string const &expr) {
-            std::string result = " \\left( ";
-            result.append(expr);
-            result.append(" \\right) ");
-            return result;
-        }
-
+        std::string _parenthesize(std::string const &expr);
         template<typename T> std::string fmt_const(T a, bool parenthesize = false);
-        template<> std::string fmt_const(std::complex<double> a, bool parenthesize) {
-            std::ostringstream oss;
-            if (std::imag(a) == 0.) {
-                oss << std::real(a);
-            } else if (std::real(a) == 0.) {
-                oss << std::imag(a) << " i";
-            } else {
-                oss << std::real(a) << (std::imag(a) > 0 ? " + " : "") << std::imag(a) << " i";
-            }
-            return (parenthesize && (std::real(a) != 0. && std::imag(a) != 0.)) ? Latex::_parenthesize(oss.str()) : oss.str();
-        }
-
-        std::string parenthesize_if(std::string const &expr, char new_op, char last_op) {
-            if (new_op == OP_TYPE::FUNCTION || new_op == OP_TYPE::DIV || new_op == OP_TYPE::RPOW) return expr;
-            else if (((last_op == OP_TYPE::ADD || last_op == OP_TYPE::SUB) && new_op == OP_TYPE::MUL)
-                     || (last_op != OP_TYPE::NOP && new_op == OP_TYPE::LPOW))
-                return Latex::_parenthesize(expr);
-            else return expr;
-        }
     }
 
     template <typename Dom, typename Ran>

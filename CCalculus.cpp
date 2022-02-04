@@ -5,7 +5,6 @@ namespace libcalculus {
     template<>
     std::complex<double> Integrate(CFunction<std::complex<double>, std::complex<double>> const &f,
                                    CFunction<double, std::complex<double>> const &contour, double start, double end, double tol) {
-                                     //std::cout << start << end << std::endl;
         std::complex<double> prev_result, result;
         size_t while_iters = 0;
         double n = 1 / tol;

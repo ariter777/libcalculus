@@ -451,4 +451,4 @@ cdef class Contour:
 
   @staticmethod
   def Sphere(complex center=0., double radius=1., ccw=False):
-    return (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity(0, 2 * M_PI)))
+    return center + (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity(0., 2. * M_PI)))
