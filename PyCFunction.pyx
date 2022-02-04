@@ -1,6 +1,7 @@
 # distutils: language = c++
 from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
+from libc.math cimport M_PI, M_E
 
 cdef extern from "CFunction.cpp":
   pass
@@ -90,7 +91,7 @@ cdef class ComplexFunction:
     return F
 
   def _compose_contour(self, Contour rhs):
-    F = Contour()
+    F = Contour(rhs._start, rhs._end)
     F.cfunction = CFunction[complex_t[double], complex_t[double]](self.cfunction).compose[double](rhs.cfunction)
     return F
 
@@ -252,80 +253,88 @@ cdef class ComplexFunction:
 
 cdef class Contour:
   cdef CFunction[double, complex_t[double]] cfunction
-  cdef double start, end
+  cdef double _start, _end
 
   def __cinit__(self, start=0., end=1.):
-    self.start = start
-    self.end = end
+    self._start = start
+    self._end = end
 
   def __call__(self, double t):
     return self.cfunction(t)
+
+  @property
+  def start(self):
+    return self._start
+
+  @property
+  def end(self):
+    return self._end
 
   def latex(self, str varname = "t"):
     return self.cfunction.latex(varname.encode()).decode()
 
   def _add(self, Contour rhs):
-    F = Contour()
+    F = Contour(rhs._start, rhs._end) # Arbitrarily chooses the bounds of the rhs Contour.
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction) + rhs.cfunction
     return F
 
   def _sub(self, Contour rhs):
-    F = Contour()
+    F = Contour(rhs._start, rhs._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction) - rhs.cfunction
     return F
 
   def _mul(self, Contour rhs):
-    F = Contour()
+    F = Contour(rhs._start, rhs._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction) * rhs.cfunction
     return F
 
   def _div(self, Contour rhs):
-    F = Contour()
+    F = Contour(rhs._start, rhs._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction) / rhs.cfunction
     return F
 
   def _pow(self, Contour rhs):
-    F = Contour()
+    F = Contour(rhs._start, rhs._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).pow(rhs.cfunction)
     return F
 
   def _addconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).addconst(a)
     return F
 
   def _subconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).subconst(a)
     return F
 
   def _lsubconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).lsubconst(a)
     return F
 
   def _mulconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).mulconst(a)
     return F
 
   def _divconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).divconst(a)
     return F
 
   def _ldivconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).ldivconst(a)
     return F
 
   def _powconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).powconst(a)
     return F
 
   def _lpowconst(self, complex_t[double] a):
-    F = Contour()
+    F = Contour(self._start, self._end)
     F.cfunction = CFunction[double, complex_t[double]](self.cfunction).lpowconst(a)
     return F
 
@@ -383,63 +392,63 @@ cdef class Contour:
     raise NotImplementedError
 
   @staticmethod
-  def Identity():
-    return Contour()
+  def Identity(start=0., end=1.):
+    return Contour(start, end)
 
   @staticmethod
-  def Exp():
-    F = Contour()
+  def Exp(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Exp()
     return F
 
   @staticmethod
-  def Sin():
-    F = Contour()
+  def Sin(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Sin()
     return F
 
   @staticmethod
-  def Cos():
-    F = Contour()
+  def Cos(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Cos()
     return F
 
   @staticmethod
-  def Tan():
-    F = Contour()
+  def Tan(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Tan()
     return F
 
   @staticmethod
-  def Sec():
-    F = Contour()
+  def Sec(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Sec()
     return F
 
   @staticmethod
-  def Csc():
-    F = Contour()
+  def Csc(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Csc()
     return F
 
   @staticmethod
-  def Cot():
-    F = Contour()
+  def Cot(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Cot()
     return F
 
   @staticmethod
-  def Pi():
-    F = Contour()
+  def Pi(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].Pi()
     return F
 
   @staticmethod
-  def E():
-    F = Contour()
+  def E(start=0., end=1.):
+    F = Contour(start, end)
     F.cfunction = CFunction[double, complex_t[double]].E()
     return F
 
   @staticmethod
   def Sphere(complex center=0., double radius=1., ccw=False):
-    return (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity()))
+    return (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity(0, 2 * M_PI)))
