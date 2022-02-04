@@ -1,7 +1,6 @@
 # distutils: language = c++
 from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
-from PyCFunction cimport *
 
 cdef extern from "CCalculus.cpp":
   pass
