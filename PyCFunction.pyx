@@ -15,7 +15,6 @@ cdef extern from "Latex.cpp":
 cdef extern from "CFunction.h" namespace "libcalculus":
   cdef cppclass CFunction[Dom, Ran]:
     CFunction() except +
-    CFunction(CFunction[Dom, Ran] &cf) except +
     Ran operator()(Dom z) except +
     string latex(string &varname) except +
 
@@ -69,77 +68,77 @@ cdef class ComplexFunction:
 
   def _add(self, ComplexFunction rhs):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction) + rhs.cfunction
+    F.cfunction = self.cfunction + rhs.cfunction
     return F
 
   def _sub(self, ComplexFunction rhs):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction) - rhs.cfunction
+    F.cfunction = self.cfunction - rhs.cfunction
     return F
 
   def _mul(self, ComplexFunction rhs):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction) * rhs.cfunction
+    F.cfunction = self.cfunction * rhs.cfunction
     return F
 
   def _div(self, ComplexFunction rhs):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction) / rhs.cfunction
+    F.cfunction = self.cfunction / rhs.cfunction
     return F
 
   def _pow(self, ComplexFunction rhs):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).pow(rhs.cfunction)
+    F.cfunction = self.cfunction.pow(rhs.cfunction)
     return F
 
   def _compose(self, ComplexFunction rhs):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).compose[COMPLEX](rhs.cfunction)
+    F.cfunction = self.cfunction.compose[COMPLEX](rhs.cfunction)
     return F
 
   def _compose_contour(self, Contour rhs):
     F = Contour(rhs._start, rhs._end)
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).compose[REAL](rhs.cfunction)
+    F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
   def _addconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).addconst(a)
+    F.cfunction = self.cfunction.addconst(a)
     return F
 
   def _subconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).subconst(a)
+    F.cfunction = self.cfunction.subconst(a)
     return F
 
   def _lsubconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).lsubconst(a)
+    F.cfunction = self.cfunction.lsubconst(a)
     return F
 
   def _mulconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).mulconst(a)
+    F.cfunction = self.cfunction.mulconst(a)
     return F
 
   def _divconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).divconst(a)
+    F.cfunction = self.cfunction.divconst(a)
     return F
 
   def _ldivconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).ldivconst(a)
+    F.cfunction = self.cfunction.ldivconst(a)
     return F
 
   def _powconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).powconst(a)
+    F.cfunction = self.cfunction.powconst(a)
     return F
 
   def _lpowconst(self, COMPLEX a):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).lpowconst(a)
+    F.cfunction = self.cfunction.lpowconst(a)
     return F
 
   def __neg__(self):
@@ -287,67 +286,72 @@ cdef class Contour:
 
   def _add(self, Contour rhs):
     F = Contour(rhs._start, rhs._end) # Arbitrarily chooses the bounds of the rhs Contour.
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction) + rhs.cfunction
+    F.cfunction = self.cfunction + rhs.cfunction
     return F
 
   def _sub(self, Contour rhs):
     F = Contour(rhs._start, rhs._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction) - rhs.cfunction
+    F.cfunction = self.cfunction - rhs.cfunction
     return F
 
   def _mul(self, Contour rhs):
     F = Contour(rhs._start, rhs._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction) * rhs.cfunction
+    F.cfunction = self.cfunction * rhs.cfunction
     return F
 
   def _div(self, Contour rhs):
     F = Contour(rhs._start, rhs._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction) / rhs.cfunction
+    F.cfunction = self.cfunction / rhs.cfunction
     return F
 
   def _pow(self, Contour rhs):
     F = Contour(rhs._start, rhs._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).pow(rhs.cfunction)
+    F.cfunction = self.cfunction.pow(rhs.cfunction)
     return F
 
   def _addconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).addconst(a)
+    F.cfunction = self.cfunction.addconst(a)
     return F
 
   def _subconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).subconst(a)
+    F.cfunction = self.cfunction.subconst(a)
     return F
 
   def _lsubconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).lsubconst(a)
+    F.cfunction = self.cfunction.lsubconst(a)
     return F
 
   def _mulconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).mulconst(a)
+    F.cfunction = self.cfunction.mulconst(a)
     return F
 
   def _divconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).divconst(a)
+    F.cfunction = self.cfunction.divconst(a)
     return F
 
   def _ldivconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).ldivconst(a)
+    F.cfunction = self.cfunction.ldivconst(a)
     return F
 
   def _powconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).powconst(a)
+    F.cfunction = self.cfunction.powconst(a)
     return F
 
   def _lpowconst(self, COMPLEX a):
     F = Contour(self._start, self._end)
-    F.cfunction = CFunction[REAL, COMPLEX](self.cfunction).lpowconst(a)
+    F.cfunction = self.cfunction.lpowconst(a)
+    return F
+
+  def __neg__(self):
+    F = Contour(self._start, self._end)
+    F.cfunction = -self.cfunction
     return F
 
   def __add__(lhs, rhs):

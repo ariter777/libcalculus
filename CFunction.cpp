@@ -79,82 +79,82 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::addconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::addconst(Ran c) const {
         auto const old_f = this->_f;
         std::string new_latex = this->_latex;
         new_latex.append(" + ");
-        new_latex.append(Latex::fmt_const(a, false));
-        return CFunction([=](Dom z) { return old_f(z) + a; }, new_latex, OP_TYPE::ADD);
+        new_latex.append(Latex::fmt_const(c, false));
+        return CFunction([=](Dom z) { return old_f(z) + c; }, new_latex, OP_TYPE::ADD);
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::subconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::subconst(Ran c) const {
         auto const old_f = this->_f;
         std::string new_latex = this->_latex;
         new_latex.append(" - ");
-        new_latex.append(Latex::fmt_const(a, true));
-        return CFunction([=](Dom z) { return old_f(z) - a; }, new_latex, OP_TYPE::SUB);
+        new_latex.append(Latex::fmt_const(c, true));
+        return CFunction([=](Dom z) { return old_f(z) - c; }, new_latex, OP_TYPE::SUB);
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::lsubconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::lsubconst(Ran c) const {
         auto const old_f = this->_f;
-        std::string new_latex = Latex::fmt_const(a, false);
+        std::string new_latex = Latex::fmt_const(c, false);
         new_latex.append(" - ");
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::SUB, this->_last_op));
-        return CFunction([=](Dom z) { return a - old_f(z); }, new_latex, OP_TYPE::SUB);
+        return CFunction([=](Dom z) { return c - old_f(z); }, new_latex, OP_TYPE::SUB);
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::mulconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::mulconst(Ran c) const {
         auto const old_f = this->_f;
-        std::string new_latex = Latex::fmt_const(a, true);
+        std::string new_latex = Latex::fmt_const(c, true);
         if (this->_last_op == OP_TYPE::MULCONST) new_latex.append(" \\cdot ");
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::MUL, this->_last_op));
-        return CFunction([=](Dom z) { return a * old_f(z); }, new_latex, OP_TYPE::MULCONST);
+        return CFunction([=](Dom z) { return c * old_f(z); }, new_latex, OP_TYPE::MULCONST);
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::divconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::divconst(Ran c) const {
         auto const old_f = this->_f;
         std::string new_latex = " \\frac{";
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::DIV, this->_last_op));
         new_latex.append("}{");
-        new_latex.append(Latex::fmt_const(a, false));
+        new_latex.append(Latex::fmt_const(c, false));
         new_latex.append("}");
-        return CFunction([=](Dom z) { return old_f(z) / a; }, new_latex, OP_TYPE::DIV);
+        return CFunction([=](Dom z) { return old_f(z) / c; }, new_latex, OP_TYPE::DIV);
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::ldivconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::ldivconst(Ran c) const {
         auto const old_f = this->_f;
         std::string new_latex = " \\frac{";
-        new_latex.append(Latex::fmt_const(a, false));
+        new_latex.append(Latex::fmt_const(c, false));
         new_latex.append("}{");
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::DIV, this->_last_op));
         new_latex.append("}");
-        return CFunction([=](Dom z) { return a / old_f(z); }, new_latex, OP_TYPE::DIV);
+        return CFunction([=](Dom z) { return c / old_f(z); }, new_latex, OP_TYPE::DIV);
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::powconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::powconst(Ran c) const {
         auto const old_f = this->_f;
         std::string new_latex = "{";
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::LPOW, this->_last_op));
         new_latex.append("}^{");
-        new_latex.append(Latex::fmt_const(a, false));
+        new_latex.append(Latex::fmt_const(c, false));
         new_latex.append("}");
-        return CFunction([=](Dom z) { return std::pow(old_f(z), a); }, new_latex, OP_TYPE::LPOW);
+        return CFunction([=](Dom z) { return std::pow(old_f(z), c); }, new_latex, OP_TYPE::LPOW);
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::lpowconst(Ran a) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::lpowconst(Ran c) const {
         auto const old_f = this->_f;
         std::string new_latex = "{";
-        new_latex.append(Latex::fmt_const(a, false));
+        new_latex.append(Latex::fmt_const(c, false));
         new_latex.append("}^{");
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::LPOW, this->_last_op));
         new_latex.append("}");
-        return CFunction([=](Dom z) { return std::pow(a, old_f(z)); }, new_latex, OP_TYPE::LPOW);
+        return CFunction([=](Dom z) { return std::pow(c, old_f(z)); }, new_latex, OP_TYPE::LPOW);
     }
 }
