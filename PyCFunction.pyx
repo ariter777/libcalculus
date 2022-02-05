@@ -36,23 +36,25 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction[Dom, Ran] lpowconst(Ran a) except +
 
     @staticmethod
-    CFunction[Dom, Ran] Exp()
+    CFunction[Dom, Ran] Constant(Ran c) except +
     @staticmethod
-    CFunction[Dom, Ran] Sin()
+    CFunction[Dom, Ran] Exp() except +
     @staticmethod
-    CFunction[Dom, Ran] Cos()
+    CFunction[Dom, Ran] Sin() except +
     @staticmethod
-    CFunction[Dom, Ran] Tan()
+    CFunction[Dom, Ran] Cos() except +
     @staticmethod
-    CFunction[Dom, Ran] Sec()
+    CFunction[Dom, Ran] Tan() except +
     @staticmethod
-    CFunction[Dom, Ran] Csc()
+    CFunction[Dom, Ran] Sec() except +
     @staticmethod
-    CFunction[Dom, Ran] Cot()
+    CFunction[Dom, Ran] Csc() except +
     @staticmethod
-    CFunction[Dom, Ran] Pi()
+    CFunction[Dom, Ran] Cot() except +
     @staticmethod
-    CFunction[Dom, Ran] E()
+    CFunction[Dom, Ran] Pi() except +
+    @staticmethod
+    CFunction[Dom, Ran] E() except +
 
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
@@ -203,6 +205,12 @@ cdef class ComplexFunction:
       return lhs._compose_contour(rhs)
     else:
       raise NotImplementedError
+
+  @staticmethod
+  def Constant(COMPLEX c):
+    F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Constant(c)
+    return F
 
   @staticmethod
   def Identity():
@@ -406,6 +414,12 @@ cdef class Contour:
 
   def __matmul__(lhs, rhs):
     raise NotImplementedError
+
+  @staticmethod
+  def Constant(COMPLEX c):
+    F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Constant(c)
+    return F
 
   @staticmethod
   def Identity(start=0., end=1.):

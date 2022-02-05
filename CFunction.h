@@ -57,7 +57,7 @@ namespace libcalculus {
         CFunction<Dom, Ran> powconst(Ran c) const;
         CFunction<Dom, Ran> lpowconst(Ran c) const;
 
-        static CFunction<Dom, Ran> Constant(Ran c) { return CFunction([=](Dom z) { return c; }, std::to_string(c), OP_TYPE::NOP); }
+        static CFunction<Dom, Ran> Constant(Ran c) { return CFunction([=](Dom z) { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
         static CFunction<Dom, Ran> Exp() { return CFunction([](Dom z) { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP); }
         static CFunction<Dom, Ran> Sin() { return CFunction([](Dom z) { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", OP_TYPE::NOP); }
         static CFunction<Dom, Ran> Cos() { return CFunction([](Dom z) { return std::cos(z); }, "\\cos\\left(" LATEX_VAR "\\right)", OP_TYPE::NOP); }
