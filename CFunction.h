@@ -29,7 +29,7 @@ namespace libcalculus {
     class CFunction {
         using function = std::function<Ran(Dom)>;
     private:
-        function _f = [](Dom z) -> Ran { return z; };
+        function _f = [](Dom z) { return z; };
         std::string _latex = LATEX_VAR;
         OP_TYPE _last_op = OP_TYPE::NOP;
         template<typename, typename> friend class CFunction;
