@@ -9,14 +9,18 @@ ctypedef complex_t[REAL] COMPLEX
 cdef extern from "CFunction.cpp":
   pass
 
+cdef extern from "Latex.cpp":
+  pass
+
 cdef extern from "CFunction.h" namespace "libcalculus":
   cdef cppclass CFunction[Dom, Ran]:
     CFunction() except +
     CFunction(CFunction[Dom, Ran] &cf) except +
     Ran operator()(Dom z) except +
-    CFunction[Predom, Ran] compose[Predom](CFunction[Predom, Dom] &rhs) except +
     string latex(string &varname) except +
 
+    CFunction[Predom, Ran] compose[Predom](CFunction[Predom, Dom] &rhs) except +
+    CFunction[Dom, Ran] operator-() except +
     CFunction[Dom, Ran] operator+(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] operator-(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] operator*(CFunction[Dom, Ran] &rhs) except +
@@ -136,6 +140,11 @@ cdef class ComplexFunction:
   def _lpowconst(self, COMPLEX a):
     F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction).lpowconst(a)
+    return F
+
+  def __neg__(self):
+    F = ComplexFunction()
+    F.cfunction = -self.cfunction
     return F
 
   def __add__(lhs, rhs):

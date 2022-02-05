@@ -1,37 +1,6 @@
 #include "CFunction.h"
 
 namespace libcalculus {
-    using REAL = double;
-    using COMPLEX = std::complex<REAL>;
-    namespace Latex {
-        std::string _parenthesize(std::string const &expr) {
-            std::string result = " \\left( ";
-            result.append(expr);
-            result.append(" \\right) ");
-            return result;
-        }
-
-        template<> std::string fmt_const(COMPLEX a, bool parenthesize) {
-            std::ostringstream oss;
-            if (std::imag(a) == 0.) {
-                oss << std::real(a);
-            } else if (std::real(a) == 0.) {
-                oss << std::imag(a) << " i";
-            } else {
-                oss << std::real(a) << (std::imag(a) > 0 ? " + " : "") << std::imag(a) << " i";
-            }
-            return (parenthesize && (std::real(a) != 0. && std::imag(a) != 0.)) ? Latex::_parenthesize(oss.str()) : oss.str();
-        }
-
-        std::string parenthesize_if(std::string const &expr, char new_op, char last_op) {
-            if (new_op == OP_TYPE::FUNCTION || new_op == OP_TYPE::DIV || new_op == OP_TYPE::RPOW) return expr;
-            else if (((last_op == OP_TYPE::ADD || last_op == OP_TYPE::SUB) && new_op == OP_TYPE::MUL)
-                     || (last_op != OP_TYPE::NOP && new_op == OP_TYPE::LPOW))
-                return Latex::_parenthesize(expr);
-            else return expr;
-        }
-    }
-
     template<typename Dom, typename Ran>
     Ran CFunction<Dom, Ran>::operator()(Dom z) const {
         return this->_f(z);
@@ -50,6 +19,14 @@ namespace libcalculus {
         std::string new_latex = std::regex_replace(this->_latex, std::regex(LATEX_VAR),
                                 Latex::parenthesize_if(rhs._latex, OP_TYPE::FUNCTION, rhs._last_op));
         return CFunction<Predom, Ran>([=](Predom z) { return lhs_f(rhs_f(z)); }, new_latex, this->_last_op);
+    }
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> CFunction<Dom,Ran>::operator-() const {
+        auto const old_f = this->_f;
+        std::string new_latex = "-";
+        new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::NEG, this->_last_op));
+        return CFunction([=](Dom z) { return -old_f(z); }, new_latex, OP_TYPE::NEG);
     }
 
     template<typename Dom, typename Ran>

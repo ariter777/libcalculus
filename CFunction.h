@@ -1,6 +1,4 @@
 #pragma once
-#ifndef CFUNCTION_H
-#define CFUNCTION_H
 #include <iostream>
 #include <iomanip>
 #include <complex>
@@ -8,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <regex>
+#include "Latex.h"
 
 namespace libcalculus {
     using namespace std::complex_literals;
@@ -16,19 +15,15 @@ namespace libcalculus {
     enum OP_TYPE {
         NOP, // Nothing
         FUNCTION, // Applying a function - sin, cos, etc.
-        ADD, // Addition
-        SUB, // Subtraction
-        MUL, // Multiplication
-        DIV, // Division
-        LPOW, // Power base
-        RPOW, // Power exponent
-        MULCONST, // Multiplication by a constant
+        ADD, // Addition: (f, g) -> f + g
+        SUB, // Subtraction: (f, g) -> f - g
+        MUL, // Multiplication: (f, g) -> f * g
+        DIV, // Division: (f, g) -> f / g
+        LPOW, // Power base: (f, g) -> f ^ g
+        RPOW, // Power exponent: (g, f) -> f ^ g
+        MULCONST, // Multiplication by a constant: (f, a) -> a * f
+        NEG, // Negation: f -> -f
     };
-
-    namespace Latex {
-        std::string _parenthesize(std::string const &expr);
-        template<typename T> std::string fmt_const(T a, bool parenthesize = false);
-    }
 
     template <typename Dom, typename Ran>
     class CFunction {
@@ -40,13 +35,14 @@ namespace libcalculus {
         template<typename Dom2, typename Ran2> friend class CFunction;
     public:
         CFunction() {}
-        CFunction(function f) : _f{f} {}
+        CFunction(function const &f) : _f{f} {}
         CFunction(CFunction const &cf) : _f{cf._f}, _latex{cf._latex}, _last_op{cf._last_op} {}
-        CFunction(function f, std::string const &latex, char last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
+        CFunction(function const &f, std::string const &latex, char last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
         Ran operator()(Dom z) const;
         std::string latex(std::string const &varname = "z") const;
 
         template<typename Predom> CFunction<Predom, Ran> compose(CFunction<Predom, Dom> const &rhs) const;
+        CFunction<Dom, Ran> operator-() const;
         CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &rhs) const;
@@ -73,4 +69,3 @@ namespace libcalculus {
         static CFunction<Dom, Ran> E() { return CFunction([](Dom z) { return M_E; }, "e", OP_TYPE::NOP); }
     };
 }
-#endif
