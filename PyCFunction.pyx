@@ -362,6 +362,11 @@ cdef class Contour:
     F.cfunction = -self.cfunction
     return F
 
+  def __invert__(self):
+    F = Contour(self._end, self._start)
+    F.cfunction = self.cfunction
+    return F
+
   def __add__(lhs, rhs):
     if isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
       return rhs._addconst(lhs)
