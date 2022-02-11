@@ -5,9 +5,8 @@ import operator
 import types
 import functools
 import argparse
-import tqdm
+import pqdm.processes, pqdm.threads
 
-np.seterr(all="ignore")
 BOUND = 20
 MAX_OPS = 6
 MAX_TRIES = 20
@@ -32,14 +31,6 @@ OPERATION_TYPES = [BINARY_OPERATIONS, UNARY_OPERATIONS]
 def _crand():
     real, imag = np.random.uniform(-BOUND, BOUND, size=2)
     return real + 1j * imag
-
-def _copy_func(f):
-    g = types.FunctionType(f.__code__, f.__globals__, name=f.__name__,
-                           argdefs=f.__defaults__,
-                           closure=f.__closure__)
-    g = functools.update_wrapper(g, f)
-    g.__kwdefaults__ = f.__kwdefaults__
-    return g
 
 def _random_base_function():
     """Returns a random function object and its corresponding lambda."""
@@ -77,38 +68,41 @@ def gen_function(n):
             comp_func = lambda z, op_=op, comp_func_=comp_func: op_(comp_func_(z))
     return func, comp_func
 
+def _run_func(n_vals):
+    np.seterr(all="ignore")
+    n_tries = MAX_TRIES + 1
+    n_errors = MAX_ERRORS + 1
+    while n_tries > MAX_TRIES:
+        n_tries = 0
+        n_errors = 0
+        n_ops = np.random.randint(0, MAX_OPS)
+        f, cf = gen_function(n_ops)
+        for __ in range(n_vals):
+            while True:
+                val = _crand()
+                try:
+                    f_val, cf_val = f(val), cf(val)
+                    if np.isfinite(f_val) and np.isfinite(cf_val):
+                        if not np.allclose(f_val, cf_val):
+                            n_errors += 1
+                        break
+                    n_tries += 1
+                except (OverflowError, ZeroDivisionError):
+                    n_tries += 1
+                finally:
+                    if n_tries > MAX_TRIES: # We've hit a functional division by zero (e.g. 1 / (z - z)):
+                        break
+
+            if n_errors >= MAX_ERRORS:
+                print(f"ERROR IN FUNCTION: {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
+                return
+
+            if n_tries > MAX_TRIES:
+                break
+
 def run_test(n_funcs, n_vals):
     """Generate n_funcs random functions and check them on n_values values."""
-    for _ in tqdm.trange(n_funcs):
-        n_tries = MAX_TRIES + 1
-        n_errors = MAX_ERRORS + 1
-        while n_tries > MAX_TRIES:
-            n_tries = 0
-            n_errors = 0
-            n_ops = np.random.randint(0, MAX_OPS)
-            f, cf = gen_function(n_ops)
-            for __ in range(n_vals):
-                while True:
-                    val = _crand()
-                    try:
-                        f_val, cf_val = f(val), cf(val)
-                        if np.isfinite(f_val) and np.isfinite(cf_val):
-                            if not np.allclose(f_val, cf_val):
-                                n_errors += 1
-                            break
-                        n_tries += 1
-                    except (OverflowError, ZeroDivisionError):
-                        n_tries += 1
-                    finally:
-                        if n_tries > MAX_TRIES: # We've hit a functional division by zero (e.g. 1 / (z - z)):
-                            break
-
-                if n_errors >= MAX_ERRORS:
-                    print(f"ERROR IN FUNCTION: {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
-                    return
-
-                if n_tries > MAX_TRIES:
-                    break
+    pqdm.processes.pqdm([n_vals] * n_funcs, _run_func, n_jobs=6)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
