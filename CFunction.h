@@ -41,6 +41,10 @@ namespace libcalculus {
         std::string latex(std::string const &varname = "z") const;
 
         template<typename Predom> CFunction<Predom, Ran> compose(CFunction<Predom, Dom> const &rhs) const;
+        CFunction<Dom, Ran> &operator+=(CFunction<Dom, Ran> const &rhs);
+        CFunction<Dom, Ran> &operator-=(CFunction<Dom, Ran> const &rhs);
+        CFunction<Dom, Ran> &operator*=(CFunction<Dom, Ran> const &rhs);
+        CFunction<Dom, Ran> &operator/=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> operator-() const;
         CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const;
