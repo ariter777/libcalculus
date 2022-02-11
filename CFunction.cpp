@@ -65,6 +65,15 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator+=(Ran c) {
+        auto const old_f = this->_f;
+        this->_f = [=](Dom z) { return old_f(z) + c; };
+        this->_latex.append(" + ");
+        this->_latex.append(Latex::fmt_const(c, false));
+        return *this;
+    }
+
+    template<typename Dom, typename Ran>
     CFunction<Dom, Ran> CFunction<Dom,Ran>::operator-() const {
         auto const old_f = this->_f;
         std::string new_latex = "-";
