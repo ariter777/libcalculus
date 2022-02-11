@@ -173,7 +173,7 @@ namespace libcalculus {
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> operator-(Ran lhs, CFunction<Dom, Ran> const &rhs) {
-        auto const rhs_f = rhs_f;
+        auto const rhs_f = rhs._f;
         std::string new_latex = Latex::fmt_const(lhs, false);
         new_latex.append(" - ");
         new_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::SUB, rhs._last_op));

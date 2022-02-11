@@ -66,15 +66,15 @@ namespace libcalculus {
         CFunction<Dom, Ran> pow(CFunction<Dom, Ran> const &rhs) const;
 
         /* Function-with-constant operators */
-        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator+(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
-        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
-        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator*(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
-        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator+(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator*(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
         CFunction<Dom, Ran> pow(Ran c) const;
 
         /* Constant-with-function operators */
-        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
-        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
         CFunction<Dom, Ran> lpow(Ran c) const;
 
         static CFunction<Dom, Ran> Constant(Ran c) { return CFunction([=](Dom z) { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
