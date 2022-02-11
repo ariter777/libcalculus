@@ -102,11 +102,11 @@ def _run_func(n_vals):
 
 def run_test(n_funcs, n_vals):
     """Generate n_funcs random functions and check them on n_values values."""
-    pqdm.processes.pqdm([n_vals] * n_funcs, _run_func, n_jobs=6)
+    pqdm.processes.pqdm([n_vals] * n_funcs, _run_func, n_jobs=8)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
-    parser.add_argument("n_funcs", help="Number of random functions to generate", default=200, type=int)
-    parser.add_argument("n_vals", help="Number of inputs to check on each function", default=20, type=int)
+    parser.add_argument("n_funcs", help="Number of random functions to generate", nargs="?", default=5000, type=int)
+    parser.add_argument("n_vals", help="Number of inputs to check on each function", nargs="?", default=20, type=int)
     args = parser.parse_args()
     run_test(args.n_funcs, args.n_vals)
