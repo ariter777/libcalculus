@@ -4,8 +4,13 @@ import numpy as np
 import operator
 import types
 import functools
+import argparse
+import tqdm
 
+np.seterr(all="ignore")
 BOUND = 20
+MAX_OPS = 10
+MAX_TRIES = 20
 
 BASE_FUNCTIONS = {ComplexFunction.Constant: None,
                   ComplexFunction.Identity: lambda z: z,
@@ -70,3 +75,37 @@ def gen_function(n):
             func = op(func)
             comp_func = lambda z, op_=op, comp_func_=comp_func: op_(comp_func_(z))
     return func, comp_func
+
+def run_test(n_funcs, n_vals):
+    """Generate n_funcs random functions and check them on n_values values."""
+    for _ in tqdm.trange(n_funcs):
+        n_tries = MAX_TRIES + 1
+        while n_tries > MAX_TRIES:
+            n_tries = 0
+            n_ops = np.random.randint(0, MAX_OPS)
+            f, cf = gen_function(n_ops)
+            for __ in range(n_vals):
+                while True:
+                    val = _crand()
+                    try:
+                        f_val, cf_val = f(val), cf(val)
+                        if np.isfinite(f_val) and np.isfinite(cf_val):
+                            break
+                        n_tries += 1
+                    except (OverflowError, ZeroDivisionError):
+                        n_tries += 1
+                    finally:
+                        if n_tries > MAX_TRIES: # We've hit a functional division by zero (e.g. 1 / (z - z)):
+                            break
+                if n_tries > MAX_TRIES:
+                    break
+                if not np.allclose(f_val, cf_val):
+                    print(f"ERROR IN FUNCTION: {f.latex()}\n\t at {val}: {f_val} vs {cf_val}")
+                    return
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
+    parser.add_argument("n_funcs", help="Number of random functions to generate", default=200, type=int)
+    parser.add_argument("n_vals", help="Number of inputs to check on each function", default=20, type=int)
+    args = parser.parse_args()
+    run_test(args.n_funcs, args.n_vals)
