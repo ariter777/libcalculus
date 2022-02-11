@@ -23,7 +23,11 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction[Dom, Ran] &operator-=(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] &operator*=(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] &operator/=(CFunction[Dom, Ran] &rhs) except +
+
     CFunction[Dom, Ran] &operator+=(Ran c) except +
+    CFunction[Dom, Ran] &operator-=(Ran c) except +
+    CFunction[Dom, Ran] &operator*=(Ran c) except +
+    CFunction[Dom, Ran] &operator/=(Ran c) except +
 
     CFunction[Dom, Ran] operator-() except +
     CFunction[Dom, Ran] operator+(CFunction[Dom, Ran] &rhs) except +
@@ -162,19 +166,28 @@ cdef class ComplexFunction:
       lhs.cfunction += <COMPLEX>rhs
       return lhs
 
-  def __isub__(lhs, rhs):
-    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
+  def __isub__(ComplexFunction lhs, rhs):
+    if isinstance(rhs, ComplexFunction):
       lhs.cfunction -= (<ComplexFunction>rhs).cfunction
       return lhs
-
-  def __imul__(lhs, rhs):
-    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
-      lhs.cfunction *= (<ComplexFunction>rhs).cfunction
+    elif isinstance(rhs, (int, float, complex)):
+      lhs.cfunction -= <COMPLEX>rhs
       return lhs
 
-  def __itruediv__(lhs, rhs):
-    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
+  def __imul__(ComplexFunction lhs, rhs):
+    if isinstance(rhs, ComplexFunction):
+      lhs.cfunction *= (<ComplexFunction>rhs).cfunction
+      return lhs
+    elif isinstance(rhs, (int, float, complex)):
+      lhs.cfunction *= <COMPLEX>rhs
+      return lhs
+
+  def __itruediv__(ComplexFunction lhs, rhs):
+    if isinstance(rhs, ComplexFunction):
       lhs.cfunction /= (<ComplexFunction>rhs).cfunction
+      return lhs
+    elif isinstance(rhs, (int, float, complex)):
+      lhs.cfunction /= <COMPLEX>rhs
       return lhs
 
   def __add__(lhs, rhs):

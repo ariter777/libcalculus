@@ -40,14 +40,24 @@ namespace libcalculus {
         Ran operator()(Dom z) const;
         std::string latex(std::string const &varname = "z") const;
 
+        /* Function composition */
         template<typename Predom> CFunction<Predom, Ran> compose(CFunction<Predom, Dom> const &rhs) const;
+
+        /* In-place function with function operators */
         CFunction<Dom, Ran> &operator+=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator-=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator*=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator/=(CFunction<Dom, Ran> const &rhs);
-        CFunction<Dom, Ran> &operator+=(Ran c);
 
+        /* In-place function with constant operators */
+        CFunction<Dom, Ran> &operator+=(Ran c);
+        CFunction<Dom, Ran> &operator-=(Ran c);
+        CFunction<Dom, Ran> &operator*=(Ran c);
+        CFunction<Dom, Ran> &operator/=(Ran c);
+
+        /* Function additive inverse */
         CFunction<Dom, Ran> operator-() const;
+
         CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &rhs) const;
