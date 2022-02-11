@@ -1,7 +1,5 @@
 import libcalculus
 import numpy as np
-f = libcalculus.ComplexFunction.Sin()
-f -= libcalculus.ComplexFunction.Cos()
-f /= 41
+f = 3 - libcalculus.ComplexFunction.Sin()
 print(f(3 + 7j))
 print(f.latex())

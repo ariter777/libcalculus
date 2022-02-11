@@ -43,13 +43,13 @@ namespace libcalculus {
         /* Function composition */
         template<typename Predom> CFunction<Predom, Ran> compose(CFunction<Predom, Dom> const &rhs) const;
 
-        /* In-place function with function operators */
+        /* In-place function-with-function operators */
         CFunction<Dom, Ran> &operator+=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator-=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator*=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator/=(CFunction<Dom, Ran> const &rhs);
 
-        /* In-place function with constant operators */
+        /* In-place function-with-constant operators */
         CFunction<Dom, Ran> &operator+=(Ran c);
         CFunction<Dom, Ran> &operator-=(Ran c);
         CFunction<Dom, Ran> &operator*=(Ran c);
@@ -58,20 +58,24 @@ namespace libcalculus {
         /* Function additive inverse */
         CFunction<Dom, Ran> operator-() const;
 
-        CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const;
-        CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const;
-        CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &rhs) const;
-        CFunction<Dom, Ran> operator/(CFunction<Dom, Ran> const &rhs) const;
+        /* Function-with-function operators */
+        inline CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) += rhs; }
+        inline CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) -= rhs; }
+        inline CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) *= rhs; }
+        inline CFunction<Dom, Ran> operator/(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) /= rhs; }
         CFunction<Dom, Ran> pow(CFunction<Dom, Ran> const &rhs) const;
 
-        CFunction<Dom, Ran> addconst(Ran c) const;
-        CFunction<Dom, Ran> subconst(Ran c) const;
-        CFunction<Dom, Ran> lsubconst(Ran c) const;
-        CFunction<Dom, Ran> divconst(Ran c) const;
-        CFunction<Dom, Ran> ldivconst(Ran c) const;
-        CFunction<Dom, Ran> mulconst(Ran c) const;
-        CFunction<Dom, Ran> powconst(Ran c) const;
-        CFunction<Dom, Ran> lpowconst(Ran c) const;
+        /* Function-with-constant operators */
+        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator+(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator*(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
+        CFunction<Dom, Ran> pow(Ran c) const;
+
+        /* Constant-with-function operators */
+        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
+        template <typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
+        CFunction<Dom, Ran> lpow(Ran c) const;
 
         static CFunction<Dom, Ran> Constant(Ran c) { return CFunction([=](Dom z) { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
         static CFunction<Dom, Ran> Exp() { return CFunction([](Dom z) { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP); }
