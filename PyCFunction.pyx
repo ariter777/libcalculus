@@ -20,6 +20,9 @@ cdef extern from "CFunction.h" namespace "libcalculus":
 
     CFunction[Predom, Ran] compose[Predom](CFunction[Predom, Dom] &rhs) except +
     CFunction[Dom, Ran] &operator+=(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &operator-=(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &operator*=(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &operator/=(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] operator-() except +
     CFunction[Dom, Ran] operator+(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] operator-(CFunction[Dom, Ran] &rhs) except +
@@ -149,9 +152,24 @@ cdef class ComplexFunction:
     F.cfunction = -self.cfunction
     return F
 
-  def __iadd__(lhs, ComplexFunction rhs):
+  def __iadd__(lhs, rhs):
     if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
-      lhs.cfunction += rhs.cfunction
+      lhs.cfunction += (<ComplexFunction>rhs).cfunction
+      return lhs
+
+  def __isub__(lhs, rhs):
+    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
+      lhs.cfunction -= (<ComplexFunction>rhs).cfunction
+      return lhs
+
+  def __imul__(lhs, rhs):
+    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
+      lhs.cfunction *= (<ComplexFunction>rhs).cfunction
+      return lhs
+
+  def __itruediv__(lhs, rhs):
+    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
+      lhs.cfunction /= (<ComplexFunction>rhs).cfunction
       return lhs
 
   def __add__(lhs, rhs):

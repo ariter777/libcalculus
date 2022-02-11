@@ -32,6 +32,39 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator-=(CFunction<Dom, Ran> const &rhs) {
+        auto const lhs_f = this->_f, rhs_f = rhs._f;
+        this->_f = [=](Dom z) { return lhs_f(z) - rhs_f(z); };
+        this->_latex = Latex::parenthesize_if(this->_latex, OP_TYPE::SUB, this->_last_op);
+        this->_latex.append(" - ");
+        this->_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::SUB, rhs._last_op));
+        return *this;
+    }
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator*=(CFunction<Dom, Ran> const &rhs) {
+        auto const lhs_f = this->_f, rhs_f = rhs._f;
+        this->_f = [=](Dom z) { return lhs_f(z) * rhs_f(z); };
+        this->_latex = Latex::parenthesize_if(this->_latex, OP_TYPE::MUL, this->_last_op);
+        if (rhs._last_op == OP_TYPE::MULCONST) this->_latex.append(" \\cdot ");
+        this->_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::MUL, rhs._last_op));
+        return *this;
+    }
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator/=(CFunction<Dom, Ran> const &rhs) {
+        auto const lhs_f = this->_f, rhs_f = rhs._f;
+        this->_f = [=](Dom z) { return lhs_f(z) / rhs_f(z); };
+        std::string new_latex = " \\frac{";
+        new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::DIV, this->_last_op));
+        new_latex.append("}{");
+        new_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::DIV, rhs._last_op));
+        new_latex.append("}");
+        this->_latex = new_latex;
+        return *this;
+    }
+
+    template<typename Dom, typename Ran>
     CFunction<Dom, Ran> CFunction<Dom,Ran>::operator-() const {
         auto const old_f = this->_f;
         std::string new_latex = "-";

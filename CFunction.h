@@ -45,6 +45,7 @@ namespace libcalculus {
         CFunction<Dom, Ran> &operator-=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator*=(CFunction<Dom, Ran> const &rhs);
         CFunction<Dom, Ran> &operator/=(CFunction<Dom, Ran> const &rhs);
+
         CFunction<Dom, Ran> operator-() const;
         CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const;
         CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const;
