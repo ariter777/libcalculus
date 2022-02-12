@@ -9,13 +9,9 @@ import argparse
 import pqdm.processes
 import multiprocessing as mp
 
-class ValueTester:
-    BOUND = 20
-    MAX_OPS = 10
-    MAX_TRIES = 20
-    MAX_ERRORS = 20
-    N_JOBS = mp.cpu_count()
 
+
+class Tester:
     BASE_FUNCTIONS = {ComplexFunction.Constant: None,
                       ComplexFunction.Identity: lambda z: z,
                       ComplexFunction.Exp: lambda z: complex(np.exp(z)),
@@ -31,6 +27,11 @@ class ValueTester:
                          operator.matmul]
     UNARY_OPERATIONS = [operator.neg]
     OPERATION_TYPES = [BINARY_OPERATIONS, UNARY_OPERATIONS]
+    BOUND = 20
+    MAX_OPS = 10
+    MAX_TRIES = 20
+    MAX_ERRORS = 20
+    N_JOBS = mp.cpu_count()
 
     def _crand(self):
         real, imag = np.random.uniform(-self.BOUND, self.BOUND, size=2)
@@ -72,6 +73,7 @@ class ValueTester:
                 comp_func = lambda z, op_=op, comp_func_=comp_func: op_(comp_func_(z))
         return func, comp_func
 
+class ValueTester(Tester):
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
         n_tries = self.MAX_TRIES + 1
@@ -114,6 +116,9 @@ class ValueTester:
         # Now try with a random number of operations.
         pqdm.processes.pqdm([[n_vals, None] for _ in range(n_funcs - self.MAX_OPS)],
                             self._run_func, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
+
+class LatexTester(Tester):
+    pass
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
