@@ -206,7 +206,7 @@ namespace libcalculus {
     CFunction<Dom, Ran> CFunction<Dom, Ran>::lpow(Ran c) const {
         auto const old_f = this->_f;
         std::string new_latex = "{";
-        new_latex.append(Latex::fmt_const(c, false));
+        new_latex.append(Latex::fmt_const(c, true));
         new_latex.append("}^{");
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::LPOW, this->_last_op));
         new_latex.append("}");
