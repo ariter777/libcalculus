@@ -73,6 +73,9 @@ class Tester:
                 comp_func = lambda z, op_=op, comp_func_=comp_func: op_(comp_func_(z))
         return func, comp_func
 
+    def run(self):
+        print(f"\033[1mRunning {type(self).__name__}:\033[0m")
+
 class ValueTester(Tester):
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
@@ -100,13 +103,14 @@ class ValueTester(Tester):
                             break
 
                 if n_errors >= self.MAX_ERRORS:
-                    raise ValueError(f"\033[1;91mERROR IN FUNCTION:\033[0m {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
+                    raise ValueError(f"\033[1;41mERROR IN FUNCTION:\033[0m {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
 
                 if n_tries > self.MAX_TRIES:
                     break
 
     def run(self, n_funcs, n_vals):
         """Generate n_funcs random functions and check them on n_values values."""
+        super().run()
         # First try with an increasing number of operations; that way an error in a basic operator will pop up with a simple function
         # and not a convoluted one
         pqdm.processes.pqdm([[n_vals, i] for i in range(self.MAX_OPS)],
@@ -117,8 +121,11 @@ class ValueTester(Tester):
         pqdm.processes.pqdm([[n_vals, None] for _ in range(n_funcs - self.MAX_OPS)],
                             self._run_func, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
 
+        print("\033[1;92mDone.\033[0m")
+
 class LatexTester(Tester):
-    pass
+    def run(self, n_funcs):
+        super().run()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
@@ -128,3 +135,6 @@ if __name__ == "__main__":
 
     tester = ValueTester()
     tester.run(args.n_funcs, args.n_vals)
+
+    tester = LatexTester()
+    tester.run(args.n_funcs)
