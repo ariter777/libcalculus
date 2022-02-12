@@ -8,16 +8,21 @@ import pqdm.processes
 import multiprocessing as mp
 import requests
 
-
-
 class Tester:
+    def run(self):
+        print(f"\033[1mStarting {type(self).__name__}:\033[0m")
+
+    def _done(self):
+        print(f"\033[1;92mDone: {type(self).__name__}.\033[0m\n")
+
+class FunctionTester(Tester):
     BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow,
                          operator.matmul]
     UNARY_OPERATIONS = [operator.neg]
     OPERATION_TYPES = [BINARY_OPERATIONS, UNARY_OPERATIONS]
     BOUND = 20
-    MAX_OPS = 10
+    MAX_OPS = 5
     MAX_TRIES = 20
     MAX_ERRORS = 20
     N_JOBS = mp.cpu_count()
@@ -63,13 +68,7 @@ class Tester:
                 comp_func = lambda z, op_=op, comp_func_=comp_func: op_(comp_func_(z))
         return func, comp_func
 
-    def run(self):
-        print(f"\033[1mStarting {type(self).__name__}:\033[0m")
-
-    def _done(self):
-        print(f"\033[1;92mDone: {type(self).__name__}.\033[0m\n")
-
-class ComplexFunctionTester(Tester):
+class ComplexFunctionTester(FunctionTester):
     BASE_FUNCTIONS = {ComplexFunction.Constant: None,
                       ComplexFunction.Identity: lambda z: z,
                       ComplexFunction.Exp: lambda z: complex(np.exp(z)),
