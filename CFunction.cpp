@@ -17,7 +17,7 @@ namespace libcalculus {
         auto const lhs_f = this->_f, rhs_f = rhs._f;
 
         std::string new_latex = std::regex_replace(this->_latex, std::regex(LATEX_VAR),
-                                Latex::parenthesize_if(rhs._latex, OP_TYPE::FUNCTION, rhs._last_op));
+                                Latex::parenthesize_if(rhs._latex, OP_TYPE::FUNC, rhs._last_op));
         return CFunction<Predom, Ran>([=](Predom z) { return lhs_f(rhs_f(z)); }, new_latex, this->_last_op);
     }
 
@@ -73,7 +73,7 @@ namespace libcalculus {
         auto const old_f = this->_f;
         this->_f = [=](Dom z) { return old_f(z) + c; };
         this->_latex.append(" + ");
-        this->_latex.append(Latex::fmt_const(c, false));
+        this->_latex.append(Latex::fmt_const(c, true));
         this->_last_op = OP_TYPE::ADD;
         return *this;
     }
@@ -83,7 +83,7 @@ namespace libcalculus {
         auto const old_f = this->_f;
         this->_f = [=](Dom z) { return old_f(z) - c; };
         this->_latex.append(" - ");
-        this->_latex.append(Latex::fmt_const(c, false));
+        this->_latex.append(Latex::fmt_const(c, true));
         this->_last_op = OP_TYPE::SUB;
         return *this;
     }
@@ -138,7 +138,7 @@ namespace libcalculus {
         auto const lhs_f = lhs._f;
         std::string new_latex = lhs._latex;
         new_latex.append(" + ");
-        new_latex.append(Latex::fmt_const(rhs, false));
+        new_latex.append(Latex::fmt_const(rhs, true));
         return CFunction<Dom, Ran>([=](Dom z) { return lhs_f(z) + rhs; }, new_latex, OP_TYPE::ADD);
     }
 
