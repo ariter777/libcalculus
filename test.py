@@ -72,14 +72,14 @@ class ValueTester:
                 comp_func = lambda z, op_=op, comp_func_=comp_func: op_(comp_func_(z))
         return func, comp_func
 
-    def _run_func(self, n_vals):
+    def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
         n_tries = self.MAX_TRIES + 1
         n_errors = self.MAX_ERRORS + 1
         while n_tries > self.MAX_TRIES:
             n_tries = 0
             n_errors = 0
-            n_ops = np.random.randint(0, self.MAX_OPS)
+            n_ops = n_ops if n_ops is not None else np.random.randint(0, self.MAX_OPS)
             f, cf = self._gen_function(n_ops)
             for _ in range(n_vals):
                 while True:
@@ -105,7 +105,15 @@ class ValueTester:
 
     def run(self, n_funcs, n_vals):
         """Generate n_funcs random functions and check them on n_values values."""
-        pqdm.processes.pqdm([n_vals] * n_funcs, self._run_func, n_jobs=self.N_JOBS, exception_behaviour="immediate", bounded=True)
+        # First try with an increasing number of operations; that way an error in a basic operator will pop up with a simple function
+        # and not a convoluted one
+        pqdm.processes.pqdm([[n_vals, i] for i in range(self.MAX_OPS)],
+                            self._run_func, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True,
+                            disable=True)
+
+        # Now try with a random number of operations.
+        pqdm.processes.pqdm([[n_vals, None] for _ in range(n_funcs - self.MAX_OPS)],
+                            self._run_func, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
