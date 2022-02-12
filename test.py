@@ -105,7 +105,7 @@ class ValueTester:
 
     def run(self, n_funcs, n_vals):
         """Generate n_funcs random functions and check them on n_values values."""
-        pqdm.processes.pqdm([n_vals] * n_funcs, self._run_func, n_jobs=self.N_JOBS, exception_behaviour="immediate")
+        pqdm.processes.pqdm([n_vals] * n_funcs, self._run_func, n_jobs=self.N_JOBS, exception_behaviour="immediate", bounded=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
