@@ -79,7 +79,7 @@ class Tester:
     def _done(self):
         print(f"\033[1;92mDone: {type(self).__name__}.\033[0m\n")
 
-class ValueTester(Tester):
+class ComplexFunctionTester(Tester):
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
         n_tries = self.MAX_TRIES + 1
@@ -126,7 +126,7 @@ class ValueTester(Tester):
         super()._done()
 
 class LatexTester(Tester):
-    RENDERER_URL = r"https://latex.codecogs.com/gif.latex?\bg_white"
+    RENDERER_URL = r"https://latex.codecogs.com/gif.latex?\bg_white\LARGE "
     SAVE_PATH = "latex.gif"
 
     def _render_latex(self, latex):
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     parser.add_argument("n_vals", help="Number of inputs to check on each function", nargs="?", default=20, type=int)
     args = parser.parse_args()
 
-    tester = ValueTester()
+    tester = ComplexFunctionTester()
     tester.run(args.n_funcs, args.n_vals)
 
     tester = LatexTester()

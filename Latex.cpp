@@ -13,7 +13,7 @@ namespace libcalculus {
             if (new_op == OP_TYPE::FUNC || new_op == OP_TYPE::DIV || new_op == OP_TYPE::RPOW) return expr;
             else if (((last_op == OP_TYPE::ADD || last_op == OP_TYPE::SUB) && (new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG))
                      || (last_op != OP_TYPE::NOP && new_op == OP_TYPE::LPOW)
-                     || (last_op == OP_TYPE::NEG && (new_op == OP_TYPE::ADD || new_op == OP_TYPE::SUB || new_op == OP_TYPE::MUL)))
+                     || (last_op == OP_TYPE::NEG && (new_op == OP_TYPE::ADD || new_op == OP_TYPE::SUB || new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG)))
                 return Latex::_parenthesize(expr);
             else return expr;
         }
