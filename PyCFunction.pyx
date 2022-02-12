@@ -286,9 +286,17 @@ cdef class Contour:
   def start(self):
     return self._start
 
+  @start.setter
+  def start(self, REAL value):
+    self._start = value
+
   @property
   def end(self):
     return self._end
+
+  @end.setter
+  def end(self, double value):
+    self._end = value
 
   def latex(self, str varname = "t"):
     return self.cfunction.latex(varname.encode()).decode()

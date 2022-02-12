@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-from libcalculus import ComplexFunction, Contour
+from libcalculus import ComplexFunction, Contour, integrate
 
 import numpy as np
+import scipy.misc, scipy.integrate
 import operator
 import argparse
 import pqdm.processes
@@ -40,7 +41,7 @@ class FunctionTester(Tester):
         else:
             return func(), self.BASE_FUNCTIONS[func]
 
-    def _gen_function(self, n_ops):
+    def _gen_function(self, n_ops=None):
         """Generate a random function object with n operations of any kind."""
         n_ops = n_ops if n_ops is not None else np.random.randint(0, self.MAX_OPS)
         func, comp_func = self._random_base_function()
@@ -78,9 +79,6 @@ class ComplexFunctionTester(FunctionTester):
                       ComplexFunction.Sec: lambda z: complex(1.) / complex(np.cos(z)),
                       ComplexFunction.Csc: lambda z: complex(1.) / complex(np.sin(z)),
                       ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z))}
-
-    def _rand(self):
-        return np.random.uniform(-self.BOUND, self.BOUND)
 
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
@@ -141,6 +139,42 @@ class ContourTester(ComplexFunctionTester):
     BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow]
 
+    def _rand(self, n=1):
+        return np.random.uniform(-self.BOUND, self.BOUND, size=n)
+
+    def _gen_function(self, n_ops=None):
+        c, cc = super()._gen_function(n_ops)
+        c.start, c.end = self._rand(2)
+        return c, cc
+
+class IntegralTester(FunctionTester):
+    MAX_OPS = 0
+    BOUND = 2
+
+    def __init__(self):
+        self.cft = ComplexFunctionTester()
+        self.ct = ContourTester()
+
+    def _run_integral(self, n_integrals):
+        f, cf = self.cft._gen_function(self.MAX_OPS)
+        for _ in range(n_integrals):
+            c, cc = self.ct._gen_function(self.MAX_OPS)
+            dcc = lambda t: scipy.misc.derivative(cc, t, dx=1e-1)
+            cintegrand_real = lambda t: np.real(cf(cc(t)) * dcc(t))
+            cintegrand_imag = lambda t: np.imag(cf(cc(t)) * dcc(t))
+
+            integral = integrate(f, c, tol=1e-3)
+            cintegral = scipy.integrate.quad(cintegrand_real, c.start, c.end, epsabs=1e-1)[0] + 1j * scipy.integrate.quad(cintegrand_imag, c.start, c.end, epsabs=1e-3)[0]
+            print(integral, cintegral, flush=True)
+
+    def run(self, n_funcs, n_integrals):
+        """Generate n_funcs random functions and check n_integrals random integrals on each function."""
+        super().run()
+
+        pqdm.processes.pqdm([[n_integrals]] * n_funcs, self._run_integral, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
+
+        super()._done()
+
 class LatexTester(Tester):
     RENDERER_URL = r"https://latex.codecogs.com/gif.latex?\bg_white\LARGE "
     SAVE_PATH = "latex.gif"
@@ -175,6 +209,9 @@ if __name__ == "__main__":
 
     tester = ContourTester()
     tester.run(args.n_funcs, args.n_vals)
+
+    tester = IntegralTester()
+    tester.run(2, 2)
 
     tester = LatexTester()
     tester.run(3)
