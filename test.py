@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from libcalculus import ComplexFunction
+from libcalculus import ComplexFunction, Contour
 
 import numpy as np
 import operator
@@ -22,15 +22,15 @@ class Tester:
     MAX_ERRORS = 20
     N_JOBS = mp.cpu_count()
 
-    def _crand(self):
+    def _rand(self):
         real, imag = np.random.uniform(-self.BOUND, self.BOUND, size=2)
         return real + 1j * imag
 
     def _random_base_function(self):
         """Returns a random function object and its corresponding lambda."""
         func = np.random.choice(list(self.BASE_FUNCTIONS.keys()))
-        if func is ComplexFunction.Constant:
-            c = self._crand()
+        if func is ComplexFunction.Constant or func is Contour.Constant:
+            c = self._rand()
             return func(c), lambda z, v=c: v
         else:
             return func(), self.BASE_FUNCTIONS[func]
@@ -46,7 +46,7 @@ class Tester:
             if op_type is self.BINARY_OPERATIONS:
                 operand_type = np.random.choice([0, 1], p=[.2, .8])
                 if operand_type == 0 and op != operator.matmul: # Operation with a random constant:
-                    operand = self._crand()
+                    operand = self._rand()
                     comp_operand = lambda z, v=operand: v
                 else:
                     operand, comp_operand = self._random_base_function()
@@ -80,6 +80,9 @@ class ComplexFunctionTester(Tester):
                       ComplexFunction.Csc: lambda z: complex(1.) / complex(np.sin(z)),
                       ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z))}
 
+    def _rand(self):
+        return np.random.uniform(-self.BOUND, self.BOUND)
+
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
         n_tries = self.MAX_TRIES + 1
@@ -90,7 +93,7 @@ class ComplexFunctionTester(Tester):
             f, cf = self._gen_function(n_ops)
             for _ in range(n_vals):
                 while True:
-                    val = self._crand()
+                    val = self._rand()
                     try:
                         f_val, cf_val = f(val), cf(val)
                         if np.isfinite(f_val) and np.isfinite(cf_val):
@@ -105,7 +108,7 @@ class ComplexFunctionTester(Tester):
                             break
 
                 if n_errors >= self.MAX_ERRORS:
-                    raise ValueError(f"\033[1;41mERROR IN FUNCTION:\033[0m {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
+                    raise ValueError(f"\033[1;41mERROR IN {type(f).__name__}:\033[0m {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
 
                 if n_tries > self.MAX_TRIES:
                     break
@@ -124,6 +127,20 @@ class ComplexFunctionTester(Tester):
                             self._run_func, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
 
         super()._done()
+
+class ContourTester(ComplexFunctionTester):
+    BASE_FUNCTIONS = {Contour.Constant: None,
+                      Contour.Identity: lambda z: z,
+                      Contour.Exp: lambda t: complex(np.exp(t)),
+                      Contour.Sin: lambda t: complex(np.sin(t)),
+                      Contour.Cos: lambda t: complex(np.cos(t)),
+                      Contour.Tan: lambda t: complex(np.tan(t)),
+                      Contour.Sec: lambda t: complex(1.) / complex(np.cos(t)),
+                      Contour.Csc: lambda t: complex(1.) / complex(np.sin(t)),
+                      Contour.Cot: lambda t: complex(1.) / complex(np.tan(t))}
+
+    BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
+                         operator.add, operator.sub, operator.mul, operator.truediv, operator.pow]
 
 class LatexTester(Tester):
     RENDERER_URL = r"https://latex.codecogs.com/gif.latex?\bg_white\LARGE "
@@ -155,6 +172,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     tester = ComplexFunctionTester()
+    tester.run(args.n_funcs, args.n_vals)
+
+    tester = ContourTester()
     tester.run(args.n_funcs, args.n_vals)
 
     tester = LatexTester()

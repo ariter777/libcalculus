@@ -100,7 +100,7 @@ cdef class ComplexFunction:
     return F
 
   def _compose_contour(self, Contour rhs):
-    F = Contour(rhs._start, rhs._end)
+    F = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
@@ -338,11 +338,11 @@ cdef class Contour:
   def __add__(lhs, rhs):
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
-      result = Contour(lhs._start, lhs._end)
+      result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
       result.cfunction = (<Contour>lhs).cfunction
       result += rhs
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
-      result = Contour(rhs._start, rhs._end)
+      result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = (<Contour>rhs).cfunction
       result += lhs
     else:
@@ -352,11 +352,11 @@ cdef class Contour:
   def __sub__(lhs, rhs):
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
-      result = Contour(lhs._start, lhs._end)
+      result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
       result.cfunction = (<Contour>lhs).cfunction
       result -= rhs
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
-      result = Contour(rhs._start, rhs._end)
+      result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = rsubC(<COMPLEX>lhs, (<Contour>rhs).cfunction)
     else:
       raise NotImplementedError
@@ -365,11 +365,11 @@ cdef class Contour:
   def __mul__(lhs, rhs):
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
-      result = Contour(lhs._start, lhs._end)
+      result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
       result.cfunction = (<Contour>lhs).cfunction
       result *= rhs
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
-      result = Contour(rhs._start, rhs._end)
+      result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = (<Contour>rhs).cfunction
       result *= lhs
     else:
@@ -379,11 +379,11 @@ cdef class Contour:
   def __truediv__(lhs, rhs):
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
-      result = Contour(lhs._start, lhs._end)
+      result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
       result.cfunction = (<Contour>lhs).cfunction
       result /= rhs
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
-      result = Contour(rhs._start, rhs._end)
+      result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = rdivC(<COMPLEX>lhs, (<Contour>rhs).cfunction)
     else:
       raise NotImplementedError
@@ -392,13 +392,13 @@ cdef class Contour:
   def __pow__(lhs, rhs, mod):
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
-      result = Contour(lhs._start, lhs._end)
+      result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
       result.cfunction = (<Contour>lhs).cfunction.pow((<Contour>rhs).cfunction)
     elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
-      result = Contour(lhs._start, lhs._end)
+      result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
       result.cfunction = (<Contour>lhs).cfunction.pow(<COMPLEX>rhs)
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
-      result = Contour(rhs._start, rhs._end)
+      result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = (<Contour>rhs).cfunction.lpow(<COMPLEX>lhs)
     else:
       raise NotImplementedError
