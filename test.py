@@ -11,16 +11,6 @@ import requests
 
 
 class Tester:
-    BASE_FUNCTIONS = {ComplexFunction.Constant: None,
-                      ComplexFunction.Identity: lambda z: z,
-                      ComplexFunction.Exp: lambda z: complex(np.exp(z)),
-                      ComplexFunction.Sin: lambda z: complex(np.sin(z)),
-                      ComplexFunction.Cos: lambda z: complex(np.cos(z)),
-                      ComplexFunction.Tan: lambda z: complex(np.tan(z)),
-                      ComplexFunction.Sec: lambda z: complex(1.) / complex(np.cos(z)),
-                      ComplexFunction.Csc: lambda z: complex(1.) / complex(np.sin(z)),
-                      ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z))}
-
     BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow,
                          operator.matmul]
@@ -80,6 +70,16 @@ class Tester:
         print(f"\033[1;92mDone: {type(self).__name__}.\033[0m\n")
 
 class ComplexFunctionTester(Tester):
+    BASE_FUNCTIONS = {ComplexFunction.Constant: None,
+                      ComplexFunction.Identity: lambda z: z,
+                      ComplexFunction.Exp: lambda z: complex(np.exp(z)),
+                      ComplexFunction.Sin: lambda z: complex(np.sin(z)),
+                      ComplexFunction.Cos: lambda z: complex(np.cos(z)),
+                      ComplexFunction.Tan: lambda z: complex(np.tan(z)),
+                      ComplexFunction.Sec: lambda z: complex(1.) / complex(np.cos(z)),
+                      ComplexFunction.Csc: lambda z: complex(1.) / complex(np.sin(z)),
+                      ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z))}
+
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
         n_tries = self.MAX_TRIES + 1
@@ -138,7 +138,8 @@ class LatexTester(Tester):
 
     def run(self, n_funcs, n_ops=None):
         super().run()
-        funcs = (self._gen_function(n_ops)[0] for _ in range(n_funcs))
+        complex_tester = ComplexFunctionTester()
+        funcs = (complex_tester._gen_function(n_ops)[0] for _ in range(n_funcs))
         latex = r"\\" + r"\\\\\\".join(func.latex() for func in funcs)
         rendered_latex = self._render_latex(latex)
         with open(self.SAVE_PATH, "wb") as wfd:
