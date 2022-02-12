@@ -3,11 +3,10 @@ from libcalculus import ComplexFunction
 
 import numpy as np
 import operator
-import types
-import functools
 import argparse
 import pqdm.processes
 import multiprocessing as mp
+import requests
 
 
 
@@ -46,11 +45,12 @@ class Tester:
         else:
             return func(), self.BASE_FUNCTIONS[func]
 
-    def _gen_function(self, n):
+    def _gen_function(self, n_ops):
         """Generate a random function object with n operations of any kind."""
+        n_ops = n_ops if n_ops is not None else np.random.randint(0, self.MAX_OPS)
         func, comp_func = self._random_base_function()
 
-        for _ in range(n):
+        for _ in range(n_ops):
             op_type = np.random.choice(self.OPERATION_TYPES, p=[len(entry) / sum(len(entry2) for entry2 in self.OPERATION_TYPES) for entry in self.OPERATION_TYPES])
             op = np.random.choice(op_type)
             if op_type is self.BINARY_OPERATIONS:
@@ -74,7 +74,10 @@ class Tester:
         return func, comp_func
 
     def run(self):
-        print(f"\033[1mRunning {type(self).__name__}:\033[0m")
+        print(f"\033[1mStarting {type(self).__name__}:\033[0m")
+
+    def _done(self):
+        print(f"\033[1;92mDone: {type(self).__name__}.\033[0m\n")
 
 class ValueTester(Tester):
     def _run_func(self, n_vals, n_ops=None):
@@ -84,7 +87,6 @@ class ValueTester(Tester):
         while n_tries > self.MAX_TRIES:
             n_tries = 0
             n_errors = 0
-            n_ops = n_ops if n_ops is not None else np.random.randint(0, self.MAX_OPS)
             f, cf = self._gen_function(n_ops)
             for _ in range(n_vals):
                 while True:
@@ -121,11 +123,29 @@ class ValueTester(Tester):
         pqdm.processes.pqdm([[n_vals, None] for _ in range(n_funcs - self.MAX_OPS)],
                             self._run_func, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
 
-        print("\033[1;92mDone.\033[0m")
+        super()._done()
 
 class LatexTester(Tester):
-    def run(self, n_funcs):
+    RENDERER_URL = r"https://latex.codecogs.com/gif.latex?\bg_white"
+    SAVE_PATH = "latex.gif"
+
+    def _render_latex(self, latex):
+        r = requests.get(self.RENDERER_URL + latex)
+        if r.status_code == 200:
+            return r.content
+        else:
+            raise requests.exceptions.RequestException(f"HTTP Status: {r.status_code}")
+
+    def run(self, n_funcs, n_ops=None):
         super().run()
+        funcs = (self._gen_function(n_ops)[0] for _ in range(n_funcs))
+        latex = r"\\" + r"\\\\\\".join(func.latex() for func in funcs)
+        rendered_latex = self._render_latex(latex)
+        with open(self.SAVE_PATH, "wb") as wfd:
+            wfd.write(rendered_latex)
+        print(f"Written Latex to {self.SAVE_PATH}.")
+        super()._done()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
@@ -137,4 +157,4 @@ if __name__ == "__main__":
     tester.run(args.n_funcs, args.n_vals)
 
     tester = LatexTester()
-    tester.run(args.n_funcs)
+    tester.run(3)
