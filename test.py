@@ -6,13 +6,15 @@ import operator
 import types
 import functools
 import argparse
-import pqdm.processes, pqdm.threads
+import pqdm.processes
+import multiprocessing as mp
 
 class ValueTester:
     BOUND = 20
     MAX_OPS = 10
     MAX_TRIES = 20
     MAX_ERRORS = 20
+    N_JOBS = mp.cpu_count()
 
     BASE_FUNCTIONS = {ComplexFunction.Constant: None,
                       ComplexFunction.Identity: lambda z: z,
@@ -72,14 +74,14 @@ class ValueTester:
 
     def _run_func(self, n_vals):
         np.seterr(all="ignore")
-        n_tries = MAX_TRIES + 1
-        n_errors = MAX_ERRORS + 1
+        n_tries = self.MAX_TRIES + 1
+        n_errors = self.MAX_ERRORS + 1
         while n_tries > self.MAX_TRIES:
             n_tries = 0
             n_errors = 0
             n_ops = np.random.randint(0, self.MAX_OPS)
             f, cf = self._gen_function(n_ops)
-            for __ in range(n_vals):
+            for _ in range(n_vals):
                 while True:
                     val = self._crand()
                     try:
@@ -96,15 +98,14 @@ class ValueTester:
                             break
 
                 if n_errors >= self.MAX_ERRORS:
-                    print(f"ERROR IN FUNCTION: {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
-                    return
+                    raise ValueError(f"\033[1;91mERROR IN FUNCTION:\033[0m {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
 
                 if n_tries > self.MAX_TRIES:
                     break
 
     def run(self, n_funcs, n_vals):
         """Generate n_funcs random functions and check them on n_values values."""
-        pqdm.processes.pqdm([n_vals] * n_funcs, self._run_func, n_jobs=8)
+        pqdm.processes.pqdm([n_vals] * n_funcs, self._run_func, n_jobs=self.N_JOBS, exception_behaviour="immediate")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
