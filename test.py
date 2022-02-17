@@ -126,6 +126,7 @@ class ComplexFunctionTester(FunctionTester):
         super()._done()
 
 class ContourTester(ComplexFunctionTester):
+    BOUND = 20.
     BASE_FUNCTIONS = {Contour.Constant: None,
                       Contour.Identity: lambda z: z,
                       Contour.Exp: lambda t: complex(np.exp(t)),
@@ -149,23 +150,39 @@ class ContourTester(ComplexFunctionTester):
 
 class IntegralTester(FunctionTester):
     MAX_OPS = 0
-    BOUND = 2
+    BOUND = 20.
 
     def __init__(self):
         self.cft = ComplexFunctionTester()
         self.ct = ContourTester()
 
+    def _scipy_integrate(self, integrand, start, end, tol=1e-3):
+        integrand_real = lambda t: np.real(integrand(t))
+        integrand_imag = lambda t: np.imag(integrand(t))
+        return scipy.integrate.quad(integrand_real, start, end, epsabs=tol)[0] + \
+               1j * scipy.integrate.quad(integrand_imag, start, end, epsabs=tol)[0]
+
+    def _random_contour(self):
+        np.seterr(all="ignore")
+        radius = abs(self.ct._rand())
+        center = self.cft._rand()
+        start, end = self.ct._rand(2)
+        c = Contour.Sphere(radius=radius, center=center)
+        c.start = start
+        c.end = end
+        cc = lambda t: center + radius * np.exp(1j * t)
+        return c, cc
+
     def _run_integral(self, n_integrals):
+        tol = 1e-3
         f, cf = self.cft._gen_function(self.MAX_OPS)
         for _ in range(n_integrals):
-            c, cc = self.ct._gen_function(self.MAX_OPS)
-            dcc = lambda t: scipy.misc.derivative(cc, t, dx=1e-1)
-            cintegrand_real = lambda t: np.real(cf(cc(t)) * dcc(t))
-            cintegrand_imag = lambda t: np.imag(cf(cc(t)) * dcc(t))
+            c, cc = self._random_contour()
+            dcc = lambda t: scipy.misc.derivative(cc, t, dx=tol)
 
-            integral = integrate(f, c, tol=1e-3)
-            cintegral = scipy.integrate.quad(cintegrand_real, c.start, c.end, epsabs=1e-1)[0] + 1j * scipy.integrate.quad(cintegrand_imag, c.start, c.end, epsabs=1e-3)[0]
-            print(integral, cintegral, flush=True)
+            integral = integrate(f, c, tol=tol)
+            cintegral = self._scipy_integrate(lambda t: cf(cc(t)) * dcc(t), c.start, c.end, tol=tol)
+            print(np.allclose(integral, cintegral, rtol=tol))
 
     def run(self, n_funcs, n_integrals):
         """Generate n_funcs random functions and check n_integrals random integrals on each function."""
@@ -200,15 +217,13 @@ class LatexTester(Tester):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
-    parser.add_argument("n_funcs", help="Number of random functions to generate", nargs="?", default=5000, type=int)
-    parser.add_argument("n_vals", help="Number of inputs to check on each function", nargs="?", default=20, type=int)
-    args = parser.parse_args()
+    #args = parser.parse_args()
 
     tester = ComplexFunctionTester()
-    tester.run(args.n_funcs, args.n_vals)
+    tester.run(100, 10)
 
     tester = ContourTester()
-    tester.run(args.n_funcs, args.n_vals)
+    tester.run(100, 10)
 
     tester = IntegralTester()
     tester.run(2, 2)
