@@ -7,6 +7,7 @@
 #include <sstream>
 #include <regex>
 #include "Latex.h"
+#include "Comparison.h"
 
 namespace libcalculus {
     using namespace std::complex_literals;
@@ -77,6 +78,10 @@ namespace libcalculus {
         template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
         CFunction<Dom, Ran> lpow(Ran c) const;
 
+        /* Comparison operators */
+        
+
+        /* Preset instances */
         static CFunction<Dom, Ran> Constant(Ran c) { return CFunction([=](Dom z) { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
 
         static CFunction<Dom, Ran> Exp() { return CFunction([](Dom z) { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP); }
