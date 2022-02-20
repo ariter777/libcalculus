@@ -88,7 +88,7 @@ namespace libcalculus {
         };
 
         inline CComparison<Dom, Ran> operator==(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) == rhs(z); });
+            return CComparison<Dom, Ran>([&](Dom z) { return std::abs((*this)(z) - rhs(z)) < CComparison<Dom,Ran>::EQ_TOL; });
         };
 
         inline CComparison<Dom, Ran> operator>=(CFunction<Dom, Ran> const &rhs) const {
@@ -100,7 +100,7 @@ namespace libcalculus {
         };
 
         inline CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) != rhs(z); });
+            return CComparison<Dom, Ran>([&](Dom z) { return std::abs((*this)(z) - rhs(z)) >= CComparison<Dom,Ran>::EQ_TOL; });
         };
 
         /* Preset instances */

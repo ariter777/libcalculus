@@ -1,6 +1,7 @@
 # distutils: language = c++
 from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
+from libcpp cimport bool as cbool
 from libc.math cimport M_PI, M_E
 
 ctypedef double REAL
@@ -14,6 +15,7 @@ cdef extern from "Latex.cpp":
 
 cdef extern from "CComparison.h" namespace "libcalculus":
   cdef cppclass CComparison[Dom, Ran]:
+    cbool eval(Dom z) except +
     CComparison[Dom, Ran] operator!() except +
     CComparison[Dom, Ran] operator||(CComparison[Dom, Ran] &rhs) except +
     CComparison[Dom, Ran] operator&&(CComparison[Dom, Ran] &rhs) except +
@@ -102,9 +104,14 @@ cdef extern from "CFunction.h" namespace "libcalculus":
 cdef class RealComparison:
   cdef CComparison[REAL, REAL] ccomparison
 
+  def __call__(self, REAL x):
+    return self.ccomparison.eval(x)
+
 cdef class ComplexComparison:
   cdef CComparison[COMPLEX, COMPLEX] ccomparison
 
+  def __call__(self, COMPLEX z):
+    return self.ccomparison.eval(z)
 
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
