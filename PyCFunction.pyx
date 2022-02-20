@@ -16,9 +16,9 @@ cdef extern from "Latex.cpp":
 cdef extern from "CComparison.h" namespace "libcalculus":
   cdef cppclass CComparison[Dom, Ran]:
     cbool eval(Dom z) except +
-    CComparison[Dom, Ran] operator!() except +
-    CComparison[Dom, Ran] operator||(CComparison[Dom, Ran] &rhs) except +
-    CComparison[Dom, Ran] operator&&(CComparison[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator~() except +
+    CComparison[Dom, Ran] operator|(CComparison[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator&(CComparison[Dom, Ran] &rhs) except +
 
 cdef extern from "CFunction.h" namespace "libcalculus":
   cdef cppclass CFunction[Dom, Ran]:
@@ -106,6 +106,21 @@ cdef class RealComparison:
 
   def __call__(self, REAL x):
     return self.ccomparison.eval(x)
+
+  def __invert__(RealComparison self):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = ~self.ccomparison
+    return result
+
+  def __or__(RealComparison lhs, RealComparison rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.ccomparison | rhs.ccomparison
+    return result
+
+  def __and__(RealComparison lhs, RealComparison rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.ccomparison & rhs.ccomparison
+    return result
 
 cdef class ComplexComparison:
   cdef CComparison[COMPLEX, COMPLEX] ccomparison
@@ -525,11 +540,6 @@ cdef class RealFunction:
   def __neg__(self):
     F = RealFunction()
     F.cfunction = -self.cfunction
-    return F
-
-  def __invert__(self):
-    F = RealFunction()
-    F.cfunction = self.cfunction
     return F
 
   def __iadd__(RealFunction lhs, rhs):
