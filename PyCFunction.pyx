@@ -128,6 +128,21 @@ cdef class ComplexComparison:
   def __call__(self, COMPLEX z):
     return self.ccomparison.eval(z)
 
+  def __invert__(ComplexComparison self):
+    cdef ComplexComparison result = ComplexComparison()
+    result.ccomparison = ~self.ccomparison
+    return result
+
+  def __or__(ComplexComparison lhs, ComplexComparison rhs):
+    cdef ComplexComparison result = ComplexComparison()
+    result.ccomparison = lhs.ccomparison | rhs.ccomparison
+    return result
+
+  def __and__(ComplexComparison lhs, ComplexComparison rhs):
+    cdef ComplexComparison result = ComplexComparison()
+    result.ccomparison = lhs.ccomparison & rhs.ccomparison
+    return result
+
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
 
@@ -249,6 +264,34 @@ cdef class ComplexFunction:
       return lhs._compose_contour(rhs)
     else:
       raise NotImplementedError
+
+  def __eq__(lhs, rhs):
+    cdef ComplexComparison result = ComplexComparison()
+    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
+      result.ccomparison = (<ComplexFunction>lhs).cfunction == (<ComplexFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, (int, float, complex)):
+      result.ccomparison = (<ComplexFunction>lhs).cfunction == CFunction[COMPLEX, COMPLEX].Constant(<COMPLEX>rhs)
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
+      result.ccomparison = CFunction[COMPLEX, COMPLEX].Constant(<COMPLEX>lhs) == (<ComplexFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
+    return result
+
+
+
+  def __ne__(lhs, rhs):
+    cdef ComplexComparison result = ComplexComparison()
+    if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
+      result.ccomparison = (<ComplexFunction>lhs).cfunction != (<ComplexFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, ComplexFunction) and isinstance(rhs, (int, float, complex)):
+      result.ccomparison = (<ComplexFunction>lhs).cfunction != CFunction[COMPLEX, COMPLEX].Constant(<COMPLEX>rhs)
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
+      result.ccomparison = CFunction[COMPLEX, COMPLEX].Constant(<COMPLEX>lhs) != (<ComplexFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
+    return result
 
   @staticmethod
   def Constant(COMPLEX c):
