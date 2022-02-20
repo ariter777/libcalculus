@@ -13,10 +13,10 @@ cdef extern from "Latex.cpp":
   pass
 
 cdef extern from "CComparison.h" namespace "libcalculus":
-  cdef cppclass Comparison[Dom, Ran]:
-    Comparison[Dom, Ran] operator!() except +
-    Comparison[Dom, Ran] operator||(Comparison[Dom, Ran] &rhs) except +
-    Comparison[Dom, Ran] operator&&(Comparison[Dom, Ran] &rhs) except +
+  cdef cppclass CComparison[Dom, Ran]:
+    CComparison[Dom, Ran] operator!() except +
+    CComparison[Dom, Ran] operator||(CComparison[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator&&(CComparison[Dom, Ran] &rhs) except +
 
 cdef extern from "CFunction.h" namespace "libcalculus":
   cdef cppclass CFunction[Dom, Ran]:
@@ -54,12 +54,12 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction[Dom, Ran] lpow(Ran lhs) except +
 
     # Comparison operators
-    Comparison[Dom, Ran] operator>(CFunction[Dom, Ran] &rhs) except +
-    Comparison[Dom, Ran] operator<(CFunction[Dom, Ran] &rhs) except +
-    Comparison[Dom, Ran] operator==(CFunction[Dom, Ran] &rhs) except +
-    Comparison[Dom, Ran] operator>=(CFunction[Dom, Ran] &rhs) except +
-    Comparison[Dom, Ran] operator<=(CFunction[Dom, Ran] &rhs) except +
-    Comparison[Dom, Ran] operator!=(CFunction[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator>(CFunction[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator<(CFunction[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator==(CFunction[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator>=(CFunction[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator<=(CFunction[Dom, Ran] &rhs) except +
+    CComparison[Dom, Ran] operator!=(CFunction[Dom, Ran] &rhs) except +
 
     # Preset instances
     @staticmethod
@@ -95,12 +95,19 @@ cdef extern from "CFunction.h" namespace "libcalculus":
   CFunction[COMPLEX, COMPLEX] cdivC "operator/"(COMPLEX lhs, CFunction[COMPLEX, COMPLEX] &rhs) except +
   CFunction[REAL, COMPLEX] rsubC "operator-"(COMPLEX lhs, CFunction[REAL, COMPLEX] &rhs) except +
   CFunction[REAL, COMPLEX] rdivC "operator/"(COMPLEX lhs, CFunction[REAL, COMPLEX] &rhs) except +
+  CFunction[REAL, REAL] rsubR "operator-"(REAL lhs, CFunction[REAL, REAL] &rhs) except +
+  CFunction[REAL, REAL] rdivR "operator/"(REAL lhs, CFunction[REAL, REAL] &rhs) except +
+
+
+cdef class RealComparison:
+  cdef CComparison[REAL, REAL] ccomparison
+
+cdef class ComplexComparison:
+  cdef CComparison[COMPLEX, COMPLEX] ccomparison
+
 
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
-
-  def __cinit__(self):
-    pass
 
   def __call__(self, COMPLEX z):
     return self.cfunction(z)
@@ -496,3 +503,192 @@ cdef class Contour:
   @staticmethod
   def Sphere(complex center=0., REAL radius=1., ccw=False):
     return center + (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity(0., 2. * M_PI)))
+
+
+
+cdef class RealFunction:
+  cdef CFunction[REAL, REAL] cfunction
+
+  def __call__(self, REAL t):
+    return self.cfunction(t)
+
+  def latex(self, str varname = "t"):
+    return self.cfunction.latex(varname.encode()).decode()
+
+  def __neg__(self):
+    F = RealFunction()
+    F.cfunction = -self.cfunction
+    return F
+
+  def __invert__(self):
+    F = RealFunction()
+    F.cfunction = self.cfunction
+    return F
+
+  def __iadd__(RealFunction lhs, rhs):
+    if isinstance(rhs, RealFunction):
+      lhs.cfunction += (<RealFunction>rhs).cfunction
+      return lhs
+    elif isinstance(rhs, (int, float, complex)):
+      lhs.cfunction += <REAL>rhs
+      return lhs
+
+  def __isub__(RealFunction lhs, rhs):
+    if isinstance(rhs, RealFunction):
+      lhs.cfunction -= (<RealFunction>rhs).cfunction
+      return lhs
+    elif isinstance(rhs, (int, float, complex)):
+      lhs.cfunction -= <REAL>rhs
+      return lhs
+
+  def __imul__(RealFunction lhs, rhs):
+    if isinstance(rhs, RealFunction):
+      lhs.cfunction *= (<RealFunction>rhs).cfunction
+      return lhs
+    elif isinstance(rhs, (int, float, complex)):
+      lhs.cfunction *= <REAL>rhs
+      return lhs
+
+  def __itruediv__(RealFunction lhs, rhs):
+    if isinstance(rhs, RealFunction):
+      lhs.cfunction /= (<RealFunction>rhs).cfunction
+      return lhs
+    elif isinstance(rhs, (int, float, complex)):
+      lhs.cfunction /= <REAL>rhs
+      return lhs
+
+  def __add__(lhs, rhs):
+    cdef RealFunction result
+    if isinstance(lhs, RealFunction) and isinstance(rhs, (RealFunction, int, float, complex)):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>lhs).cfunction
+      result += rhs
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, RealFunction):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>rhs).cfunction
+      result += lhs
+    else:
+      raise NotImplementedError
+    return result
+
+  def __sub__(lhs, rhs):
+    cdef RealFunction result
+    if isinstance(lhs, RealFunction) and isinstance(rhs, (RealFunction, int, float, complex)):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>lhs).cfunction
+      result -= rhs
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, RealFunction):
+      result = RealFunction()
+      result.cfunction = rsubR(<REAL>lhs, (<RealFunction>rhs).cfunction)
+    else:
+      raise NotImplementedError
+    return result
+
+  def __mul__(lhs, rhs):
+    cdef RealFunction result
+    if isinstance(lhs, RealFunction) and isinstance(rhs, (RealFunction, int, float, complex)):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>lhs).cfunction
+      result *= rhs
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, RealFunction):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>rhs).cfunction
+      result *= lhs
+    else:
+      raise NotImplementedError
+    return result
+
+  def __truediv__(lhs, rhs):
+    cdef RealFunction result
+    if isinstance(lhs, RealFunction) and isinstance(rhs, (RealFunction, int, float, complex)):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>lhs).cfunction
+      result /= rhs
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, RealFunction):
+      result = RealFunction()
+      result.cfunction = rdivR(<REAL>lhs, (<RealFunction>rhs).cfunction)
+    else:
+      raise NotImplementedError
+    return result
+
+  def __pow__(lhs, rhs, mod):
+    cdef RealFunction result
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>lhs).cfunction.pow((<RealFunction>rhs).cfunction)
+    elif isinstance(lhs, RealFunction) and isinstance(rhs, (int, float, complex)):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>lhs).cfunction.pow(<REAL>rhs)
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, RealFunction):
+      result = RealFunction()
+      result.cfunction = (<RealFunction>rhs).cfunction.lpow(<REAL>lhs)
+    else:
+      raise NotImplementedError
+    return result
+
+  def __matmul__(lhs, rhs):
+    raise NotImplementedError
+
+  @staticmethod
+  def Constant(REAL c):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Constant(c)
+    return F
+
+  @staticmethod
+  def Identity(start=0., end=1.):
+    return RealFunction()
+
+  @staticmethod
+  def Exp(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Exp()
+    return F
+
+  @staticmethod
+  def Sin(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Sin()
+    return F
+
+  @staticmethod
+  def Cos(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Cos()
+    return F
+
+  @staticmethod
+  def Tan(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Tan()
+    return F
+
+  @staticmethod
+  def Sec(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Sec()
+    return F
+
+  @staticmethod
+  def Csc(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Csc()
+    return F
+
+  @staticmethod
+  def Cot(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Cot()
+    return F
+
+  @staticmethod
+  def Pi(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Pi()
+    return F
+
+  @staticmethod
+  def E(start=0., end=1.):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].E()
+    return F
