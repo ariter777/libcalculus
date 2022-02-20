@@ -84,6 +84,8 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction[Dom, Ran] Pi() except +
     @staticmethod
     CFunction[Dom, Ran] E() except +
+    @staticmethod
+    CFunction[Dom, Ran] If(CComparison[Dom, Ran] cond_, CFunction[Dom, Ran] then_, CFunction[Dom, Ran] else_)
 
 
   # # Function-with-constant operators
@@ -829,4 +831,10 @@ cdef class RealFunction:
   def E(start=0., end=1.):
     F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].E()
+    return F
+
+  @staticmethod
+  def If(RealComparison comp_, RealFunction then_, RealFunction else_=RealFunction.Constant(0)):
+    F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].If(comp_.ccomparison, then_.cfunction, else_.cfunction)
     return F
