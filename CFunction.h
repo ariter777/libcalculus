@@ -7,7 +7,7 @@
 #include <sstream>
 #include <regex>
 #include "Latex.h"
-#include "Comparison.h"
+#include "CComparison.h"
 
 namespace libcalculus {
     using namespace std::complex_literals;
@@ -79,7 +79,29 @@ namespace libcalculus {
         CFunction<Dom, Ran> lpow(Ran c) const;
 
         /* Comparison operators */
-        
+        inline CComparison<Dom, Ran> operator>(CFunction<Dom, Ran> const &rhs) const {
+            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) > rhs(z); });
+        };
+
+        inline CComparison<Dom, Ran> operator<(CFunction<Dom, Ran> const &rhs) const {
+            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) < rhs(z); });
+        };
+
+        inline CComparison<Dom, Ran> operator==(CFunction<Dom, Ran> const &rhs) const {
+            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) == rhs(z); });
+        };
+
+        inline CComparison<Dom, Ran> operator>=(CFunction<Dom, Ran> const &rhs) const {
+            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) >= rhs(z); });
+        };
+
+        inline CComparison<Dom, Ran> operator<=(CFunction<Dom, Ran> const &rhs) const {
+            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) <= rhs(z); });
+        };
+
+        inline CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const {
+            return CComparison<Dom, Ran>([&](Dom z) { return (*this)(z) != rhs(z); });
+        };
 
         /* Preset instances */
         static CFunction<Dom, Ran> Constant(Ran c) { return CFunction([=](Dom z) { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }

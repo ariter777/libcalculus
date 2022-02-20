@@ -12,6 +12,12 @@ cdef extern from "CFunction.cpp":
 cdef extern from "Latex.cpp":
   pass
 
+cdef extern from "CComparison.h" namespace "libcalculus":
+  cdef cppclass Comparison[Dom, Ran]:
+    Comparison[Dom, Ran] operator!() except +
+    Comparison[Dom, Ran] operator||(Comparison[Dom, Ran] &rhs) except +
+    Comparison[Dom, Ran] operator&&(Comparison[Dom, Ran] &rhs) except +
+
 cdef extern from "CFunction.h" namespace "libcalculus":
   cdef cppclass CFunction[Dom, Ran]:
     CFunction() except +
@@ -47,6 +53,15 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     CFunction[Dom, Ran] pow(Ran rhs) except +
     CFunction[Dom, Ran] lpow(Ran lhs) except +
 
+    # Comparison operators
+    Comparison[Dom, Ran] operator>(CFunction[Dom, Ran] &rhs) except +
+    Comparison[Dom, Ran] operator<(CFunction[Dom, Ran] &rhs) except +
+    Comparison[Dom, Ran] operator==(CFunction[Dom, Ran] &rhs) except +
+    Comparison[Dom, Ran] operator>=(CFunction[Dom, Ran] &rhs) except +
+    Comparison[Dom, Ran] operator<=(CFunction[Dom, Ran] &rhs) except +
+    Comparison[Dom, Ran] operator!=(CFunction[Dom, Ran] &rhs) except +
+
+    # Preset instances
     @staticmethod
     CFunction[Dom, Ran] Constant(Ran c) except +
     @staticmethod
@@ -80,7 +95,6 @@ cdef extern from "CFunction.h" namespace "libcalculus":
   CFunction[COMPLEX, COMPLEX] cdivC "operator/"(COMPLEX lhs, CFunction[COMPLEX, COMPLEX] &rhs) except +
   CFunction[REAL, COMPLEX] rsubC "operator-"(COMPLEX lhs, CFunction[REAL, COMPLEX] &rhs) except +
   CFunction[REAL, COMPLEX] rdivC "operator/"(COMPLEX lhs, CFunction[REAL, COMPLEX] &rhs) except +
-
 
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
