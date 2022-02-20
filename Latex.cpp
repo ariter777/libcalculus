@@ -29,6 +29,10 @@ namespace libcalculus {
             }
             return (parenthesize && (std::real(a) < 0 || std::imag(a) != 0.)) ? Latex::_parenthesize(oss.str()) : oss.str();
         }
+
+        template<> std::string fmt_const(REAL a, bool parenthesize) {
+            return parenthesize ? Latex::_parenthesize(std::to_string(a)) : std::to_string(a);
+        }
     }
 
 
