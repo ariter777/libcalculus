@@ -629,6 +629,36 @@ cdef class RealFunction:
   def __matmul__(lhs, rhs):
     raise NotImplementedError
 
+  def __gt__(RealFunction lhs, RealFunction rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.cfunction > rhs.cfunction
+    return result
+
+  def __lt__(RealFunction lhs, RealFunction rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.cfunction < rhs.cfunction
+    return result
+
+  def __eq__(RealFunction lhs, RealFunction rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.cfunction == rhs.cfunction
+    return result
+
+  def __ge__(RealFunction lhs, RealFunction rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.cfunction >= rhs.cfunction
+    return result
+
+  def __le__(RealFunction lhs, RealFunction rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.cfunction <= rhs.cfunction
+    return result
+
+  def __ne__(RealFunction lhs, RealFunction rhs):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.cfunction != rhs.cfunction
+    return result
+
   @staticmethod
   def Constant(REAL c):
     F = RealFunction()
