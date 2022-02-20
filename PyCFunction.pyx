@@ -629,34 +629,82 @@ cdef class RealFunction:
   def __matmul__(lhs, rhs):
     raise NotImplementedError
 
-  def __gt__(RealFunction lhs, RealFunction rhs):
+  def __gt__(lhs, rhs):
     cdef RealComparison result = RealComparison()
-    result.ccomparison = lhs.cfunction > rhs.cfunction
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      result.ccomparison = (<RealFunction>lhs).cfunction > (<RealFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, RealFunction) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<RealFunction>lhs).cfunction > CFunction[REAL, REAL].Constant(<REAL>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
+      result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) > (<RealFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
     return result
 
-  def __lt__(RealFunction lhs, RealFunction rhs):
+  def __lt__(lhs, rhs):
     cdef RealComparison result = RealComparison()
-    result.ccomparison = lhs.cfunction < rhs.cfunction
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      result.ccomparison = (<RealFunction>lhs).cfunction < (<RealFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, RealFunction) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<RealFunction>lhs).cfunction < CFunction[REAL, REAL].Constant(<REAL>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
+      result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) < (<RealFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
     return result
 
-  def __eq__(RealFunction lhs, RealFunction rhs):
+  def __eq__(lhs, rhs):
     cdef RealComparison result = RealComparison()
-    result.ccomparison = lhs.cfunction == rhs.cfunction
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      result.ccomparison = (<RealFunction>lhs).cfunction == (<RealFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, RealFunction) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<RealFunction>lhs).cfunction == CFunction[REAL, REAL].Constant(<REAL>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
+      result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) == (<RealFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
     return result
 
-  def __ge__(RealFunction lhs, RealFunction rhs):
+  def __ge__(lhs, rhs):
     cdef RealComparison result = RealComparison()
-    result.ccomparison = lhs.cfunction >= rhs.cfunction
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      result.ccomparison = (<RealFunction>lhs).cfunction >= (<RealFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, RealFunction) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<RealFunction>lhs).cfunction >= CFunction[REAL, REAL].Constant(<REAL>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
+      result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) >= (<RealFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
     return result
 
-  def __le__(RealFunction lhs, RealFunction rhs):
+  def __le__(lhs, rhs):
     cdef RealComparison result = RealComparison()
-    result.ccomparison = lhs.cfunction <= rhs.cfunction
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      result.ccomparison = (<RealFunction>lhs).cfunction <= (<RealFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, RealFunction) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<RealFunction>lhs).cfunction <= CFunction[REAL, REAL].Constant(<REAL>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
+      result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) <= (<RealFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
     return result
 
-  def __ne__(RealFunction lhs, RealFunction rhs):
+  def __ne__(lhs, rhs):
     cdef RealComparison result = RealComparison()
-    result.ccomparison = lhs.cfunction != rhs.cfunction
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      result.ccomparison = (<RealFunction>lhs).cfunction != (<RealFunction>rhs).cfunction
+      return result
+    elif isinstance(lhs, RealFunction) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<RealFunction>lhs).cfunction != CFunction[REAL, REAL].Constant(<REAL>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
+      result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) != (<RealFunction>rhs).cfunction
+    else:
+      raise NotImplementedError
     return result
 
   @staticmethod
