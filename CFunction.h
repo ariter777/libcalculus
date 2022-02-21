@@ -81,32 +81,32 @@ namespace libcalculus {
         /* Comparison operators */
         inline CComparison<Dom, Ran> operator>(CFunction<Dom, Ran> const &rhs) const {
             auto const lhs_f = this->_f, rhs_f = rhs._f;
-            return CComparison<Dom, Ran>([&](Dom z) { return lhs_f(z) > rhs_f(z); });
+            return CComparison<Dom, Ran>([=](Dom z) { return lhs_f(z) > rhs_f(z); });
         };
 
         inline CComparison<Dom, Ran> operator<(CFunction<Dom, Ran> const &rhs) const {
             auto const lhs_f = this->_f, rhs_f = rhs._f;
-            return CComparison<Dom, Ran>([&](Dom z) { return lhs_f(z) < rhs_f(z); });
+            return CComparison<Dom, Ran>([=](Dom z) { return lhs_f(z) < rhs_f(z); });
         };
 
         inline CComparison<Dom, Ran> operator==(CFunction<Dom, Ran> const &rhs) const {
             auto const lhs_f = this->_f, rhs_f = rhs._f;
-            return CComparison<Dom, Ran>([&](Dom z) { return std::abs(lhs_f(z) - rhs_f(z)) < CComparison<Dom,Ran>::EQ_TOL; });
+            return CComparison<Dom, Ran>([=](Dom z) { return std::abs(lhs_f(z) - rhs_f(z)) < CComparison<Dom,Ran>::EQ_TOL; });
         };
 
         inline CComparison<Dom, Ran> operator>=(CFunction<Dom, Ran> const &rhs) const {
             auto const lhs_f = this->_f, rhs_f = rhs._f;
-            return CComparison<Dom, Ran>([&](Dom z) { return lhs_f(z) >= rhs_f(z); });
+            return CComparison<Dom, Ran>([=](Dom z) { return lhs_f(z) >= rhs_f(z); });
         };
 
         inline CComparison<Dom, Ran> operator<=(CFunction<Dom, Ran> const &rhs) const {
             auto const lhs_f = this->_f, rhs_f = rhs._f;
-            return CComparison<Dom, Ran>([&](Dom z) { return lhs_f(z) <= rhs_f(z); });;
+            return CComparison<Dom, Ran>([=](Dom z) { return lhs_f(z) <= rhs_f(z); });;
         };
 
         inline CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const {
             auto const lhs_f = this->_f, rhs_f = rhs._f;
-            return CComparison<Dom, Ran>([&](Dom z) { return std::abs(lhs_f(z) - rhs_f(z)) >= CComparison<Dom,Ran>::EQ_TOL; });
+            return CComparison<Dom, Ran>([=](Dom z) { return std::abs(lhs_f(z) - rhs_f(z)) >= CComparison<Dom,Ran>::EQ_TOL; });
         };
 
         /* Preset instances */
@@ -125,7 +125,6 @@ namespace libcalculus {
         static CFunction<Dom, Ran> If(CComparison<Dom, Ran> const &cond_, CFunction<Dom, Ran> const &then_,
                                       CFunction<Dom, Ran> const &else_ = CFunction<Dom, Ran>::Constant(Ran{0})) {
               auto const cond__ = cond_.eval, then__ = then_._f, else__ = else_._f;
-              // FIX!
               return CFunction([=](Dom z) { return cond__(z) ? then__(z) : else__(z); });
         }
     };
