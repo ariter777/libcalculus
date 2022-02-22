@@ -87,13 +87,6 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     @staticmethod
     CFunction[Dom, Ran] If(CComparison[Dom, Ran] cond_, CFunction[Dom, Ran] then_, CFunction[Dom, Ran] else_)
 
-
-  # # Function-with-constant operators
-  # CFunction[Dom_, Ran_] operator+[Dom_, Ran_](CFunction[Dom_, Ran_] &lhs, Ran_ rhs) except +
-  # CFunction[Dom_, Ran_] operator-[Dom_, Ran_](CFunction[Dom_, Ran_] &lhs, Ran_ rhs) except +
-  # CFunction[Dom_, Ran_] operator*[Dom_, Ran_](CFunction[Dom_, Ran_] &lhs, Ran_ rhs) except +
-  # CFunction[Dom_, Ran_] operator/[Dom_, Ran_](CFunction[Dom_, Ran_] &lhs, Ran_ rhs) except +
-
   # Constant-with-function operators
   CFunction[COMPLEX, COMPLEX] csubC "operator-"(COMPLEX lhs, CFunction[COMPLEX, COMPLEX] &rhs) except +
   CFunction[COMPLEX, COMPLEX] cdivC "operator/"(COMPLEX lhs, CFunction[COMPLEX, COMPLEX] &rhs) except +

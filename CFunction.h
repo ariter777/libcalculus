@@ -24,6 +24,7 @@ namespace libcalculus {
         RPOW, // Power exponent: (g, f) -> f ^ g
         MULCONST, // Multiplication by a constant: (f, a) -> a * f
         NEG, // Negation: f -> -f
+        IF, // Cases
     };
 
     template <typename Dom, typename Ran>
@@ -79,28 +80,54 @@ namespace libcalculus {
         CFunction<Dom, Ran> lpow(Ran c) const;
 
         /* Comparison operators */
-        inline CComparison<Dom, Ran> operator>(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) > rhs_f(z); });
+        CComparison<Dom, Ran> operator>(CFunction<Dom, Ran> const &rhs) const {
+            std::string new_latex = this->_latex;
+            new_latex.append(" > ");
+            new_latex.append(rhs._latex);
+            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) > rhs_f(z); },
+                                         new_latex);
         };
 
         inline CComparison<Dom, Ran> operator<(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) < rhs_f(z); });
+            std::string new_latex = this->_latex;
+            new_latex.append(" < ");
+            new_latex.append(rhs._latex);
+            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) < rhs_f(z); },
+                                         new_latex);
         };
 
         inline CComparison<Dom, Ran> operator==(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return std::abs(lhs_f(z) - rhs_f(z)) < CComparison<Dom,Ran>::EQ_TOL; });
+            std::string new_latex = this->_latex;
+            new_latex.append(" \\eq ");
+            new_latex.append(rhs._latex);
+            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
+                return std::abs(lhs_f(z) - rhs_f(z)) < CComparison<Dom,Ran>::EQ_TOL;
+            }, new_latex);
         };
 
         inline CComparison<Dom, Ran> operator>=(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) >= rhs_f(z); });
+            std::string new_latex = this->_latex;
+            new_latex.append(" \\ge ");
+            new_latex.append(rhs._latex);
+            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) >= rhs_f(z); },
+                                         new_latex);
         };
 
         inline CComparison<Dom, Ran> operator<=(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) <= rhs_f(z); });;
+            std::string new_latex = this->_latex;
+            new_latex.append(" \\le ");
+            new_latex.append(rhs._latex);
+            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) <= rhs_f(z); },
+                                         new_latex);
         };
 
         inline CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const {
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return std::abs(lhs_f(z) - rhs_f(z)) >= CComparison<Dom,Ran>::EQ_TOL; });
+            std::string new_latex = this->_latex;
+            new_latex.append(" \\ne ");
+            new_latex.append(rhs._latex);
+            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
+                return std::abs(lhs_f(z) - rhs_f(z)) >= CComparison<Dom,Ran>::EQ_TOL;
+            }, new_latex);
         };
 
         /* Preset instances */
@@ -118,7 +145,15 @@ namespace libcalculus {
 
         static CFunction<Dom, Ran> If(CComparison<Dom, Ran> const &cond_, CFunction<Dom, Ran> const &then_,
                                       CFunction<Dom, Ran> const &else_ = CFunction<Dom, Ran>::Constant(Ran{0})) {
-              return CFunction([cond__ = cond_.eval, then__ = then_._f, else__ = else_._f](Dom z) { return cond__(z) ? then__(z) : else__(z); });
+              std::string new_latex = "\\begin{cases} ";
+              new_latex.append(then_._latex);
+              new_latex.append(" & ;\\;");
+              new_latex.append(cond_.latex);
+              new_latex.append(" \\\\ ");
+              new_latex.append(else_._latex);
+              new_latex.append(" & ;\\;\\text{else}\\end{cases} ");
+              return CFunction([cond__ = cond_.eval, then__ = then_._f, else__ = else_._f](Dom z) { return cond__(z) ? then__(z) : else__(z); },
+                               new_latex, OP_TYPE::IF);
         }
     };
 }

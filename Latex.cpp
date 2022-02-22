@@ -13,7 +13,8 @@ namespace libcalculus {
             if (new_op == OP_TYPE::FUNC || new_op == OP_TYPE::DIV || new_op == OP_TYPE::RPOW) return expr;
             else if (((last_op == OP_TYPE::ADD || last_op == OP_TYPE::SUB) && (new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG))
                      || (last_op != OP_TYPE::NOP && new_op == OP_TYPE::LPOW)
-                     || (last_op == OP_TYPE::NEG && (new_op == OP_TYPE::ADD || new_op == OP_TYPE::SUB || new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG)))
+                     || (last_op == OP_TYPE::NEG && (new_op == OP_TYPE::ADD || new_op == OP_TYPE::SUB || new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG))
+                     || (last_op == OP_TYPE::IF))
                 return Latex::_parenthesize(expr);
             else return expr;
         }
@@ -31,7 +32,7 @@ namespace libcalculus {
         }
 
         template<> std::string fmt_const(REAL a, bool parenthesize) {
-            return parenthesize ? Latex::_parenthesize(std::to_string(a)) : std::to_string(a);
+            return fmt_const(COMPLEX{a}, parenthesize);
         }
     }
 
