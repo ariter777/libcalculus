@@ -10,6 +10,9 @@ ctypedef complex_t[REAL] COMPLEX
 cdef extern from "CFunction.cpp":
   pass
 
+cdef extern from "CComparison.cpp":
+  pass
+
 cdef extern from "Latex.cpp":
   pass
 
