@@ -80,55 +80,12 @@ namespace libcalculus {
         CFunction<Dom, Ran> lpow(Ran c) const;
 
         /* Comparison operators */
-        CComparison<Dom, Ran> operator>(CFunction<Dom, Ran> const &rhs) const {
-            std::string new_latex = this->_latex;
-            new_latex.append(" > ");
-            new_latex.append(rhs._latex);
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) > rhs_f(z); },
-                                         new_latex);
-        };
-
-        inline CComparison<Dom, Ran> operator<(CFunction<Dom, Ran> const &rhs) const {
-            std::string new_latex = this->_latex;
-            new_latex.append(" < ");
-            new_latex.append(rhs._latex);
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) < rhs_f(z); },
-                                         new_latex);
-        };
-
-        inline CComparison<Dom, Ran> operator==(CFunction<Dom, Ran> const &rhs) const {
-            std::string new_latex = this->_latex;
-            new_latex.append(" \\eq ");
-            new_latex.append(rhs._latex);
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
-                return std::abs(lhs_f(z) - rhs_f(z)) < Traits<Ran>::tol;
-            }, new_latex);
-        };
-
-        inline CComparison<Dom, Ran> operator>=(CFunction<Dom, Ran> const &rhs) const {
-            std::string new_latex = this->_latex;
-            new_latex.append(" \\ge ");
-            new_latex.append(rhs._latex);
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) >= rhs_f(z); },
-                                         new_latex);
-        };
-
-        inline CComparison<Dom, Ran> operator<=(CFunction<Dom, Ran> const &rhs) const {
-            std::string new_latex = this->_latex;
-            new_latex.append(" \\le ");
-            new_latex.append(rhs._latex);
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) <= rhs_f(z); },
-                                         new_latex);
-        };
-
-        inline CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const {
-            std::string new_latex = this->_latex;
-            new_latex.append(" \\ne ");
-            new_latex.append(rhs._latex);
-            return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
-                return std::abs(lhs_f(z) - rhs_f(z)) >= Traits<Ran>::tol;
-            }, new_latex);
-        };
+        CComparison<Dom, Ran> operator>(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom, Ran> operator<(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom, Ran> operator==(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom, Ran> operator>=(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom, Ran> operator<=(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const;
 
         /* Preset instances */
         static CFunction<Dom, Ran> Constant(Ran c) { return CFunction([=](Dom z) { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
