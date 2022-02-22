@@ -3,10 +3,25 @@
 #include "CFunction.h"
 
 namespace libcalculus {
+    template<typename T>
+    struct Traits {
+        static constexpr REAL tol = 0;
+    };
+
+    template<>
+    struct Traits<REAL> {
+        static constexpr REAL tol = 1e-6;
+    };
+
+    template<>
+    struct Traits<COMPLEX> {
+        static constexpr REAL tol = 1e-6;
+    };
+
+
     template<typename Dom, typename Ran>
     class CComparison {
     public:
-        static constexpr REAL EQ_TOL = 1e-6;
         std::string latex;
         std::function<bool(Dom)> eval = [](Dom z) { return true; };
 

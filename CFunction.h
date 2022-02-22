@@ -101,7 +101,7 @@ namespace libcalculus {
             new_latex.append(" \\eq ");
             new_latex.append(rhs._latex);
             return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
-                return std::abs(lhs_f(z) - rhs_f(z)) < CComparison<Dom,Ran>::EQ_TOL;
+                return std::abs(lhs_f(z) - rhs_f(z)) < Traits<Ran>::tol;
             }, new_latex);
         };
 
@@ -126,7 +126,7 @@ namespace libcalculus {
             new_latex.append(" \\ne ");
             new_latex.append(rhs._latex);
             return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
-                return std::abs(lhs_f(z) - rhs_f(z)) >= CComparison<Dom,Ran>::EQ_TOL;
+                return std::abs(lhs_f(z) - rhs_f(z)) >= Traits<Ran>::tol;
             }, new_latex);
         };
 
