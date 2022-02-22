@@ -63,7 +63,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator+=(Ran c) {
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator+=(Ran const c) {
         this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) + c; };
         this->_latex.append(" + ");
         this->_latex.append(Latex::fmt_const(c, true));
@@ -72,7 +72,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator-=(Ran c) {
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator-=(Ran const c) {
         this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) - c; };
         this->_latex.append(" - ");
         this->_latex.append(Latex::fmt_const(c, true));
@@ -81,7 +81,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator*=(Ran c) {
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator*=(Ran const c) {
         this->_f = [c = c, old_f = this->_f](Dom z) { return c * old_f(z); };
         std::string new_latex = Latex::fmt_const(c, true);
         if (this->_last_op == OP_TYPE::MULCONST) new_latex.append(" \\cdot ");
@@ -92,7 +92,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator/=(Ran c) {
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator/=(Ran const c) {
         this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) / c; };
         std::string new_latex = " \\frac{";
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::DIV, this->_last_op));
@@ -122,7 +122,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &lhs, Ran c) {
+    CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &lhs, Ran const c) {
         std::string new_latex = lhs._latex;
         new_latex.append(" + ");
         new_latex.append(Latex::fmt_const(c, true));
@@ -130,7 +130,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &lhs, Ran c) {
+    CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &lhs, Ran const c) {
         std::string new_latex = lhs._latex;
         new_latex.append(" - ");
         new_latex.append(Latex::fmt_const(c, true));
@@ -138,7 +138,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &lhs, Ran c) {
+    CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &lhs, Ran const c) {
         std::string new_latex = Latex::fmt_const(c, true);
         if (lhs._last_op == OP_TYPE::MULCONST) new_latex.append(" \\cdot ");
         new_latex.append(Latex::parenthesize_if(lhs._latex, OP_TYPE::MUL, lhs._last_op));
@@ -146,7 +146,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> operator/(CFunction<Dom, Ran> const &lhs, Ran c) {
+    CFunction<Dom, Ran> operator/(CFunction<Dom, Ran> const &lhs, Ran const c) {
         std::string new_latex = " \\frac{";
         new_latex.append(Latex::parenthesize_if(lhs._latex, OP_TYPE::DIV, lhs._last_op));
         new_latex.append("}{");
@@ -156,7 +156,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> operator-(Ran c, CFunction<Dom, Ran> const &rhs) {
+    CFunction<Dom, Ran> operator-(Ran const c, CFunction<Dom, Ran> const &rhs) {
         std::string new_latex = Latex::fmt_const(c, false);
         new_latex.append(" - ");
         new_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::SUB, rhs._last_op));
@@ -164,7 +164,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> operator/(Ran c, CFunction<Dom, Ran> const &rhs) {
+    CFunction<Dom, Ran> operator/(Ran const c, CFunction<Dom, Ran> const &rhs) {
         std::string new_latex = " \\frac{";
         new_latex.append(Latex::fmt_const(c, false));
         new_latex.append("}{");
@@ -174,7 +174,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::pow(Ran c) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::pow(Ran const c) const {
         std::string new_latex = "{";
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::LPOW, this->_last_op));
         new_latex.append("}^{");
@@ -184,7 +184,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom, Ran>::lpow(Ran c) const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::lpow(Ran const c) const {
         std::string new_latex = "{";
         new_latex.append(Latex::fmt_const(c, true));
         new_latex.append("}^{");
@@ -217,7 +217,7 @@ namespace libcalculus {
         new_latex.append(" \\eq ");
         new_latex.append(rhs._latex);
         return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
-            return std::abs(lhs_f(z) - rhs_f(z)) < Traits<Ran>::tol;
+            return Traits<Ran>::close(lhs_f(z), rhs_f(z));
         }, new_latex);
     }
 
@@ -226,7 +226,7 @@ namespace libcalculus {
         std::string new_latex = this->_latex;
         new_latex.append(" \\ge ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) >= rhs_f(z); },
+        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) >= rhs_f(z) || Traits<Ran>::close(lhs_f(z), rhs_f(z)); },
                                      new_latex);
     }
 
@@ -235,7 +235,7 @@ namespace libcalculus {
         std::string new_latex = this->_latex;
         new_latex.append(" \\le ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) <= rhs_f(z); },
+        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) <= rhs_f(z) || Traits<Ran>::close(lhs_f(z), rhs_f(z)); },
                                      new_latex);
     }
 
@@ -245,7 +245,7 @@ namespace libcalculus {
         new_latex.append(" \\ne ");
         new_latex.append(rhs._latex);
         return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
-            return std::abs(lhs_f(z) - rhs_f(z)) >= Traits<Ran>::tol;
+            return !Traits<Ran>::close(lhs_f(z), rhs_f(z));
         }, new_latex);
     }
 }

@@ -74,6 +74,8 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     @staticmethod
     CFunction[Dom, Ran] Im() except +
     @staticmethod
+    CFunction[Dom, Ran] Abs() except +
+    @staticmethod
     CFunction[Dom, Ran] Exp() except +
     @staticmethod
     CFunction[Dom, Ran] Sin() except +
@@ -92,7 +94,7 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     @staticmethod
     CFunction[Dom, Ran] E() except +
     @staticmethod
-    CFunction[Dom, Ran] If(CComparison[Dom, Ran] cond_, CFunction[Dom, Ran] then_, CFunction[Dom, Ran] else_)
+    CFunction[Dom, Ran] If(CComparison[Dom, Ran] &cond_, CFunction[Dom, Ran] &then_, CFunction[Dom, Ran] &else_) except +
 
   # Constant-with-function operators
   CFunction[COMPLEX, COMPLEX] csubC "operator-"(COMPLEX lhs, CFunction[COMPLEX, COMPLEX] &rhs) except +
@@ -155,17 +157,17 @@ cdef class ComplexFunction:
     return self.cfunction.latex(varname.encode()).decode()
 
   def _compose(self, ComplexFunction rhs):
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = self.cfunction.compose[COMPLEX](rhs.cfunction)
     return F
 
   def _compose_contour(self, Contour rhs):
-    F = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
+    cdef Contour F = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
   def __neg__(self):
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = -self.cfunction
     return F
 
@@ -297,20 +299,26 @@ cdef class ComplexFunction:
 
   @staticmethod
   def Constant(COMPLEX c):
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Constant(c)
     return F
 
   @staticmethod
   def Re():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Re()
     return F
 
   @staticmethod
   def Im():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Im()
+    return F
+
+  @staticmethod
+  def Abs():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Abs()
     return F
 
   @staticmethod
@@ -319,55 +327,55 @@ cdef class ComplexFunction:
 
   @staticmethod
   def Exp():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Exp()
     return F
 
   @staticmethod
   def Sin():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Sin()
     return F
 
   @staticmethod
   def Cos():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Cos()
     return F
 
   @staticmethod
   def Tan():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Tan()
     return F
 
   @staticmethod
   def Sec():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Sec()
     return F
 
   @staticmethod
   def Csc():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Csc()
     return F
 
   @staticmethod
   def Cot():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Cot()
     return F
 
   @staticmethod
   def Pi():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Pi()
     return F
 
   @staticmethod
   def E():
-    F = ComplexFunction()
+    cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].E()
     return F
 
@@ -401,13 +409,18 @@ cdef class Contour:
   def latex(self, str varname = "t"):
     return self.cfunction.latex(varname.encode()).decode()
 
+  def _compose_real(self, RealFunction rhs):
+    cdef Contour F = Contour(self._start, self._end)
+    F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
+    return F
+
   def __neg__(self):
-    F = Contour(self._start, self._end)
+    cdef Contour F = Contour(self._start, self._end)
     F.cfunction = -self.cfunction
     return F
 
   def __invert__(self):
-    F = Contour(self._end, self._start)
+    cdef Contour F = Contour(self._end, self._start)
     F.cfunction = self.cfunction
     return F
 
@@ -513,12 +526,21 @@ cdef class Contour:
     return result
 
   def __matmul__(lhs, rhs):
-    raise NotImplementedError
+    if isinstance(lhs, Contour) and isinstance(rhs, RealFunction):
+      return lhs._compose_real(rhs)
+    else:
+      raise NotImplementedError
 
   @staticmethod
   def Constant(COMPLEX c):
-    F = Contour()
+    cdef Contour F = Contour()
     F.cfunction = CFunction[REAL, COMPLEX].Constant(c)
+    return F
+
+  @staticmethod
+  def Abs():
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Abs()
     return F
 
   @staticmethod
@@ -527,55 +549,55 @@ cdef class Contour:
 
   @staticmethod
   def Exp(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Exp()
     return F
 
   @staticmethod
   def Sin(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sin()
     return F
 
   @staticmethod
   def Cos(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Cos()
     return F
 
   @staticmethod
   def Tan(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Tan()
     return F
 
   @staticmethod
   def Sec(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sec()
     return F
 
   @staticmethod
   def Csc(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Csc()
     return F
 
   @staticmethod
   def Cot(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Cot()
     return F
 
   @staticmethod
   def Pi(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Pi()
     return F
 
   @staticmethod
   def E(start=0., end=1.):
-    F = Contour(start, end)
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].E()
     return F
 
@@ -594,8 +616,13 @@ cdef class RealFunction:
   def latex(self, str varname = "t"):
     return self.cfunction.latex(varname.encode()).decode()
 
+  def _compose(self, RealFunction rhs):
+    cdef RealFunction F = RealFunction()
+    F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
+    return F
+
   def __neg__(self):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = -self.cfunction
     return F
 
@@ -701,7 +728,10 @@ cdef class RealFunction:
     return result
 
   def __matmul__(lhs, rhs):
-    raise NotImplementedError
+    if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
+      return lhs._compose(rhs)
+    else:
+      raise NotImplementedError
 
   def __gt__(lhs, rhs):
     cdef RealComparison result = RealComparison()
@@ -783,8 +813,14 @@ cdef class RealFunction:
 
   @staticmethod
   def Constant(REAL c):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Constant(c)
+    return F
+
+  @staticmethod
+  def Abs():
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Abs()
     return F
 
   @staticmethod
@@ -793,55 +829,55 @@ cdef class RealFunction:
 
   @staticmethod
   def Exp(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Exp()
     return F
 
   @staticmethod
   def Sin(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sin()
     return F
 
   @staticmethod
   def Cos(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Cos()
     return F
 
   @staticmethod
   def Tan(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Tan()
     return F
 
   @staticmethod
   def Sec(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sec()
     return F
 
   @staticmethod
   def Csc(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Csc()
     return F
 
   @staticmethod
   def Cot(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Cot()
     return F
 
   @staticmethod
   def Pi(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Pi()
     return F
 
   @staticmethod
   def E(start=0., end=1.):
-    F = RealFunction()
+    cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].E()
     return F
 

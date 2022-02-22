@@ -6,12 +6,15 @@
 namespace libcalculus {
     template<typename T>
     struct Traits {
+    public:
         static constexpr REAL tol = [] {
             if constexpr (std::is_same<T, REAL>::value)
                 return 1e-6;
             else if constexpr (std::is_same<T, COMPLEX>::value)
                 return 1e-6;
         }();
+
+        inline static bool close(T const a, T const b) noexcept { return std::abs(a - b) < Traits<T>::tol; }
     };
 
     template<typename Dom, typename Ran>
