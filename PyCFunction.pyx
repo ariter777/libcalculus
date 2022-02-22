@@ -70,6 +70,10 @@ cdef extern from "CFunction.h" namespace "libcalculus":
     @staticmethod
     CFunction[Dom, Ran] Constant(Ran c) except +
     @staticmethod
+    CFunction[Dom, Ran] Re() except +
+    @staticmethod
+    CFunction[Dom, Ran] Im() except +
+    @staticmethod
     CFunction[Dom, Ran] Exp() except +
     @staticmethod
     CFunction[Dom, Ran] Sin() except +
@@ -295,6 +299,18 @@ cdef class ComplexFunction:
   def Constant(COMPLEX c):
     F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Constant(c)
+    return F
+
+  @staticmethod
+  def Re():
+    F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Re()
+    return F
+
+  @staticmethod
+  def Im():
+    F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Im()
     return F
 
   @staticmethod
