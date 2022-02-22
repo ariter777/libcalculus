@@ -1,3 +1,4 @@
 *.so
 libcalculus.cpp
 latex.gif
+__pycache__
