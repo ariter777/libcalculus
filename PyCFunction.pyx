@@ -11,23 +11,23 @@ np.import_array()
 ctypedef double REAL
 ctypedef np.complex128_t COMPLEX
 
-cdef extern from "CFunction.cpp":
+cdef extern from "CFunction.cpp" nogil:
   pass
 
-cdef extern from "CComparison.cpp":
+cdef extern from "CComparison.cpp" nogil:
   pass
 
-cdef extern from "Latex.cpp":
+cdef extern from "Latex.cpp" nogil:
   pass
 
-cdef extern from "CComparison.h" namespace "libcalculus":
+cdef extern from "CComparison.h" namespace "libcalculus" nogil:
   cdef cppclass CComparison[Dom, Ran]:
     cbool eval(Dom z) except +
     CComparison[Dom, Ran] operator~() except +
     CComparison[Dom, Ran] operator|(CComparison[Dom, Ran] &rhs) except +
     CComparison[Dom, Ran] operator&(CComparison[Dom, Ran] &rhs) except +
 
-cdef extern from "CFunction.h" namespace "libcalculus":
+cdef extern from "CFunction.h" namespace "libcalculus" nogil:
   cdef cppclass CFunction[Dom, Ran]:
     CFunction() except +
     Ran operator()(Dom z) except +
