@@ -1013,7 +1013,7 @@ static struct __pyx_vtabstruct_11libcalculus_ComplexFunction *__pyx_vtabptr_11li
 <pre class="cython line score-0">&#xA0;<span class="">155</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">156</span>:   <span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">157</span>:   <span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
-<pre class="cython line score-21" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">158</span>:   <span class="k">cdef</span> <span class="nf">_call_array</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">COMPLEX</span><span class="p">]</span> <span class="n">z</span><span class="p">):</span></pre>
+<pre class="cython line score-21" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">158</span>:   <span class="k">cdef</span> <span class="nf">_call_array</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">const</span> <span class="n">COMPLEX</span><span class="p">]</span> <span class="n">z</span><span class="p">):</span></pre>
 <pre class='cython code score-21 '>static PyObject *__pyx_f_11libcalculus_15ComplexFunction__call_array(struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_self, PyArrayObject *__pyx_v_z) {
   PyArrayObject *__pyx_v_result = 0;
   npy_intp __pyx_v_i;
@@ -1034,7 +1034,7 @@ static struct __pyx_vtabstruct_11libcalculus_ComplexFunction *__pyx_vtabptr_11li
   __pyx_pybuffernd_z.rcbuffer = &amp;__pyx_pybuffer_z;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_z.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_z, &amp;__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 158, __pyx_L1_error)</span>
+    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_z.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_z, &amp;__Pyx_TypeInfo___pyx_t_double_complex__const__, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 158, __pyx_L1_error)</span>
   }
   __pyx_pybuffernd_z.diminfo[0].strides = __pyx_pybuffernd_z.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_z.diminfo[0].shape = __pyx_pybuffernd_z.rcbuffer-&gt;pybuffer.shape[0];
 /* … */
@@ -1105,7 +1105,7 @@ static struct __pyx_vtabstruct_11libcalculus_ComplexFunction *__pyx_vtabptr_11li
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">161</span>:       <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfunction</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></pre>
 <pre class='cython code score-0 '>    __pyx_t_9 = __pyx_v_i;
     try {
-      __pyx_t_10 = __pyx_v_self-&gt;cfunction((*__Pyx_BufPtrStrided1d(__pyx_t_double_complex *, __pyx_pybuffernd_z.rcbuffer-&gt;pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_z.diminfo[0].strides)));
+      __pyx_t_10 = __pyx_v_self-&gt;cfunction((*__Pyx_BufPtrStrided1d(__pyx_t_double_complex const *, __pyx_pybuffernd_z.rcbuffer-&gt;pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_z.diminfo[0].strides)));
     } catch(...) {
       __Pyx_CppExn2PyErr();
       <span class='error_goto'>__PYX_ERR(0, 161, __pyx_L1_error)</span>
@@ -4226,20 +4226,18 @@ static struct __pyx_vtabstruct_11libcalculus_Contour *__pyx_vtabptr_11libcalculu
 </pre><pre class="cython line score-0">&#xA0;<span class="">400</span>:   <span class="k">cdef</span> <span class="kt">CFunction</span>[<span class="nf">REAL</span><span class="p">,</span> <span class="kt">COMPLEX</span>] <span class="nf">cfunction</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">401</span>:   <span class="k">cdef</span> <span class="kt">REAL</span> <span class="nf">_start</span><span class="p">,</span> <span class="nf">_end</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">402</span>: </pre>
-<pre class="cython line score-24" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">403</span>:   <span class="k">def</span> <span class="nf">__cinit__</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-24 '>/* Python wrapper */
+<pre class="cython line score-42" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">403</span>:   <span class="k">def</span> <span class="nf">__cinit__</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-42 '>/* Python wrapper */
 static int __pyx_pw_11libcalculus_7Contour_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static int __pyx_pw_11libcalculus_7Contour_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   int __pyx_r;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("__cinit__ (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -4278,8 +4276,16 @@ static int __pyx_pw_11libcalculus_7Contour_1__cinit__(PyObject *__pyx_v_self, Py
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 403, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 403, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -4299,31 +4305,24 @@ static int __pyx_pw_11libcalculus_7Contour_1__cinit__(PyObject *__pyx_v_self, Py
   return __pyx_r;
 }
 
-static int __pyx_pf_11libcalculus_7Contour___cinit__(struct __pyx_obj_11libcalculus_Contour *__pyx_v_self, PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static int __pyx_pf_11libcalculus_7Contour___cinit__(struct __pyx_obj_11libcalculus_Contour *__pyx_v_self, __pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   int __pyx_r;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("__cinit__", 0);
 /* … */
   /* function exit code */
   __pyx_r = 0;
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
 }
-</pre><pre class="cython line score-10" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">404</span>:     <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="o">=</span> <span class="n">start</span></pre>
-<pre class='cython code score-10 '>  __pyx_t_1 = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(__pyx_v_start); if (unlikely((__pyx_t_1 == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 404, __pyx_L1_error)</span>
-  __pyx_v_self-&gt;_start = __pyx_t_1;
-</pre><pre class="cython line score-10" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">405</span>:     <span class="bp">self</span><span class="o">.</span><span class="n">_end</span> <span class="o">=</span> <span class="n">end</span></pre>
-<pre class='cython code score-10 '>  __pyx_t_1 = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(__pyx_v_end); if (unlikely((__pyx_t_1 == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 405, __pyx_L1_error)</span>
-  __pyx_v_self-&gt;_end = __pyx_t_1;
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">404</span>:     <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="o">=</span> <span class="n">start</span></pre>
+<pre class='cython code score-0 '>  __pyx_v_self-&gt;_start = __pyx_v_start;
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">405</span>:     <span class="bp">self</span><span class="o">.</span><span class="n">_end</span> <span class="o">=</span> <span class="n">end</span></pre>
+<pre class='cython code score-0 '>  __pyx_v_self-&gt;_end = __pyx_v_end;
 </pre><pre class="cython line score-0">&#xA0;<span class="">406</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">407</span>:   <span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">408</span>:   <span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
-<pre class="cython line score-21" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">409</span>:   <span class="k">cdef</span> <span class="nf">_call_array</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">REAL</span><span class="p">]</span> <span class="n">t</span><span class="p">):</span></pre>
+<pre class="cython line score-21" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">409</span>:   <span class="k">cdef</span> <span class="nf">_call_array</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">const</span> <span class="n">REAL</span><span class="p">]</span> <span class="n">t</span><span class="p">):</span></pre>
 <pre class='cython code score-21 '>static PyObject *__pyx_f_11libcalculus_7Contour__call_array(struct __pyx_obj_11libcalculus_Contour *__pyx_v_self, PyArrayObject *__pyx_v_t) {
   PyArrayObject *__pyx_v_result = 0;
   npy_intp __pyx_v_i;
@@ -4344,7 +4343,7 @@ static int __pyx_pf_11libcalculus_7Contour___cinit__(struct __pyx_obj_11libcalcu
   __pyx_pybuffernd_t.rcbuffer = &amp;__pyx_pybuffer_t;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_t.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_t, &amp;__Pyx_TypeInfo_nn___pyx_t_11libcalculus_REAL, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 409, __pyx_L1_error)</span>
+    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_t.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_t, &amp;__Pyx_TypeInfo_nn___pyx_t_11libcalculus_REAL__const__, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 409, __pyx_L1_error)</span>
   }
   __pyx_pybuffernd_t.diminfo[0].strides = __pyx_pybuffernd_t.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_t.diminfo[0].shape = __pyx_pybuffernd_t.rcbuffer-&gt;pybuffer.shape[0];
 /* … */
@@ -4415,7 +4414,7 @@ static int __pyx_pf_11libcalculus_7Contour___cinit__(struct __pyx_obj_11libcalcu
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">412</span>:       <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfunction</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></pre>
 <pre class='cython code score-0 '>    __pyx_t_9 = __pyx_v_i;
     try {
-      __pyx_t_10 = __pyx_v_self-&gt;cfunction((*__Pyx_BufPtrStrided1d(__pyx_t_11libcalculus_REAL *, __pyx_pybuffernd_t.rcbuffer-&gt;pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_t.diminfo[0].strides)));
+      __pyx_t_10 = __pyx_v_self-&gt;cfunction((*__Pyx_BufPtrStrided1d(__pyx_t_11libcalculus_REAL const *, __pyx_pybuffernd_t.rcbuffer-&gt;pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_t.diminfo[0].strides)));
     } catch(...) {
       __Pyx_CppExn2PyErr();
       <span class='error_goto'>__PYX_ERR(0, 412, __pyx_L1_error)</span>
@@ -4729,7 +4728,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_5start___get__(struct __pyx_obj
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">427</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">428</span>:   <span class="nd">@start</span><span class="o">.</span><span class="n">setter</span></pre>
-<pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">429</span>:   <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">value</span><span class="p">):</span></pre>
+<pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">429</span>:   <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">value</span><span class="p">):</span></pre>
 <pre class='cython code score-12 '>/* Python wrapper */
 static int __pyx_pw_11libcalculus_7Contour_5start_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_value); /*proto*/
 static int __pyx_pw_11libcalculus_7Contour_5start_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_value) {
@@ -4808,11 +4807,11 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_3end___get__(struct __pyx_obj_1
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">435</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">436</span>:   <span class="nd">@end</span><span class="o">.</span><span class="n">setter</span></pre>
-<pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">437</span>:   <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">double</span> <span class="n">value</span><span class="p">):</span></pre>
+<pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">437</span>:   <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="n">Contour</span> <span class="bp">self</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">value</span><span class="p">):</span></pre>
 <pre class='cython code score-12 '>/* Python wrapper */
 static int __pyx_pw_11libcalculus_7Contour_3end_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_value); /*proto*/
 static int __pyx_pw_11libcalculus_7Contour_3end_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_arg_value) {
-  double __pyx_v_value;
+  __pyx_t_11libcalculus_REAL __pyx_v_value;
   int __pyx_r;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("__set__ (wrapper)", 0);
@@ -4825,7 +4824,7 @@ static int __pyx_pw_11libcalculus_7Contour_3end_3__set__(PyObject *__pyx_v_self,
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11libcalculus_7Contour_3end_2__set__(((struct __pyx_obj_11libcalculus_Contour *)__pyx_v_self), ((double)__pyx_v_value));
+  __pyx_r = __pyx_pf_11libcalculus_7Contour_3end_2__set__(((struct __pyx_obj_11libcalculus_Contour *)__pyx_v_self), ((__pyx_t_11libcalculus_REAL)__pyx_v_value));
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4835,7 +4834,7 @@ static int __pyx_pw_11libcalculus_7Contour_3end_3__set__(PyObject *__pyx_v_self,
   return __pyx_r;
 }
 
-static int __pyx_pf_11libcalculus_7Contour_3end_2__set__(struct __pyx_obj_11libcalculus_Contour *__pyx_v_self, double __pyx_v_value) {
+static int __pyx_pf_11libcalculus_7Contour_3end_2__set__(struct __pyx_obj_11libcalculus_Contour *__pyx_v_self, __pyx_t_11libcalculus_REAL __pyx_v_value) {
   int __pyx_r;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("__set__", 0);
@@ -8270,14 +8269,14 @@ static struct __pyx_vtabstruct_11libcalculus_RealFunction *__pyx_vtabptr_11libca
 <pre class="cython line score-0">&#xA0;<span class="">643</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">644</span>:   <span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">645</span>:   <span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
-<pre class="cython line score-22" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">646</span>:   <span class="k">cdef</span> <span class="nf">_call_array</span><span class="p">(</span><span class="n">RealFunction</span> <span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">REAL</span><span class="p">]</span> <span class="n">z</span><span class="p">):</span></pre>
-<pre class='cython code score-22 '>static PyObject *__pyx_f_11libcalculus_12RealFunction__call_array(struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_self, PyArrayObject *__pyx_v_z) {
+<pre class="cython line score-22" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">646</span>:   <span class="k">cdef</span> <span class="nf">_call_array</span><span class="p">(</span><span class="n">RealFunction</span> <span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">const</span> <span class="n">REAL</span><span class="p">]</span> <span class="n">t</span><span class="p">):</span></pre>
+<pre class='cython code score-22 '>static PyObject *__pyx_f_11libcalculus_12RealFunction__call_array(struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_self, PyArrayObject *__pyx_v_t) {
   PyArrayObject *__pyx_v_result = 0;
   npy_intp __pyx_v_i;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_result;
   __Pyx_Buffer __pyx_pybuffer_result;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_z;
-  __Pyx_Buffer __pyx_pybuffer_z;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_t;
+  __Pyx_Buffer __pyx_pybuffer_t;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("_call_array", 0);
@@ -8285,15 +8284,15 @@ static struct __pyx_vtabstruct_11libcalculus_RealFunction *__pyx_vtabptr_11libca
   __pyx_pybuffer_result.refcount = 0;
   __pyx_pybuffernd_result.data = NULL;
   __pyx_pybuffernd_result.rcbuffer = &amp;__pyx_pybuffer_result;
-  __pyx_pybuffer_z.pybuffer.buf = NULL;
-  __pyx_pybuffer_z.refcount = 0;
-  __pyx_pybuffernd_z.data = NULL;
-  __pyx_pybuffernd_z.rcbuffer = &amp;__pyx_pybuffer_z;
+  __pyx_pybuffer_t.pybuffer.buf = NULL;
+  __pyx_pybuffer_t.refcount = 0;
+  __pyx_pybuffernd_t.data = NULL;
+  __pyx_pybuffernd_t.rcbuffer = &amp;__pyx_pybuffer_t;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_z.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_z, &amp;__Pyx_TypeInfo_nn___pyx_t_11libcalculus_REAL, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 646, __pyx_L1_error)</span>
+    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_t.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_t, &amp;__Pyx_TypeInfo_nn___pyx_t_11libcalculus_REAL__const__, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 646, __pyx_L1_error)</span>
   }
-  __pyx_pybuffernd_z.diminfo[0].strides = __pyx_pybuffernd_z.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_z.diminfo[0].shape = __pyx_pybuffernd_z.rcbuffer-&gt;pybuffer.shape[0];
+  __pyx_pybuffernd_t.diminfo[0].strides = __pyx_pybuffernd_t.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_t.diminfo[0].shape = __pyx_pybuffernd_t.rcbuffer-&gt;pybuffer.shape[0];
 /* … */
   /* function exit code */
   __pyx_L1_error:;
@@ -8307,27 +8306,27 @@ static struct __pyx_vtabstruct_11libcalculus_RealFunction *__pyx_vtabptr_11libca
     __Pyx_PyThreadState_assign
     <span class='pyx_c_api'>__Pyx_ErrFetch</span>(&amp;__pyx_type, &amp;__pyx_value, &amp;__pyx_tb);
     <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_result.rcbuffer-&gt;pybuffer);
-    <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_z.rcbuffer-&gt;pybuffer);
+    <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_t.rcbuffer-&gt;pybuffer);
   <span class='pyx_c_api'>__Pyx_ErrRestore</span>(__pyx_type, __pyx_value, __pyx_tb);}
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.RealFunction._call_array", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_result.rcbuffer-&gt;pybuffer);
-  <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_z.rcbuffer-&gt;pybuffer);
+  <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_t.rcbuffer-&gt;pybuffer);
   __pyx_L2:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>((PyObject *)__pyx_v_result);
   <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
 }
-</pre><pre class="cython line score-36" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">647</span>:     <span class="k">cdef</span> <span class="kt">np</span>.<span class="kt">ndarray</span>[<span class="kt">REAL</span>] <span class="nf">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)</span></pre>
+</pre><pre class="cython line score-36" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">647</span>:     <span class="k">cdef</span> <span class="kt">np</span>.<span class="kt">ndarray</span>[<span class="kt">REAL</span>] <span class="nf">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)</span></pre>
 <pre class='cython code score-36 '>  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_1, __pyx_n_s_np);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 647, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_GetAttrStr</span>(__pyx_t_1, __pyx_n_s_zeros);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 647, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_From_Py_intptr_t</span>((__pyx_v_z-&gt;dimensions[0]));<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 647, __pyx_L1_error)</span>
+  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_From_Py_intptr_t</span>((__pyx_v_t-&gt;dimensions[0]));<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 647, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(1);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 647, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
@@ -8361,15 +8360,15 @@ static struct __pyx_vtabstruct_11libcalculus_RealFunction *__pyx_vtabptr_11libca
   __pyx_t_6 = 0;
   __pyx_v_result = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">648</span>:     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">]):</span></pre>
-<pre class='cython code score-0 '>  __pyx_t_7 = (__pyx_v_z-&gt;dimensions[0]);
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">648</span>:     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">]):</span></pre>
+<pre class='cython code score-0 '>  __pyx_t_7 = (__pyx_v_t-&gt;dimensions[0]);
   __pyx_t_8 = __pyx_t_7;
   for (__pyx_t_9 = 0; __pyx_t_9 &lt; __pyx_t_8; __pyx_t_9+=1) {
     __pyx_v_i = __pyx_t_9;
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">649</span>:       <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfunction</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">649</span>:       <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfunction</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></pre>
 <pre class='cython code score-0 '>    __pyx_t_10 = __pyx_v_i;
     try {
-      __pyx_t_11 = __pyx_v_self-&gt;cfunction((*__Pyx_BufPtrStrided1d(__pyx_t_11libcalculus_REAL *, __pyx_pybuffernd_z.rcbuffer-&gt;pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_z.diminfo[0].strides)));
+      __pyx_t_11 = __pyx_v_self-&gt;cfunction((*__Pyx_BufPtrStrided1d(__pyx_t_11libcalculus_REAL const *, __pyx_pybuffernd_t.rcbuffer-&gt;pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_t.diminfo[0].strides)));
     } catch(...) {
       __Pyx_CppExn2PyErr();
       <span class='error_goto'>__PYX_ERR(0, 649, __pyx_L1_error)</span>

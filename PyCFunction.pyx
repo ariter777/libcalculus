@@ -155,7 +155,7 @@ cdef class ComplexFunction:
 
   @cython.boundscheck(False)
   @cython.wraparound(False)
-  cdef _call_array(ComplexFunction self, np.ndarray[COMPLEX] z):
+  cdef _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):
     cdef np.ndarray[COMPLEX] result = np.zeros(z.shape[0], dtype=complex)
     for i in range(z.shape[0]):
       result[i] = self.cfunction(z[i])
@@ -400,13 +400,13 @@ cdef class Contour:
   cdef CFunction[REAL, COMPLEX] cfunction
   cdef REAL _start, _end
 
-  def __cinit__(Contour self, start=0., end=1.):
+  def __cinit__(Contour self, const REAL start=0., const REAL end=1.):
     self._start = start
     self._end = end
 
   @cython.boundscheck(False)
   @cython.wraparound(False)
-  cdef _call_array(Contour self, np.ndarray[REAL] t):
+  cdef _call_array(Contour self, np.ndarray[const REAL] t):
     cdef np.ndarray[COMPLEX] result = np.zeros(t.shape[0], dtype=complex)
     for i in range(t.shape[0]):
       result[i] = self.cfunction(t[i])
@@ -426,7 +426,7 @@ cdef class Contour:
     return self._start
 
   @start.setter
-  def start(Contour self, REAL value):
+  def start(Contour self, const REAL value):
     self._start = value
 
   @property
@@ -434,7 +434,7 @@ cdef class Contour:
     return self._end
 
   @end.setter
-  def end(Contour self, double value):
+  def end(Contour self, const REAL value):
     self._end = value
 
   def latex(Contour self, str varname = "t"):
@@ -643,10 +643,10 @@ cdef class RealFunction:
 
   @cython.boundscheck(False)
   @cython.wraparound(False)
-  cdef _call_array(RealFunction self, np.ndarray[REAL] z):
-    cdef np.ndarray[REAL] result = np.zeros(z.shape[0], dtype=np.double)
-    for i in range(z.shape[0]):
-      result[i] = self.cfunction(z[i])
+  cdef _call_array(RealFunction self, np.ndarray[const REAL] t):
+    cdef np.ndarray[REAL] result = np.zeros(t.shape[0], dtype=np.double)
+    for i in range(t.shape[0]):
+      result[i] = self.cfunction(t[i])
     return result
 
   def __call__(RealFunction self, t):
