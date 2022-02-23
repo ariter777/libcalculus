@@ -1,5 +1,4 @@
 # distutils: language = c++
-from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
 from libcpp cimport bool as cbool
 from libc.math cimport M_PI, M_E
@@ -112,7 +111,7 @@ cdef extern from "CFunction.h" namespace "libcalculus" nogil:
 cdef class RealComparison:
   cdef CComparison[REAL, REAL] ccomparison
 
-  def __call__(self, REAL x):
+  def __call__(RealComparison self, REAL x):
     return self.ccomparison.eval(x)
 
   def __invert__(RealComparison self):
@@ -133,7 +132,7 @@ cdef class RealComparison:
 cdef class ComplexComparison:
   cdef CComparison[COMPLEX, COMPLEX] ccomparison
 
-  def __call__(self, COMPLEX z):
+  def __call__(ComplexComparison self, COMPLEX z):
     return self.ccomparison.eval(z)
 
   def __invert__(ComplexComparison self):
@@ -401,7 +400,7 @@ cdef class Contour:
   cdef CFunction[REAL, COMPLEX] cfunction
   cdef REAL _start, _end
 
-  def __cinit__(self, start=0., end=1.):
+  def __cinit__(Contour self, start=0., end=1.):
     self._start = start
     self._end = end
 
@@ -423,35 +422,35 @@ cdef class Contour:
       raise NotImplementedError
 
   @property
-  def start(self):
+  def start(Contour self):
     return self._start
 
   @start.setter
-  def start(self, REAL value):
+  def start(Contour self, REAL value):
     self._start = value
 
   @property
-  def end(self):
+  def end(Contour self):
     return self._end
 
   @end.setter
-  def end(self, double value):
+  def end(Contour self, double value):
     self._end = value
 
-  def latex(self, str varname = "t"):
+  def latex(Contour self, str varname = "t"):
     return self.cfunction.latex(varname.encode()).decode()
 
-  def _compose_real(self, RealFunction rhs):
+  def _compose_real(Contour self, RealFunction rhs):
     cdef Contour F = Contour(self._start, self._end)
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
-  def __neg__(self):
+  def __neg__(Contour self):
     cdef Contour F = Contour(self._start, self._end)
     F.cfunction = -self.cfunction
     return F
 
-  def __invert__(self):
+  def __invert__(Contour self):
     cdef Contour F = Contour(self._end, self._start)
     F.cfunction = self.cfunction
     return F
@@ -659,15 +658,15 @@ cdef class RealFunction:
     else:
       raise NotImplementedError
 
-  def latex(self, str varname = "t"):
+  def latex(RealFunction self, str varname="t"):
     return self.cfunction.latex(varname.encode()).decode()
 
-  def _compose(self, RealFunction rhs):
+  def _compose(RealFunction self, RealFunction rhs):
     cdef RealFunction F = RealFunction()
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
-  def __neg__(self):
+  def __neg__(RealFunction self):
     cdef RealFunction F = RealFunction()
     F.cfunction = -self.cfunction
     return F
