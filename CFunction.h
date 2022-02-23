@@ -88,7 +88,7 @@ namespace libcalculus {
         CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const;
 
         /* Preset instances */
-        static CFunction<Dom, Ran> Constant(Ran const c) { return CFunction([=](Dom z) { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
+        static CFunction<Dom, Ran> Constant(Ran const c) { return CFunction([=](Dom z) noexcept { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
         static CFunction<Dom, Ran> Re() { return CFunction([=](Dom z) { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Im() { return CFunction([=](Dom z) { return std::imag(z); }, "\\text{Im}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Abs() { return CFunction([=](Dom z) { return std::abs(z); }, "\\left|" LATEX_VAR "\\right|", OP_TYPE::FUNC); }
@@ -100,8 +100,8 @@ namespace libcalculus {
         static CFunction<Dom, Ran> Sec() { return CFunction([](Dom z) { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Csc() { return CFunction([](Dom z) { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Cot() { return CFunction([](Dom z) { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Pi() { return CFunction([](Dom z) { return M_PI; }, "\\pi", OP_TYPE::NOP); }
-        static CFunction<Dom, Ran> E() { return CFunction([](Dom z) { return M_E; }, "e", OP_TYPE::NOP); }
+        static CFunction<Dom, Ran> Pi() { return CFunction([](Dom z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP); }
+        static CFunction<Dom, Ran> E() { return CFunction([](Dom z) noexcept { return M_E; }, "e", OP_TYPE::NOP); }
 
         static CFunction<Dom, Ran> If(CComparison<Dom, Ran> const &cond_, CFunction<Dom, Ran> const &then_,
                                       CFunction<Dom, Ran> const &else_ = CFunction<Dom, Ran>::Constant(Ran{0})) {

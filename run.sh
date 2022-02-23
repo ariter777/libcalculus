@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+rm -f libcalculus.cpp
 python setup.py build_ext --inplace
 mkdir -p annotations
 mv *.html annotations

@@ -21,7 +21,7 @@ class FunctionTester(Tester):
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow,
                          operator.matmul]
     UNARY_OPERATIONS = [operator.neg]
-    OPERATION_TYPES = [BINARY_OPERATIONS, UNARY_OPERATIONS]
+    OPERATION_TYPES = np.array([BINARY_OPERATIONS, UNARY_OPERATIONS], dtype=object)
     BOUND = 20
     MAX_OPS = 5
     MAX_TRIES = 20

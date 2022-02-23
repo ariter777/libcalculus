@@ -105,7 +105,7 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> CFunction<Dom,Ran>::operator-() const {
+    CFunction<Dom, Ran> CFunction<Dom, Ran>::operator-() const {
         std::string new_latex = "-";
         new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::NEG, this->_last_op));
         return CFunction<Dom, Ran>([old_f = this->_f](Dom z) { return -old_f(z); }, new_latex, OP_TYPE::NEG);
