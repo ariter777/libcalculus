@@ -6625,21 +6625,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_34Abs(void) {
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Identity, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 578, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">578</span>:   <span class="k">def</span> <span class="nf">Identity</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-67" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">578</span>:   <span class="k">def</span> <span class="nf">Identity</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-67 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_37Identity(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_37Identity = {"Identity", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_37Identity, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_37Identity(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Identity (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -6678,8 +6676,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_37Identity(CYTHON_UNUSED PyObje
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 578, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 578, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -6699,7 +6705,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_37Identity(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_36Identity(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_36Identity(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Identity", 0);
@@ -6708,6 +6714,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_36Identity(PyObject *__pyx_v_st
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Identity", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -6729,19 +6736,23 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_36Identity(PyObject *__pyx_v_st
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Identity);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_codeobj__47 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Identity, 578, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 578, __pyx_L1_error)</span>
-</pre><pre class="cython line score-13" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">579</span>:     <span class="k">return</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-13 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
-  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 579, __pyx_L1_error)</span>
+</pre><pre class="cython line score-21" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">579</span>:     <span class="k">return</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-21 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 579, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 579, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 579, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 579, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 579, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
@@ -6753,21 +6764,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_36Identity(PyObject *__pyx_v_st
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Exp, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 582, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">582</span>:   <span class="k">def</span> <span class="nf">Exp</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">582</span>:   <span class="k">def</span> <span class="nf">Exp</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_39Exp(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_39Exp = {"Exp", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_39Exp, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_39Exp(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Exp (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -6806,8 +6815,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_39Exp(CYTHON_UNUSED PyObject *_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 582, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 582, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -6827,7 +6844,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_39Exp(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_38Exp(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_38Exp(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -6837,6 +6854,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_38Exp(PyObject *__pyx_v_start, 
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Exp", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -6859,28 +6877,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_38Exp(PyObject *__pyx_v_start, 
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_3, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Exp);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 582, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
   __pyx_codeobj__49 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Exp, 582, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 582, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">583</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 583, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">583</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 583, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 583, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 583, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 583, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 583, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">584</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Exp</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Exp();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Exp();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 584, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">585</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -6894,21 +6916,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_38Exp(PyObject *__pyx_v_start, 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Sin, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 588, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">588</span>:   <span class="k">def</span> <span class="nf">Sin</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">588</span>:   <span class="k">def</span> <span class="nf">Sin</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_41Sin(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_41Sin = {"Sin", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_41Sin, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_41Sin(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Sin (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -6947,8 +6967,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_41Sin(CYTHON_UNUSED PyObject *_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 588, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 588, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -6968,7 +6996,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_41Sin(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_40Sin(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_40Sin(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -6978,6 +7006,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_40Sin(PyObject *__pyx_v_start, 
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Sin", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7000,28 +7029,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_40Sin(PyObject *__pyx_v_start, 
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Sin);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 588, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_codeobj__51 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Sin, 588, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 588, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">589</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 589, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">589</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 589, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 589, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 589, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 589, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 589, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">590</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Sin</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Sin();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Sin();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 590, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">591</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -7035,21 +7068,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_40Sin(PyObject *__pyx_v_start, 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Cos, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 594, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">594</span>:   <span class="k">def</span> <span class="nf">Cos</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">594</span>:   <span class="k">def</span> <span class="nf">Cos</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_43Cos(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_43Cos = {"Cos", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_43Cos, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_43Cos(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Cos (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -7088,8 +7119,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_43Cos(CYTHON_UNUSED PyObject *_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 594, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 594, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -7109,7 +7148,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_43Cos(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_42Cos(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_42Cos(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -7119,6 +7158,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_42Cos(PyObject *__pyx_v_start, 
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Cos", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7141,28 +7181,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_42Cos(PyObject *__pyx_v_start, 
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_3, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Cos);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 594, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
   __pyx_codeobj__53 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Cos, 594, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 594, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">595</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 595, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">595</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 595, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 595, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 595, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 595, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 595, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">596</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Cos</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Cos();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Cos();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 596, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">597</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -7176,21 +7220,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_42Cos(PyObject *__pyx_v_start, 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Tan, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 600, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">600</span>:   <span class="k">def</span> <span class="nf">Tan</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">600</span>:   <span class="k">def</span> <span class="nf">Tan</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_45Tan(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_45Tan = {"Tan", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_45Tan, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_45Tan(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Tan (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -7229,8 +7271,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_45Tan(CYTHON_UNUSED PyObject *_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 600, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 600, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -7250,7 +7300,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_45Tan(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_44Tan(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_44Tan(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -7260,6 +7310,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_44Tan(PyObject *__pyx_v_start, 
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Tan", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7282,28 +7333,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_44Tan(PyObject *__pyx_v_start, 
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Tan);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 600, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_codeobj__55 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__54, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Tan, 600, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(0, 600, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">601</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">601</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 601, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 601, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 601, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 601, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">602</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Tan</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Tan();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Tan();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 602, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">603</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -7317,21 +7372,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_44Tan(PyObject *__pyx_v_start, 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Sec, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 606, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">606</span>:   <span class="k">def</span> <span class="nf">Sec</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">606</span>:   <span class="k">def</span> <span class="nf">Sec</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_47Sec(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_47Sec = {"Sec", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_47Sec, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_47Sec(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Sec (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -7370,8 +7423,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_47Sec(CYTHON_UNUSED PyObject *_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 606, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 606, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -7391,7 +7452,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_47Sec(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_46Sec(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_46Sec(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -7401,6 +7462,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_46Sec(PyObject *__pyx_v_start, 
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Sec", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7423,28 +7485,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_46Sec(PyObject *__pyx_v_start, 
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_3, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Sec);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 606, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
   __pyx_codeobj__57 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Sec, 606, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__57)) __PYX_ERR(0, 606, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">607</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 607, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">607</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 607, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 607, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">608</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Sec</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Sec();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Sec();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 608, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">609</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -7458,21 +7524,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_46Sec(PyObject *__pyx_v_start, 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Csc, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 612, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">612</span>:   <span class="k">def</span> <span class="nf">Csc</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">612</span>:   <span class="k">def</span> <span class="nf">Csc</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_49Csc(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_49Csc = {"Csc", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_49Csc, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_49Csc(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Csc (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -7511,8 +7575,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_49Csc(CYTHON_UNUSED PyObject *_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 612, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 612, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -7532,7 +7604,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_49Csc(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_48Csc(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_48Csc(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -7542,6 +7614,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_48Csc(PyObject *__pyx_v_start, 
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Csc", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7564,28 +7637,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_48Csc(PyObject *__pyx_v_start, 
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Csc);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_codeobj__59 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Csc, 612, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(0, 612, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">613</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 613, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">613</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 613, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 613, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 613, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 613, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 613, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">614</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Csc</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Csc();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Csc();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 614, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">615</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -7599,21 +7676,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_48Csc(PyObject *__pyx_v_start, 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Cot, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 618, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">618</span>:   <span class="k">def</span> <span class="nf">Cot</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">618</span>:   <span class="k">def</span> <span class="nf">Cot</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_51Cot(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_51Cot = {"Cot", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_51Cot, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_51Cot(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Cot (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -7652,8 +7727,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_51Cot(CYTHON_UNUSED PyObject *_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 618, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 618, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -7673,7 +7756,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_51Cot(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_50Cot(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_50Cot(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -7683,6 +7766,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_50Cot(PyObject *__pyx_v_start, 
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Cot", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7705,28 +7789,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_50Cot(PyObject *__pyx_v_start, 
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_3, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Cot);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 618, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
   __pyx_codeobj__61 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Cot, 618, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__61)) __PYX_ERR(0, 618, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">619</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 619, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">619</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 619, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 619, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 619, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 619, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 619, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">620</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Cot</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Cot();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Cot();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 620, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">621</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -7740,21 +7828,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_50Cot(PyObject *__pyx_v_start, 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_Pi, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 624, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">624</span>:   <span class="k">def</span> <span class="nf">Pi</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">624</span>:   <span class="k">def</span> <span class="nf">Pi</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_53Pi(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_53Pi = {"Pi", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_53Pi, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_53Pi(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Pi (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -7793,8 +7879,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_53Pi(CYTHON_UNUSED PyObject *__
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 624, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 624, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -7814,7 +7908,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_53Pi(CYTHON_UNUSED PyObject *__
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_52Pi(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_52Pi(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -7824,6 +7918,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_52Pi(PyObject *__pyx_v_start, P
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.Pi", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7846,28 +7941,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_52Pi(PyObject *__pyx_v_start, P
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_1, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_Pi);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 624, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_codeobj__63 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__62, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_Pi, 624, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__63)) __PYX_ERR(0, 624, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">625</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 625, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">625</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 625, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 625, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">626</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">Pi</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Pi();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::Pi();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 626, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">627</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -7881,21 +7980,19 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_52Pi(PyObject *__pyx_v_start, P
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_Contour-&gt;tp_dict, __pyx_n_s_E, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 630, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_Contour);
-</pre><pre class="cython line score-47" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">630</span>:   <span class="k">def</span> <span class="nf">E</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-47 '>/* Python wrapper */
+</pre><pre class="cython line score-68" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">630</span>:   <span class="k">def</span> <span class="nf">E</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-68 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_7Contour_55E(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_7Contour_55E = {"E", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_7Contour_55E, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_7Contour_55E(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_start = 0;
-  PyObject *__pyx_v_end = 0;
+  __pyx_t_11libcalculus_REAL __pyx_v_start;
+  __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("E (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -7934,8 +8031,16 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_55E(CYTHON_UNUSED PyObject *__p
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 630, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 630, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -7955,7 +8060,7 @@ static PyObject *__pyx_pw_11libcalculus_7Contour_55E(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_7Contour_54E(PyObject *__pyx_v_start, PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_7Contour_54E(__pyx_t_11libcalculus_REAL __pyx_v_start, __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -7965,6 +8070,7 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_54E(PyObject *__pyx_v_start, Py
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("libcalculus.Contour.E", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7987,28 +8093,32 @@ static PyObject *__pyx_pf_11libcalculus_7Contour_54E(PyObject *__pyx_v_start, Py
   <span class='pyx_c_api'>__Pyx_GetNameInClass</span>(__pyx_t_3, (PyObject *)__pyx_ptype_11libcalculus_Contour, __pyx_n_s_E);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 630, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
   __pyx_codeobj__65 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__64, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCFunction_pyx, __pyx_n_s_E, 630, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__65)) __PYX_ERR(0, 630, __pyx_L1_error)</span>
-</pre><pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">631</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
-<pre class='cython code score-12 '>  __pyx_t_1 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 631, __pyx_L1_error)</span>
+</pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">631</span>:     <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">F</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></pre>
+<pre class='cython code score-20 '>  __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_start);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 631, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_start);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_start);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 0, __pyx_v_start);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_end);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_end);
-  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_1, 1, __pyx_v_end);
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_1, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_end);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 631, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 0, __pyx_t_1);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_2);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(((PyObject *)__pyx_ptype_11libcalculus_Contour), __pyx_t_3, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_F = ((struct __pyx_obj_11libcalculus_Contour *)__pyx_t_2);
   __pyx_t_2 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">632</span>:     <span class="n">F</span><span class="o">.</span><span class="n">cfunction</span> <span class="o">=</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span><span class="o">.</span><span class="n">E</span><span class="p">()</span></pre>
 <pre class='cython code score-0 '>  try {
-    __pyx_t_3 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::E();
+    __pyx_t_4 = libcalculus::CFunction&lt;__pyx_t_11libcalculus_REAL,__pyx_t_double_complex&gt; ::E();
   } catch(...) {
     __Pyx_CppExn2PyErr();
     <span class='error_goto'>__PYX_ERR(0, 632, __pyx_L1_error)</span>
   }
-  __pyx_v_F-&gt;cfunction = __pyx_t_3;
+  __pyx_v_F-&gt;cfunction = __pyx_t_4;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">633</span>:     <span class="k">return</span> <span class="n">F</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_F));
@@ -11132,21 +11242,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_42Abs(void) {
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Identity, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 872, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-45" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">872</span>:   <span class="k">def</span> <span class="nf">Identity</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-45 '>/* Python wrapper */
+</pre><pre class="cython line score-65" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">872</span>:   <span class="k">def</span> <span class="nf">Identity</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-65 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_45Identity(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_45Identity = {"Identity", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_45Identity, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_45Identity(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Identity (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -11185,8 +11293,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_45Identity(CYTHON_UNUSED 
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 872, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 872, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -11206,7 +11322,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_45Identity(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_44Identity(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_44Identity(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Identity", 0);
@@ -11250,21 +11366,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_44Identity(CYTHON_UNUSED 
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Exp, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 876, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">876</span>:   <span class="k">def</span> <span class="nf">Exp</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">876</span>:   <span class="k">def</span> <span class="nf">Exp</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_47Exp(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_47Exp = {"Exp", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_47Exp, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_47Exp(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Exp (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -11303,8 +11417,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_47Exp(CYTHON_UNUSED PyObj
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 876, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 876, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -11324,7 +11446,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_47Exp(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_46Exp(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_46Exp(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -11381,21 +11503,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_46Exp(CYTHON_UNUSED PyObj
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Sin, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 882, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">882</span>:   <span class="k">def</span> <span class="nf">Sin</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">882</span>:   <span class="k">def</span> <span class="nf">Sin</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_49Sin(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_49Sin = {"Sin", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_49Sin, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_49Sin(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Sin (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -11434,8 +11554,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_49Sin(CYTHON_UNUSED PyObj
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 882, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 882, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -11455,7 +11583,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_49Sin(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_48Sin(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_48Sin(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -11512,21 +11640,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_48Sin(CYTHON_UNUSED PyObj
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Cos, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 888, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">888</span>:   <span class="k">def</span> <span class="nf">Cos</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">888</span>:   <span class="k">def</span> <span class="nf">Cos</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_51Cos(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_51Cos = {"Cos", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_51Cos, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_51Cos(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Cos (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -11565,8 +11691,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_51Cos(CYTHON_UNUSED PyObj
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 888, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 888, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -11586,7 +11720,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_51Cos(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_50Cos(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_50Cos(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -11643,21 +11777,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_50Cos(CYTHON_UNUSED PyObj
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Tan, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 894, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">894</span>:   <span class="k">def</span> <span class="nf">Tan</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">894</span>:   <span class="k">def</span> <span class="nf">Tan</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_53Tan(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_53Tan = {"Tan", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_53Tan, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_53Tan(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Tan (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -11696,8 +11828,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_53Tan(CYTHON_UNUSED PyObj
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 894, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 894, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -11717,7 +11857,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_53Tan(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_52Tan(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_52Tan(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -11774,21 +11914,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_52Tan(CYTHON_UNUSED PyObj
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Sec, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 900, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">900</span>:   <span class="k">def</span> <span class="nf">Sec</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">900</span>:   <span class="k">def</span> <span class="nf">Sec</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_55Sec(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_55Sec = {"Sec", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_55Sec, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_55Sec(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Sec (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -11827,8 +11965,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_55Sec(CYTHON_UNUSED PyObj
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 900, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 900, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -11848,7 +11994,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_55Sec(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_54Sec(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_54Sec(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -11905,21 +12051,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_54Sec(CYTHON_UNUSED PyObj
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Csc, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 906, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">906</span>:   <span class="k">def</span> <span class="nf">Csc</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">906</span>:   <span class="k">def</span> <span class="nf">Csc</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_57Csc(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_57Csc = {"Csc", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_57Csc, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_57Csc(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Csc (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -11958,8 +12102,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_57Csc(CYTHON_UNUSED PyObj
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 906, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 906, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -11979,7 +12131,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_57Csc(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_56Csc(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_56Csc(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -12036,21 +12188,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_56Csc(CYTHON_UNUSED PyObj
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Cot, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 912, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">912</span>:   <span class="k">def</span> <span class="nf">Cot</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">912</span>:   <span class="k">def</span> <span class="nf">Cot</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_59Cot(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_59Cot = {"Cot", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_59Cot, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_59Cot(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Cot (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -12089,8 +12239,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_59Cot(CYTHON_UNUSED PyObj
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 912, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 912, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -12110,7 +12268,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_59Cot(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_58Cot(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_58Cot(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -12167,21 +12325,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_58Cot(CYTHON_UNUSED PyObj
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_Pi, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 918, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">918</span>:   <span class="k">def</span> <span class="nf">Pi</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">918</span>:   <span class="k">def</span> <span class="nf">Pi</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_61Pi(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_61Pi = {"Pi", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_61Pi, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_61Pi(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Pi (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -12220,8 +12376,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_61Pi(CYTHON_UNUSED PyObje
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 918, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 918, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -12241,7 +12405,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_61Pi(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_60Pi(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_60Pi(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -12298,21 +12462,19 @@ static PyObject *__pyx_pf_11libcalculus_12RealFunction_60Pi(CYTHON_UNUSED PyObje
   if (<span class='py_c_api'>PyDict_SetItem</span>((PyObject *)__pyx_ptype_11libcalculus_RealFunction-&gt;tp_dict, __pyx_n_s_E, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 924, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
   <span class='py_c_api'>PyType_Modified</span>(__pyx_ptype_11libcalculus_RealFunction);
-</pre><pre class="cython line score-46" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">924</span>:   <span class="k">def</span> <span class="nf">E</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
-<pre class='cython code score-46 '>/* Python wrapper */
+</pre><pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">924</span>:   <span class="k">def</span> <span class="nf">E</span><span class="p">(</span><span class="n">const</span> <span class="n">REAL</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span></pre>
+<pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_63E(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_11libcalculus_12RealFunction_63E = {"E", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_12RealFunction_63E, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_11libcalculus_12RealFunction_63E(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  CYTHON_UNUSED PyObject *__pyx_v_start = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_end = 0;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start;
+  CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("E (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_start,&amp;__pyx_n_s_end,0};
     PyObject* values[2] = {0,0};
-    values[0] = ((PyObject *)__pyx_float_0_);
-    values[1] = ((PyObject *)__pyx_float_1_);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -12351,8 +12513,16 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_63E(CYTHON_UNUSED PyObjec
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_start = values[0];
-    __pyx_v_end = values[1];
+    if (values[0]) {
+      __pyx_v_start = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_start == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 924, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_start = ((__pyx_t_11libcalculus_REAL)0.);
+    }
+    if (values[1]) {
+      __pyx_v_end = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_end == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 924, __pyx_L3_error)</span>
+    } else {
+      __pyx_v_end = ((__pyx_t_11libcalculus_REAL)1.);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -12372,7 +12542,7 @@ static PyObject *__pyx_pw_11libcalculus_12RealFunction_63E(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_12RealFunction_62E(CYTHON_UNUSED PyObject *__pyx_v_start, CYTHON_UNUSED PyObject *__pyx_v_end) {
+static PyObject *__pyx_pf_11libcalculus_12RealFunction_62E(CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_start, CYTHON_UNUSED __pyx_t_11libcalculus_REAL __pyx_v_end) {
   struct __pyx_obj_11libcalculus_RealFunction *__pyx_v_F = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>

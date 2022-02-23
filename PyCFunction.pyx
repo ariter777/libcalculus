@@ -575,59 +575,59 @@ cdef class Contour:
     return F
 
   @staticmethod
-  def Identity(start=0., end=1.):
+  def Identity(const REAL start=0., const REAL end=1.):
     return Contour(start, end)
 
   @staticmethod
-  def Exp(start=0., end=1.):
+  def Exp(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Exp()
     return F
 
   @staticmethod
-  def Sin(start=0., end=1.):
+  def Sin(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sin()
     return F
 
   @staticmethod
-  def Cos(start=0., end=1.):
+  def Cos(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Cos()
     return F
 
   @staticmethod
-  def Tan(start=0., end=1.):
+  def Tan(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Tan()
     return F
 
   @staticmethod
-  def Sec(start=0., end=1.):
+  def Sec(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sec()
     return F
 
   @staticmethod
-  def Csc(start=0., end=1.):
+  def Csc(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Csc()
     return F
 
   @staticmethod
-  def Cot(start=0., end=1.):
+  def Cot(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Cot()
     return F
 
   @staticmethod
-  def Pi(start=0., end=1.):
+  def Pi(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Pi()
     return F
 
   @staticmethod
-  def E(start=0., end=1.):
+  def E(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].E()
     return F
@@ -869,59 +869,59 @@ cdef class RealFunction:
     return F
 
   @staticmethod
-  def Identity(start=0., end=1.):
+  def Identity(const REAL start=0., const REAL end=1.):
     return RealFunction()
 
   @staticmethod
-  def Exp(start=0., end=1.):
+  def Exp(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Exp()
     return F
 
   @staticmethod
-  def Sin(start=0., end=1.):
+  def Sin(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sin()
     return F
 
   @staticmethod
-  def Cos(start=0., end=1.):
+  def Cos(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Cos()
     return F
 
   @staticmethod
-  def Tan(start=0., end=1.):
+  def Tan(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Tan()
     return F
 
   @staticmethod
-  def Sec(start=0., end=1.):
+  def Sec(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sec()
     return F
 
   @staticmethod
-  def Csc(start=0., end=1.):
+  def Csc(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Csc()
     return F
 
   @staticmethod
-  def Cot(start=0., end=1.):
+  def Cot(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Cot()
     return F
 
   @staticmethod
-  def Pi(start=0., end=1.):
+  def Pi(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Pi()
     return F
 
   @staticmethod
-  def E(start=0., end=1.):
+  def E(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].E()
     return F
