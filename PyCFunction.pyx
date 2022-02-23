@@ -3,9 +3,13 @@ from libcpp.complex cimport complex as complex_t
 from libcpp.string cimport string
 from libcpp cimport bool as cbool
 from libc.math cimport M_PI, M_E
+import numpy as np
+cimport numpy as np
+cimport cython
+np.import_array()
 
 ctypedef double REAL
-ctypedef complex_t[REAL] COMPLEX
+ctypedef np.complex128_t COMPLEX
 
 cdef extern from "CFunction.cpp":
   pass
@@ -150,23 +154,37 @@ cdef class ComplexComparison:
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
 
-  def __call__(self, COMPLEX z):
-    return self.cfunction(z)
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  cdef _call_array(ComplexFunction self, np.ndarray[COMPLEX] z):
+    cdef np.ndarray[COMPLEX] result = np.zeros(z.shape[0], dtype=complex)
+    for i in range(z.shape[0]):
+      result[i] = self.cfunction(z[i])
+    return result
 
-  def latex(self, str varname = "z"):
+  def __call__(ComplexFunction self, z):
+    if isinstance(z, (int, float, complex)):
+      return self.cfunction(z)
+    elif isinstance(z, np.ndarray) and np.issubdtype(z.dtype, np.number):
+      result = self._call_array(np.asarray(z.flatten(), dtype=complex))
+      return result.reshape(z.shape)
+    else:
+      raise NotImplementedError
+
+  def latex(ComplexFunction self, str varname="z"):
     return self.cfunction.latex(varname.encode()).decode()
 
-  def _compose(self, ComplexFunction rhs):
+  def _compose(ComplexFunction self, ComplexFunction rhs):
     cdef ComplexFunction F = ComplexFunction()
     F.cfunction = self.cfunction.compose[COMPLEX](rhs.cfunction)
     return F
 
-  def _compose_contour(self, Contour rhs):
+  def _compose_contour(ComplexFunction self, Contour rhs):
     cdef Contour F = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
-  def __neg__(self):
+  def __neg__(ComplexFunction self):
     cdef ComplexFunction F = ComplexFunction()
     F.cfunction = -self.cfunction
     return F
@@ -387,8 +405,22 @@ cdef class Contour:
     self._start = start
     self._end = end
 
-  def __call__(self, REAL t):
-    return self.cfunction(t)
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  cdef _call_array(Contour self, np.ndarray[REAL] t):
+    cdef np.ndarray[COMPLEX] result = np.zeros(t.shape[0], dtype=complex)
+    for i in range(t.shape[0]):
+      result[i] = self.cfunction(t[i])
+    return result
+
+  def __call__(Contour self, t):
+    if isinstance(t, (int, float, complex)):
+      return self.cfunction(t)
+    elif isinstance(t, np.ndarray) and np.issubdtype(t.dtype, np.number):
+      result = self._call_array(np.asarray(t.flatten(), dtype=np.double))
+      return result.reshape(t.shape)
+    else:
+      raise NotImplementedError
 
   @property
   def start(self):
@@ -610,8 +642,22 @@ cdef class Contour:
 cdef class RealFunction:
   cdef CFunction[REAL, REAL] cfunction
 
-  def __call__(self, REAL t):
-    return self.cfunction(t)
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  cdef _call_array(RealFunction self, np.ndarray[REAL] z):
+    cdef np.ndarray[REAL] result = np.zeros(z.shape[0], dtype=np.double)
+    for i in range(z.shape[0]):
+      result[i] = self.cfunction(z[i])
+    return result
+
+  def __call__(RealFunction self, t):
+    if isinstance(t, (int, float, complex)):
+      return self.cfunction(t)
+    elif isinstance(t, np.ndarray) and np.issubdtype(t.dtype, np.number):
+      result = self._call_array(np.asarray(t.flatten(), dtype=np.double))
+      return result.reshape(t.shape)
+    else:
+      raise NotImplementedError
 
   def latex(self, str varname = "t"):
     return self.cfunction.latex(varname.encode()).decode()
