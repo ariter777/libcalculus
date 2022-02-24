@@ -365,8 +365,8 @@ body.cython { font-family: courier; font-size: 12; }
 </p>
 <p>Raw output: <a href="PyCCalculus.pyx">PyCCalculus.pyx</a></p>
 <div class="cython"><pre class="cython line score-0">&#xA0;<span class="">01</span>: <span class="c"># distutils: language = c++</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">02</span>: <span class="k">from</span> <span class="nn">libcpp.complex</span> <span class="k">cimport</span> <span class="nb">complex</span> <span class="k">as</span> <span class="n">complex_t</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">03</span>: <span class="k">from</span> <span class="nn">libcpp.string</span> <span class="k">cimport</span> <span class="n">string</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">02</span>: <span class="k">from</span> <span class="nn">Definitions</span> <span class="k">cimport</span> <span class="o">*</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">03</span>: <span class="k">from</span> <span class="nn">PyCFunction</span> <span class="k">cimport</span> <span class="o">*</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">04</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">05</span>: <span class="k">cdef</span> <span class="kr">extern</span> <span class="k">from</span> <span class="s">&quot;CCalculus.cpp&quot;</span><span class="p">:</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">06</span>:   <span class="k">pass</span></pre>
@@ -376,7 +376,7 @@ body.cython { font-family: courier; font-size: 12; }
 <pre class="cython line score-0">&#xA0;<span class="">10</span>:   <span class="n">COMPLEX</span> <span class="n">Integrate</span><span class="p">(</span><span class="n">CFunction</span><span class="p">[</span><span class="n">COMPLEX</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span> <span class="n">f</span><span class="p">,</span> <span class="n">CFunction</span><span class="p">[</span><span class="n">REAL</span><span class="p">,</span> <span class="n">COMPLEX</span><span class="p">]</span> <span class="n">contour</span><span class="p">,</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">11</span>:                               <span class="n">REAL</span> <span class="n">start</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">end</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">tol</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">12</span>: </pre>
-<pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">13</span>: <span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="n">f</span><span class="p">,</span> <span class="n">Contour</span> <span class="n">contour</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span></pre>
+<pre class="cython line score-66" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">13</span>: <span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="n">f</span><span class="p">,</span> <span class="n">Contour</span> <span class="n">contour</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span></pre>
 <pre class='cython code score-66 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_1integrate(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_11libcalculus_integrate[] = "\"Integrate f along a contour.";
@@ -506,15 +506,15 @@ static PyObject *__pyx_pf_11libcalculus_integrate(CYTHON_UNUSED PyObject *__pyx_
   return __pyx_r;
 }
 /* … */
-  __pyx_tuple__95 = <span class='py_c_api'>PyTuple_Pack</span>(5, __pyx_n_s_f, __pyx_n_s_contour, __pyx_n_s_start, __pyx_n_s_end, __pyx_n_s_tol);<span class='error_goto'> if (unlikely(!__pyx_tuple__95)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__95);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__95);
+  __pyx_tuple__15 = <span class='py_c_api'>PyTuple_Pack</span>(5, __pyx_n_s_f, __pyx_n_s_contour, __pyx_n_s_start, __pyx_n_s_end, __pyx_n_s_tol);<span class='error_goto'> if (unlikely(!__pyx_tuple__15)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__15);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__15);
 /* … */
-  __pyx_t_2 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_1integrate, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_integrate, __pyx_t_2) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 13, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_codeobj__96 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__95, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCCalculus_pyx, __pyx_n_s_integrate, 13, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__96)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_1integrate, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_integrate, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 13, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_codeobj__16 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCCalculus_pyx, __pyx_n_s_integrate, 13, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
 </pre><pre class="cython line score-0">&#xA0;<span class="">14</span>:   <span class="sd">&quot;&quot;&quot;&quot;Integrate f along a contour.&quot;&quot;&quot;</span></pre>
 <pre class="cython line score-52" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">15</span>:   <span class="k">return</span> <span class="n">Integrate</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">cfunction</span><span class="p">,</span> <span class="n">contour</span><span class="o">.</span><span class="n">cfunction</span><span class="p">,</span> <span class="n">start</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">contour</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">contour</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">tol</span><span class="p">)</span></pre>
 <pre class='cython code score-52 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
@@ -547,7 +547,7 @@ static PyObject *__pyx_pf_11libcalculus_integrate(CYTHON_UNUSED PyObject *__pyx_
   __pyx_t_4 = 0;
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">16</span>: </pre>
-<pre class="cython line score-90" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">17</span>: <span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="n">f</span><span class="p">,</span> <span class="n">COMPLEX</span> <span class="n">z0</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">order</span><span class="o">=</span><span class="mf">1</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span></pre>
+<pre class="cython line score-90" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">17</span>: <span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="n">f</span><span class="p">,</span> <span class="n">COMPLEX</span> <span class="n">z0</span><span class="p">,</span> <span class="n">const</span> <span class="n">size_t</span> <span class="n">order</span><span class="o">=</span><span class="mf">1</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span></pre>
 <pre class='cython code score-90 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_3derivative(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_11libcalculus_2derivative[] = "Calculate the derivative of f at z0, given that f does not have any singularities inside\n  a sphere of the given radius around z0.";
@@ -694,15 +694,15 @@ static PyObject *__pyx_pf_11libcalculus_2derivative(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 /* … */
-  __pyx_tuple__97 = <span class='py_c_api'>PyTuple_Pack</span>(7, __pyx_n_s_f, __pyx_n_s_z0, __pyx_n_s_order, __pyx_n_s_radius, __pyx_n_s_tol, __pyx_n_s_contour, __pyx_n_s_integrand);<span class='error_goto'> if (unlikely(!__pyx_tuple__97)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__97);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__97);
+  __pyx_tuple__17 = <span class='py_c_api'>PyTuple_Pack</span>(7, __pyx_n_s_f, __pyx_n_s_z0, __pyx_n_s_order, __pyx_n_s_radius, __pyx_n_s_tol, __pyx_n_s_contour, __pyx_n_s_integrand);<span class='error_goto'> if (unlikely(!__pyx_tuple__17)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__17);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__17);
 /* … */
-  __pyx_t_2 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_3derivative, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_derivative, __pyx_t_2) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 17, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_codeobj__98 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(5, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__97, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCCalculus_pyx, __pyx_n_s_derivative, 17, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__98)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_3derivative, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_derivative, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 17, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_codeobj__18 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(5, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCCalculus_pyx, __pyx_n_s_derivative, 17, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
 </pre><pre class="cython line score-0">&#xA0;<span class="">18</span>:   <span class="sd">&quot;&quot;&quot;Calculate the derivative of f at z0, given that f does not have any singularities inside</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">19</span>: <span class="sd">  a sphere of the given radius around z0.&quot;&quot;&quot;</span></pre>
 <pre class="cython line score-53" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">20</span>:   <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">contour</span> <span class="o">=</span> <span class="n">Contour</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">z0</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span></pre>
@@ -833,8 +833,8 @@ static PyObject *__pyx_pf_11libcalculus_2derivative(CYTHON_UNUSED PyObject *__py
   __pyx_t_7 = 0;
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">23</span>: </pre>
-<pre class="cython line score-76" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">24</span>: <span class="k">def</span> <span class="nf">residue</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="n">f</span><span class="p">,</span> <span class="n">COMPLEX</span> <span class="n">z0</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">REAL</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span></pre>
-<pre class='cython code score-76 '>/* Python wrapper */
+<pre class="cython line score-78" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">24</span>: <span class="k">def</span> <span class="nf">residue</span><span class="p">(</span><span class="n">ComplexFunction</span> <span class="n">f</span><span class="p">,</span> <span class="n">const</span> <span class="n">COMPLEX</span> <span class="n">z0</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">const</span> <span class="n">REAL</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span></pre>
+<pre class='cython code score-78 '>/* Python wrapper */
 static PyObject *__pyx_pw_11libcalculus_5residue(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_11libcalculus_4residue[] = "Calculate the residue of f around z0, given that f does not have any further singularities inside\n  a sphere of the given radius around z0.";
 static PyMethodDef __pyx_mdef_11libcalculus_5residue = {"residue", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11libcalculus_5residue, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11libcalculus_4residue};
@@ -962,14 +962,15 @@ static PyObject *__pyx_pf_11libcalculus_4residue(CYTHON_UNUSED PyObject *__pyx_s
   return __pyx_r;
 }
 /* … */
-  __pyx_tuple__99 = <span class='py_c_api'>PyTuple_Pack</span>(5, __pyx_n_s_f, __pyx_n_s_z0, __pyx_n_s_radius, __pyx_n_s_tol, __pyx_n_s_contour);<span class='error_goto'> if (unlikely(!__pyx_tuple__99)) __PYX_ERR(2, 24, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__99);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__99);
+  __pyx_tuple__19 = <span class='py_c_api'>PyTuple_Pack</span>(5, __pyx_n_s_f, __pyx_n_s_z0, __pyx_n_s_radius, __pyx_n_s_tol, __pyx_n_s_contour);<span class='error_goto'> if (unlikely(!__pyx_tuple__19)) __PYX_ERR(2, 24, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__19);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__19);
 /* … */
-  __pyx_t_2 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_5residue, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 24, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_residue, __pyx_t_2) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 24, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_5residue, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 24, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_residue, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 24, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_codeobj__20 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(4, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCCalculus_pyx, __pyx_n_s_residue, 24, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(2, 24, __pyx_L1_error)</span>
 </pre><pre class="cython line score-0">&#xA0;<span class="">25</span>:   <span class="sd">&quot;&quot;&quot;Calculate the residue of f around z0, given that f does not have any further singularities inside</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">26</span>: <span class="sd">  a sphere of the given radius around z0.&quot;&quot;&quot;</span></pre>
 <pre class="cython line score-53" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">27</span>:   <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">contour</span> <span class="o">=</span> <span class="n">Contour</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">z0</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span></pre>
