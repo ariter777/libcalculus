@@ -17,6 +17,17 @@ function linux_setup {
   echo ; } 2>&1 | sed 's/^/    /g' &> /dev/stderr
 }
 
+function windows_setup {
+  echo $'\e[91mWindows build not supported yet.\e[0m'
+  exit 1
+}
+
+function run_tests {
+  echo $'\e[92mTesting.\e[0m'
+  python test.py
+  echo
+}
+
 if [[ $# == 0 ]]; then # default build - linux
   linux_setup
 else
@@ -25,11 +36,9 @@ else
       'clean') clean ;;
       'linux') linux_setup ;;
       'windows') windows_setup ;;
-      *) echo "Unknown parameter: $1"; exit 1 ;;
+      'test') run_tests ;;
+      *) echo "Unknown parameter: \"$1\""; exit 1 ;;
     esac
     shift
   done &> /dev/stderr
 fi
-
-echo $'\e[92mTesting.\e[0m'
-python test.py
