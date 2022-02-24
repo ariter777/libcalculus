@@ -1,6 +1,6 @@
 # distutils: language = c++
 from Definitions cimport *
-from PyCFunction cimport *
+from CFunction cimport *
 
 cdef extern from "CCalculus.cpp":
   pass
