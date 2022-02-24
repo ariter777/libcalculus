@@ -12,7 +12,7 @@ cdef class Contour:
 
   @cython.boundscheck(False)
   @cython.wraparound(False)
-  cdef _call_array(Contour self, np.ndarray[const REAL] t):
+  cdef np.ndarray[REAL] _call_array(Contour self, np.ndarray[const REAL] t):
     cdef np.ndarray[COMPLEX] result = np.zeros(t.shape[0], dtype=complex)
     for i in range(t.shape[0]):
       result[i] = self.cfunction(t[i])
@@ -21,9 +21,10 @@ cdef class Contour:
   def __call__(Contour self, t):
     if isinstance(t, (int, float, complex)):
       return self.cfunction(t)
+    elif isinstance(t, np.ndarray) and t.dtype == np.double:
+      return self._call_array(t.ravel()).reshape(t.shape)
     elif isinstance(t, np.ndarray) and np.issubdtype(t.dtype, np.number):
-      result = self._call_array(np.asarray(t.flatten(), dtype=np.double))
-      return result.reshape(t.shape)
+      return self._call_array(t.ravel().astype(np.double, copy=False)).reshape(t.shape)
     else:
       raise NotImplementedError
 

@@ -8,7 +8,7 @@ cdef class ComplexFunction:
 
   @cython.boundscheck(False)
   @cython.wraparound(False)
-  cdef _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):
+  cdef np.ndarray[COMPLEX] _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):
     cdef np.ndarray[COMPLEX] result = np.zeros(z.shape[0], dtype=complex)
     for i in range(z.shape[0]):
       result[i] = self.cfunction(z[i])
@@ -17,9 +17,10 @@ cdef class ComplexFunction:
   def __call__(ComplexFunction self, z):
     if isinstance(z, (int, float, complex)):
       return self.cfunction(z)
+    elif isinstance(z, np.ndarray) and z.dtype == complex:
+      return self._call_array(z.ravel()).reshape(z.shape)
     elif isinstance(z, np.ndarray) and np.issubdtype(z.dtype, np.number):
-      result = self._call_array(np.asarray(z.flatten(), dtype=complex))
-      return result.reshape(z.shape)
+      return self._call_array(z.ravel().astype(complex, copy=False)).reshape(z.shape)
     else:
       raise NotImplementedError
 
