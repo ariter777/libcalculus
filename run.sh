@@ -8,7 +8,7 @@ function clean {
   echo
 }
 
-function linux_setup {
+function build {
   echo $'\e[92mBuilding.\e[0m'
   { python setup.py build_ext --inplace
   mkdir -p annotations
@@ -23,13 +23,13 @@ function run_tests {
   echo
 }
 
-if [[ $# == 0 ]]; then # default build - linux
-  linux_setup
+if [[ $# == 0 ]]; then # default action - build
+  build
 else
   while [[ $# > 0 ]]; do
     case $1 in
       'clean') clean ;;
-      'linux') linux_setup ;;
+      'build') build ;;
       'test') run_tests ;;
       *) echo "Unknown parameter: \"$1\""; exit 1 ;;
     esac
