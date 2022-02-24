@@ -1,5 +1,5 @@
 from Definitions cimport *
-from PyCComparison cimport CComparison
+from CComparison cimport *
 
 cdef extern from "CFunction.cpp" nogil:
   pass
