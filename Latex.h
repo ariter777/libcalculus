@@ -1,10 +1,8 @@
 #pragma once
 #include <string>
+#include "Definitions.h"
 
 namespace libcalculus {
-    using REAL = double;
-    using COMPLEX = std::complex<double>;
-
     namespace Latex {
         std::string _parenthesize(std::string const &expr);
         std::string parenthesize_if(std::string const &expr, char const new_op, char const last_op);

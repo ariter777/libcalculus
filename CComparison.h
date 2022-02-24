@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
 #include <type_traits>
-#include "CFunction.h"
+#include "Definitions.h"
 
 namespace libcalculus {
     template<typename T>

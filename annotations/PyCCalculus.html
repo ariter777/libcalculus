@@ -386,7 +386,7 @@ static PyObject *__pyx_pw_11libcalculus_1integrate(PyObject *__pyx_self, PyObjec
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_contour = 0;
   PyObject *__pyx_v_start = 0;
   PyObject *__pyx_v_end = 0;
-  __pyx_t_11libcalculus_REAL __pyx_v_tol;
+  __pyx_t_11Definitions_REAL __pyx_v_tol;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("integrate (wrapper)", 0);
@@ -466,7 +466,7 @@ static PyObject *__pyx_pw_11libcalculus_1integrate(PyObject *__pyx_self, PyObjec
     if (values[4]) {
       __pyx_v_tol = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[4]); if (unlikely((__pyx_v_tol == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(2, 13, __pyx_L3_error)</span>
     } else {
-      __pyx_v_tol = ((__pyx_t_11libcalculus_REAL)1e-3);
+      __pyx_v_tol = ((__pyx_t_11Definitions_REAL)1e-3);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
@@ -490,7 +490,7 @@ static PyObject *__pyx_pw_11libcalculus_1integrate(PyObject *__pyx_self, PyObjec
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_integrate(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f, struct __pyx_obj_11libcalculus_Contour *__pyx_v_contour, PyObject *__pyx_v_start, PyObject *__pyx_v_end, __pyx_t_11libcalculus_REAL __pyx_v_tol) {
+static PyObject *__pyx_pf_11libcalculus_integrate(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f, struct __pyx_obj_11libcalculus_Contour *__pyx_v_contour, PyObject *__pyx_v_start, PyObject *__pyx_v_end, __pyx_t_11Definitions_REAL __pyx_v_tol) {
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("integrate", 0);
@@ -510,10 +510,10 @@ static PyObject *__pyx_pf_11libcalculus_integrate(CYTHON_UNUSED PyObject *__pyx_
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__95);
   <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__95);
 /* … */
-  __pyx_t_3 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_1integrate, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_integrate, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 13, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_1integrate, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_integrate, __pyx_t_2) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 13, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_codeobj__96 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__95, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCCalculus_pyx, __pyx_n_s_integrate, 13, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__96)) __PYX_ERR(2, 13, __pyx_L1_error)</span>
 </pre><pre class="cython line score-0">&#xA0;<span class="">14</span>:   <span class="sd">&quot;&quot;&quot;&quot;Integrate f along a contour.&quot;&quot;&quot;</span></pre>
 <pre class="cython line score-52" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">15</span>:   <span class="k">return</span> <span class="n">Integrate</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">cfunction</span><span class="p">,</span> <span class="n">contour</span><span class="o">.</span><span class="n">cfunction</span><span class="p">,</span> <span class="n">start</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">contour</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">contour</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">tol</span><span class="p">)</span></pre>
@@ -556,8 +556,8 @@ static PyObject *__pyx_pw_11libcalculus_3derivative(PyObject *__pyx_self, PyObje
   struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f = 0;
   __pyx_t_double_complex __pyx_v_z0;
   size_t __pyx_v_order;
-  __pyx_t_11libcalculus_REAL __pyx_v_radius;
-  __pyx_t_11libcalculus_REAL __pyx_v_tol;
+  __pyx_t_11Definitions_REAL __pyx_v_radius;
+  __pyx_t_11Definitions_REAL __pyx_v_tol;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("derivative (wrapper)", 0);
@@ -638,12 +638,12 @@ static PyObject *__pyx_pw_11libcalculus_3derivative(PyObject *__pyx_self, PyObje
     if (values[3]) {
       __pyx_v_radius = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[3]); if (unlikely((__pyx_v_radius == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(2, 17, __pyx_L3_error)</span>
     } else {
-      __pyx_v_radius = ((__pyx_t_11libcalculus_REAL)1e-3);
+      __pyx_v_radius = ((__pyx_t_11Definitions_REAL)1e-3);
     }
     if (values[4]) {
       __pyx_v_tol = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[4]); if (unlikely((__pyx_v_tol == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(2, 17, __pyx_L3_error)</span>
     } else {
-      __pyx_v_tol = ((__pyx_t_11libcalculus_REAL)1e-3);
+      __pyx_v_tol = ((__pyx_t_11Definitions_REAL)1e-3);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
@@ -669,7 +669,7 @@ static PyObject *__pyx_pw_11libcalculus_3derivative(PyObject *__pyx_self, PyObje
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_2derivative(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f, __pyx_t_double_complex __pyx_v_z0, size_t __pyx_v_order, __pyx_t_11libcalculus_REAL __pyx_v_radius, __pyx_t_11libcalculus_REAL __pyx_v_tol) {
+static PyObject *__pyx_pf_11libcalculus_2derivative(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f, __pyx_t_double_complex __pyx_v_z0, size_t __pyx_v_order, __pyx_t_11Definitions_REAL __pyx_v_radius, __pyx_t_11Definitions_REAL __pyx_v_tol) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_contour = 0;
   struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_integrand = 0;
   PyObject *__pyx_r = NULL;
@@ -698,10 +698,10 @@ static PyObject *__pyx_pf_11libcalculus_2derivative(CYTHON_UNUSED PyObject *__py
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__97);
   <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__97);
 /* … */
-  __pyx_t_3 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_3derivative, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_derivative, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 17, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_3derivative, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_derivative, __pyx_t_2) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 17, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_codeobj__98 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(5, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__97, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_PyCCalculus_pyx, __pyx_n_s_derivative, 17, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__98)) __PYX_ERR(2, 17, __pyx_L1_error)</span>
 </pre><pre class="cython line score-0">&#xA0;<span class="">18</span>:   <span class="sd">&quot;&quot;&quot;Calculate the derivative of f at z0, given that f does not have any singularities inside</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">19</span>: <span class="sd">  a sphere of the given radius around z0.&quot;&quot;&quot;</span></pre>
@@ -841,8 +841,8 @@ static PyMethodDef __pyx_mdef_11libcalculus_5residue = {"residue", (PyCFunction)
 static PyObject *__pyx_pw_11libcalculus_5residue(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f = 0;
   __pyx_t_double_complex __pyx_v_z0;
-  __pyx_t_11libcalculus_REAL __pyx_v_radius;
-  __pyx_t_11libcalculus_REAL __pyx_v_tol;
+  __pyx_t_11Definitions_REAL __pyx_v_radius;
+  __pyx_t_11Definitions_REAL __pyx_v_tol;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("residue (wrapper)", 0);
@@ -908,12 +908,12 @@ static PyObject *__pyx_pw_11libcalculus_5residue(PyObject *__pyx_self, PyObject 
     if (values[2]) {
       __pyx_v_radius = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[2]); if (unlikely((__pyx_v_radius == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(2, 24, __pyx_L3_error)</span>
     } else {
-      __pyx_v_radius = ((__pyx_t_11libcalculus_REAL)1e-3);
+      __pyx_v_radius = ((__pyx_t_11Definitions_REAL)1e-3);
     }
     if (values[3]) {
       __pyx_v_tol = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(values[3]); if (unlikely((__pyx_v_tol == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(2, 24, __pyx_L3_error)</span>
     } else {
-      __pyx_v_tol = ((__pyx_t_11libcalculus_REAL)1e-3);
+      __pyx_v_tol = ((__pyx_t_11Definitions_REAL)1e-3);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
@@ -939,7 +939,7 @@ static PyObject *__pyx_pw_11libcalculus_5residue(PyObject *__pyx_self, PyObject 
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11libcalculus_4residue(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f, __pyx_t_double_complex __pyx_v_z0, __pyx_t_11libcalculus_REAL __pyx_v_radius, __pyx_t_11libcalculus_REAL __pyx_v_tol) {
+static PyObject *__pyx_pf_11libcalculus_4residue(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_11libcalculus_ComplexFunction *__pyx_v_f, __pyx_t_double_complex __pyx_v_z0, __pyx_t_11Definitions_REAL __pyx_v_radius, __pyx_t_11Definitions_REAL __pyx_v_tol) {
   struct __pyx_obj_11libcalculus_Contour *__pyx_v_contour = 0;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
@@ -966,10 +966,10 @@ static PyObject *__pyx_pf_11libcalculus_4residue(CYTHON_UNUSED PyObject *__pyx_s
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__99);
   <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__99);
 /* … */
-  __pyx_t_3 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_5residue, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 24, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_residue, __pyx_t_3) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 24, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&amp;__pyx_mdef_11libcalculus_5residue, NULL, __pyx_n_s_libcalculus);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 24, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_residue, __pyx_t_2) &lt; 0) <span class='error_goto'>__PYX_ERR(2, 24, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">25</span>:   <span class="sd">&quot;&quot;&quot;Calculate the residue of f around z0, given that f does not have any further singularities inside</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">26</span>: <span class="sd">  a sphere of the given radius around z0.&quot;&quot;&quot;</span></pre>
 <pre class="cython line score-53" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">27</span>:   <span class="k">cdef</span> <span class="kt">Contour</span> <span class="nf">contour</span> <span class="o">=</span> <span class="n">Contour</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">z0</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span></pre>
