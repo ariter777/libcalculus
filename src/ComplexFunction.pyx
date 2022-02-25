@@ -187,6 +187,12 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
+  def Conj():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Conj()
+    return F
+
+  @staticmethod
   def Abs():
     cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Abs()
