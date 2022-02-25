@@ -169,7 +169,7 @@ cdef class ComplexFunction:
     return result
 
   @staticmethod
-  def Constant(COMPLEX c):
+  def Constant(const COMPLEX c):
     cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Constant(c)
     return F

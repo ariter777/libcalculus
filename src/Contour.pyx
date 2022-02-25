@@ -190,10 +190,10 @@ cdef class Contour:
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction == (<Contour>rhs).cfunction
       return result
-    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float)):
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
       result.ccomparison = (<Contour>lhs).cfunction == CFunction[REAL, COMPLEX].Constant(<COMPLEX>rhs)
-    elif isinstance(lhs, (int, float)) and isinstance(rhs, Contour):
-      result.ccomparison = CFunction[REAL, COMPLEX].Constant(<REAL>lhs) == (<Contour>rhs).cfunction
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
+      result.ccomparison = CFunction[REAL, COMPLEX].Constant(<COMPLEX>lhs) == (<Contour>rhs).cfunction
     else:
       raise NotImplementedError
     return result
@@ -203,16 +203,16 @@ cdef class Contour:
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction != (<Contour>rhs).cfunction
       return result
-    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float)):
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float, complex)):
       result.ccomparison = (<Contour>lhs).cfunction != CFunction[REAL, COMPLEX].Constant(<COMPLEX>rhs)
-    elif isinstance(lhs, (int, float)) and isinstance(rhs, Contour):
+    elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
       result.ccomparison = CFunction[REAL, COMPLEX].Constant(<COMPLEX>lhs) != (<Contour>rhs).cfunction
     else:
       raise NotImplementedError
     return result
 
   @staticmethod
-  def Constant(COMPLEX c):
+  def Constant(const COMPLEX c):
     cdef Contour F = Contour()
     F.cfunction = CFunction[REAL, COMPLEX].Constant(c)
     return F

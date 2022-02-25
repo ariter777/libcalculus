@@ -223,7 +223,7 @@ cdef class RealFunction:
     return result
 
   @staticmethod
-  def Constant(REAL c):
+  def Constant(const REAL c):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Constant(c)
     return F
