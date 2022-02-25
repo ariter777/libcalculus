@@ -218,26 +218,8 @@ cdef class Contour:
     return F
 
   @staticmethod
-  def Re():
-    cdef Contour F = Contour()
-    F.cfunction = CFunction[REAL, COMPLEX].Re()
-    return F
-
-  @staticmethod
-  def Im():
-    cdef Contour F = Contour()
-    F.cfunction = CFunction[REAL, COMPLEX].Im()
-    return F
-
-  @staticmethod
-  def Conj():
-    cdef Contour F = Contour()
-    F.cfunction = CFunction[REAL, COMPLEX].Conj()
-    return F
-
-  @staticmethod
-  def Abs():
-    cdef Contour F = Contour()
+  def Abs(const REAL start=0., const REAL end=1.):
+    cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Abs()
     return F
 
