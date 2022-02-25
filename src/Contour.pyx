@@ -248,7 +248,7 @@ cdef class Contour:
 
   @staticmethod
   def Line(const complex z1, const complex z2):
-    return (1 - RealFunction.Identity()) * z1 + RealFunction.Identity() * z2
+    return (1 - Contour.Identity()) * z1 + Contour.Identity() * z2
 
   @staticmethod
   def Sphere(const complex center=0., const REAL radius=1., ccw=False):
