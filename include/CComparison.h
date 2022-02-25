@@ -17,7 +17,7 @@ namespace libcalculus {
         inline static bool close(T const a, T const b) noexcept { return std::abs(a - b) < Traits<T>::tol; }
     };
 
-    template<typename Dom, typename Ran>
+    template<typename Dom>
     class CComparison {
     public:
         std::string latex;
@@ -27,14 +27,14 @@ namespace libcalculus {
         CComparison(std::function<bool(Dom)> const &eval, std::string const &latex) : latex{latex}, eval{eval} {}
 
         // Unary operators
-        CComparison<Dom, Ran> operator~() const;
+        CComparison<Dom> operator~() const;
 
         // Binary operators
-        CComparison<Dom, Ran> operator|(CComparison<Dom, Ran> const &rhs) const;
-        CComparison<Dom, Ran> operator&(CComparison<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator|(CComparison<Dom> const &rhs) const;
+        CComparison<Dom> operator&(CComparison<Dom> const &rhs) const;
 
         // In-place binary operators
-        CComparison<Dom, Ran> &operator|=(CComparison<Dom, Ran> const &rhs);
-        CComparison<Dom, Ran> &operator&=(CComparison<Dom, Ran> const &rhs);
+        CComparison<Dom> &operator|=(CComparison<Dom> const &rhs);
+        CComparison<Dom> &operator&=(CComparison<Dom> const &rhs);
     };
 }

@@ -1,16 +1,16 @@
 #include "CComparison.h"
 
 namespace libcalculus {
-    template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CComparison<Dom, Ran>::operator~() const {
+    template<typename Dom>
+    CComparison<Dom> CComparison<Dom>::operator~() const {
         std::string new_latex = "\\neg\\left(";
         new_latex.append(this->latex);
         new_latex.append("\\right)");
         return CComparison([old_eval = this->eval](Dom z) { return !old_eval(z); }, new_latex);
     }
 
-    template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CComparison<Dom, Ran>::operator|(CComparison<Dom, Ran> const &rhs) const {
+    template<typename Dom>
+    CComparison<Dom> CComparison<Dom>::operator|(CComparison<Dom> const &rhs) const {
         std::string new_latex = "\\left(";
         new_latex.append(this->latex);
         new_latex.append("\\right)\\vee\\left(");
@@ -20,8 +20,8 @@ namespace libcalculus {
                                      new_latex);
     }
 
-    template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CComparison<Dom, Ran>::operator&(CComparison<Dom, Ran> const &rhs) const {
+    template<typename Dom>
+    CComparison<Dom> CComparison<Dom>::operator&(CComparison<Dom> const &rhs) const {
         std::string new_latex = "\\left(";
         new_latex.append(this->latex);
         new_latex.append("\\right)\\wedge\\left(");
@@ -31,8 +31,8 @@ namespace libcalculus {
                                      new_latex);
     }
 
-    template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> &CComparison<Dom, Ran>::operator|=(CComparison<Dom, Ran> const &rhs) {
+    template<typename Dom>
+    CComparison<Dom> &CComparison<Dom>::operator|=(CComparison<Dom> const &rhs) {
         std::string new_latex = "\\left(";
         new_latex.append(this->latex);
         new_latex.append("\\right)\\vee\\left(");
@@ -43,8 +43,8 @@ namespace libcalculus {
         return *this;
     }
 
-    template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> &CComparison<Dom, Ran>::operator&=(CComparison<Dom, Ran> const &rhs) {
+    template<typename Dom>
+    CComparison<Dom> &CComparison<Dom>::operator&=(CComparison<Dom> const &rhs) {
         std::string new_latex = "\\left(";
         new_latex.append(this->latex);
         new_latex.append("\\right)\\wedge\\left(");

@@ -295,5 +295,5 @@ cdef class ComplexFunction:
   @staticmethod
   def If(ComplexComparison comp_, ComplexFunction then_, ComplexFunction else_=ComplexFunction.Constant(0)):
     F = ComplexFunction()
-    F.cfunction = CFunction[COMPLEX, COMPLEX].If[COMPLEX](comp_.ccomparison, then_.cfunction, else_.cfunction)
+    F.cfunction = CFunction[COMPLEX, COMPLEX].If(comp_.ccomparison, then_.cfunction, else_.cfunction)
     return F

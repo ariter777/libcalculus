@@ -66,12 +66,12 @@ namespace libcalculus {
         CFunction<Dom, Ran> lpow(Ran const c) const;
 
         /* Comparison operators */
-        CComparison<Dom, Ran> operator>(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom, Ran> operator<(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom, Ran> operator==(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom, Ran> operator>=(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom, Ran> operator<=(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom, Ran> operator!=(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator>(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator<(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator==(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator>=(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator<=(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator!=(CFunction<Dom, Ran> const &rhs) const;
 
         /* Preset instances */
         static CFunction<Dom, Ran> Constant(Ran const c) { return CFunction([=](Dom z) noexcept { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
@@ -95,9 +95,7 @@ namespace libcalculus {
         static CFunction<Dom, Ran> Coth() { return CFunction([](Dom z) { return 1. / std::tanh(z); }, "\\coth\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Pi() { return CFunction([](Dom z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP); }
         static CFunction<Dom, Ran> E() { return CFunction([](Dom z) noexcept { return M_E; }, "e", OP_TYPE::NOP); }
-
-        template <typename Ran_>
-        static CFunction<Dom, Ran> If(CComparison<Dom, Ran_> const &cond_, CFunction<Dom, Ran> const &then_,
+        static CFunction<Dom, Ran> If(CComparison<Dom> const &cond_, CFunction<Dom, Ran> const &then_,
                                       CFunction<Dom, Ran> const &else_ = CFunction<Dom, Ran>::Constant(Ran{0})) {
               std::string new_latex = "\\begin{cases} ";
               new_latex.append(then_._latex);

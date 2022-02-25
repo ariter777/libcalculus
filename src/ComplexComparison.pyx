@@ -4,7 +4,7 @@ from CComparison cimport *
 cimport cython
 
 cdef class ComplexComparison:
-  cdef CComparison[COMPLEX, COMPLEX] ccomparison
+  cdef CComparison[COMPLEX] ccomparison
 
   @cython.boundscheck(False)
   @cython.wraparound(False)

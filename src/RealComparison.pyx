@@ -6,7 +6,10 @@ import numpy as np
 cimport numpy as np
 
 cdef class RealComparison:
-  cdef CComparison[REAL, REAL] ccomparison
+  """Comparison between functions that take in real values.
+  Comparisons such as RealFunction() > 0 and Contour() == 1j produce instances of this class.
+  """
+  cdef CComparison[REAL] ccomparison
 
   @cython.boundscheck(False)
   @cython.wraparound(False)

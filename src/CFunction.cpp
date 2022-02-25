@@ -194,57 +194,57 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CFunction<Dom, Ran>::operator>(CFunction<Dom, Ran> const &rhs) const {
+    CComparison<Dom> CFunction<Dom, Ran>::operator>(CFunction<Dom, Ran> const &rhs) const {
         std::string new_latex = this->_latex;
         new_latex.append(" > ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) > rhs_f(z); },
+        return CComparison<Dom>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) > rhs_f(z); },
                                      new_latex);
     }
 
     template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CFunction<Dom, Ran>::operator<(CFunction<Dom, Ran> const &rhs) const {
+    CComparison<Dom> CFunction<Dom, Ran>::operator<(CFunction<Dom, Ran> const &rhs) const {
         std::string new_latex = this->_latex;
         new_latex.append(" < ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) < rhs_f(z); },
+        return CComparison<Dom>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) < rhs_f(z); },
                                      new_latex);
     }
 
     template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CFunction<Dom, Ran>::operator==(CFunction<Dom, Ran> const &rhs) const {
+    CComparison<Dom> CFunction<Dom, Ran>::operator==(CFunction<Dom, Ran> const &rhs) const {
         std::string new_latex = this->_latex;
         new_latex.append(" \\eq ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
+        return CComparison<Dom>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
             return Traits<Ran>::close(lhs_f(z), rhs_f(z));
         }, new_latex);
     }
 
     template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CFunction<Dom, Ran>::operator>=(CFunction<Dom, Ran> const &rhs) const {
+    CComparison<Dom> CFunction<Dom, Ran>::operator>=(CFunction<Dom, Ran> const &rhs) const {
         std::string new_latex = this->_latex;
         new_latex.append(" \\ge ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) >= rhs_f(z) || Traits<Ran>::close(lhs_f(z), rhs_f(z)); },
+        return CComparison<Dom>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) >= rhs_f(z) || Traits<Ran>::close(lhs_f(z), rhs_f(z)); },
                                      new_latex);
     }
 
     template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CFunction<Dom, Ran>::operator<=(CFunction<Dom, Ran> const &rhs) const {
+    CComparison<Dom> CFunction<Dom, Ran>::operator<=(CFunction<Dom, Ran> const &rhs) const {
         std::string new_latex = this->_latex;
         new_latex.append(" \\le ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) <= rhs_f(z) || Traits<Ran>::close(lhs_f(z), rhs_f(z)); },
+        return CComparison<Dom>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) <= rhs_f(z) || Traits<Ran>::close(lhs_f(z), rhs_f(z)); },
                                      new_latex);
     }
 
     template<typename Dom, typename Ran>
-    CComparison<Dom, Ran> CFunction<Dom, Ran>::operator!=(CFunction<Dom, Ran> const &rhs) const {
+    CComparison<Dom> CFunction<Dom, Ran>::operator!=(CFunction<Dom, Ran> const &rhs) const {
         std::string new_latex = this->_latex;
         new_latex.append(" \\ne ");
         new_latex.append(rhs._latex);
-        return CComparison<Dom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
+        return CComparison<Dom>([lhs_f = this->_f, rhs_f = rhs._f](Dom z) {
             return !Traits<Ran>::close(lhs_f(z), rhs_f(z));
         }, new_latex);
     }

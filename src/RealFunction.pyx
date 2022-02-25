@@ -331,5 +331,5 @@ cdef class RealFunction:
   @staticmethod
   def If(RealComparison comp_, RealFunction then_, RealFunction else_=RealFunction.Constant(0)):
     F = RealFunction()
-    F.cfunction = CFunction[REAL, REAL].If[REAL](comp_.ccomparison, then_.cfunction, else_.cfunction)
+    F.cfunction = CFunction[REAL, REAL].If(comp_.ccomparison, then_.cfunction, else_.cfunction)
     return F

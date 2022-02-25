@@ -171,7 +171,7 @@ cdef class Contour:
       raise NotImplementedError
 
   def __and__(Contour lhs, Contour rhs):
-    """Scales both contours so that the resulting contour runs from 0 to 1, without loss of data."""
+    """Scales both contours and concatenates them so that the resulting contour runs from 0 to 1, without loss of data."""
     return Contour.If((0. <= RealFunction.Identity()) & (RealFunction.Identity() < .5),
                       lhs @ (lhs.start + 2. * (lhs.end - lhs.start) * RealFunction.Identity()),
                       rhs @ (rhs.start + 2. * (rhs.end - rhs.start) * (RealFunction.Identity() - .5)))
@@ -186,7 +186,7 @@ cdef class Contour:
       return int(np.rint(result))
 
   def __eq__(lhs, rhs):
-    cdef ContourComparison result = ContourComparison()
+    cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction == (<Contour>rhs).cfunction
       return result
@@ -199,7 +199,7 @@ cdef class Contour:
     return result
 
   def __ne__(lhs, rhs):
-    cdef ContourComparison result = ContourComparison()
+    cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction != (<Contour>rhs).cfunction
       return result
@@ -338,7 +338,7 @@ cdef class Contour:
   @staticmethod
   def If(RealComparison comp_, Contour then_, Contour else_=Contour.Constant(0), const REAL start=0., const REAL end=1.):
     F = Contour(start, end)
-    F.cfunction = CFunction[REAL, COMPLEX].If[REAL](comp_.ccomparison, then_.cfunction, else_.cfunction)
+    F.cfunction = CFunction[REAL, COMPLEX].If(comp_.ccomparison, then_.cfunction, else_.cfunction)
     return F
 
   @staticmethod
