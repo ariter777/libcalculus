@@ -37,37 +37,37 @@ cdef class RealFunction:
     F.cfunction = -self.cfunction
     return F
 
-  def __iadd__(RealFunction lhs, rhs):
+  def __iadd__(RealFunction self, rhs):
     if isinstance(rhs, RealFunction):
-      lhs.cfunction += (<RealFunction>rhs).cfunction
-      return lhs
+      self.cfunction += (<RealFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction += <REAL>rhs
-      return lhs
+      self.cfunction += <REAL>rhs
+      return self
 
-  def __isub__(RealFunction lhs, rhs):
+  def __isub__(RealFunction self, rhs):
     if isinstance(rhs, RealFunction):
-      lhs.cfunction -= (<RealFunction>rhs).cfunction
-      return lhs
+      self.cfunction -= (<RealFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction -= <REAL>rhs
-      return lhs
+      self.cfunction -= <REAL>rhs
+      return self
 
-  def __imul__(RealFunction lhs, rhs):
+  def __imul__(RealFunction self, rhs):
     if isinstance(rhs, RealFunction):
-      lhs.cfunction *= (<RealFunction>rhs).cfunction
-      return lhs
+      self.cfunction *= (<RealFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction *= <REAL>rhs
-      return lhs
+      self.cfunction *= <REAL>rhs
+      return self
 
-  def __itruediv__(RealFunction lhs, rhs):
+  def __itruediv__(RealFunction self, rhs):
     if isinstance(rhs, RealFunction):
-      lhs.cfunction /= (<RealFunction>rhs).cfunction
-      return lhs
+      self.cfunction /= (<RealFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction /= <REAL>rhs
-      return lhs
+      self.cfunction /= <REAL>rhs
+      return self
 
   def __add__(lhs, rhs):
     cdef RealFunction result

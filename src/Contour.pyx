@@ -63,37 +63,37 @@ cdef class Contour:
     F.cfunction = self.cfunction
     return F
 
-  def __iadd__(Contour lhs, rhs):
+  def __iadd__(Contour self, rhs):
     if isinstance(rhs, Contour):
-      lhs.cfunction += (<Contour>rhs).cfunction
-      return lhs
+      self.cfunction += (<Contour>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction += <COMPLEX>rhs
-      return lhs
+      self.cfunction += <COMPLEX>rhs
+      return self
 
-  def __isub__(Contour lhs, rhs):
+  def __isub__(Contour self, rhs):
     if isinstance(rhs, Contour):
-      lhs.cfunction -= (<Contour>rhs).cfunction
-      return lhs
+      self.cfunction -= (<Contour>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction -= <COMPLEX>rhs
-      return lhs
+      self.cfunction -= <COMPLEX>rhs
+      return self
 
-  def __imul__(Contour lhs, rhs):
+  def __imul__(Contour self, rhs):
     if isinstance(rhs, Contour):
-      lhs.cfunction *= (<Contour>rhs).cfunction
-      return lhs
+      self.cfunction *= (<Contour>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction *= <COMPLEX>rhs
-      return lhs
+      self.cfunction *= <COMPLEX>rhs
+      return self
 
-  def __itruediv__(Contour lhs, rhs):
+  def __itruediv__(Contour self, rhs):
     if isinstance(rhs, Contour):
-      lhs.cfunction /= (<Contour>rhs).cfunction
-      return lhs
+      self.cfunction /= (<Contour>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction /= <COMPLEX>rhs
-      return lhs
+      self.cfunction /= <COMPLEX>rhs
+      return self
 
   def __add__(lhs, rhs):
     cdef Contour result

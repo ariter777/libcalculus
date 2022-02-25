@@ -44,37 +44,37 @@ cdef class ComplexFunction:
     F.cfunction = -self.cfunction
     return F
 
-  def __iadd__(ComplexFunction lhs, rhs):
+  def __iadd__(ComplexFunction self, rhs):
     if isinstance(rhs, ComplexFunction):
-      lhs.cfunction += (<ComplexFunction>rhs).cfunction
-      return lhs
+      self.cfunction += (<ComplexFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction += <COMPLEX>rhs
-      return lhs
+      self.cfunction += <COMPLEX>rhs
+      return self
 
-  def __isub__(ComplexFunction lhs, rhs):
+  def __isub__(ComplexFunction self, rhs):
     if isinstance(rhs, ComplexFunction):
-      lhs.cfunction -= (<ComplexFunction>rhs).cfunction
-      return lhs
+      self.cfunction -= (<ComplexFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction -= <COMPLEX>rhs
-      return lhs
+      self.cfunction -= <COMPLEX>rhs
+      return self
 
-  def __imul__(ComplexFunction lhs, rhs):
+  def __imul__(ComplexFunction self, rhs):
     if isinstance(rhs, ComplexFunction):
-      lhs.cfunction *= (<ComplexFunction>rhs).cfunction
-      return lhs
+      self.cfunction *= (<ComplexFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction *= <COMPLEX>rhs
-      return lhs
+      self.cfunction *= <COMPLEX>rhs
+      return self
 
-  def __itruediv__(ComplexFunction lhs, rhs):
+  def __itruediv__(ComplexFunction self, rhs):
     if isinstance(rhs, ComplexFunction):
-      lhs.cfunction /= (<ComplexFunction>rhs).cfunction
-      return lhs
+      self.cfunction /= (<ComplexFunction>rhs).cfunction
+      return self
     elif isinstance(rhs, (int, float, complex)):
-      lhs.cfunction /= <COMPLEX>rhs
-      return lhs
+      self.cfunction /= <COMPLEX>rhs
+      return self
 
   def __add__(lhs, rhs):
     cdef ComplexFunction result = ComplexFunction()

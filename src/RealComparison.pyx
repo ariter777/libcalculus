@@ -40,3 +40,11 @@ cdef class RealComparison:
     cdef RealComparison result = RealComparison()
     result.ccomparison = lhs.ccomparison & rhs.ccomparison
     return result
+
+  def __ior__(RealComparison self, RealComparison rhs):
+    self.ccomparison |= rhs.ccomparison
+    return self
+
+  def __iand__(RealComparison self, RealComparison rhs):
+    self.ccomparison &= rhs.ccomparison
+    return self

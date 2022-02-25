@@ -228,7 +228,6 @@ class LatexTester(Tester):
         complex_tester = ComplexFunctionTester()
         funcs = (complex_tester._gen_function(n_ops)[0] for _ in range(n_funcs))
         latex = r"\\" + r"\\\\\\".join(func.latex() for func in funcs)
-        print(latex)
         rendered_latex = self._render_latex(latex)
         with open(self.SAVE_PATH, "wb") as wfd:
             wfd.write(rendered_latex)
