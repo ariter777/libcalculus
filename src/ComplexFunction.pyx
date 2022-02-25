@@ -1,5 +1,6 @@
 # distutils: language = c++
 from Definitions cimport *
+from CFunction cimport *
 cimport cython
 import numpy as np
 
@@ -248,4 +249,10 @@ cdef class ComplexFunction:
   def E():
     cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].E()
+    return F
+
+  @staticmethod
+  def If(ComplexComparison comp_, ComplexFunction then_, ComplexFunction else_=ComplexFunction.Constant(0)):
+    F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].If[COMPLEX](comp_.ccomparison, then_.cfunction, else_.cfunction)
     return F

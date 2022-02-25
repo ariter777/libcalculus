@@ -89,7 +89,8 @@ namespace libcalculus {
         static CFunction<Dom, Ran> Pi() { return CFunction([](Dom z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP); }
         static CFunction<Dom, Ran> E() { return CFunction([](Dom z) noexcept { return M_E; }, "e", OP_TYPE::NOP); }
 
-        static CFunction<Dom, Ran> If(CComparison<Dom, Ran> const &cond_, CFunction<Dom, Ran> const &then_,
+        template <typename Ran_>
+        static CFunction<Dom, Ran> If(CComparison<Dom, Ran_> const &cond_, CFunction<Dom, Ran> const &then_,
                                       CFunction<Dom, Ran> const &else_ = CFunction<Dom, Ran>::Constant(Ran{0})) {
               std::string new_latex = "\\begin{cases} ";
               new_latex.append(then_._latex);

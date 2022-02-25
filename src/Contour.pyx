@@ -1,5 +1,6 @@
 # distutils: language = c++
 from Definitions cimport *
+from CFunction cimport *
 import numpy as np
 
 cdef class Contour:
@@ -240,5 +241,15 @@ cdef class Contour:
     return F
 
   @staticmethod
-  def Sphere(complex center=0., REAL radius=1., ccw=False):
+  def If(RealComparison comp_, Contour then_, Contour else_=Contour.Constant(0), const REAL start=0., const REAL end=1.):
+    F = Contour(start, end)
+    F.cfunction = CFunction[REAL, COMPLEX].If[REAL](comp_.ccomparison, then_.cfunction, else_.cfunction)
+    return F
+
+  @staticmethod
+  def Line(const complex z1, const complex z2):
+    return (1 - RealFunction.Identity()) * z1 + RealFunction.Identity() * z2
+
+  @staticmethod
+  def Sphere(const complex center=0., const REAL radius=1., ccw=False):
     return center + (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity(0., 2. * M_PI)))

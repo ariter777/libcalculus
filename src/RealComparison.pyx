@@ -1,5 +1,6 @@
 # distutils: language = c++
 from Definitions cimport *
+from CComparison cimport *
 
 cdef class RealComparison:
   cdef CComparison[REAL, REAL] ccomparison

@@ -1,4 +1,7 @@
 # distutils: language = c++
+from Definitions cimport *
+from CComparison cimport *
+
 cdef class ComplexComparison:
   cdef CComparison[COMPLEX, COMPLEX] ccomparison
 

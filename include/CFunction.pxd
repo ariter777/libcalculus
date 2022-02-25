@@ -78,7 +78,7 @@ cdef extern from "CFunction.h" namespace "libcalculus" nogil:
     @staticmethod
     CFunction[Dom, Ran] E() except +
     @staticmethod
-    CFunction[Dom, Ran] If(CComparison[Dom, Ran] &cond_, CFunction[Dom, Ran] &then_, CFunction[Dom, Ran] &else_) except +
+    CFunction[Dom, Ran] If[Ran_](CComparison[Dom, Ran_] &cond_, CFunction[Dom, Ran] &then_, CFunction[Dom, Ran] &else_) except +
 
   # Constant-with-function operators
   CFunction[COMPLEX, COMPLEX] csubC "operator-"(COMPLEX lhs, CFunction[COMPLEX, COMPLEX] &rhs) except +
