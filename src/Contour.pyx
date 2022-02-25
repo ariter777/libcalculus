@@ -176,6 +176,15 @@ cdef class Contour:
                       lhs @ (lhs.start + 2. * (lhs.end - lhs.start) * RealFunction.Identity()),
                       rhs @ (rhs.start + 2. * (rhs.end - rhs.start) * (RealFunction.Identity() - .5)))
 
+  def __getitem__(Contour self, const complex z0):
+    """Computes the index of z0 with respect to the contour."""
+    assert np.allclose(self(self.start), self(self.end)), "Index defined only for closed contour."
+    cdef REAL result = np.real(integrate(1. / (ComplexFunction.Identity() - z0), self) / (2j * M_PI))
+    if not np.isfinite(result):
+      return result # NaN; probably z0 is on the contour itself.
+    else:
+      return int(np.rint(result))
+
   @staticmethod
   def Constant(COMPLEX c):
     cdef Contour F = Contour()
