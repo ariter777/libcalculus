@@ -72,13 +72,23 @@ class FunctionTester(Tester):
 class ComplexFunctionTester(FunctionTester):
     BASE_FUNCTIONS = {ComplexFunction.Constant: None,
                       ComplexFunction.Identity: lambda z: z,
+                      ComplexFunction.Re: lambda z: np.real(z),
+                      ComplexFunction.Im: lambda z: np.imag(z),
+                      ComplexFunction.Abs: lambda z: np.abs(z),
+                      ComplexFunction.Conj: lambda z: np.conj(z),
                       ComplexFunction.Exp: lambda z: complex(np.exp(z)),
                       ComplexFunction.Sin: lambda z: complex(np.sin(z)),
                       ComplexFunction.Cos: lambda z: complex(np.cos(z)),
                       ComplexFunction.Tan: lambda z: complex(np.tan(z)),
                       ComplexFunction.Sec: lambda z: complex(1.) / complex(np.cos(z)),
                       ComplexFunction.Csc: lambda z: complex(1.) / complex(np.sin(z)),
-                      ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z))}
+                      ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z)),
+                      ComplexFunction.Sinh: lambda z: complex(np.sinh(z)),
+                      ComplexFunction.Cosh: lambda z: complex(np.cosh(z)),
+                      ComplexFunction.Tanh: lambda z: complex(np.tanh(z)),
+                      ComplexFunction.Sech: lambda z: complex(1.) / complex(np.cosh(z)),
+                      ComplexFunction.Csch: lambda z: complex(1.) / complex(np.sinh(z)),
+                      ComplexFunction.Coth: lambda z: complex(1.) / complex(np.tanh(z))}
 
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
@@ -128,14 +138,24 @@ class ComplexFunctionTester(FunctionTester):
 class ContourTester(ComplexFunctionTester):
     BOUND = 20.
     BASE_FUNCTIONS = {Contour.Constant: None,
-                      Contour.Identity: lambda z: z,
+                      Contour.Identity: lambda t: t,
+                      Contour.Re: lambda t: np.real(t),
+                      Contour.Im: lambda t: np.imag(t),
+                      Contour.Abs: lambda t: np.abs(t),
+                      Contour.Conj: lambda t: np.conj(t),
                       Contour.Exp: lambda t: complex(np.exp(t)),
                       Contour.Sin: lambda t: complex(np.sin(t)),
                       Contour.Cos: lambda t: complex(np.cos(t)),
                       Contour.Tan: lambda t: complex(np.tan(t)),
                       Contour.Sec: lambda t: complex(1.) / complex(np.cos(t)),
                       Contour.Csc: lambda t: complex(1.) / complex(np.sin(t)),
-                      Contour.Cot: lambda t: complex(1.) / complex(np.tan(t))}
+                      Contour.Cot: lambda t: complex(1.) / complex(np.tan(t)),
+                      Contour.Sinh: lambda t: complex(np.sinh(t)),
+                      Contour.Cosh: lambda t: complex(np.cosh(t)),
+                      Contour.Tanh: lambda t: complex(np.tanh(t)),
+                      Contour.Sech: lambda t: complex(1.) / complex(np.cosh(t)),
+                      Contour.Csch: lambda t: complex(1.) / complex(np.sinh(t)),
+                      Contour.Coth: lambda t: complex(1.) / complex(np.tanh(t))}
 
     BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow]
@@ -208,6 +228,7 @@ class LatexTester(Tester):
         complex_tester = ComplexFunctionTester()
         funcs = (complex_tester._gen_function(n_ops)[0] for _ in range(n_funcs))
         latex = r"\\" + r"\\\\\\".join(func.latex() for func in funcs)
+        print(latex)
         rendered_latex = self._render_latex(latex)
         with open(self.SAVE_PATH, "wb") as wfd:
             wfd.write(rendered_latex)

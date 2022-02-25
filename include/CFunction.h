@@ -90,8 +90,8 @@ namespace libcalculus {
         static CFunction<Dom, Ran> Sinh() { return CFunction([](Dom z) { return std::sinh(z); }, "\\sinh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Cosh() { return CFunction([](Dom z) { return std::cosh(z); }, "\\cosh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Tanh() { return CFunction([](Dom z) { return std::tanh(z); }, "\\tanh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Sech() { return CFunction([](Dom z) { return 1. / std::cosh(z); }, "\\sech\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Csch() { return CFunction([](Dom z) { return 1. / std::sinh(z); }, "\\csch\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
+        static CFunction<Dom, Ran> Sech() { return CFunction([](Dom z) { return 1. / std::cosh(z); }, "\\text{sech}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
+        static CFunction<Dom, Ran> Csch() { return CFunction([](Dom z) { return 1. / std::sinh(z); }, "\\text{csch}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Coth() { return CFunction([](Dom z) { return 1. / std::tanh(z); }, "\\coth\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
         static CFunction<Dom, Ran> Pi() { return CFunction([](Dom z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP); }
         static CFunction<Dom, Ran> E() { return CFunction([](Dom z) noexcept { return M_E; }, "e", OP_TYPE::NOP); }
