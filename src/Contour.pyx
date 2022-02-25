@@ -170,6 +170,12 @@ cdef class Contour:
     else:
       raise NotImplementedError
 
+  def __and__(Contour lhs, Contour rhs):
+    """Scales both contours so that the resulting contour runs from 0 to 1, without loss of data."""
+    return Contour.If((0. <= RealFunction.Identity()) & (RealFunction.Identity() < .5),
+                      lhs @ (lhs.start + 2. * (lhs.end - lhs.start) * RealFunction.Identity()),
+                      rhs @ (rhs.start + 2. * (rhs.end - rhs.start) * (RealFunction.Identity() - .5)))
+
   @staticmethod
   def Constant(COMPLEX c):
     cdef Contour F = Contour()
@@ -251,5 +257,5 @@ cdef class Contour:
     return (1 - Contour.Identity()) * z1 + Contour.Identity() * z2
 
   @staticmethod
-  def Sphere(const complex center=0., const REAL radius=1., ccw=False):
+  def Sphere(const complex center=0., const REAL radius=1., const cbool ccw=False):
     return center + (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity(0., 2. * M_PI)))
