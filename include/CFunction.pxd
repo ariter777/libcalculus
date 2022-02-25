@@ -74,6 +74,18 @@ cdef extern from "CFunction.h" namespace "libcalculus" nogil:
     @staticmethod
     CFunction[Dom, Ran] Cot() except +
     @staticmethod
+    CFunction[Dom, Ran] Sinh() except +
+    @staticmethod
+    CFunction[Dom, Ran] Cosh() except +
+    @staticmethod
+    CFunction[Dom, Ran] Tanh() except +
+    @staticmethod
+    CFunction[Dom, Ran] Sech() except +
+    @staticmethod
+    CFunction[Dom, Ran] Csch() except +
+    @staticmethod
+    CFunction[Dom, Ran] Coth() except +
+    @staticmethod
     CFunction[Dom, Ran] Pi() except +
     @staticmethod
     CFunction[Dom, Ran] E() except +

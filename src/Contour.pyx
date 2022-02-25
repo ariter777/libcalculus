@@ -270,6 +270,42 @@ cdef class Contour:
     return F
 
   @staticmethod
+  def Sinh(const REAL start=0., const REAL end=1.):
+    cdef Contour F = Contour(start, end)
+    F.cfunction = CFunction[REAL, COMPLEX].Sinh()
+    return F
+
+  @staticmethod
+  def Cosh(const REAL start=0., const REAL end=1.):
+    cdef Contour F = Contour(start, end)
+    F.cfunction = CFunction[REAL, COMPLEX].Cosh()
+    return F
+
+  @staticmethod
+  def Tanh(const REAL start=0., const REAL end=1.):
+    cdef Contour F = Contour(start, end)
+    F.cfunction = CFunction[REAL, COMPLEX].Tanh()
+    return F
+
+  @staticmethod
+  def Sech(const REAL start=0., const REAL end=1.):
+    cdef Contour F = Contour(start, end)
+    F.cfunction = CFunction[REAL, COMPLEX].Sech()
+    return F
+
+  @staticmethod
+  def Csch(const REAL start=0., const REAL end=1.):
+    cdef Contour F = Contour(start, end)
+    F.cfunction = CFunction[REAL, COMPLEX].Csch()
+    return F
+
+  @staticmethod
+  def Coth(const REAL start=0., const REAL end=1.):
+    cdef Contour F = Contour(start, end)
+    F.cfunction = CFunction[REAL, COMPLEX].Coth()
+    return F
+
+  @staticmethod
   def Pi(const REAL start=0., const REAL end=1.):
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Pi()

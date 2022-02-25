@@ -281,6 +281,42 @@ cdef class RealFunction:
     return F
 
   @staticmethod
+  def Sinh(const REAL start=0., const REAL end=1.):
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Sinh()
+    return F
+
+  @staticmethod
+  def Cosh(const REAL start=0., const REAL end=1.):
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Cosh()
+    return F
+
+  @staticmethod
+  def Tanh(const REAL start=0., const REAL end=1.):
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Tanh()
+    return F
+
+  @staticmethod
+  def Sech(const REAL start=0., const REAL end=1.):
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Sech()
+    return F
+
+  @staticmethod
+  def Csch(const REAL start=0., const REAL end=1.):
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Csch()
+    return F
+
+  @staticmethod
+  def Coth(const REAL start=0., const REAL end=1.):
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Coth()
+    return F
+
+  @staticmethod
   def Pi(const REAL start=0., const REAL end=1.):
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Pi()

@@ -239,6 +239,42 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
+  def Sinh():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Sinh()
+    return F
+
+  @staticmethod
+  def Cosh():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Cosh()
+    return F
+
+  @staticmethod
+  def Tanh():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Tanh()
+    return F
+
+  @staticmethod
+  def Sech():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Sech()
+    return F
+
+  @staticmethod
+  def Csch():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Csch()
+    return F
+
+  @staticmethod
+  def Coth():
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Coth()
+    return F
+
+  @staticmethod
   def Pi():
     cdef ComplexFunction F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].Pi()
