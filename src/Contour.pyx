@@ -14,7 +14,7 @@ cdef class Contour:
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(Contour self, np.ndarray[const REAL] t):
-    cdef np.ndarray[COMPLEX] result = np.zeros(t.shape[0], dtype=complex)
+    cdef np.ndarray[COMPLEX] result = np.zeros_like(t, dtype=complex)
     for i in range(t.shape[0]):
       result[i] = self.cfunction(t[i])
     return result

@@ -9,7 +9,7 @@ cdef class RealFunction:
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(RealFunction self, np.ndarray[const REAL] t):
-    cdef np.ndarray[REAL] result = np.zeros(t.shape[0], dtype=np.double)
+    cdef np.ndarray[REAL] result = np.zeros_like(t, dtype=np.double)
     for i in range(t.shape[0]):
       result[i] = self.cfunction(t[i])
     return result

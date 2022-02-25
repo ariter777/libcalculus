@@ -10,7 +10,7 @@ cdef class ComplexFunction:
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[COMPLEX] _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):
-    cdef np.ndarray[COMPLEX] result = np.zeros(z.shape[0], dtype=complex)
+    cdef np.ndarray[COMPLEX] result = np.zeros_like(z, dtype=complex)
     for i in range(z.shape[0]):
       result[i] = self.cfunction(z[i])
     return result
