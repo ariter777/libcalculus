@@ -185,6 +185,32 @@ cdef class Contour:
     else:
       return int(np.rint(result))
 
+  def __eq__(lhs, rhs):
+    cdef ContourComparison result = ContourComparison()
+    if isinstance(lhs, Contour) and isinstance(rhs, Contour):
+      result.ccomparison = (<Contour>lhs).cfunction == (<Contour>rhs).cfunction
+      return result
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<Contour>lhs).cfunction == CFunction[REAL, COMPLEX].Constant(<COMPLEX>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, Contour):
+      result.ccomparison = CFunction[REAL, COMPLEX].Constant(<REAL>lhs) == (<Contour>rhs).cfunction
+    else:
+      raise NotImplementedError
+    return result
+
+  def __ne__(lhs, rhs):
+    cdef ContourComparison result = ContourComparison()
+    if isinstance(lhs, Contour) and isinstance(rhs, Contour):
+      result.ccomparison = (<Contour>lhs).cfunction != (<Contour>rhs).cfunction
+      return result
+    elif isinstance(lhs, Contour) and isinstance(rhs, (int, float)):
+      result.ccomparison = (<Contour>lhs).cfunction != CFunction[REAL, COMPLEX].Constant(<COMPLEX>rhs)
+    elif isinstance(lhs, (int, float)) and isinstance(rhs, Contour):
+      result.ccomparison = CFunction[REAL, COMPLEX].Constant(<COMPLEX>lhs) != (<Contour>rhs).cfunction
+    else:
+      raise NotImplementedError
+    return result
+
   @staticmethod
   def Constant(COMPLEX c):
     cdef Contour F = Contour()

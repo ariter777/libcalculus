@@ -3,6 +3,7 @@ from Definitions cimport *
 from CFunction cimport *
 cimport cython
 import numpy as np
+cimport numpy as np
 
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
@@ -153,8 +154,6 @@ cdef class ComplexFunction:
     else:
       raise NotImplementedError
     return result
-
-
 
   def __ne__(lhs, rhs):
     cdef ComplexComparison result = ComplexComparison()
