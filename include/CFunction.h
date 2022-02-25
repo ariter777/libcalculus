@@ -95,7 +95,7 @@ namespace libcalculus {
         CComparison<Dom> operator!=(CFunction const &rhs) const;
 
         /* Preset instances */
-        static inline CFunction Constant(Ran const c) { return CFunction([=](Dom z) noexcept { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
+        static inline CFunction Constant(Ran const c) { return CFunction([=](Dom z) noexcept { return c; }, Latex::fmt_const(c, false), OP_TYPE::CONST); }
         static inline CFunction Re() { return CFunction::_Re;  }
         static inline CFunction Im() { return CFunction::_Im; }
         static inline CFunction Conj() { return CFunction::_Conj; }

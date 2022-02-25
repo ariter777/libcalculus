@@ -5,7 +5,9 @@ namespace libcalculus {
     using namespace std::complex_literals;
     enum OP_TYPE {
         NOP, // Nothing
+        CONST, // Constant
         FUNC, // Applying a function - sin, cos, etc.
+        COMP, // Function composition
         ADD, // Addition: (f, g) -> f + g
         SUB, // Subtraction: (f, g) -> f - g
         MUL, // Multiplication: (f, g) -> f * g
@@ -16,7 +18,7 @@ namespace libcalculus {
         NEG, // Negation: f -> -f
         IF, // Cases
     };
-    
+
     using REAL = double;
     using COMPLEX = std::complex<double>;
 }

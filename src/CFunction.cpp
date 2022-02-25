@@ -15,7 +15,7 @@ namespace libcalculus {
     template<typename Predom>
     CFunction<Predom, Ran> CFunction<Dom, Ran>::compose(CFunction<Predom, Dom> const &rhs) const {
         std::string new_latex = std::regex_replace(this->_latex, std::regex(LATEX_VAR),
-                                Latex::parenthesize_if(rhs._latex, OP_TYPE::FUNC, rhs._last_op));
+                                                   Latex::parenthesize_if(rhs._latex, OP_TYPE::COMP, rhs._last_op));
         return CFunction<Predom, Ran>([lhs_f = this->_f, rhs_f = rhs._f](Predom z) { return lhs_f(rhs_f(z)); }, new_latex, this->_last_op);
     }
 
@@ -43,9 +43,9 @@ namespace libcalculus {
     CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator*=(CFunction<Dom, Ran> const &rhs) {
         this->_f = [lhs_f = this->_f, rhs_f = rhs._f](Dom z) { return lhs_f(z) * rhs_f(z); };
         this->_latex = Latex::parenthesize_if(this->_latex, OP_TYPE::MUL, this->_last_op);
-        if (rhs._last_op == OP_TYPE::MULCONST) this->_latex.append(" \\cdot ");
+        if (rhs._last_op == OP_TYPE::MULCONST || rhs._last_op == OP_TYPE::CONST) this->_latex.append(" \\cdot ");
         this->_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::MUL, rhs._last_op));
-        this->_last_op = OP_TYPE::MUL;
+        this->_last_op = this->_last_op == OP_TYPE::CONST || this->_last_op == OP_TYPE::MULCONST ? OP_TYPE::MULCONST : OP_TYPE::MUL;
         return *this;
     }
 
@@ -64,43 +64,51 @@ namespace libcalculus {
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator+=(Ran const c) {
-        this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) + c; };
-        this->_latex.append(" + ");
-        this->_latex.append(Latex::fmt_const(c, true));
-        this->_last_op = OP_TYPE::ADD;
+        if (!Traits<Ran>::close(c, 0)) {
+            this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) + c; };
+            this->_latex.append(" + ");
+            this->_latex.append(Latex::fmt_const(c, true));
+            this->_last_op = OP_TYPE::ADD;
+        }
         return *this;
     }
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator-=(Ran const c) {
-        this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) - c; };
-        this->_latex.append(" - ");
-        this->_latex.append(Latex::fmt_const(c, true));
-        this->_last_op = OP_TYPE::SUB;
+        if (!Traits<Ran>::close(c, 0)) {
+            this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) - c; };
+            this->_latex.append(" - ");
+            this->_latex.append(Latex::fmt_const(c, true));
+            this->_last_op = OP_TYPE::SUB;
+        }
         return *this;
     }
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator*=(Ran const c) {
-        this->_f = [c = c, old_f = this->_f](Dom z) { return c * old_f(z); };
-        std::string new_latex = Latex::fmt_const(c, true);
-        if (this->_last_op == OP_TYPE::MULCONST) new_latex.append(" \\cdot ");
-        new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::MUL, this->_last_op));
-        this->_latex = new_latex;
-        this->_last_op = OP_TYPE::MULCONST;
+        if (!Traits<Ran>::close(c, 1)) {
+            this->_f = [c = c, old_f = this->_f](Dom z) { return c * old_f(z); };
+            std::string new_latex = Latex::fmt_const(c, true);
+            if (this->_last_op == OP_TYPE::MULCONST || this->_last_op == OP_TYPE::CONST) new_latex.append(" \\cdot ");
+            new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::MUL, this->_last_op));
+            this->_latex = new_latex;
+            this->_last_op = OP_TYPE::MULCONST;
+        }
         return *this;
     }
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator/=(Ran const c) {
-        this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) / c; };
-        std::string new_latex = " \\frac{";
-        new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::DIV, this->_last_op));
-        new_latex.append("}{");
-        new_latex.append(Latex::fmt_const(c, false));
-        new_latex.append("}");
-        this->_latex = new_latex;
-        this->_last_op = OP_TYPE::DIV;
+        if (!Traits<Ran>::close(c, 1)) {
+            this->_f = [c = c, old_f = this->_f](Dom z) { return old_f(z) / c; };
+            std::string new_latex = " \\frac{";
+            new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::DIV, this->_last_op));
+            new_latex.append("}{");
+            new_latex.append(Latex::fmt_const(c, false));
+            new_latex.append("}");
+            this->_latex = new_latex;
+            this->_last_op = OP_TYPE::DIV;
+        }
         return *this;
     }
 

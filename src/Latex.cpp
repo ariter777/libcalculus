@@ -14,7 +14,8 @@ namespace libcalculus {
             else if (((last_op == OP_TYPE::ADD || last_op == OP_TYPE::SUB) && (new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG))
                      || (last_op != OP_TYPE::NOP && new_op == OP_TYPE::LPOW)
                      || (last_op == OP_TYPE::NEG && (new_op == OP_TYPE::ADD || new_op == OP_TYPE::SUB || new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG))
-                     || (last_op == OP_TYPE::IF))
+                     || (last_op == OP_TYPE::IF)
+                     || (new_op == OP_TYPE::COMP && (last_op == OP_TYPE::CONST || last_op == OP_TYPE::MULCONST)))
                 return Latex::_parenthesize(expr);
             else return expr;
         }
