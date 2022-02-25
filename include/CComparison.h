@@ -14,7 +14,7 @@ namespace libcalculus {
                 return 1e-6;
         }();
 
-        inline static bool close(T const a, T const b) noexcept { return std::abs(a - b) < Traits<T>::tol; }
+        inline static bool close(T const a, T const b, REAL const tol=Traits<T>::tol) noexcept { return std::abs(a - b) < tol; }
     };
 
     template<typename Dom>
