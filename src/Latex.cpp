@@ -9,7 +9,7 @@ namespace libcalculus {
             return result;
         }
 
-        std::string parenthesize_if(std::string const &expr, char const new_op, char const last_op) {
+        std::string parenthesize_if(std::string const &expr, OP_TYPE const new_op, OP_TYPE const last_op) {
             if (new_op == OP_TYPE::FUNC || new_op == OP_TYPE::DIV || new_op == OP_TYPE::RPOW) return expr;
             else if (((last_op == OP_TYPE::ADD || last_op == OP_TYPE::SUB) && (new_op == OP_TYPE::MUL || new_op == OP_TYPE::NEG))
                      || (last_op != OP_TYPE::NOP && new_op == OP_TYPE::LPOW)

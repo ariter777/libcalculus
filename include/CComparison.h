@@ -27,14 +27,14 @@ namespace libcalculus {
         CComparison(std::function<bool(Dom)> const &eval, std::string const &latex) : latex{latex}, eval{eval} {}
 
         // Unary operators
-        CComparison<Dom> operator~() const;
+        CComparison operator~() const;
 
         // Binary operators
-        CComparison<Dom> operator|(CComparison<Dom> const &rhs) const;
-        CComparison<Dom> operator&(CComparison<Dom> const &rhs) const;
+        CComparison operator|(CComparison const &rhs) const;
+        CComparison operator&(CComparison const &rhs) const;
 
         // In-place binary operators
-        CComparison<Dom> &operator|=(CComparison<Dom> const &rhs);
-        CComparison<Dom> &operator&=(CComparison<Dom> const &rhs);
+        CComparison &operator|=(CComparison const &rhs);
+        CComparison &operator&=(CComparison const &rhs);
     };
 }

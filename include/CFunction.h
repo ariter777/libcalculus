@@ -17,14 +17,35 @@ namespace libcalculus {
     class CFunction {
         using function = std::function<Ran(Dom)>;
     private:
-        function _f = [](Dom z) { return z; };
+        function _f = [](Dom z) noexcept { return z; };
         std::string _latex = LATEX_VAR;
         OP_TYPE _last_op = OP_TYPE::NOP;
         template<typename, typename> friend class CFunction;
+
+        /* Preset instances */
+        static CFunction const _Re;
+        static CFunction const _Im;
+        static CFunction const _Conj;
+        static CFunction const _Abs;
+        static CFunction const _Exp;
+        static CFunction const _Sin;
+        static CFunction const _Cos;
+        static CFunction const _Tan;
+        static CFunction const _Sec;
+        static CFunction const _Csc;
+        static CFunction const _Cot;
+        static CFunction const _Sinh;
+        static CFunction const _Cosh;
+        static CFunction const _Tanh;
+        static CFunction const _Sech;
+        static CFunction const _Csch;
+        static CFunction const _Coth;
+        static CFunction const _Pi;
+        static CFunction const _E;
     public:
         CFunction() {}
         CFunction(function const &f) : _f{f} {}
-        CFunction(function const &f, std::string const &latex, OP_TYPE last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
+        CFunction(function const &f, std::string const &latex, OP_TYPE const last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
         Ran operator()(Dom z) const;
         std::string latex(std::string const &varname = "z") const;
 
@@ -32,71 +53,70 @@ namespace libcalculus {
         template<typename Predom> CFunction<Predom, Ran> compose(CFunction<Predom, Dom> const &rhs) const;
 
         /* In-place function-with-function operators */
-        CFunction<Dom, Ran> &operator+=(CFunction<Dom, Ran> const &rhs);
-        CFunction<Dom, Ran> &operator-=(CFunction<Dom, Ran> const &rhs);
-        CFunction<Dom, Ran> &operator*=(CFunction<Dom, Ran> const &rhs);
-        CFunction<Dom, Ran> &operator/=(CFunction<Dom, Ran> const &rhs);
+        CFunction &operator+=(CFunction const &rhs);
+        CFunction &operator-=(CFunction const &rhs);
+        CFunction &operator*=(CFunction const &rhs);
+        CFunction &operator/=(CFunction const &rhs);
 
         /* In-place function-with-constant operators */
-        CFunction<Dom, Ran> &operator+=(Ran const c);
-        CFunction<Dom, Ran> &operator-=(Ran const c);
-        CFunction<Dom, Ran> &operator*=(Ran const c);
-        CFunction<Dom, Ran> &operator/=(Ran const c);
+        CFunction &operator+=(Ran const c);
+        CFunction &operator-=(Ran const c);
+        CFunction &operator*=(Ran const c);
+        CFunction &operator/=(Ran const c);
 
         /* Function additive inverse */
-        CFunction<Dom, Ran> operator-() const;
+        CFunction operator-() const;
 
         /* Function-with-function operators */
-        inline CFunction<Dom, Ran> operator+(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) += rhs; }
-        inline CFunction<Dom, Ran> operator-(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) -= rhs; }
-        inline CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) *= rhs; }
-        inline CFunction<Dom, Ran> operator/(CFunction<Dom, Ran> const &rhs) const { return CFunction(*this) /= rhs; }
-        CFunction<Dom, Ran> pow(CFunction<Dom, Ran> const &rhs) const;
+        inline CFunction operator+(CFunction const &rhs) const { return CFunction(*this) += rhs; }
+        inline CFunction operator-(CFunction const &rhs) const { return CFunction(*this) -= rhs; }
+        inline CFunction operator*(CFunction const &rhs) const { return CFunction(*this) *= rhs; }
+        inline CFunction operator/(CFunction const &rhs) const { return CFunction(*this) /= rhs; }
+        CFunction pow(CFunction const &rhs) const;
 
         /* Function-with-constant operators */
-        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator+(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
-        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
-        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator*(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
-        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(CFunction<Dom_, Ran_> const &lhs, Ran rhs);
-        CFunction<Dom, Ran> pow(Ran const c) const;
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator+(CFunction<Dom_, Ran_> const &lhs, Ran const rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(CFunction<Dom_, Ran_> const &lhs, Ran const rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator*(CFunction<Dom_, Ran_> const &lhs, Ran const rhs);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(CFunction<Dom_, Ran_> const &lhs, Ran const rhs);
+        CFunction pow(Ran const c) const;
 
         /* Constant-with-function operators */
         template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator-(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
         template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> operator/(Ran_ lhs, CFunction<Dom_, Ran_> const &rhs);
-        CFunction<Dom, Ran> lpow(Ran const c) const;
+        CFunction lpow(Ran const c) const;
 
         /* Comparison operators */
-        CComparison<Dom> operator>(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom> operator<(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom> operator==(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom> operator>=(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom> operator<=(CFunction<Dom, Ran> const &rhs) const;
-        CComparison<Dom> operator!=(CFunction<Dom, Ran> const &rhs) const;
+        CComparison<Dom> operator>(CFunction const &rhs) const;
+        CComparison<Dom> operator<(CFunction const &rhs) const;
+        CComparison<Dom> operator==(CFunction const &rhs) const;
+        CComparison<Dom> operator>=(CFunction const &rhs) const;
+        CComparison<Dom> operator<=(CFunction const &rhs) const;
+        CComparison<Dom> operator!=(CFunction const &rhs) const;
 
         /* Preset instances */
-        static CFunction<Dom, Ran> Constant(Ran const c) { return CFunction([=](Dom z) noexcept { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
-        static CFunction<Dom, Ran> Re() { return CFunction([=](Dom z) { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Im() { return CFunction([=](Dom z) { return std::imag(z); }, "\\text{Im}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Conj() { return CFunction([=](Dom z) { return std::conj(z); }, "\\overline{" LATEX_VAR "}", OP_TYPE::NOP); }
-        static CFunction<Dom, Ran> Abs() { return CFunction([=](Dom z) { return std::abs(z); }, "\\left|" LATEX_VAR "\\right|", OP_TYPE::FUNC); }
-
-        static CFunction<Dom, Ran> Exp() { return CFunction([](Dom z) { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP); }
-        static CFunction<Dom, Ran> Sin() { return CFunction([](Dom z) { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Cos() { return CFunction([](Dom z) { return std::cos(z); }, "\\cos\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Tan() { return CFunction([](Dom z) { return std::tan(z); }, "\\tan\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Sec() { return CFunction([](Dom z) { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Csc() { return CFunction([](Dom z) { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Cot() { return CFunction([](Dom z) { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Sinh() { return CFunction([](Dom z) { return std::sinh(z); }, "\\sinh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Cosh() { return CFunction([](Dom z) { return std::cosh(z); }, "\\cosh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Tanh() { return CFunction([](Dom z) { return std::tanh(z); }, "\\tanh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Sech() { return CFunction([](Dom z) { return 1. / std::cosh(z); }, "\\text{sech}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Csch() { return CFunction([](Dom z) { return 1. / std::sinh(z); }, "\\text{csch}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Coth() { return CFunction([](Dom z) { return 1. / std::tanh(z); }, "\\coth\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC); }
-        static CFunction<Dom, Ran> Pi() { return CFunction([](Dom z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP); }
-        static CFunction<Dom, Ran> E() { return CFunction([](Dom z) noexcept { return M_E; }, "e", OP_TYPE::NOP); }
-        static CFunction<Dom, Ran> If(CComparison<Dom> const &cond_, CFunction<Dom, Ran> const &then_,
-                                      CFunction<Dom, Ran> const &else_ = CFunction<Dom, Ran>::Constant(Ran{0})) {
+        static inline CFunction Constant(Ran const c) { return CFunction([=](Dom z) noexcept { return c; }, Latex::fmt_const(c, false), OP_TYPE::NOP); }
+        static inline CFunction Re() { return CFunction::_Re;  }
+        static inline CFunction Im() { return CFunction::_Im; }
+        static inline CFunction Conj() { return CFunction::_Conj; }
+        static inline CFunction Abs() { return CFunction::_Abs; }
+        static inline CFunction Exp() { return CFunction::_Exp; }
+        static inline CFunction Sin() { return CFunction::_Sin; }
+        static inline CFunction Cos() { return CFunction::_Cos; }
+        static inline CFunction Tan() { return CFunction::_Tan; }
+        static inline CFunction Sec() { return CFunction::_Sec; }
+        static inline CFunction Csc() { return CFunction::_Csc; }
+        static inline CFunction Cot() { return CFunction::_Cot; }
+        static inline CFunction Sinh() { return CFunction::_Sinh; }
+        static inline CFunction Cosh() { return CFunction::_Cosh; }
+        static inline CFunction Tanh() { return CFunction::_Tanh; }
+        static inline CFunction Sech() { return CFunction::_Sech; }
+        static inline CFunction Csch() { return CFunction::_Csch; }
+        static inline CFunction Coth() { return CFunction::_Coth; }
+        static inline CFunction Pi() { return CFunction::_Pi; }
+        static inline CFunction E() { return CFunction::_E; }
+        static inline CFunction If(CComparison<Dom> const &cond_, CFunction const &then_,
+                                      CFunction const &else_ = CFunction::Constant(Ran{0})) {
               std::string new_latex = "\\begin{cases} ";
               new_latex.append(then_._latex);
               new_latex.append(" & ;\\;");
@@ -108,4 +128,63 @@ namespace libcalculus {
                                new_latex, OP_TYPE::IF);
         }
     };
+
+    /* Preset instances - instantiation */
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Re = CFunction<Dom, Ran>([](Dom z) { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Im = CFunction<Dom, Ran>([](Dom z) { return std::imag(z); }, "\\text{Im}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Conj = CFunction<Dom, Ran>([](Dom z) { return std::conj(z); }, "\\overline{" LATEX_VAR "}", OP_TYPE::NOP);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Abs = CFunction<Dom, Ran>([](Dom z) { return std::abs(z); }, "\\left|" LATEX_VAR "\\right|", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Exp = CFunction<Dom, Ran>([](Dom z) { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sin = CFunction<Dom, Ran>([](Dom z) { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cos = CFunction<Dom, Ran>([](Dom z) { return std::cos(z); }, "\\cos\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Tan = CFunction<Dom, Ran>([](Dom z) { return std::tan(z); }, "\\tan\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sec = CFunction<Dom, Ran>([](Dom z) { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Csc = CFunction<Dom, Ran>([](Dom z) { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cot = CFunction<Dom, Ran>([](Dom z) { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sinh = CFunction<Dom, Ran>([](Dom z) { return std::sinh(z); }, "\\sinh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cosh = CFunction<Dom, Ran>([](Dom z) { return std::cosh(z); }, "\\cosh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Tanh = CFunction<Dom, Ran>([](Dom z) { return std::tanh(z); }, "\\tanh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sech = CFunction<Dom, Ran>([](Dom z) { return 1. / std::cosh(z); }, "\\text{sech}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Csch = CFunction<Dom, Ran>([](Dom z) { return 1. / std::sinh(z); }, "\\text{csch}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Coth = CFunction<Dom, Ran>([](Dom z) { return 1. / std::tanh(z); }, "\\coth\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Pi = CFunction<Dom, Ran>([](Dom z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_E = CFunction<Dom, Ran>([](Dom z) noexcept { return M_E; }, "e", OP_TYPE::NOP);
+
 }
