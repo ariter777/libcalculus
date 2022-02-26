@@ -4,6 +4,7 @@ from CFunction cimport *
 cimport cython
 import numpy as np
 cimport numpy as np
+from cython.parallel import prange
 
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
@@ -12,7 +13,8 @@ cdef class ComplexFunction:
   @cython.wraparound(False)
   cdef np.ndarray[COMPLEX] _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):
     cdef np.ndarray[COMPLEX] result = np.zeros_like(z, dtype=complex)
-    for i in range(z.shape[0]):
+    cdef size_t i, n = z.shape[0]
+    for i in prange(n, nogil=True):
       result[i] = self.cfunction(z[i])
     return result
 

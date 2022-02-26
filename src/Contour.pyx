@@ -1,7 +1,9 @@
 # distutils: language = c++
 from Definitions cimport *
 from CFunction cimport *
+cimport cython
 import numpy as np
+from cython.parallel import prange
 
 cdef class Contour:
   cdef CFunction[REAL, COMPLEX] cfunction
@@ -15,7 +17,8 @@ cdef class Contour:
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(Contour self, np.ndarray[const REAL] t):
     cdef np.ndarray[COMPLEX] result = np.zeros_like(t, dtype=complex)
-    for i in range(t.shape[0]):
+    cdef size_t i, n = t.shape[0]
+    for i in prange(n, nogil=True):
       result[i] = self.cfunction(t[i])
     return result
 

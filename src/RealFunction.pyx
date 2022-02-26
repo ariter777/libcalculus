@@ -2,6 +2,7 @@
 from Definitions cimport *
 from CFunction cimport *
 import numpy as np
+from cython.parallel import prange
 
 cdef class RealFunction:
   cdef CFunction[REAL, REAL] cfunction
@@ -10,7 +11,8 @@ cdef class RealFunction:
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(RealFunction self, np.ndarray[const REAL] t):
     cdef np.ndarray[REAL] result = np.zeros_like(t, dtype=np.double)
-    for i in range(t.shape[0]):
+    cdef size_t i, n = t.shape[0]
+    for i in prange(n, nogil=True):
       result[i] = self.cfunction(t[i])
     return result
 
