@@ -1,9 +1,5 @@
 # distutils: language = c++
-from Definitions cimport *
 from CFunction cimport *
-cimport cython
-import numpy as np
-cimport numpy as np
 from cython.parallel import prange
 
 cdef class ComplexFunction:
@@ -14,7 +10,7 @@ cdef class ComplexFunction:
   cdef np.ndarray[COMPLEX] _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):
     cdef np.ndarray[COMPLEX] result = np.zeros_like(z, dtype=complex)
     cdef size_t i, n = z.shape[0]
-    for i in prange(n, nogil=True):
+    for i in prange(n, nogil=True, num_threads=Globals.NUM_THREADS):
       result[i] = self.cfunction(z[i])
     return result
 
