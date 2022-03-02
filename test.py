@@ -166,7 +166,7 @@ class ContourTester(ComplexFunctionTester):
         return c, cc
 
 class IntegralTester(FunctionTester):
-    MAX_OPS = 0
+    MAX_OPS = 3
     BOUND = 20.
 
     def __init__(self):
@@ -199,7 +199,7 @@ class IntegralTester(FunctionTester):
 
             integral = integrate(f, c, tol=tol)
             cintegral = self._scipy_integrate(lambda t: cf(cc(t)) * dcc(t), c.start, c.end, tol=tol)
-            print(np.allclose(integral, cintegral, rtol=tol))
+            print(integral, cintegral)
 
     def run(self, n_funcs, n_integrals):
         """Generate n_funcs random functions and check n_integrals random integrals on each function."""
@@ -242,8 +242,8 @@ if __name__ == "__main__":
     tester = ContourTester()
     tester.run(100, 10)
 
-    tester = IntegralTester()
-    tester.run(2, 2)
+    # tester = IntegralTester()
+    # tester.run(2, 2)
 
     tester = LatexTester()
     tester.run(3)
