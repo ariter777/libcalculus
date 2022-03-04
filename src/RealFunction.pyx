@@ -21,7 +21,7 @@ cdef class RealFunction:
     elif isinstance(t, np.ndarray) and np.issubdtype(t.dtype, np.number):
       return self._call_array(t.ravel().astype(np.double, copy=False)).reshape(t.shape)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(t))
 
   def latex(RealFunction self, str varname="t"):
     return self.cfunction.latex(varname.encode()).decode()
@@ -92,7 +92,7 @@ cdef class RealFunction:
       result = RealFunction()
       result.cfunction = rsubR(<REAL>lhs, (<RealFunction>rhs).cfunction)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __mul__(lhs, rhs):
@@ -106,7 +106,7 @@ cdef class RealFunction:
       result.cfunction = (<RealFunction>rhs).cfunction
       result *= lhs
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __truediv__(lhs, rhs):
@@ -119,7 +119,7 @@ cdef class RealFunction:
       result = RealFunction()
       result.cfunction = rdivR(<REAL>lhs, (<RealFunction>rhs).cfunction)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __pow__(lhs, rhs, mod):
@@ -134,14 +134,14 @@ cdef class RealFunction:
       result = RealFunction()
       result.cfunction = (<RealFunction>rhs).cfunction.lpow(<REAL>lhs)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __matmul__(lhs, rhs):
     if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
       return lhs._compose(rhs)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
 
   def __gt__(lhs, rhs):
     cdef RealComparison result = RealComparison()
@@ -153,7 +153,7 @@ cdef class RealFunction:
     elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
       result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) > (<RealFunction>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __lt__(lhs, rhs):
@@ -166,7 +166,7 @@ cdef class RealFunction:
     elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
       result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) < (<RealFunction>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __eq__(lhs, rhs):
@@ -179,7 +179,7 @@ cdef class RealFunction:
     elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
       result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) == (<RealFunction>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __ge__(lhs, rhs):
@@ -192,7 +192,7 @@ cdef class RealFunction:
     elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
       result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) >= (<RealFunction>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __le__(lhs, rhs):
@@ -205,7 +205,7 @@ cdef class RealFunction:
     elif isinstance(lhs, (int, float)) and isinstance(rhs, RealFunction):
       result.ccomparison = CFunction[REAL, REAL].Constant(<REAL>lhs) <= (<RealFunction>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __ne__(lhs, rhs):

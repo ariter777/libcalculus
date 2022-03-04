@@ -26,7 +26,7 @@ cdef class Contour:
     elif isinstance(t, np.ndarray) and np.issubdtype(t.dtype, np.number):
       return self._call_array(t.ravel().astype(np.double, copy=False)).reshape(t.shape)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(t))
 
   @property
   def start(Contour self):
@@ -105,7 +105,7 @@ cdef class Contour:
       result.cfunction = (<Contour>rhs).cfunction
       result += lhs
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __sub__(lhs, rhs):
@@ -118,7 +118,7 @@ cdef class Contour:
       result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = rsubC(<COMPLEX>lhs, (<Contour>rhs).cfunction)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __mul__(lhs, rhs):
@@ -132,7 +132,7 @@ cdef class Contour:
       result.cfunction = (<Contour>rhs).cfunction
       result *= lhs
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __truediv__(lhs, rhs):
@@ -145,7 +145,7 @@ cdef class Contour:
       result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = rdivC(<COMPLEX>lhs, (<Contour>rhs).cfunction)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __pow__(lhs, rhs, mod):
@@ -160,14 +160,14 @@ cdef class Contour:
       result = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
       result.cfunction = (<Contour>rhs).cfunction.lpow(<COMPLEX>lhs)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __matmul__(lhs, rhs):
     if isinstance(lhs, Contour) and isinstance(rhs, RealFunction):
       return lhs._compose_real(rhs)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
 
   def __and__(Contour lhs, Contour rhs):
     """Scales both contours and concatenates them so that the resulting contour runs from 0 to 1, without loss of data."""
@@ -194,7 +194,7 @@ cdef class Contour:
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
       result.ccomparison = CFunction[REAL, COMPLEX].Constant(<COMPLEX>lhs) == (<Contour>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __ne__(lhs, rhs):
@@ -207,7 +207,7 @@ cdef class Contour:
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, Contour):
       result.ccomparison = CFunction[REAL, COMPLEX].Constant(<COMPLEX>lhs) != (<Contour>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   @staticmethod

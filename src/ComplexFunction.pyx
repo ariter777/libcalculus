@@ -22,7 +22,7 @@ cdef class ComplexFunction:
     elif isinstance(z, np.ndarray) and np.issubdtype(z.dtype, np.number):
       return self._call_array(z.ravel().astype(complex, copy=False)).reshape(z.shape)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(z))
 
   def latex(ComplexFunction self, str varname="z"):
     return self.cfunction.latex(varname.encode()).decode()
@@ -83,7 +83,7 @@ cdef class ComplexFunction:
       result.cfunction = (<ComplexFunction>rhs).cfunction
       result += lhs
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __sub__(lhs, rhs):
@@ -94,7 +94,7 @@ cdef class ComplexFunction:
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       result.cfunction = csubC(<COMPLEX>lhs, (<ComplexFunction>rhs).cfunction) # FIX!!
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __mul__(lhs, rhs):
@@ -106,7 +106,7 @@ cdef class ComplexFunction:
       result.cfunction = (<ComplexFunction>rhs).cfunction
       result *= lhs
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __truediv__(lhs, rhs):
@@ -117,7 +117,7 @@ cdef class ComplexFunction:
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       result.cfunction = cdivC(<COMPLEX>lhs, (<ComplexFunction>rhs).cfunction)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __pow__(lhs, rhs, mod):
@@ -129,7 +129,7 @@ cdef class ComplexFunction:
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       result.cfunction = (<ComplexFunction>rhs).cfunction.lpow(<COMPLEX>lhs)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __matmul__(lhs, rhs):
@@ -138,7 +138,7 @@ cdef class ComplexFunction:
     if isinstance(lhs, ComplexFunction) and isinstance(rhs, Contour):
       return lhs._compose_contour(rhs)
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
 
   def __eq__(lhs, rhs):
     cdef ComplexComparison result = ComplexComparison()
@@ -150,7 +150,7 @@ cdef class ComplexFunction:
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       result.ccomparison = CFunction[COMPLEX, COMPLEX].Constant(<COMPLEX>lhs) == (<ComplexFunction>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   def __ne__(lhs, rhs):
@@ -163,7 +163,7 @@ cdef class ComplexFunction:
     elif isinstance(lhs, (int, float, complex)) and isinstance(rhs, ComplexFunction):
       result.ccomparison = CFunction[COMPLEX, COMPLEX].Constant(<COMPLEX>lhs) != (<ComplexFunction>rhs).cfunction
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(lhs), type(rhs))
     return result
 
   @staticmethod

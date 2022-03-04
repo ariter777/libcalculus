@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from libcalculus import ComplexFunction, Contour, integrate
+from libcalculus import ComplexFunction, RealFunction, Contour, integrate
 
 import numpy as np
 import scipy.misc, scipy.integrate
@@ -28,14 +28,10 @@ class FunctionTester(Tester):
     MAX_ERRORS = 20
     N_JOBS = mp.cpu_count()
 
-    def _rand(self):
-        real, imag = np.random.uniform(-self.BOUND, self.BOUND, size=2)
-        return real + 1j * imag
-
     def _random_base_function(self):
         """Returns a random function object and its corresponding lambda."""
         func = np.random.choice(list(self.BASE_FUNCTIONS.keys()))
-        if func is ComplexFunction.Constant or func is Contour.Constant:
+        if func is ComplexFunction.Constant or func is RealFunction.Constant or func is Contour.Constant:
             c = self._rand()
             return func(c), lambda z, v=c: v
         else:
@@ -90,6 +86,10 @@ class ComplexFunctionTester(FunctionTester):
                       ComplexFunction.Csch: lambda z: complex(1.) / complex(np.sinh(z)),
                       ComplexFunction.Coth: lambda z: complex(1.) / complex(np.tanh(z))}
 
+    def _rand(self, n=1):
+       real, imag = np.random.uniform(-self.BOUND, self.BOUND, size=(2, n))
+       return (real + 1j * imag) if n > 1 else (real[0] + 1j * imag[0])
+
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
         n_tries = self.MAX_TRIES + 1
@@ -135,6 +135,28 @@ class ComplexFunctionTester(FunctionTester):
 
         super()._done()
 
+class RealFunctionTester(ComplexFunctionTester):
+    BOUND = 20.
+    BASE_FUNCTIONS = {RealFunction.Constant: None,
+                      RealFunction.Identity: lambda z: z,
+                      RealFunction.Abs: lambda z: np.abs(z),
+                      RealFunction.Exp: lambda z: np.exp(z),
+                      RealFunction.Sin: lambda z: np.sin(z),
+                      RealFunction.Cos: lambda z: np.cos(z),
+                      RealFunction.Tan: lambda z: np.tan(z),
+                      RealFunction.Sec: lambda z: 1. / np.cos(z),
+                      RealFunction.Csc: lambda z: 1. / np.sin(z),
+                      RealFunction.Cot: lambda z: 1. / np.tan(z),
+                      RealFunction.Sinh: lambda z: np.sinh(z),
+                      RealFunction.Cosh: lambda z: np.cosh(z),
+                      RealFunction.Tanh: lambda z: np.tanh(z),
+                      RealFunction.Sech: lambda z: 1. / np.cosh(z),
+                      RealFunction.Csch: lambda z: 1. / np.sinh(z),
+                      RealFunction.Coth: lambda z: 1. / np.tanh(z)}
+
+    def _rand(self, n=1):
+        return np.random.uniform(-self.BOUND, self.BOUND, size=n) if n > 1 else np.random.uniform(-self.BOUND, self.BOUND)
+
 class ContourTester(ComplexFunctionTester):
     BOUND = 20.
     BASE_FUNCTIONS = {Contour.Constant: None,
@@ -158,7 +180,7 @@ class ContourTester(ComplexFunctionTester):
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow]
 
     def _rand(self, n=1):
-        return np.random.uniform(-self.BOUND, self.BOUND, size=n)
+        return np.random.uniform(-self.BOUND, self.BOUND, size=n) if n > 1 else np.random.uniform(-self.BOUND, self.BOUND)
 
     def _gen_function(self, n_ops=None):
         c, cc = super()._gen_function(n_ops)
@@ -237,6 +259,9 @@ if __name__ == "__main__":
     #args = parser.parse_args()
 
     tester = ComplexFunctionTester()
+    tester.run(100, 10)
+
+    tester = RealFunctionTester()
     tester.run(100, 10)
 
     tester = ContourTester()
