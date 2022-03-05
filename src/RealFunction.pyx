@@ -4,6 +4,7 @@ from cython.parallel import prange
 cdef class RealFunction:
   cdef CFunction[REAL, REAL] cfunction
 
+  @cython.nonecheck(False)
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(RealFunction self, np.ndarray[const REAL] t):

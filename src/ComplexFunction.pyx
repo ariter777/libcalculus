@@ -5,6 +5,7 @@ from cython.parallel import prange
 cdef class ComplexFunction:
   cdef CFunction[COMPLEX, COMPLEX] cfunction
 
+  @cython.nonecheck(False)
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[COMPLEX] _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):

@@ -9,6 +9,7 @@ cdef class Contour:
     self._start = start
     self._end = end
 
+  @cython.nonecheck(False)
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(Contour self, np.ndarray[const REAL] t):
