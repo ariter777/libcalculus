@@ -21,8 +21,11 @@ namespace libcalculus {
         std::string _latex = LATEX_VAR;
         OP_TYPE _last_op = OP_TYPE::NOP;
         template<typename, typename> friend class CFunction;
+        template<typename Dom_, typename Ran_, typename ContDom_>
+        friend Ran_ Integrate(CFunction<Dom_, Ran_> const &f, CFunction<ContDom_, Dom_> const &contour, ContDom_ const start, ContDom_ const End, double const tol);
 
         /* Preset instances */
+        static CFunction const _Identity;
         static CFunction const _Re;
         static CFunction const _Im;
         static CFunction const _Conj;
@@ -97,6 +100,7 @@ namespace libcalculus {
         CComparison<Dom> operator!=(CFunction const &rhs) const;
 
         /* Preset instances */
+        static inline CFunction Identity() { return CFunction::_Identity;  }
         static inline CFunction Constant(Ran const c) { return CFunction([=](Dom z) noexcept { return c; }, Latex::fmt_const(c, false), OP_TYPE::CONST); }
         static inline CFunction Re() { return CFunction::_Re;  }
         static inline CFunction Im() { return CFunction::_Im; }
@@ -132,6 +136,9 @@ namespace libcalculus {
     };
 
     /* Preset instances - instantiation */
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Identity = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Re = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
