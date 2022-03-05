@@ -5,6 +5,8 @@ import sys
 import numpy as np
 import os
 os.environ["CC"] = "g++-11"
+os.environ["CXX"] = "g++-11"
+os.environ["LDSHARED"] = "g++-11 -shared"
 sys.path.append("./include")
 
 if sys.platform == "linux":
