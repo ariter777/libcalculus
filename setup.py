@@ -4,16 +4,16 @@ from Cython.Build import cythonize
 import sys
 import numpy as np
 import os
-os.environ["CC"] = "g++-11"
-os.environ["CXX"] = "g++-11"
-os.environ["LDSHARED"] = "g++-11 -shared"
+os.environ["CC"] = os.environ.get("CC", "g++-11")
+os.environ["CC"] = os.environ.get("CXX", "g++-11")
+os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++-11 -shared")
 sys.path.append("./include")
 
 if sys.platform == "linux":
-    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++20", "-O3", "-march=native",
+    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++20", "-O3", "-march=native", "-lstdc++",
                      "-msse", "-msse2", "-mavx", "-mavx2", "-mfpmath=sse", "-fopenmp"]
     LIBRARY_DIRS = []
-    LINKER_ARGS = ["-fopenmp"]
+    LINKER_ARGS = ["-fopenmp", "-lstdc++"]
 elif sys.platform == "win32":
     COMPILER_ARGS = ["/std:c++20", "/DNPY_NO_DEPRECATED_API", "/O2", "/arch:AVX", "/arch:AVX2"]
     LIBRARY_DIRS = [r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64"]
