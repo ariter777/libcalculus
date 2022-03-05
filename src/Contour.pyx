@@ -12,11 +12,16 @@ cdef class Contour:
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(Contour self, np.ndarray[const REAL] t):
-    cdef np.ndarray[COMPLEX] result = np.zeros_like(t, dtype=complex)
-    cdef size_t i, n = t.shape[0]
-    for i in prange(n, nogil=True, num_threads=Globals.NUM_THREADS):
-      result[i] = self.cfunction(t[i])
-    return result
+    cdef COMPLEX[::1] result = np.empty(t.size, dtype=complex)
+    cdef size_t i, n = t.size
+    if Globals.NUM_THREADS > 1:
+      # Use threading instead of SIMD.
+      for i in prange(n, nogil=True, num_threads=Globals.NUM_THREADS):
+        result[i] = self.cfunction(t[i])
+    else:
+        # Use SIMD
+        self.cfunction._call_array(&t[0], &result[0], n)
+    return np.asarray(result)
 
   def __call__(Contour self, t):
     if isinstance(t, (int, float, complex)):

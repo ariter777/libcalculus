@@ -42,11 +42,13 @@ namespace libcalculus {
         static CFunction const _Coth;
         static CFunction const _Pi;
         static CFunction const _E;
+
     public:
         CFunction() {}
         CFunction(function const &f) : _f{f} {}
         CFunction(function const &f, std::string const &latex, OP_TYPE const last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
-        Ran operator()(Dom z) const;
+        inline Ran operator()(Dom z) const { return this->_f(z); };
+        void operator()(Dom const *__restrict__ z, Ran *__restrict__ result, size_t const n) const;
         std::string latex(std::string const &varname = "z") const;
 
         /* Function composition */
@@ -124,67 +126,67 @@ namespace libcalculus {
               new_latex.append(" \\\\ ");
               new_latex.append(else_._latex);
               new_latex.append(" & ;\\;\\text{else}\\end{cases} ");
-              return CFunction([cond__ = cond_.eval, then__ = then_._f, else__ = else_._f](Dom z) { return cond__(z) ? then__(z) : else__(z); },
+              return CFunction([cond__ = cond_.eval, then__ = then_._f, else__ = else_._f](Dom const z) noexcept { return cond__(z) ? then__(z) : else__(z); },
                                new_latex, OP_TYPE::IF);
         }
     };
 
     /* Preset instances - instantiation */
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Re = CFunction<Dom, Ran>([](Dom z) { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Re = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Im = CFunction<Dom, Ran>([](Dom z) { return std::imag(z); }, "\\text{Im}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Im = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::imag(z); }, "\\text{Im}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Conj = CFunction<Dom, Ran>([](Dom z) { return std::conj(z); }, "\\overline{" LATEX_VAR "}", OP_TYPE::NOP);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Conj = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::conj(z); }, "\\overline{" LATEX_VAR "}", OP_TYPE::NOP);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Abs = CFunction<Dom, Ran>([](Dom z) { return std::abs(z); }, "\\left|" LATEX_VAR "\\right|", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Abs = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::abs(z); }, "\\left|" LATEX_VAR "\\right|", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Exp = CFunction<Dom, Ran>([](Dom z) { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Exp = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sin = CFunction<Dom, Ran>([](Dom z) { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sin = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cos = CFunction<Dom, Ran>([](Dom z) { return std::cos(z); }, "\\cos\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cos = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::cos(z); }, "\\cos\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Tan = CFunction<Dom, Ran>([](Dom z) { return std::tan(z); }, "\\tan\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Tan = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::tan(z); }, "\\tan\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sec = CFunction<Dom, Ran>([](Dom z) { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sec = CFunction<Dom, Ran>([](Dom const z) noexcept { return 1. / std::cos(z); }, "\\sec\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Csc = CFunction<Dom, Ran>([](Dom z) { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Csc = CFunction<Dom, Ran>([](Dom const z) noexcept { return 1. / std::sin(z); }, "\\csc\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cot = CFunction<Dom, Ran>([](Dom z) { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cot = CFunction<Dom, Ran>([](Dom const z) noexcept { return 1. / std::tan(z); }, "\\cot\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sinh = CFunction<Dom, Ran>([](Dom z) { return std::sinh(z); }, "\\sinh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sinh = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::sinh(z); }, "\\sinh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cosh = CFunction<Dom, Ran>([](Dom z) { return std::cosh(z); }, "\\cosh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Cosh = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::cosh(z); }, "\\cosh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Tanh = CFunction<Dom, Ran>([](Dom z) { return std::tanh(z); }, "\\tanh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Tanh = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::tanh(z); }, "\\tanh\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sech = CFunction<Dom, Ran>([](Dom z) { return 1. / std::cosh(z); }, "\\text{sech}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sech = CFunction<Dom, Ran>([](Dom const z) noexcept { return 1. / std::cosh(z); }, "\\text{sech}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Csch = CFunction<Dom, Ran>([](Dom z) { return 1. / std::sinh(z); }, "\\text{csch}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Csch = CFunction<Dom, Ran>([](Dom const z) noexcept { return 1. / std::sinh(z); }, "\\text{csch}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Coth = CFunction<Dom, Ran>([](Dom z) { return 1. / std::tanh(z); }, "\\coth\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Coth = CFunction<Dom, Ran>([](Dom const z) noexcept { return 1. / std::tanh(z); }, "\\coth\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Pi = CFunction<Dom, Ran>([](Dom z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Pi = CFunction<Dom, Ran>([](Dom const z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_E = CFunction<Dom, Ran>([](Dom z) noexcept { return M_E; }, "e", OP_TYPE::NOP);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_E = CFunction<Dom, Ran>([](Dom const z) noexcept { return M_E; }, "e", OP_TYPE::NOP);
 
 }

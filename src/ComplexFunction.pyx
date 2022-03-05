@@ -8,11 +8,16 @@ cdef class ComplexFunction:
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[COMPLEX] _call_array(ComplexFunction self, np.ndarray[const COMPLEX] z):
-    cdef np.ndarray[COMPLEX] result = np.zeros_like(z, dtype=complex)
-    cdef size_t i, n = z.shape[0]
-    for i in prange(n, nogil=True, num_threads=Globals.NUM_THREADS):
-      result[i] = self.cfunction(z[i])
-    return result
+    cdef COMPLEX[::1] result = np.empty(z.size, dtype=complex)
+    cdef size_t i, n = z.size
+    if Globals.NUM_THREADS > 1:
+      # Use threading instead of SIMD.
+      for i in prange(n, nogil=True, num_threads=Globals.NUM_THREADS):
+        result[i] = self.cfunction(z[i])
+    else:
+        # Use SIMD
+        self.cfunction._call_array(&z[0], &result[0], n)
+    return np.asarray(result)
 
   def __call__(ComplexFunction self, z):
     if isinstance(z, (int, float, complex)):

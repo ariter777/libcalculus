@@ -11,6 +11,7 @@ cdef extern from "CFunction.h" namespace "libcalculus" nogil:
   cdef cppclass CFunction[Dom, Ran]:
     CFunction() except +
     Ran operator()(Dom z) except +
+    void _call_array "operator()"(Dom *z, Ran *result, size_t n) except +
     string latex(string &varname) except +
 
     # Function composition
