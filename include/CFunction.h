@@ -51,7 +51,7 @@ namespace libcalculus {
         CFunction(function const &f) : _f{f} {}
         CFunction(function const &f, std::string const &latex, OP_TYPE const last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
         inline Ran operator()(Dom z) const { return this->_f(z); };
-        void operator()(Dom const *__restrict__ z, Ran *__restrict__ result, size_t const n) const;
+        void operator()(Dom const *RESTRICT z, Ran *RESTRICT result, size_t const n) const;
         std::string latex(std::string const &varname = "z") const;
 
         /* Function composition */

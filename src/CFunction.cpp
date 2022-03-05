@@ -2,7 +2,7 @@
 
 namespace libcalculus {
     template<typename Dom, typename Ran>
-    void CFunction<Dom, Ran>::operator()(Dom const *__restrict__ z, Ran *__restrict__ result, size_t const n) const {
+    void CFunction<Dom, Ran>::operator()(Dom const *RESTRICT z, Ran *RESTRICT result, size_t const n) const {
         #pragma omp simd
         for (size_t i = 0; i < n; ++i) {
             result[i] = this->_f(z[i]);

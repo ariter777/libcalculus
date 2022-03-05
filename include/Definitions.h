@@ -1,6 +1,14 @@
 #pragma once
 #include <complex>
 
+#ifdef _WIN32
+#define RESTRICT __restrict
+#endif
+
+#ifdef linux
+#define RESTRICT __restrict__
+#endif
+
 namespace libcalculus {
     using namespace std::complex_literals;
     enum OP_TYPE {

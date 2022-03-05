@@ -3,13 +3,13 @@ from setuptools import setup, Extension
 from Cython.Build import cythonize
 import sys
 import numpy as np
-import os
-os.environ["CC"] = os.environ.get("CC", "g++-11")
-os.environ["CC"] = os.environ.get("CXX", "g++-11")
-os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++-11 -shared")
 sys.path.append("./include")
 
 if sys.platform == "linux":
+    import os
+    os.environ["CC"] = os.environ.get("CC", "g++-11")
+    os.environ["CC"] = os.environ.get("CXX", "g++-11")
+    os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++-11 -shared")
     COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++20", "-O3", "-march=native", "-lstdc++",
                      "-msse", "-msse2", "-mavx", "-mavx2", "-mfpmath=sse", "-fopenmp"]
     LIBRARY_DIRS = []
