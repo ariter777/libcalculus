@@ -3,15 +3,17 @@ from setuptools import setup, Extension
 from Cython.Build import cythonize
 import sys
 import numpy as np
+import os
+os.environ["CC"] = "g++-11"
 sys.path.append("./include")
 
 if sys.platform == "linux":
-    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++17", "-O3", "-march=native",
+    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++20", "-O3", "-march=native",
                      "-msse", "-msse2", "-mavx", "-mavx2", "-mfpmath=sse", "-fopenmp"]
     LIBRARY_DIRS = []
     LINKER_ARGS = ["-fopenmp"]
 elif sys.platform == "win32":
-    COMPILER_ARGS = ["/std:c++17", "/DNPY_NO_DEPRECATED_API", "/O2", "/arch:AVX", "/arch:AVX2"]
+    COMPILER_ARGS = ["/std:c++20", "/DNPY_NO_DEPRECATED_API", "/O2", "/arch:AVX", "/arch:AVX2"]
     LIBRARY_DIRS = [r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64"]
     LINKER_ARGS = []
 

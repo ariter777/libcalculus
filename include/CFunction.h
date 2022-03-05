@@ -137,7 +137,7 @@ namespace libcalculus {
 
     /* Preset instances - instantiation */
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Identity = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Identity = CFunction<Dom, Ran>([](Dom const z) noexcept { return z; }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Re = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::real(z); }, "\\text{Re}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
