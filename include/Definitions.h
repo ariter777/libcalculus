@@ -21,4 +21,6 @@ namespace libcalculus {
 
     using REAL = double;
     using COMPLEX = std::complex<double>;
+    static inline double constexpr INTEGRATION_SUBDIV_FACTOR = .05; // With integration tolerance tol, the domain will
+                                                                    // divided into INTEGRATION_SUBDIV_FACTOR / tol rectangles.
 }
