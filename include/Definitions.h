@@ -1,11 +1,9 @@
 #pragma once
 #include <complex>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(WIN32)
 #define RESTRICT __restrict
-#endif
-
-#ifdef linux
+#elif defined(__unix__)
 #define RESTRICT __restrict__
 #endif
 
