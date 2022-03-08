@@ -13,7 +13,6 @@ function build {
   { python3 setup.py build_ext --inplace
   mkdir -p annotations
   find src/ include/ -type f -name '*.html' | xargs -i -r mv {} annotations/ && echo "Annotations saved in annotations/"
-  cp *.so dist/linux
   echo "Successfully compiled $(wc -l src/!(libcalculus.cpp) include/* | tail -1 | sed -re 's/^\s*([0-9]+)\s+total\s*$/\1/g') lines."
   echo ; } 2>&1 | sed 's/^/    /g' &> /dev/stderr
 }
