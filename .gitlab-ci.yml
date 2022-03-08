@@ -15,6 +15,10 @@
 
 image: python:3.8-alpine
 
+services:
+  gcc:9.0
+  g++:9.0
+  
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
