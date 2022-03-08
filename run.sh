@@ -10,7 +10,7 @@ function clean {
 
 function build {
   echo $'\e[92mBuilding.\e[0m'
-  { python setup.py build_ext --inplace
+  { python3 setup.py build_ext --inplace
   mkdir -p annotations
   find src/ include/ -type f -name '*.html' | xargs -i -r mv {} annotations/ && echo "Annotations saved in annotations/"
   cp *.so dist/linux
@@ -20,7 +20,7 @@ function build {
 
 function run_tests {
   echo $'\e[92mTesting.\e[0m'
-  python test.py
+  python3 test.py
   echo
 }
 
