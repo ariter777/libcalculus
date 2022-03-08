@@ -32,5 +32,7 @@ build-job:       # This job runs in the build stage, which runs first.
     TWINE_USERNAME: $PRODUCTION_USERNAME
     TWINE_PASSWORD: $PRODUCTION_PASSWORD
   script:
-    bash run.sh clean build
-    twine upload dist/dist/*.so
+    - bash run.sh clean build
+    - cd dist
+    - python3 setup.py bdist_wheel
+    - twine upload  dist/*.whl
