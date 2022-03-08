@@ -10,7 +10,7 @@ if sys.platform == "linux":
     os.environ["CC"] = os.environ.get("CC", "g++")
     os.environ["CC"] = os.environ.get("CXX", "g++")
     os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++ -shared")
-    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++20", "-O3", "-lstdc++", "-fopenmp"]
+    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++2a", "-O3", "-lstdc++", "-fopenmp"]
     LIBRARY_DIRS = []
     LINKER_ARGS = ["-fopenmp", "-lstdc++"]
 elif sys.platform == "win32":
