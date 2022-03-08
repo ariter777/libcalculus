@@ -7,9 +7,9 @@ sys.path.append("./include")
 
 if sys.platform == "linux":
     import os
-    os.environ["CC"] = os.environ.get("CC", "g++-11")
-    os.environ["CC"] = os.environ.get("CXX", "g++-11")
-    os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++-11 -shared")
+    os.environ["CC"] = os.environ.get("CC", "g++")
+    os.environ["CC"] = os.environ.get("CXX", "g++")
+    os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++ -shared")
     COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++20", "-O3", "-lstdc++", "-fopenmp"]
     LIBRARY_DIRS = []
     LINKER_ARGS = ["-fopenmp", "-lstdc++"]
