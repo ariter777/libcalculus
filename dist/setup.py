@@ -5,7 +5,7 @@ with open("../README.md", "r") as rfd:
 
 setup(
     name="libcalculus",
-    version="0.1.7",
+    version="0.1.8",
     description="Real/Complex analysis library for Python 3.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -14,7 +14,7 @@ setup(
     author_email="ariter777@gmail.com",
     packages=[""],
     package_dir={"": "."},
-    package_data={"": ["../../../libcalculus.cpython-38-x86_64-linux-gnu.so", "../../../libcalculus.cp37-win_amd64.pyd"]},
+    package_data={"": ["../libcalculus.cpython-38-x86_64-linux-gnu.so", "../libcalculus.cp37-win_amd64.pyd"]},
     keywords=["analysis", "real", "complex", "integral", "derivative"],
     install_requires=[
         "numpy",
