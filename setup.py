@@ -18,6 +18,30 @@ elif sys.platform == "win32":
     LIBRARY_DIRS = [r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64"]
     LINKER_ARGS = []
 
-setup(ext_modules=cythonize(Extension("libcalculus", ["src/libcalculus.pyx"],
+
+with open("README.md", "r") as rfd:
+    long_description = rfd.read()
+
+setup(name="libcalculus",
+version="0.1.9",
+description="Real/Complex analysis library for Python 3.",
+long_description=long_description,
+long_description_content_type="text/markdown",
+url="https://gitlab.com/ariter777/libcalculus",
+author="Ariel Terkeltoub",
+author_email="ariter777@gmail.com",
+keywords=["analysis", "real", "complex", "integral", "derivative"],
+install_requires=[
+    "numpy",
+],
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+],
+ext_modules=cythonize(Extension("libcalculus", ["src/libcalculus.pyx"],
                                       extra_compile_args=COMPILER_ARGS, extra_link_args=LINKER_ARGS, library_dirs=LIBRARY_DIRS, include_dirs=[np.get_include()]),
                                       language_level=3, nthreads=4, annotate=True))
