@@ -21,8 +21,8 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 before_script:
-  - python -m pip install -U setuptools numpy Cython
   - apt-get install gcc-9 g++-9
+  - python -m pip install -U setuptools numpy Cython
   - python -c $'import os; f = open(os.path.join(os.path.dirname(cython.__file__), "Cython", "Compiler", "Parsing.py"), "r+"); script = f.read(); script2 = script.replace("\'+\', \'-\', \'*\', \'/\', \'%\',\\n", "\'+\', \'-\', \'*\', \'/\', \'%\',\\n    \'+=\', \'-=\', \'*=\', \'/=\', \'&=\', \'|=\'\\n"); f.seek(0); f.write(script2); f.truncate(); f.close()'
 
 build-job:       # This job runs in the build stage, which runs first.
