@@ -13,7 +13,6 @@ namespace libcalculus {
             result = 0.;
             COMPLEX z, prev_z = contour(start);
 
-            #pragma omp simd
             for (size_t k = 1; k <= n; ++k) {
                 z = contour(start + (end - start) * k / n);
                 result += f(z) * (z - prev_z);
@@ -34,7 +33,6 @@ namespace libcalculus {
             result = 0.;
             REAL z, prev_z = start;
 
-            #pragma omp simd reduction(+:result)
             for (size_t k = 1; k <= n; ++k) {
                 z = start + (end - start) * k / n;
                 result += f(z) * (z - prev_z);

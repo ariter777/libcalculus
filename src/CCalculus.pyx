@@ -18,14 +18,14 @@ def integrate(f, contour, start=None, end=None, const REAL tol=1e-3):
   elif isinstance(f, RealFunction) and isinstance(contour, np.ndarray) and np.issubdtype(contour.dtype, np.number) and contour.shape == (2,):
       return Integrate[REAL, REAL, REAL]((<RealFunction>f).cfunction, (<RealFunction>RealFunction.Identity()).cfunction, contour[0], contour[1], tol)
 
-def derivative(ComplexFunction f, COMPLEX z0, const size_t order=1, const REAL radius=1e-3, const REAL tol=1e-3):
+def derivative(ComplexFunction f, COMPLEX z0, const size_t order=1, const REAL radius=1, const REAL tol=1e-3):
   """Calculate the derivative of f at z0, given that f does not have any singularities inside
   a sphere of the given radius around z0."""
   cdef Contour contour = Contour.Sphere(z0, radius)
   cdef ComplexFunction integrand = f / ((ComplexFunction.Identity() - z0) ** (order + 1))
   return complex(factorial(order) / (2j * M_PI)) * Integrate[COMPLEX, COMPLEX, REAL](integrand.cfunction, contour.cfunction, contour.start, contour.end, tol)
 
-def residue(ComplexFunction f, const COMPLEX z0, const REAL radius=1e-3, const REAL tol=1e-3):
+def residue(ComplexFunction f, const COMPLEX z0, const REAL radius=1, const REAL tol=1e-3):
   """Calculate the residue of f around z0, given that f does not have any further singularities inside
   a sphere of the given radius around z0."""
   cdef Contour contour = Contour.Sphere(z0, radius)

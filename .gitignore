@@ -4,3 +4,6 @@ latex.gif
 __pycache__/
 build/
 annotations/
+dist/dist
+dist/build
+dist/libcalculus.egg-info
