@@ -5,7 +5,7 @@ with open("../README.md", "r") as rfd:
 
 setup(
     name="libcalculus",
-    version="0.1.6",
+    version="0.1.7",
     description="Real/Complex analysis library for Python 3.",
     long_description=long_description,
     long_description_content_type="text/markdown",
