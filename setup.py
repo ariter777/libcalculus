@@ -23,7 +23,7 @@ with open("README.md", "r") as rfd:
     long_description = rfd.read()
 
 setup(name="libcalculus",
-version="0.2",
+version="0.2.1",
 description="Real/Complex analysis library for Python 3.",
 long_description=long_description,
 long_description_content_type="text/markdown",
@@ -37,11 +37,12 @@ install_requires=[
 classifiers=[
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: BSD License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
 ],
+license_files=["LICENSE.txt"],
 ext_modules=cythonize(Extension("libcalculus", ["src/libcalculus.pyx"],
                                       extra_compile_args=COMPILER_ARGS, extra_link_args=LINKER_ARGS, library_dirs=LIBRARY_DIRS, include_dirs=[np.get_include()]),
                                       language_level=3, nthreads=4, annotate=True))

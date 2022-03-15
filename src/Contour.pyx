@@ -75,6 +75,8 @@ cdef class Contour:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction += <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __isub__(Contour self, rhs):
     if isinstance(rhs, Contour):
@@ -83,6 +85,8 @@ cdef class Contour:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction -= <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __imul__(Contour self, rhs):
     if isinstance(rhs, Contour):
@@ -91,6 +95,8 @@ cdef class Contour:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction *= <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __itruediv__(Contour self, rhs):
     if isinstance(rhs, Contour):
@@ -99,6 +105,8 @@ cdef class Contour:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction /= <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __add__(lhs, rhs):
     cdef Contour result

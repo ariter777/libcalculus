@@ -6,7 +6,6 @@ cdef extern from "CCalculus.cpp":
   pass
 
 cdef extern from "CCalculus.h" namespace "libcalculus":
-  size_t factorial(const size_t n)
   CFunction[Dom, Ran] Derivative[Dom, Ran](CFunction[Dom, Ran] f, const REAL tol, const REAL radius) except +
   Ran Integrate[Dom, Ran, ContDom](CFunction[Dom, Ran] f, CFunction[ContDom, Dom] contour,
                                    const ContDom start, const ContDom end, const REAL tol) except +
@@ -18,6 +17,8 @@ def integrate(f, contour, start=None, end=None, const REAL tol=1e-3):
                                              start if start is not None else contour.start, end if end is not None else contour.end, tol)
   elif isinstance(f, RealFunction) and isinstance(contour, np.ndarray) and np.issubdtype(contour.dtype, np.number) and contour.shape == (2,):
       return Integrate[REAL, REAL, REAL]((<RealFunction>f).cfunction, (<RealFunction>RealFunction.Identity()).cfunction, contour[0], contour[1], tol)
+  else:
+    raise NotImplementedError
 
 def derivative(f, const size_t order=1, const REAL tol=1e-3, const REAL radius=1.):
   """Returns a function object representing f's derivative."""
@@ -37,6 +38,8 @@ def derivative(f, const size_t order=1, const REAL tol=1e-3, const REAL radius=1
       contour_result = Contour(f.start, f.end)
       contour_result.cfunction = Derivative((<Contour>f).cfunction, tol, radius)
       return contour_result
+    else:
+      raise NotImplementedError
   else:
     return derivative(derivative(f, order - 1, tol, radius), 1, tol, radius)
 

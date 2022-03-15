@@ -15,8 +15,8 @@ cdef class RealFunction:
       for i in prange(n, nogil=True, num_threads=Globals.NUM_THREADS):
         result[i] = self.cfunction(t[i])
     else:
-        # Use SIMD
-        self.cfunction._call_array(&t[0], &result[0], n)
+      # Use SIMD
+      self.cfunction._call_array(&t[0], &result[0], n)
     return np.asarray(result)
 
   def __call__(RealFunction self, t):
@@ -49,6 +49,8 @@ cdef class RealFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction += <REAL>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __isub__(RealFunction self, rhs):
     if isinstance(rhs, RealFunction):
@@ -57,6 +59,8 @@ cdef class RealFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction -= <REAL>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __imul__(RealFunction self, rhs):
     if isinstance(rhs, RealFunction):
@@ -65,6 +69,8 @@ cdef class RealFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction *= <REAL>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __itruediv__(RealFunction self, rhs):
     if isinstance(rhs, RealFunction):
@@ -73,6 +79,8 @@ cdef class RealFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction /= <REAL>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __add__(lhs, rhs):
     cdef RealFunction result

@@ -85,19 +85,19 @@ namespace libcalculus {
 
     template<>
     REAL Integrate(CFunction<REAL, REAL> const &f, CFunction<REAL, REAL> const &contour, REAL const start, REAL const end, REAL const tol) {
-        REAL prev_result, result = 0.;
+        REAL prev_result, result = 0., dx;
         size_t while_iters = 0, n = INTEGRATION_SUBDIV_FACTOR / tol;
         while (while_iters < 2 || !Traits<REAL>::close(prev_result, result, tol)) {
             n *= 2;
+            dx = (end - start) / n;
             prev_result = result;
             result = 0.;
-            REAL z, prev_z = start;
 
+            #pragma omp parallel for reduction(+:result)
             for (size_t k = 1; k <= n; ++k) {
-                z = start + (end - start) * k / n;
-                result += f(z) * (z - prev_z);
-                prev_z = z;
+                result += f(start + k * dx);
             }
+            result *= dx;
             ++while_iters;
         }
         return result;

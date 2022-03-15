@@ -1,6 +1,7 @@
 # distutils: language = c++
 from Definitions cimport *
 import os
+cimport openmp
 
 cdef class _Globals:
   cdef size_t NUM_THREADS
@@ -15,6 +16,7 @@ def threads(const size_t n=0):
     return Globals.NUM_THREADS
   else:
     Globals.NUM_THREADS = n
+    openmp.omp_set_num_threads(n)
     return n
 
 include "CCalculus.pyx"

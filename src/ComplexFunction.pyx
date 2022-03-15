@@ -55,6 +55,8 @@ cdef class ComplexFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction += <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __isub__(ComplexFunction self, rhs):
     if isinstance(rhs, ComplexFunction):
@@ -63,6 +65,8 @@ cdef class ComplexFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction -= <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __imul__(ComplexFunction self, rhs):
     if isinstance(rhs, ComplexFunction):
@@ -71,6 +75,8 @@ cdef class ComplexFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction *= <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __itruediv__(ComplexFunction self, rhs):
     if isinstance(rhs, ComplexFunction):
@@ -79,6 +85,8 @@ cdef class ComplexFunction:
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction /= <COMPLEX>rhs
       return self
+    else:
+      raise NotImplementedError
 
   def __add__(lhs, rhs):
     cdef ComplexFunction result = ComplexFunction()
