@@ -256,19 +256,30 @@ class LatexTester(Tester):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
-    #args = parser.parse_args()
+    parser.add_argument("-a", "--all", action="store_true")
+    parser.add_argument("--ComplexFunction", action="store_true")
+    parser.add_argument("--RealFunction", action="store_true")
+    parser.add_argument("--Contour", action="store_true")
+    parser.add_argument("--Integral", action="store_true")
+    parser.add_argument("--Latex", action="store_true")
+    args = parser.parse_args()
 
-    tester = ComplexFunctionTester()
-    tester.run(100, 10)
+    if args.ComplexFunction or args.all:
+        tester = ComplexFunctionTester()
+        tester.run(100, 10)
 
-    tester = RealFunctionTester()
-    tester.run(100, 10)
+    if args.RealFunction or args.all:
+        tester = RealFunctionTester()
+        tester.run(100, 10)
 
-    tester = ContourTester()
-    tester.run(100, 10)
+    if args.Contour or args.all:
+        tester = ContourTester()
+        tester.run(100, 10)
 
-    # tester = IntegralTester()
-    # tester.run(2, 2)
+    if args.Integral or args.all:
+        tester = IntegralTester()
+        tester.run(2, 2)
 
-    tester = LatexTester()
-    tester.run(3)
+    if args.Latex or args.all:
+        tester = LatexTester()
+        tester.run(3)
