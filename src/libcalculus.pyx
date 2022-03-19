@@ -12,6 +12,7 @@ cdef class _Globals:
 cdef _Globals Globals = _Globals()
 
 def threads(const size_t n=0):
+  """Get or set the number of threads available for the library to use."""
   if n == 0:
     return Globals.NUM_THREADS
   else:
