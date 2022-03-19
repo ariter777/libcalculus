@@ -11,7 +11,7 @@ cdef extern from "CCalculus.h" namespace "libcalculus":
                                    const ContDom start, const ContDom end, const REAL tol) except +
 
 def integrate(f, contour, start=None, end=None, const REAL tol=1e-3):
-  """"Integrate f along a contour."""
+  """Integrate f along a contour."""
   if isinstance(f, ComplexFunction) and isinstance(contour, Contour):
     return Integrate[COMPLEX, COMPLEX, REAL]((<ComplexFunction>f).cfunction, (<Contour>contour).cfunction,
                                              start if start is not None else contour.start, end if end is not None else contour.end, tol)

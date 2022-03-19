@@ -13,6 +13,7 @@ cdef class Contour:
   @cython.boundscheck(False)
   @cython.wraparound(False)
   cdef np.ndarray[REAL] _call_array(Contour self, np.ndarray[const REAL] t):
+    """Evaluate the function on an np.ndarray."""
     cdef COMPLEX[::1] result = np.empty(t.size, dtype=complex)
     cdef size_t i, n = t.size
     if Globals.NUM_THREADS > 1:
@@ -25,6 +26,7 @@ cdef class Contour:
     return np.asarray(result)
 
   def __call__(Contour self, t):
+    """Evaluate the function at a point or on an np.ndarray of points."""
     if isinstance(t, (int, float, complex)):
       return self.cfunction(t)
     elif isinstance(t, np.ndarray) and t.dtype == np.double:
@@ -51,24 +53,29 @@ cdef class Contour:
     self._end = value
 
   def latex(Contour self, str varname = "t"):
+    """Generate LaTeX markup for the function."""
     return self.cfunction.latex(varname.encode()).decode()
 
   def _compose_real(Contour self, RealFunction rhs):
+    """Compose the contour with a RealFunction, producing another Contour."""
     cdef Contour F = Contour(self._start, self._end)
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
   def __neg__(Contour self):
+    """The additive inverse of the function."""
     cdef Contour F = Contour(self._start, self._end)
     F.cfunction = -self.cfunction
     return F
 
   def __invert__(Contour self):
+    """Reverse the contour (run from end to start)."""
     cdef Contour F = Contour(self._end, self._start)
     F.cfunction = self.cfunction
     return F
 
   def __iadd__(Contour self, rhs):
+    """Add the function in-place with a constant or another ComplexFunction."""
     if isinstance(rhs, Contour):
       self.cfunction += (<Contour>rhs).cfunction
       return self
@@ -79,6 +86,7 @@ cdef class Contour:
       raise NotImplementedError
 
   def __isub__(Contour self, rhs):
+    """Subtract a constant or another ComplexFunction from the function, in-place."""
     if isinstance(rhs, Contour):
       self.cfunction -= (<Contour>rhs).cfunction
       return self
@@ -89,6 +97,7 @@ cdef class Contour:
       raise NotImplementedError
 
   def __imul__(Contour self, rhs):
+    """Multiply the function in-place with a constant or another ComplexFunction."""
     if isinstance(rhs, Contour):
       self.cfunction *= (<Contour>rhs).cfunction
       return self
@@ -99,6 +108,7 @@ cdef class Contour:
       raise NotImplementedError
 
   def __itruediv__(Contour self, rhs):
+    """Divide the function in-place by a constant or another ComplexFunction."""
     if isinstance(rhs, Contour):
       self.cfunction /= (<Contour>rhs).cfunction
       return self
@@ -109,6 +119,7 @@ cdef class Contour:
       raise NotImplementedError
 
   def __add__(lhs, rhs):
+    """Add the function with a constant or another ComplexFunction."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
@@ -123,6 +134,7 @@ cdef class Contour:
     return result
 
   def __sub__(lhs, rhs):
+    """Subtract a constant or another ComplexFunction from the function."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
@@ -136,6 +148,7 @@ cdef class Contour:
     return result
 
   def __mul__(lhs, rhs):
+    """Multiply the function with a constant or another ComplexFunction."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
@@ -150,6 +163,7 @@ cdef class Contour:
     return result
 
   def __truediv__(lhs, rhs):
+    """Divide the function by a constant or another ComplexFunction."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
@@ -163,6 +177,7 @@ cdef class Contour:
     return result
 
   def __pow__(lhs, rhs, mod):
+    """Raise the function to the power of a constant or another ComplexFunction."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result = Contour((<Contour>lhs)._start, (<Contour>lhs)._end)
@@ -178,6 +193,7 @@ cdef class Contour:
     return result
 
   def __matmul__(lhs, rhs):
+    """Compose the contour with a RealFunction, producing another Contour."""
     if isinstance(lhs, Contour) and isinstance(rhs, RealFunction):
       return lhs._compose_real(rhs)
     else:
@@ -199,6 +215,7 @@ cdef class Contour:
       return int(np.rint(result))
 
   def __eq__(lhs, rhs):
+    """Return a RealComparison that evaluates to True where the function equals another Contour or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction == (<Contour>rhs).cfunction
@@ -212,6 +229,7 @@ cdef class Contour:
     return result
 
   def __ne__(lhs, rhs):
+    """Return a RealComparison that evaluates to True where the function isn't equal to another Contour or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction != (<Contour>rhs).cfunction
@@ -226,120 +244,141 @@ cdef class Contour:
 
   @staticmethod
   def Constant(const COMPLEX c):
+    """Constant function."""
     cdef Contour F = Contour()
     F.cfunction = CFunction[REAL, COMPLEX].Constant(c)
     return F
 
   @staticmethod
   def Abs(const REAL start=0., const REAL end=1.):
+    """Absolute value."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Abs()
     return F
 
   @staticmethod
   def Identity(const REAL start=0., const REAL end=1.):
+    """Identity function."""
     return Contour(start, end)
 
   @staticmethod
   def Exp(const REAL start=0., const REAL end=1.):
+    """Exponent."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Exp()
     return F
 
   @staticmethod
   def Sin(const REAL start=0., const REAL end=1.):
+    """Sine."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sin()
     return F
 
   @staticmethod
   def Cos(const REAL start=0., const REAL end=1.):
+    """Cosine."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Cos()
     return F
 
   @staticmethod
   def Tan(const REAL start=0., const REAL end=1.):
+    """Tangent."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Tan()
     return F
 
   @staticmethod
   def Sec(const REAL start=0., const REAL end=1.):
+    """Secant."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sec()
     return F
 
   @staticmethod
   def Csc(const REAL start=0., const REAL end=1.):
+    """Cosecant."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Csc()
     return F
 
   @staticmethod
   def Cot(const REAL start=0., const REAL end=1.):
+    """Cotangent."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Cot()
     return F
 
   @staticmethod
   def Sinh(const REAL start=0., const REAL end=1.):
+    """Hyperbolic sine."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sinh()
     return F
 
   @staticmethod
   def Cosh(const REAL start=0., const REAL end=1.):
+    """Hyperbolic cosine."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Cosh()
     return F
 
   @staticmethod
   def Tanh(const REAL start=0., const REAL end=1.):
+    """Hyperbolic tangent."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Tanh()
     return F
 
   @staticmethod
   def Sech(const REAL start=0., const REAL end=1.):
+    """Hyperbolic secant."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Sech()
     return F
 
   @staticmethod
   def Csch(const REAL start=0., const REAL end=1.):
+    """Hyperbolic cosecant."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Csch()
     return F
 
   @staticmethod
   def Coth(const REAL start=0., const REAL end=1.):
+    """Hyperbolic cotangent."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Coth()
     return F
 
   @staticmethod
   def Pi(const REAL start=0., const REAL end=1.):
+    """Constant function equal to pi; useful for the LaTeX output."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].Pi()
     return F
 
   @staticmethod
   def E(const REAL start=0., const REAL end=1.):
+    """Constant function equal to e; useful for the LaTeX output."""
     cdef Contour F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].E()
     return F
 
   @staticmethod
   def If(RealComparison comp_, Contour then_, Contour else_=Contour.Constant(0), const REAL start=0., const REAL end=1.):
+    """A function that evaluates to a certain function when a RealComparison is True, and otherwise evaluates to another function."""
     F = Contour(start, end)
     F.cfunction = CFunction[REAL, COMPLEX].If(comp_.ccomparison, then_.cfunction, else_.cfunction)
     return F
 
   @staticmethod
   def Line(const complex z1, const complex z2):
+    """A contour that represents a line running from z1 to z2, with t running from 0 to 1."""
     return (1 - Contour.Identity()) * z1 + Contour.Identity() * z2
 
   @staticmethod
   def Sphere(const complex center=0., const REAL radius=1., const cbool ccw=False):
+    """A contour that represents a circle around a center with a given a radius, with t running from 0 to 1, possibly running counterclockwise."""
     return center + (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (1j * Contour.Identity(0., 2. * M_PI)))
