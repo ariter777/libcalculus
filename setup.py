@@ -45,4 +45,4 @@ classifiers=[
 license_files=["LICENSE.txt"],
 ext_modules=cythonize(Extension("libcalculus", ["src/libcalculus.pyx"],
                                       extra_compile_args=COMPILER_ARGS, extra_link_args=LINKER_ARGS, library_dirs=LIBRARY_DIRS, include_dirs=[np.get_include()]),
-                                      language_level=3, nthreads=4, annotate=True))
+                                      language_level=3, nthreads=4, annotate=True, compiler_directives={"embedsignature": True}))

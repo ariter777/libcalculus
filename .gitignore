@@ -2,6 +2,9 @@
 libcalculus.cpp
 latex.gif
 __pycache__/
+libcalculus.egg-info/
 build/
 annotations/
-dist
+dist/
+docs/html
+docs/doctrees

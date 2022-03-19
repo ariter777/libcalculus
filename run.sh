@@ -4,7 +4,7 @@ shopt -s extglob
 
 function clean {
   echo $'\e[92mCleaning.\e[0m'
-  rm -vrf src/libcalculus.cpp build annotations 2>&1 | sed 's/^/    /g'
+  rm -vrf src/libcalculus.cpp build annotations docs/{html,doctrees} 2>&1 | sed 's/^/    /g'
   echo
 }
 
@@ -14,6 +14,9 @@ function build {
   mkdir -p annotations
   find src/ include/ -type f -name '*.html' | xargs -i -r mv {} annotations/ && echo "Annotations saved in annotations/"
   echo "Successfully compiled $(wc -l src/!(libcalculus.cpp) include/* | tail -1 | sed -re 's/^\s*([0-9]+)\s+total\s*$/\1/g') lines."
+  cd docs
+  make html
+  cd - &> /dev/null
   echo ; } 2>&1 | sed 's/^/    /g' &> /dev/stderr
 }
 
