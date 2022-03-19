@@ -1,2 +1,2 @@
-libcalculus
+libcalculus==0.2.3a1
 numpy>=1.21
