@@ -23,11 +23,11 @@ with open("README.md", "r") as rfd:
     long_description = rfd.read()
 
 setup(name="libcalculus",
-version="0.2.3a2",
+version="0.2.4",
 description="Real/Complex analysis library for Python 3.",
 long_description=long_description,
 long_description_content_type="text/markdown",
-url="https://gitlab.com/ariter777/libcalculus",
+url="https://pypi.org/project/libcalculus",
 author="Ariel Terkeltoub",
 author_email="ariter777@gmail.com",
 keywords=["analysis", "real", "complex", "integral", "derivative"],
@@ -43,6 +43,8 @@ classifiers=[
     "Programming Language :: Python :: 3.8",
 ],
 license_files=["LICENSE.txt"],
+project_urls = {"Documentation": "https://libcalculus.readthedocs.io/en/latest/",
+                "Source Code": "https://gitlab.com/ariter777/libcalculus"},
 ext_modules=cythonize(Extension("libcalculus", ["src/libcalculus.pyx"],
                                       extra_compile_args=COMPILER_ARGS, extra_link_args=LINKER_ARGS, library_dirs=LIBRARY_DIRS, include_dirs=[np.get_include()]),
                                       language_level=3, nthreads=4, annotate=True, compiler_directives={"embedsignature": True}))

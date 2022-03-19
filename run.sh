@@ -4,7 +4,7 @@ shopt -s extglob
 
 function clean {
   echo $'\e[92mCleaning.\e[0m'
-  rm -vrf src/libcalculus.cpp build annotations docs/{html,doctrees} 2>&1 | sed 's/^/    /g'
+  rm -vrf src/libcalculus.cpp build dist/* annotations docs/{html,doctrees} 2>&1 | sed 's/^/    /g'
   echo
 }
 

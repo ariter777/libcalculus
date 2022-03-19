@@ -1,2 +1,3 @@
-libcalculus==0.2.3a2
+libcalculus
 numpy>=1.21
+sphinx_rtd_theme
