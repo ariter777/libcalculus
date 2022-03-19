@@ -1,5 +1,7 @@
 # libcalculus: A comprehensive real and complex analysis library for Python
 
+[![pipeline status](https://gitlab.com/ariter777/libcalculus/badges/master/pipeline.svg)](https://gitlab.com/ariter777/libcalculus/-/commits/master)
+
 libcalculus is fully written in C++ and Cython for bindings to Python; all numeric calculations take place in C++ and take full advantage of SIMD vectorization and OpenMP threading wherever available.
 
 ## Features
