@@ -36,14 +36,18 @@ function run_tests {
 if [[ $# == 0 ]]; then # default action - build
   build
 else
-  while [[ $# > 0 ]]; do
-    case $1 in
-      '--release') release=1 ;;
-      'clean') clean ;;
-      'build') build ;;
-      'test') run_tests ;;
-      *) echo "Unknown parameter: \"$1\""; exit 1 ;;
-    esac
+  while [[ $# > 0 ]]; do # switch case won't exit if a command fails, so an if must be used.
+    if [[ $1 == '--release' ]]; then
+      release=1
+    elif [[ $1 == 'clean' ]]; then
+      clean
+    elif [[ $1 == 'build' ]]; then
+      build
+    elif [[ $1 == 'test' ]]; then
+      run_tests
+    else
+      echo "Unknown parameter: \"$1\""; exit 1
+    fi
     shift
   done &> /dev/stderr
 fi
