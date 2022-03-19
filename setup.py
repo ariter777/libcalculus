@@ -7,12 +7,12 @@ sys.path.append("./include")
 
 if sys.platform == "linux":
     import os
-    os.environ["CC"] = os.environ.get("CC", "g++")
-    os.environ["CC"] = os.environ.get("CXX", "g++")
-    os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++ -shared")
-    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++2a", "-O3", "-lstdc++", "-fopenmp", "-static-libstdc++"]
+    os.environ["CC"] = os.environ.get("CC", "g++-9")
+    os.environ["CC"] = os.environ.get("CXX", "g++-9")
+    os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++-9 -shared")
+    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++2a", "-O3", "-lstdc++", "-fopenmp", "-static-libstdc++", "-static-libgcc"]
     LIBRARY_DIRS = []
-    LINKER_ARGS = ["-fopenmp", "-lstdc++"]
+    LINKER_ARGS = ["-fopenmp", "-lstdc++", "-static-libstdc++", "-static-libgcc"]
 elif sys.platform == "win32":
     COMPILER_ARGS = ["/std:c++20", "/DNPY_NO_DEPRECATED_API", "/O2"]
     LIBRARY_DIRS = [r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64"]
@@ -23,7 +23,7 @@ with open("README.md", "r") as rfd:
     long_description = rfd.read()
 
 setup(name="libcalculus",
-version="0.2.3a1",
+version="0.2.3a2",
 description="Real/Complex analysis library for Python 3.",
 long_description=long_description,
 long_description_content_type="text/markdown",
