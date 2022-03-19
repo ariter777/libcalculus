@@ -1,0 +1,2 @@
+libcalculus
+numpy>=1.21
