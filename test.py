@@ -8,6 +8,7 @@ import argparse
 import pqdm.processes
 import multiprocessing as mp
 import requests
+import warnings
 
 class Tester:
     def run(self):
@@ -115,7 +116,7 @@ class ComplexFunctionTester(FunctionTester):
                             break
 
                 if n_errors >= self.MAX_ERRORS:
-                    raise ValueError(f"\033[1;41mERROR IN {type(f).__name__}:\033[0m {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
+                    raise ValueError(f"\033[1;41mERROR IN {type(self).__name__}:\033[0m {f.latex()}\n\t at {val}: {f_val} vs actual {cf_val}")
 
                 if n_tries > self.MAX_TRIES:
                     break
@@ -188,8 +189,9 @@ class ContourTester(ComplexFunctionTester):
         return c, cc
 
 class IntegralTester(FunctionTester):
-    MAX_OPS = 3
-    BOUND = 20.
+    MAX_OPS = 1
+    BOUND = 1.
+    TOL = 1e-3
 
     def __init__(self):
         self.cft = ComplexFunctionTester()
@@ -202,7 +204,6 @@ class IntegralTester(FunctionTester):
                1j * scipy.integrate.quad(integrand_imag, start, end, epsabs=tol)[0]
 
     def _random_contour(self):
-        np.seterr(all="ignore")
         radius = abs(self.ct._rand())
         center = self.cft._rand()
         start, end = self.ct._rand(2)
@@ -213,22 +214,25 @@ class IntegralTester(FunctionTester):
         return c, cc
 
     def _run_integral(self, n_integrals):
-        tol = 1e-3
         f, cf = self.cft._gen_function(self.MAX_OPS)
-        for _ in range(n_integrals):
-            c, cc = self._random_contour()
-            dcc = lambda t: scipy.misc.derivative(cc, t, dx=tol)
+        with warnings.catch_warnings(record=True) as w:
+            for _ in range(n_integrals):
+                    warnings.simplefilter("always")
+                    c, cc = self._random_contour()
+                    dcc = lambda t: scipy.misc.derivative(cc, t, dx=self.TOL)
 
-            integral = integrate(f, c, tol=tol)
-            cintegral = self._scipy_integrate(lambda t: cf(cc(t)) * dcc(t), c.start, c.end, tol=tol)
-            print(integral, cintegral)
+                    integral = integrate(f, c, tol=self.TOL)
+                    cintegral = self._scipy_integrate(lambda t: cf(cc(t)) * dcc(t), c.start, c.end, tol=self.TOL)
+                    if len(w) > 1 or np.isnan(integral) or np.isnan(cintegral):
+                        return self._run_integral(n_integrals) # Run a random function again
+                    elif not np.allclose(integral, cintegral, rtol=10. * self.TOL, atol=10. * self.TOL):
+                        raise ValueError(f"\033[1;41mERROR IN {type(self).__name__}:\033[0m {f.latex()}\n\t "
+                                         f"integrating along {c.latex()} from {c.start} to {c.end}: {integral} vs actual {cintegral}")
 
     def run(self, n_funcs, n_integrals):
         """Generate n_funcs random functions and check n_integrals random integrals on each function."""
         super().run()
-
         pqdm.processes.pqdm([[n_integrals]] * n_funcs, self._run_integral, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
-
         super()._done()
 
 class LatexTester(Tester):

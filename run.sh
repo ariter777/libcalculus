@@ -29,7 +29,7 @@ function build {
 
 function run_tests {
   echo $'\e[92mTesting.\e[0m'
-  python3 test.py --ComplexFunction --RealFunction --Contour
+  python3 test.py --ComplexFunction --RealFunction --Contour --Integral
   echo
 }
 
