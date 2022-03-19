@@ -10,7 +10,7 @@ if sys.platform == "linux":
     os.environ["CC"] = os.environ.get("CC", "g++")
     os.environ["CC"] = os.environ.get("CXX", "g++")
     os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++ -shared")
-    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++2a", "-O3", "-lstdc++", "-fopenmp"]
+    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++2a", "-O3", "-lstdc++", "-fopenmp", "-static-libstdc++"]
     LIBRARY_DIRS = []
     LINKER_ARGS = ["-fopenmp", "-lstdc++"]
 elif sys.platform == "win32":
@@ -23,7 +23,7 @@ with open("README.md", "r") as rfd:
     long_description = rfd.read()
 
 setup(name="libcalculus",
-version="0.2.1",
+version="0.2.2",
 description="Real/Complex analysis library for Python 3.",
 long_description=long_description,
 long_description_content_type="text/markdown",
