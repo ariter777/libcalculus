@@ -58,45 +58,51 @@ cdef class ComplexFunction:
     """Add the function in-place with a constant or another ComplexFunction."""
     if isinstance(rhs, ComplexFunction):
       self.cfunction += (<ComplexFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction += <COMPLEX>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __isub__(ComplexFunction self, rhs):
     """Subtract a constant or another ComplexFunction from the function, in-place."""
     if isinstance(rhs, ComplexFunction):
       self.cfunction -= (<ComplexFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction -= <COMPLEX>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __imul__(ComplexFunction self, rhs):
     """Multiply the function in-place with a constant or another ComplexFunction."""
     if isinstance(rhs, ComplexFunction):
       self.cfunction *= (<ComplexFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction *= <COMPLEX>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __itruediv__(ComplexFunction self, rhs):
     """Divide the function in-place by a constant or another ComplexFunction."""
     if isinstance(rhs, ComplexFunction):
       self.cfunction /= (<ComplexFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction /= <COMPLEX>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
+
+  def __ipow__(ComplexFunction self, rhs):
+    """Raise the function in-place to the power of a constant or another ComplexFunction."""
+    if isinstance(rhs, ComplexFunction):
+      self.cfunction.ipow((<ComplexFunction>rhs).cfunction)
+    elif isinstance(rhs, (int, float, complex)):
+      self.cfunction.ipow(<COMPLEX>rhs)
+    else:
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __add__(lhs, rhs):
     """Add the function with a constant or another ComplexFunction."""

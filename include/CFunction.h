@@ -63,12 +63,14 @@ namespace libcalculus {
         CFunction &operator-=(CFunction const &rhs);
         CFunction &operator*=(CFunction const &rhs);
         CFunction &operator/=(CFunction const &rhs);
+        CFunction &ipow(CFunction<Dom, Ran> const &rhs);
 
         /* In-place function-with-constant operators */
         CFunction &operator+=(Ran const c);
         CFunction &operator-=(Ran const c);
         CFunction &operator*=(Ran const c);
         CFunction &operator/=(Ran const c);
+        CFunction &ipow(Ran const c);
 
         /* Function additive inverse */
         CFunction operator-() const;

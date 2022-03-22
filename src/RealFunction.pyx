@@ -51,45 +51,51 @@ cdef class RealFunction:
     """Add the function in-place with a constant or another RealFunction."""
     if isinstance(rhs, RealFunction):
       self.cfunction += (<RealFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction += <REAL>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __isub__(RealFunction self, rhs):
     """Subtract a constant or another RealFunction from the function, in-place."""
     if isinstance(rhs, RealFunction):
       self.cfunction -= (<RealFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction -= <REAL>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __imul__(RealFunction self, rhs):
     """Multiply the function in-place with a constant or another RealFunction."""
     if isinstance(rhs, RealFunction):
       self.cfunction *= (<RealFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction *= <REAL>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __itruediv__(RealFunction self, rhs):
     """Divide the function in-place by a constant or another RealFunction."""
     if isinstance(rhs, RealFunction):
       self.cfunction /= (<RealFunction>rhs).cfunction
-      return self
     elif isinstance(rhs, (int, float, complex)):
       self.cfunction /= <REAL>rhs
-      return self
     else:
-      raise NotImplementedError
+      raise NotImplementedError(type(self), type(rhs))
+    return self
+
+  def __ipow__(RealFunction self, rhs):
+    """Raise the function in-place to the power of a constant or another RealFunction."""
+    if isinstance(rhs, RealFunction):
+      self.cfunction.ipow((<RealFunction>rhs).cfunction)
+    elif isinstance(rhs, (int, float, complex)):
+      self.cfunction.ipow(<REAL>rhs)
+    else:
+      raise NotImplementedError(type(self), type(rhs))
+    return self
 
   def __add__(lhs, rhs):
     """Add the function with a constant or another RealFunction."""
@@ -271,110 +277,110 @@ cdef class RealFunction:
     return F
 
   @staticmethod
-  def Identity(const REAL start=0., const REAL end=1.):
+  def Identity():
     """Identity function."""
     return RealFunction()
 
   @staticmethod
-  def Exp(const REAL start=0., const REAL end=1.):
+  def Exp():
     """Exponent."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Exp()
     return F
 
   @staticmethod
-  def Sin(const REAL start=0., const REAL end=1.):
+  def Sin():
     """Sine."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sin()
     return F
 
   @staticmethod
-  def Cos(const REAL start=0., const REAL end=1.):
+  def Cos():
     """Cosine."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Cos()
     return F
 
   @staticmethod
-  def Tan(const REAL start=0., const REAL end=1.):
+  def Tan():
     """Tangent."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Tan()
     return F
 
   @staticmethod
-  def Sec(const REAL start=0., const REAL end=1.):
+  def Sec():
     """Secant."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sec()
     return F
 
   @staticmethod
-  def Csc(const REAL start=0., const REAL end=1.):
+  def Csc():
     """Cosecant."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Csc()
     return F
 
   @staticmethod
-  def Cot(const REAL start=0., const REAL end=1.):
+  def Cot():
     """Cotangent."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Cot()
     return F
 
   @staticmethod
-  def Sinh(const REAL start=0., const REAL end=1.):
+  def Sinh():
     """Hyperbolic sine."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sinh()
     return F
 
   @staticmethod
-  def Cosh(const REAL start=0., const REAL end=1.):
+  def Cosh():
     """Hyperbolic cosine."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Cosh()
     return F
 
   @staticmethod
-  def Tanh(const REAL start=0., const REAL end=1.):
+  def Tanh():
     """Hyperbolic tangent."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Tanh()
     return F
 
   @staticmethod
-  def Sech(const REAL start=0., const REAL end=1.):
+  def Sech():
     """Hyperbolic secant."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Sech()
     return F
 
   @staticmethod
-  def Csch(const REAL start=0., const REAL end=1.):
+  def Csch():
     """Hyperbolic cosecant."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Csch()
     return F
 
   @staticmethod
-  def Coth(const REAL start=0., const REAL end=1.):
+  def Coth():
     """Hyperbolic cotangent."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Coth()
     return F
 
   @staticmethod
-  def Pi(const REAL start=0., const REAL end=1.):
+  def Pi():
     """Constant function equal to pi; useful for the LaTeX output."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Pi()
     return F
 
   @staticmethod
-  def E(const REAL start=0., const REAL end=1.):
+  def E():
     """Constant function equal to e; useful for the LaTeX output."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].E()

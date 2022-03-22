@@ -22,12 +22,14 @@ cdef extern from "CFunction.h" namespace "libcalculus" nogil:
     CFunction[Dom, Ran] &operator-=(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] &operator*=(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] &operator/=(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &ipow(CFunction[Dom, Ran] &rhs) except +
 
     # In-place function-with-constant operators
     CFunction[Dom, Ran] &operator+=(Ran c) except +
     CFunction[Dom, Ran] &operator-=(Ran c) except +
     CFunction[Dom, Ran] &operator*=(Ran c) except +
     CFunction[Dom, Ran] &operator/=(Ran c) except +
+    CFunction[Dom, Ran] &ipow(Ran c) except +
 
     # Function additive inverse
     CFunction[Dom, Ran] operator-() except +

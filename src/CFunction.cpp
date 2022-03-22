@@ -66,6 +66,19 @@ namespace libcalculus {
     }
 
     template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::ipow(CFunction<Dom, Ran> const &rhs) {
+        this->_f = [lhs_f = this->_f, rhs_f = rhs._f](Dom const z) noexcept { return std::pow(lhs_f(z), rhs_f(z)); };
+        std::string new_latex = "{";
+        new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::LPOW, this->_last_op));
+        new_latex.append("}^{");
+        new_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::RPOW, rhs._last_op));
+        new_latex.append("}");
+        this->_latex = new_latex;
+        this->_last_op = OP_TYPE::LPOW;
+        return *this;
+    }
+
+    template<typename Dom, typename Ran>
     CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator+=(Ran const c) {
         if (!Traits<Ran>::close(c, 0)) {
             this->_f = [c = c, old_f = this->_f](Dom const z) noexcept { return old_f(z) + c; };
@@ -112,6 +125,19 @@ namespace libcalculus {
             this->_latex = new_latex;
             this->_last_op = OP_TYPE::DIV;
         }
+        return *this;
+    }
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> &CFunction<Dom, Ran>::ipow(Ran const c) {
+        this->_f = [lhs_f = this->_f, c = c](Dom const z) noexcept { return std::pow(lhs_f(z), c); };
+        std::string new_latex = "{";
+        new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::LPOW, this->_last_op));
+        new_latex.append("}^{");
+        new_latex.append(Latex::fmt_const(c, false));
+        new_latex.append("}");
+        this->_latex = new_latex;
+        this->_last_op = OP_TYPE::LPOW;
         return *this;
     }
 
