@@ -24,15 +24,14 @@ pip install libcalculus
 Here is a snippet demonstrating some of the library's features:
 ```python
 >>> import libcalculus, numpy as np
->>> z = libcalculus.ComplexFunction.Identity() # Shorten syntax
->>> f = z ** 2 * (libcalculus.ComplexFunction.Sin() @ (3 / z)) # represents z^2 * sin(3/z)
+>>> f = libcalculus.identity ** 2 * (libcalculus.sin @ (3 / libcalculus.identity)) # represents z^2 * sin(3/z)
 >>> f(1 + 2j)
 (1.9161297498044316+7.826928799856612j)
 >>> libcalculus.residue(f, 0, tol=1e-4) # residue of f around z=0, with an error tolerance of 1e-4
 (-4.499999999971643+1.3805827092608378e-05j)
->>> print(f.latex())
-{z}^{2}\sin\left( \frac{3}{z}\right)
->>> contour = libcalculus.ComplexFunction.Exp() @ (1j * libcalculus.Contour.Identity()) # represents the contour e^(i*t)
+>>> print(f.latex("t"))
+{t}^{2}\sin\left( \frac{3}{t}\right)
+>>> contour = libcalculus.exp @ (1j * libcalculus.identity) # represents the contour e^(i*t)
 >>> libcalculus.integrate(f, contour, 1, 2) # integrate along the contour between t=1 and t=2
 (-0.0607129128779003-8.877187778245547j)
 >>> libcalculus.threads(4) # Enable threading
