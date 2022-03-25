@@ -43,3 +43,86 @@ cdef class CFunctionInterface:
       if self.realfunction is not None and (<CFunctionInterface>rhs).realfunction is not None: self.realfunction += (<CFunctionInterface>rhs).realfunction
       if self.contour is not None and (<CFunctionInterface>rhs).contour is not None: self.contour += (<CFunctionInterface>rhs).contour
       if self.complexfunction is not None and (<CFunctionInterface>rhs).complexfunction is not None: self.complexfunction += (<CFunctionInterface>rhs).complexfunction
+    elif _isrealscalar(rhs):
+      if self.realfunction is not None: self.realfunction += <REAL>rhs
+      if self.contour is not None: self.contour += <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction += <COMPLEX>rhs
+    elif _iscomplexscalar(rhs):
+      self.realfunction = None
+      if self.contour is not None: self.contour += <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction += <COMPLEX>rhs
+    else:
+      raise NotImplementedError(f"Operands of type {type(self), type(rhs)} not supported")
+    return self
+
+  def  __isub__(CFunctionInterface self, rhs):
+    """Subtract a constant or another function from the function, in-place."""
+    if isinstance(rhs, CFunctionInterface):
+      if self.realfunction is not None and (<CFunctionInterface>rhs).realfunction is not None: self.realfunction -= (<CFunctionInterface>rhs).realfunction
+      if self.contour is not None and (<CFunctionInterface>rhs).contour is not None: self.contour -= (<CFunctionInterface>rhs).contour
+      if self.complexfunction is not None and (<CFunctionInterface>rhs).complexfunction is not None: self.complexfunction -= (<CFunctionInterface>rhs).complexfunction
+    elif _isrealscalar(rhs):
+      if self.realfunction is not None: self.realfunction -= <REAL>rhs
+      if self.contour is not None: self.contour -= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction -= <COMPLEX>rhs
+    elif _iscomplexscalar(rhs):
+      self.realfunction = None
+      if self.contour is not None: self.contour -= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction -= <COMPLEX>rhs
+    else:
+      raise NotImplementedError(f"Operands of type {type(self), type(rhs)} not supported")
+    return self
+
+  def  __imul__(CFunctionInterface self, rhs):
+    """Multiply the function in-place with a constant or another function."""
+    if isinstance(rhs, CFunctionInterface):
+      if self.realfunction is not None and (<CFunctionInterface>rhs).realfunction is not None: self.realfunction *= (<CFunctionInterface>rhs).realfunction
+      if self.contour is not None and (<CFunctionInterface>rhs).contour is not None: self.contour *= (<CFunctionInterface>rhs).contour
+      if self.complexfunction is not None and (<CFunctionInterface>rhs).complexfunction is not None: self.complexfunction *= (<CFunctionInterface>rhs).complexfunction
+    elif _isrealscalar(rhs):
+      if self.realfunction is not None: self.realfunction *= <REAL>rhs
+      if self.contour is not None: self.contour *= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction *= <COMPLEX>rhs
+    elif _iscomplexscalar(rhs):
+      self.realfunction = None
+      if self.contour is not None: self.contour *= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction *= <COMPLEX>rhs
+    else:
+      raise NotImplementedError(f"Operands of type {type(self), type(rhs)} not supported")
+    return self
+
+  def  __itruediv__(CFunctionInterface self, rhs):
+    """Divide the function in-place by a constant or another function."""
+    if isinstance(rhs, CFunctionInterface):
+      if self.realfunction is not None and (<CFunctionInterface>rhs).realfunction is not None: self.realfunction /= (<CFunctionInterface>rhs).realfunction
+      if self.contour is not None and (<CFunctionInterface>rhs).contour is not None: self.contour /= (<CFunctionInterface>rhs).contour
+      if self.complexfunction is not None and (<CFunctionInterface>rhs).complexfunction is not None: self.complexfunction /= (<CFunctionInterface>rhs).complexfunction
+    elif _isrealscalar(rhs):
+      if self.realfunction is not None: self.realfunction /= <REAL>rhs
+      if self.contour is not None: self.contour /= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction /= <COMPLEX>rhs
+    elif _iscomplexscalar(rhs):
+      self.realfunction = None
+      if self.contour is not None: self.contour /= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction /= <COMPLEX>rhs
+    else:
+      raise NotImplementedError(f"Operands of type {type(self), type(rhs)} not supported")
+    return self
+
+  def  __ipow__(CFunctionInterface self, rhs):
+    """Raise the function in-place to the power of a constant or another function."""
+    if isinstance(rhs, CFunctionInterface):
+      if self.realfunction is not None and (<CFunctionInterface>rhs).realfunction is not None: self.realfunction **= (<CFunctionInterface>rhs).realfunction
+      if self.contour is not None and (<CFunctionInterface>rhs).contour is not None: self.contour **= (<CFunctionInterface>rhs).contour
+      if self.complexfunction is not None and (<CFunctionInterface>rhs).complexfunction is not None: self.complexfunction **= (<CFunctionInterface>rhs).complexfunction
+    elif _isrealscalar(rhs):
+      if self.realfunction is not None: self.realfunction **= <REAL>rhs
+      if self.contour is not None: self.contour **= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction **= <COMPLEX>rhs
+    elif _iscomplexscalar(rhs):
+      self.realfunction = None
+      if self.contour is not None: self.contour **= <COMPLEX>rhs
+      if self.complexfunction is not None: self.complexfunction **= <COMPLEX>rhs
+    else:
+      raise NotImplementedError(f"Operands of type {type(self), type(rhs)} not supported")
+    return self
