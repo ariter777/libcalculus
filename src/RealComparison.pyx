@@ -19,6 +19,12 @@ cdef class RealComparison:
       result[i] = self.ccomparison.eval(t[i])
     return result
 
+  def copy(RealComparison self):
+    """Create a copy of the object."""
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = CComparison[REAL](self.ccomparison)
+    return result
+
   def __call__(RealComparison self, t):
     if isinstance(t, (int, float)):
       return self.ccomparison.eval(t)
@@ -34,20 +40,20 @@ cdef class RealComparison:
     result.ccomparison = ~self.ccomparison
     return result
 
-  def __or__(RealComparison lhs, RealComparison rhs):
-    cdef RealComparison result = RealComparison()
-    result.ccomparison = lhs.ccomparison | rhs.ccomparison
-    return result
+  def __iand__(RealComparison self, RealComparison rhs not None):
+    self.ccomparison &= rhs.ccomparison
+    return self
 
-  def __and__(RealComparison lhs, RealComparison rhs):
+  def __ior__(RealComparison self, RealComparison rhs not None):
+    self.ccomparison |= rhs.ccomparison
+    return self
+
+  def __and__(RealComparison lhs not None, RealComparison rhs not None):
     cdef RealComparison result = RealComparison()
     result.ccomparison = lhs.ccomparison & rhs.ccomparison
     return result
 
-  def __ior__(RealComparison self, RealComparison rhs):
-    self.ccomparison |= rhs.ccomparison
-    return self
-
-  def __iand__(RealComparison self, RealComparison rhs):
-    self.ccomparison &= rhs.ccomparison
-    return self
+  def __or__(RealComparison lhs not None, RealComparison rhs not None):
+    cdef RealComparison result = RealComparison()
+    result.ccomparison = lhs.ccomparison | rhs.ccomparison
+    return result

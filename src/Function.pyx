@@ -1,6 +1,5 @@
 # distutils: language = c++
 from Definitions cimport *
-from CFunction cimport *
 import numpy as np
 
 cdef class Function:
@@ -38,8 +37,8 @@ cdef class Function:
   def __neg__(Function self):
     """The additive inverse of the function."""
     return Function(-self.realfunction if self.realfunction is not None else None,
-                              -self.contour if self.contour is not None else None,
-                              -self.complexfunction if self.complexfunction is not None else None)
+                    -self.contour if self.contour is not None else None,
+                    -self.complexfunction if self.complexfunction is not None else None)
 
   def  __iadd__(Function self, rhs):
     """Add the function in-place with a constant or another function."""
@@ -190,7 +189,7 @@ cdef class Function:
       result **= lhs
     return result
 
-  def __matmul__(Function lhs, Function rhs):
+  def __matmul__(Function lhs not None, Function rhs not None):
     """Compose the function with another function."""
     cdef RealFunction realfunction = lhs.realfunction @ rhs.realfunction if lhs.realfunction is not None and rhs.realfunction is not None else None
     cdef Contour contour = lhs.complexfunction @ rhs.contour if lhs.complexfunction is not None and rhs.contour is not None else None

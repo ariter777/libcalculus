@@ -14,6 +14,12 @@ cdef class ComplexComparison:
       result[i] = self.ccomparison.eval(z[i])
     return result
 
+  def copy(ComplexComparison self):
+    """Create a copy of the object."""
+    cdef ComplexComparison result = ComplexComparison()
+    result.ccomparison = CComparison[COMPLEX](self.ccomparison)
+    return result
+
   def __call__(ComplexComparison self, z):
     if isinstance(z, (int, float, complex)):
       return self.ccomparison.eval(z)
@@ -29,12 +35,20 @@ cdef class ComplexComparison:
     result.ccomparison = ~self.ccomparison
     return result
 
-  def __or__(ComplexComparison lhs, ComplexComparison rhs):
-    cdef ComplexComparison result = ComplexComparison()
-    result.ccomparison = lhs.ccomparison | rhs.ccomparison
-    return result
+  def __iand__(ComplexComparison self, ComplexComparison rhs not None):
+    self.ccomparison &= rhs.ccomparison
+    return self
 
-  def __and__(ComplexComparison lhs, ComplexComparison rhs):
+  def __ior__(ComplexComparison self, ComplexComparison rhs not None):
+    self.ccomparison |= rhs.ccomparison
+    return self
+
+  def __and__(ComplexComparison lhs not None, ComplexComparison rhs not None):
     cdef ComplexComparison result = ComplexComparison()
     result.ccomparison = lhs.ccomparison & rhs.ccomparison
+    return result
+
+  def __or__(ComplexComparison lhs not None, ComplexComparison rhs not None):
+    cdef ComplexComparison result = ComplexComparison()
+    result.ccomparison = lhs.ccomparison | rhs.ccomparison
     return result

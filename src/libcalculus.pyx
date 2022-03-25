@@ -24,6 +24,7 @@ include "CCalculus.pyx"
 
 include "RealComparison.pyx"
 include "ComplexComparison.pyx"
+include "Comparison.pyx"
 
 include "ComplexFunction.pyx"
 include "Contour.pyx"
