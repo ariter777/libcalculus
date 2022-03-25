@@ -17,9 +17,13 @@ cdef class CFunctionInterface:
   def __call__(CFunctionInterface self, x):
     """Evaluate the function at a point or on an np.ndarray of points."""
     if _isrealscalar(x):
-      return self.realfunction.cfunction(<REAL>x) if self.realfunction is not None else self.contour.cfunction(<REAL>x)
+      return self.realfunction.cfunction(<REAL>x) if self.realfunction is not None else \
+             self.contour.cfunction(<REAL>x) if self.contour is not None else \
+             self.complexfunction.cfunction(<COMPLEX>x)
     elif _isrealarray(x):
-      return self.complexfunction._call_array(x.ravel().astype(np.double, copy=False)).reshape(x.shape)
+      return self.realfunction._call_array(x.ravel().astype(np.double, copy=False)) if self.realfunction is not None else \
+             self.contour._call_array(x.ravel().astype(np.double, copy=False)) if self.contour is not None else \
+             self.complexfunction._call_array(x.ravel().astype(complex, copy=False))
     elif _iscomplexscalar(x):
       return self.complexfunction.cfunction(<COMPLEX>x)
     elif _iscomplexarray(x):
@@ -112,11 +116,14 @@ cdef class CFunctionInterface:
   def  __ipow__(CFunctionInterface self, rhs):
     """Raise the function in-place to the power of a constant or another function."""
     if isinstance(rhs, CFunctionInterface):
-      if self.realfunction is not None and (<CFunctionInterface>rhs).realfunction is not None: self.realfunction **= (<CFunctionInterface>rhs).realfunction
+      self.realfunction = None # negative or fractional powers cause NaNs in RealFunction
       if self.contour is not None and (<CFunctionInterface>rhs).contour is not None: self.contour **= (<CFunctionInterface>rhs).contour
       if self.complexfunction is not None and (<CFunctionInterface>rhs).complexfunction is not None: self.complexfunction **= (<CFunctionInterface>rhs).complexfunction
     elif _isrealscalar(rhs):
-      if self.realfunction is not None: self.realfunction **= <REAL>rhs
+      if self.realfunction is not None and rhs >= 0 and float(rhs).is_integer(): # negative or fractional powers cause NaNs in RealFunction
+        self.realfunction **= <REAL>rhs
+      else:
+        self.realfunction = None
       if self.contour is not None: self.contour **= <COMPLEX>rhs
       if self.complexfunction is not None: self.complexfunction **= <COMPLEX>rhs
     elif _iscomplexscalar(rhs):
