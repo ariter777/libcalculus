@@ -393,7 +393,7 @@ cdef class RealFunction:
     return F
 
   @staticmethod
-  def If(RealComparison comp_, RealFunction then_, RealFunction else_=RealFunction.Constant(0)):
+  def If(RealComparison comp_ not None, RealFunction then_ not None, RealFunction else_=RealFunction.Constant(0)):
     """A function that evaluates to a certain function when a RealComparison is True, and otherwise evaluates to another function."""
     F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].If(comp_.ccomparison, then_.cfunction, else_.cfunction)

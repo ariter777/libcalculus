@@ -70,4 +70,10 @@ pi = Function(RealFunction.Pi(), Contour.Pi(), ComplexFunction.Pi())
 e = Function(RealFunction.E(), Contour.E(), ComplexFunction.E())
 
 # Piecewise functions
-# TODO
+def piecewise(Comparison comp_, Function then_ not None, Function else_=constant(0)):
+  return Function(RealFunction.If(comp_.realcomparison, then_.realfunction, else_.realfunction) \
+                    if comp_.realcomparison is not None and then_.realfunction is not None and else_.realfunction is not None else None,
+                  Contour.If(comp_.complexcomparison, then_.contour, else_.contour) \
+                    if comp_.complexcomparison is not None and then_.contour is not None and else_.contour is not None else None,
+                  ComplexFunction.If(comp_.complexcomparison, then_.complexfunction, else_.complexfunction) \
+                    if comp_.complexcomparison is not None and then_.complexfunction is not None and else_.complexfunction is not None else None)

@@ -361,7 +361,7 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
-  def If(ComplexComparison comp_, ComplexFunction then_, ComplexFunction else_=ComplexFunction.Constant(0)):
+  def If(ComplexComparison comp_ not None, ComplexFunction then_ not None, ComplexFunction else_=ComplexFunction.Constant(0)):
     """A function that evaluates to a certain function when a ComplexComparison is True, and otherwise evaluates to another function."""
     F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].If(comp_.ccomparison, then_.cfunction, else_.cfunction)

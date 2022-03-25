@@ -9,9 +9,9 @@ cdef class Function:
   cdef ComplexFunction complexfunction
 
   def __cinit__(Function self, RealFunction realfunction=None, Contour contour=None, ComplexFunction complexfunction=None):
-    self.realfunction = realfunction.copy()
-    self.contour = contour.copy()
-    self.complexfunction = complexfunction.copy()
+    self.realfunction = realfunction.copy() if realfunction is not None else None
+    self.contour = contour.copy() if contour is not None else None
+    self.complexfunction = complexfunction.copy() if complexfunction is not None else None
 
   def __call__(Function self, x):
     """Evaluate the function at a point or on an np.ndarray of points."""
