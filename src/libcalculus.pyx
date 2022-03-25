@@ -20,8 +20,6 @@ def threads(const size_t n=0):
     openmp.omp_set_num_threads(n)
     return n
 
-include "CCalculus.pyx"
-
 include "RealComparison.pyx"
 include "ComplexComparison.pyx"
 include "Comparison.pyx"
@@ -29,8 +27,9 @@ include "Comparison.pyx"
 include "ComplexFunction.pyx"
 include "Contour.pyx"
 include "RealFunction.pyx"
-
 include "Function.pyx"
+
+include "CCalculus.pyx"
 
 
 def constant(c):
@@ -42,7 +41,7 @@ def constant(c):
     raise NotImplementedError(f"Type {type(c)} not supported.")
 
 # Basic functions
-id = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Identity())
+identity = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Identity())
 real = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Re())
 imag = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Im())
 abs = Function(RealFunction.Abs(), Contour.Abs(), ComplexFunction.Abs())

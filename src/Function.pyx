@@ -32,7 +32,12 @@ cdef class Function:
 
   def latex(Function self, str varname="x"):
     """Generate LaTeX markup for the function."""
-    return self.complexfunction.cfunction.latex(varname.encode()).decode()
+    if self.realfunction is not None:
+      return self.realfunction.cfunction.latex(varname.encode()).decode()
+    elif self.contour is not None:
+      return self.contour.cfunction.latex(varname.encode()).decode()
+    elif self.complexfunction is not None:
+      return self.complexfunction.cfunction.latex(varname.encode()).decode()
 
   def __neg__(Function self):
     """The additive inverse of the function."""
@@ -130,7 +135,7 @@ cdef class Function:
       if self.contour is not None: self.contour **= <COMPLEX>rhs
       if self.complexfunction is not None: self.complexfunction **= <COMPLEX>rhs
     else:
-      raise NotImplementedError(f"Operands of type {type(self), type(rhs)} not supported")
+      raise NotImplementedError(f"Operands types {type(self), type(rhs)} not supported")
     return self
 
   def __add__(lhs, rhs):
@@ -173,8 +178,21 @@ cdef class Function:
       result = Function((<Function>lhs).realfunction, (<Function>lhs).contour, (<Function>lhs).complexfunction)
       result /= rhs
     elif isinstance(rhs, Function):
-      result = Function((<Function>rhs).realfunction, (<Function>rhs).contour, (<Function>rhs).complexfunction)
-      result /= lhs
+      if isinstance(lhs, Function):
+        result = Function((<Function>lhs).realfunction, (<Function>lhs).contour, (<Function>lhs).complexfunction)
+        result /= rhs
+      elif _isrealscalar(lhs):
+        result = Function(lhs / (<Function>rhs).realfunction if (<Function>rhs).realfunction is not None else None,
+                          lhs / (<Function>rhs).contour if (<Function>rhs).contour is not None else None,
+                          lhs / (<Function>rhs).complexfunction if (<Function>rhs).complexfunction is not None else None)
+      elif _iscomplexscalar(lhs):
+        result = Function(None,
+                          lhs / (<Function>rhs).contour if (<Function>rhs).contour is not None else None,
+                          lhs / (<Function>rhs).complexfunction if (<Function>rhs).complexfunction is not None else None)
+      else:
+        raise NotImplementedError(f"Operands types {type(lhs), type(rhs)} not supported.")
+    else:
+      raise NotImplementedError(f"Operands types {type(lhs), type(rhs)} not supported.")
     return result
 
 
@@ -185,8 +203,15 @@ cdef class Function:
       result = Function((<Function>lhs).realfunction, (<Function>lhs).contour, (<Function>lhs).complexfunction)
       result **= rhs
     elif isinstance(rhs, Function):
-      result = Function((<Function>rhs).realfunction, (<Function>rhs).contour, (<Function>rhs).complexfunction)
-      result **= lhs
+      if isinstance(lhs, Function):
+        result = Function((<Function>lhs).realfunction, (<Function>lhs).contour, (<Function>lhs).complexfunction)
+        result **= rhs
+      elif _isrealscalar(lhs) or _iscomplexscalar(lhs):
+        result = Function(None,
+                          lhs ** (<Function>rhs).contour if (<Function>rhs).contour is not None else None,
+                          lhs ** (<Function>rhs).complexfunction if (<Function>rhs).complexfunction is not None else None)
+      else:
+        raise NotImplementedError(f"Operands types {type(lhs), type(rhs)} not supported.")
     return result
 
   def __matmul__(Function lhs not None, Function rhs not None):

@@ -8,15 +8,18 @@ sys.path.append("./include")
 if sys.platform == "linux":
     import os
     os.environ["CC"] = os.environ.get("CC", "g++")
-    os.environ["CC"] = os.environ.get("CXX", "g++")
+    os.environ["CXX"] = os.environ.get("CXX", "g++")
     os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++ -shared")
-    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++2a", "-O3", "-lstdc++", "-fopenmp", "-static-libstdc++", "-static-libgcc"]
+    COMPILER_ARGS = ["-DNPY_NO_DEPRECATED_API", "-std=c++2a", "-O3", "-lstdc++", "-fopenmp", "-static-libstdc++", "-static-libgcc"] + \
+                    os.environ.get("CFLAGS", "").split() + os.environ.get("CXXFLAGS", "").split()
     LIBRARY_DIRS = []
-    LINKER_ARGS = ["-fopenmp", "-lstdc++", "-static-libstdc++", "-static-libgcc"]
+    LINKER_ARGS = ["-fopenmp", "-lstdc++", "-static-libstdc++", "-static-libgcc"] + \
+                  os.environ.get("LDFLAGS", "").split()
 elif sys.platform == "win32":
-    COMPILER_ARGS = ["/std:c++20", "/DNPY_NO_DEPRECATED_API", "/O2", "/MT"]
+    COMPILER_ARGS = ["/std:c++20", "/DNPY_NO_DEPRECATED_API", "/O2", "/MT"] + \
+                    os.environ.get("CFLAGS", "").split() + os.environ.get("CXXFLAGS", "").split()
     LIBRARY_DIRS = [r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64"]
-    LINKER_ARGS = []
+    LINKER_ARGS = [] + os.environ.get("LDFLAGS", "").split()
 
 
 with open("README.md", "r") as rfd:
