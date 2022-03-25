@@ -25,6 +25,12 @@ cdef class Contour:
         self.cfunction._call_array(&t[0], &result[0], n)
     return np.asarray(result)
 
+  def copy(Contour self):
+    """Create a copy of the object."""
+    cdef Contour result = Contour()
+    result.cfunction = CFunction[REAL, COMPLEX](self.cfunction)
+    return result
+
   def __call__(Contour self, t):
     """Evaluate the function at a point or on an np.ndarray of points."""
     if isinstance(t, (int, float, complex)):

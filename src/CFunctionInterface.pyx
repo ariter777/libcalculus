@@ -10,9 +10,9 @@ cdef class CFunctionInterface:
   cdef ComplexFunction complexfunction
 
   def __cinit__(CFunctionInterface self, RealFunction realfunction=None, Contour contour=None, ComplexFunction complexfunction=None):
-    self.realfunction = realfunction
-    self.contour = contour
-    self.complexfunction = complexfunction
+    self.realfunction = realfunction.copy()
+    self.contour = contour.copy()
+    self.complexfunction = complexfunction.copy()
 
   def __call__(CFunctionInterface self, x):
     """Evaluate the function at a point or on an np.ndarray of points."""
@@ -126,3 +126,59 @@ cdef class CFunctionInterface:
     else:
       raise NotImplementedError(f"Operands of type {type(self), type(rhs)} not supported")
     return self
+
+  def __add__(lhs, rhs):
+    """Add the function with a constant or another function."""
+    cdef CFunctionInterface result
+    if isinstance(lhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>lhs).realfunction, (<CFunctionInterface>lhs).contour, (<CFunctionInterface>lhs).complexfunction)
+      result += rhs
+    elif isinstance(rhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>rhs).realfunction, (<CFunctionInterface>rhs).contour, (<CFunctionInterface>rhs).complexfunction)
+      result += lhs
+    return result
+
+  def __sub__(lhs, rhs):
+    """Subtract a constant or another function from the function."""
+    cdef CFunctionInterface result
+    if isinstance(lhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>lhs).realfunction, (<CFunctionInterface>lhs).contour, (<CFunctionInterface>lhs).complexfunction)
+      result -= rhs
+    elif isinstance(rhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>rhs).realfunction, (<CFunctionInterface>rhs).contour, (<CFunctionInterface>rhs).complexfunction)
+      result -= lhs
+    return result
+
+  def __mul__(lhs, rhs):
+    """Multiply the function with a constant or another function."""
+    cdef CFunctionInterface result
+    if isinstance(lhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>lhs).realfunction, (<CFunctionInterface>lhs).contour, (<CFunctionInterface>lhs).complexfunction)
+      result *= rhs
+    elif isinstance(rhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>rhs).realfunction, (<CFunctionInterface>rhs).contour, (<CFunctionInterface>rhs).complexfunction)
+      result *= lhs
+    return result
+
+  def __truediv__(lhs, rhs):
+    """Divide the function by a constant or another function."""
+    cdef CFunctionInterface result
+    if isinstance(lhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>lhs).realfunction, (<CFunctionInterface>lhs).contour, (<CFunctionInterface>lhs).complexfunction)
+      result /= rhs
+    elif isinstance(rhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>rhs).realfunction, (<CFunctionInterface>rhs).contour, (<CFunctionInterface>rhs).complexfunction)
+      result /= lhs
+    return result
+
+
+  def __pow__(lhs, rhs, mod):
+    """Raise the function to the power of a constant or another function."""
+    cdef CFunctionInterface result
+    if isinstance(lhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>lhs).realfunction, (<CFunctionInterface>lhs).contour, (<CFunctionInterface>lhs).complexfunction)
+      result **= rhs
+    elif isinstance(rhs, CFunctionInterface):
+      result = CFunctionInterface((<CFunctionInterface>rhs).realfunction, (<CFunctionInterface>rhs).contour, (<CFunctionInterface>rhs).complexfunction)
+      result **= lhs
+    return result

@@ -20,6 +20,12 @@ cdef class RealFunction:
       self.cfunction._call_array(&t[0], &result[0], n)
     return np.asarray(result)
 
+  def copy(RealFunction self):
+    """Create a copy of the object."""
+    cdef RealFunction result = RealFunction()
+    result.cfunction = CFunction[REAL, REAL](self.cfunction)
+    return result
+
   def __call__(RealFunction self, t):
     """Evaluate the function at a point or on an np.ndarray of points."""
     if isinstance(t, (int, float, complex)):

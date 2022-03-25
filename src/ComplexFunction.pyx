@@ -21,6 +21,12 @@ cdef class ComplexFunction:
         self.cfunction._call_array(&z[0], &result[0], n)
     return np.asarray(result)
 
+  def copy(ComplexFunction self):
+    """Create a copy of the object."""
+    cdef ComplexFunction result = ComplexFunction()
+    result.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction)
+    return result
+
   def __call__(ComplexFunction self, z):
     """Evaluate the function at a point or on an np.ndarray of points."""
     if isinstance(z, (int, float, complex)):
