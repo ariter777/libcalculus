@@ -185,7 +185,7 @@ cdef class RealFunction:
       raise NotImplementedError(type(lhs), type(rhs))
 
   def __gt__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function is greater than another RealFunction or a constant."""
+    """Return a RealComparison that evaluates to True wherever is greater than another RealFunction or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
       result.ccomparison = (<RealFunction>lhs).cfunction > (<RealFunction>rhs).cfunction
@@ -199,7 +199,7 @@ cdef class RealFunction:
     return result
 
   def __lt__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function is less than another RealFunction or a constant."""
+    """Return a RealComparison that evaluates to True wherever is less than another RealFunction or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
       result.ccomparison = (<RealFunction>lhs).cfunction < (<RealFunction>rhs).cfunction
@@ -213,7 +213,7 @@ cdef class RealFunction:
     return result
 
   def __eq__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function equals another RealFunction or a constant."""
+    """Return a RealComparison that evaluates to True wherever equals another RealFunction or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
       result.ccomparison = (<RealFunction>lhs).cfunction == (<RealFunction>rhs).cfunction
@@ -227,7 +227,7 @@ cdef class RealFunction:
     return result
 
   def __ge__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function is greater than or equal to another RealFunction or a constant."""
+    """Return a RealComparison that evaluates to True wherever is greater than or equal to another RealFunction or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
       result.ccomparison = (<RealFunction>lhs).cfunction >= (<RealFunction>rhs).cfunction
@@ -241,7 +241,7 @@ cdef class RealFunction:
     return result
 
   def __le__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function is less than or equal to another RealFunction or a constant."""
+    """Return a RealComparison that evaluates to True wherever is less than or equal to another RealFunction or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
       result.ccomparison = (<RealFunction>lhs).cfunction <= (<RealFunction>rhs).cfunction
@@ -255,7 +255,7 @@ cdef class RealFunction:
     return result
 
   def __ne__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function is not equal to another RealFunction or a constant."""
+    """Return a RealComparison that evaluates to True wherever is not equal to another RealFunction or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, RealFunction) and isinstance(rhs, RealFunction):
       result.ccomparison = (<RealFunction>lhs).cfunction != (<RealFunction>rhs).cfunction

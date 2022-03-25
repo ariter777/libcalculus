@@ -227,7 +227,7 @@ cdef class Contour:
       return int(np.rint(result))
 
   def __eq__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function equals another Contour or a constant."""
+    """Return a RealComparison that evaluates to True wherever equals another Contour or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction == (<Contour>rhs).cfunction
@@ -241,7 +241,7 @@ cdef class Contour:
     return result
 
   def __ne__(lhs, rhs):
-    """Return a RealComparison that evaluates to True where the function isn't equal to another Contour or a constant."""
+    """Return a RealComparison that evaluates to True wherever isn't equal to another Contour or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction != (<Contour>rhs).cfunction

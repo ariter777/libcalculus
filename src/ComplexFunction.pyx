@@ -183,7 +183,7 @@ cdef class ComplexFunction:
       raise NotImplementedError(type(lhs), type(rhs))
 
   def __eq__(lhs, rhs):
-    """Return a ComplexComparison that evaluates to True where the function equals another ComplexFunction or a constant."""
+    """Return a ComplexComparison that evaluates to True wherever equals another ComplexFunction or a constant."""
     cdef ComplexComparison result = ComplexComparison()
     if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       result.ccomparison = (<ComplexFunction>lhs).cfunction == (<ComplexFunction>rhs).cfunction
@@ -197,7 +197,7 @@ cdef class ComplexFunction:
     return result
 
   def __ne__(lhs, rhs):
-    """Return a ComplexComparison that evaluates to True where the function does not equal another ComplexFunction or a constant."""
+    """Return a ComplexComparison that evaluates to True wherever does not equal another ComplexFunction or a constant."""
     cdef ComplexComparison result = ComplexComparison()
     if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       result.ccomparison = (<ComplexFunction>lhs).cfunction != (<ComplexFunction>rhs).cfunction

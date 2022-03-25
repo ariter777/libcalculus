@@ -9,20 +9,22 @@ cdef class Comparison:
   cdef ComplexComparison complexcomparison
 
   def __cinit__(Comparison self, RealComparison realcomparison, ComplexComparison complexcomparison):
-    self.realcomparison = realcomparison.copy()
-    self.complexcomparison = complexcomparison.copy()
+    self.realcomparison = realcomparison.copy() if realcomparison is not None else None
+    self.complexcomparison = complexcomparison.copy() if complexcomparison is not None else None
 
   def __call__(Comparison self, x):
     """Evaluate the comparison at a point or on an np.ndarray of points."""
+    if self.realcomparison is None and self.complexcomparison is None:
+      raise ValueError("The comparison is malformed and could not be evaluated.")
     if _isrealscalar(x):
       return self.realcomparison.ccomparison.eval(<REAL>x) if self.realcomparison is not None else \
              self.complexcomparison.ccomparison.eval(<COMPLEX>x)
     elif _isrealarray(x):
       return self.realcomparison._call_array(x.ravel().astype(np.double, copy=False)) if self.realcomparison is not None else \
              self.complexcomparison._call_array(x.ravel().astype(complex, copy=False))
-    elif _iscomplexscalar(x):
+    elif _iscomplexscalar(x) and self.complexcomparison is not None:
       return self.complexcomparison.ccomparison.eval(<COMPLEX>x)
-    elif _iscomplexarray(x):
+    elif _iscomplexarray(x) and self.complexcomparison is not None:
       return self.complexcomparison._call_array(x.ravel().astype(complex, copy=False)).reshape(x.shape)
     else:
       raise NotImplementedError(f"Input of type {type(x)} not supported.")
