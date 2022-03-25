@@ -29,4 +29,44 @@ include "ComplexFunction.pyx"
 include "Contour.pyx"
 include "RealFunction.pyx"
 
-include "CFunctionInterface.pyx"
+include "Function.pyx"
+
+
+def constant(c):
+  if _isrealscalar(c):
+    return Function(RealFunction.Constant(<REAL>c), Contour.Constant(<COMPLEX>c), ComplexFunction.Constant(<COMPLEX>c))
+  elif _iscomplexscalar(c):
+    return Function(None, Contour.Constant(<COMPLEX>c), ComplexFunction.Constant(<COMPLEX>c))
+  else:
+    raise NotImplementedError(f"Type {type(c)} not supported.")
+
+# Basic functions
+id = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Identity())
+real = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Re())
+imag = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Im())
+abs = Function(RealFunction.Abs(), Contour.Abs(), ComplexFunction.Abs())
+conj = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Conj())
+exp = Function(RealFunction.Exp(), Contour.Exp(), ComplexFunction.Exp())
+
+# Trigonometric functions
+sin = Function(RealFunction.Sin(), Contour.Sin(), ComplexFunction.Sin())
+cos = Function(RealFunction.Cos(), Contour.Cos(), ComplexFunction.Cos())
+tan = Function(RealFunction.Tan(), Contour.Tan(), ComplexFunction.Tan())
+csc = Function(RealFunction.Csc(), Contour.Csc(), ComplexFunction.Csc())
+sec = Function(RealFunction.Sec(), Contour.Sec(), ComplexFunction.Sec())
+cot = Function(RealFunction.Cot(), Contour.Cot(), ComplexFunction.Cot())
+
+# Hyperbolic functions
+sinh = Function(RealFunction.Sinh(), Contour.Sinh(), ComplexFunction.Sinh())
+cosh = Function(RealFunction.Cosh(), Contour.Cosh(), ComplexFunction.Cosh())
+tanh = Function(RealFunction.Tanh(), Contour.Tanh(), ComplexFunction.Tanh())
+csch = Function(RealFunction.Csch(), Contour.Csch(), ComplexFunction.Csch())
+sech = Function(RealFunction.Sech(), Contour.Sech(), ComplexFunction.Sech())
+coth = Function(RealFunction.Coth(), Contour.Coth(), ComplexFunction.Coth())
+
+# Constants
+pi = Function(RealFunction.Pi(), Contour.Pi(), ComplexFunction.Pi())
+e = Function(RealFunction.E(), Contour.E(), ComplexFunction.E())
+
+# Piecewise functions
+# TODO
