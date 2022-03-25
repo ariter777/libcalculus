@@ -60,7 +60,7 @@ class FunctionTester(Tester):
             c = self._rand()
             return func(c), lambda z, v=c: v
         else:
-            return func if isinstance(func, libcalculus.Function) else func(), self.BASE_FUNCTIONS[func]
+            return func.copy() if isinstance(func, libcalculus.Function) else func(), self.BASE_FUNCTIONS[func]
 
     def _gen_function(self, n_ops=None):
         """Generate a random function object with n operations of any kind."""

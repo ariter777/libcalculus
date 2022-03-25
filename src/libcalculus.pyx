@@ -1,6 +1,6 @@
 # distutils: language = c++
 from Definitions cimport *
-import os
+import sys, os
 cimport openmp
 
 cdef class _Globals:
@@ -40,33 +40,62 @@ def constant(c):
   else:
     raise NotImplementedError(f"Type {type(c)} not supported.")
 
-# Basic functions
-identity = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Identity())
-real = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Re())
-imag = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Im())
-abs = Function(RealFunction.Abs(), Contour.Abs(), ComplexFunction.Abs())
-conj = Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Conj())
-exp = Function(RealFunction.Exp(), Contour.Exp(), ComplexFunction.Exp())
+def __setattr__(name):
+  raise AttributeError(f"cannot set attribute {name} in module {__name__}")
 
-# Trigonometric functions
-sin = Function(RealFunction.Sin(), Contour.Sin(), ComplexFunction.Sin())
-cos = Function(RealFunction.Cos(), Contour.Cos(), ComplexFunction.Cos())
-tan = Function(RealFunction.Tan(), Contour.Tan(), ComplexFunction.Tan())
-csc = Function(RealFunction.Csc(), Contour.Csc(), ComplexFunction.Csc())
-sec = Function(RealFunction.Sec(), Contour.Sec(), ComplexFunction.Sec())
-cot = Function(RealFunction.Cot(), Contour.Cot(), ComplexFunction.Cot())
+def __getattr__(name):
+  if name in sys.modules[__name__].__dict__:
+    return sys.modules[__name__].__dict__[name]
+  # Basic functions
+  elif name == "identity":
+    return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Identity())
+  elif name == "real":
+   return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Re())
+  elif name == "imag":
+   return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Im())
+  elif name == "abs":
+   return Function(RealFunction.Abs(), Contour.Abs(), ComplexFunction.Abs())
+  elif name == "conj":
+   return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Conj())
+  elif name == "exp":
+   return Function(RealFunction.Exp(), Contour.Exp(), ComplexFunction.Exp())
 
-# Hyperbolic functions
-sinh = Function(RealFunction.Sinh(), Contour.Sinh(), ComplexFunction.Sinh())
-cosh = Function(RealFunction.Cosh(), Contour.Cosh(), ComplexFunction.Cosh())
-tanh = Function(RealFunction.Tanh(), Contour.Tanh(), ComplexFunction.Tanh())
-csch = Function(RealFunction.Csch(), Contour.Csch(), ComplexFunction.Csch())
-sech = Function(RealFunction.Sech(), Contour.Sech(), ComplexFunction.Sech())
-coth = Function(RealFunction.Coth(), Contour.Coth(), ComplexFunction.Coth())
+  # Trigonometric functions
+  elif name == "sin":
+   return Function(RealFunction.Sin(), Contour.Sin(), ComplexFunction.Sin())
+  elif name == "cos":
+   return Function(RealFunction.Cos(), Contour.Cos(), ComplexFunction.Cos())
+  elif name == "tan":
+   return Function(RealFunction.Tan(), Contour.Tan(), ComplexFunction.Tan())
+  elif name == "csc":
+   return Function(RealFunction.Csc(), Contour.Csc(), ComplexFunction.Csc())
+  elif name == "sec":
+   return Function(RealFunction.Sec(), Contour.Sec(), ComplexFunction.Sec())
+  elif name == "cot":
+   return Function(RealFunction.Cot(), Contour.Cot(), ComplexFunction.Cot())
 
-# Constants
-pi = Function(RealFunction.Pi(), Contour.Pi(), ComplexFunction.Pi())
-e = Function(RealFunction.E(), Contour.E(), ComplexFunction.E())
+  # Hyperbolic functions
+  elif name == "sinh":
+   return Function(RealFunction.Sinh(), Contour.Sinh(), ComplexFunction.Sinh())
+  elif name == "cosh":
+   return Function(RealFunction.Cosh(), Contour.Cosh(), ComplexFunction.Cosh())
+  elif name == "tanh":
+   return Function(RealFunction.Tanh(), Contour.Tanh(), ComplexFunction.Tanh())
+  elif name == "csch":
+   return Function(RealFunction.Csch(), Contour.Csch(), ComplexFunction.Csch())
+  elif name == "sech":
+   return Function(RealFunction.Sech(), Contour.Sech(), ComplexFunction.Sech())
+  elif name == "coth":
+   return Function(RealFunction.Coth(), Contour.Coth(), ComplexFunction.Coth())
+
+  # Constants
+  elif name == "pi":
+   return Function(RealFunction.Pi(), Contour.Pi(), ComplexFunction.Pi())
+  elif name == "e":
+   return Function(RealFunction.E(), Contour.E(), ComplexFunction.E())
+
+  else:
+   raise AttributeError(f"module {__name__} has no attribute {name}")
 
 # Piecewise functions
 def piecewise(Comparison comp_, Function then_ not None, Function else_=constant(0)):

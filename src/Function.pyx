@@ -13,6 +13,9 @@ cdef class Function:
     self.contour = contour.copy() if contour is not None else None
     self.complexfunction = complexfunction.copy() if complexfunction is not None else None
 
+  def copy(Function self):
+    return Function(self.realfunction, self.contour, self.complexfunction)
+
   def __hash__(Function self):
     return id(self)
 

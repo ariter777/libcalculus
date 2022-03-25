@@ -25,9 +25,9 @@ def integrate(f, contour, start=None, end=None, const REAL tol=1e-3):
       return Integrate[COMPLEX, COMPLEX, REAL]((<Function>f).complexfunction.cfunction, (<Function>contour).contour.cfunction,
                                                start if start is not None else 0., end if end is not None else 1., tol)
   elif isinstance(f, RealFunction) and isinstance(contour, np.ndarray) and np.issubdtype(contour.dtype, np.number) and contour.shape == (2,):
-      return Integrate[REAL, REAL, REAL]((<RealFunction>f).cfunction, (<Function>identity).realfunction.cfunction, contour[0], contour[1], tol)
+      return Integrate[REAL, REAL, REAL]((<RealFunction>f).cfunction, (<RealFunction>RealFunction.Identity()).cfunction, contour[0], contour[1], tol)
   elif isinstance(f, Function) and (<Function>f).realfunction is not None and isinstance(contour, np.ndarray) and np.issubdtype(contour.dtype, np.number) and contour.shape == (2,):
-      return Integrate[REAL, REAL, REAL]((<Function>f).realfunction.cfunction, (<Function>identity).realfunction.cfunction, contour[0], contour[1], tol)
+      return Integrate[REAL, REAL, REAL]((<Function>f).realfunction.cfunction, (<RealFunction>RealFunction.Identity()).cfunction, contour[0], contour[1], tol)
   else:
     raise NotImplementedError
 
