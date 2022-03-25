@@ -21,6 +21,12 @@ cdef class ComplexFunction:
         self.cfunction._call_array(&z[0], &result[0], n)
     return np.asarray(result)
 
+  def copy(ComplexFunction self):
+    """Create a copy of the object."""
+    cdef ComplexFunction result = ComplexFunction()
+    result.cfunction = CFunction[COMPLEX, COMPLEX](self.cfunction)
+    return result
+
   def __call__(ComplexFunction self, z):
     """Evaluate the function at a point or on an np.ndarray of points."""
     if isinstance(z, (int, float, complex)):
@@ -177,7 +183,7 @@ cdef class ComplexFunction:
       raise NotImplementedError(type(lhs), type(rhs))
 
   def __eq__(lhs, rhs):
-    """Return a ComplexComparison that evaluates to True where the function equals another ComplexFunction or a constant."""
+    """Return a ComplexComparison that evaluates to True wherever equals another ComplexFunction or a constant."""
     cdef ComplexComparison result = ComplexComparison()
     if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       result.ccomparison = (<ComplexFunction>lhs).cfunction == (<ComplexFunction>rhs).cfunction
@@ -191,7 +197,7 @@ cdef class ComplexFunction:
     return result
 
   def __ne__(lhs, rhs):
-    """Return a ComplexComparison that evaluates to True where the function does not equal another ComplexFunction or a constant."""
+    """Return a ComplexComparison that evaluates to True wherever does not equal another ComplexFunction or a constant."""
     cdef ComplexComparison result = ComplexComparison()
     if isinstance(lhs, ComplexFunction) and isinstance(rhs, ComplexFunction):
       result.ccomparison = (<ComplexFunction>lhs).cfunction != (<ComplexFunction>rhs).cfunction
@@ -355,7 +361,7 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
-  def If(ComplexComparison comp_, ComplexFunction then_, ComplexFunction else_=ComplexFunction.Constant(0)):
+  def If(ComplexComparison comp_ not None, ComplexFunction then_ not None, ComplexFunction else_=ComplexFunction.Constant(0)):
     """A function that evaluates to a certain function when a ComplexComparison is True, and otherwise evaluates to another function."""
     F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].If(comp_.ccomparison, then_.cfunction, else_.cfunction)

@@ -16,7 +16,7 @@ namespace libcalculus {
             }
             return result;
         };
-        std::string latex = "\\frac{d}{d" LATEX_VAR "}\\left(";
+        std::string latex = "\\frac{\\text{d}}{\\text{d}" LATEX_VAR "}\\left(";
         latex.append(f._latex);
         latex.append("\\right)");
         return CFunction<COMPLEX, COMPLEX>(df, latex, OP_TYPE::FUNC);
@@ -36,7 +36,7 @@ namespace libcalculus {
             }
             return result;
         };
-        std::string latex = "\\frac{d}{d" LATEX_VAR "}\\left(";
+        std::string latex = "\\frac{\\text{d}}{\\text{d}" LATEX_VAR "}\\left(";
         latex.append(f._latex);
         latex.append("\\right)");
         return CFunction<REAL, REAL>(df, latex, OP_TYPE::FUNC);
@@ -56,7 +56,7 @@ namespace libcalculus {
             }
             return result;
         };
-        std::string latex = "\\frac{d}{d" LATEX_VAR "}\\left(";
+        std::string latex = "\\frac{\\text{d}}{\\text{d}" LATEX_VAR "}\\left(";
         latex.append(f._latex);
         latex.append("\\right)");
         return CFunction<REAL, COMPLEX>(df, latex, OP_TYPE::FUNC);

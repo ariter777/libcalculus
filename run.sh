@@ -14,6 +14,8 @@ function build {
   echo $'\e[92mBuilding.\e[0m'
   if [[ $release == 1 ]] && command -v g++-9 &> /dev/null; then
       export CC='g++-9' CXX='g++-9' LDSHARED='g++-9 -shared'
+  elif [[ $debug == 1 ]]; then
+      export CXXFLAGS="$CXXFLAGS -Og -DNDEBUG"
   fi
   python3 setup.py build_ext --inplac
   mkdir -p annotations
@@ -27,7 +29,7 @@ function build {
 
 function run_tests {
   echo $'\e[92mTesting.\e[0m'
-  python3 test.py --ComplexFunction --RealFunction --Contour
+  python3 test.py --ComplexFunction --RealFunction --Contour --Function
   echo
 }
 
@@ -36,7 +38,17 @@ if [[ $# == 0 ]]; then # default action - build
 else
   while [[ $# > 0 ]]; do # switch case won't exit if a command fails, so an if must be used.
     if [[ $1 == '--release' ]]; then
+      if [[ $debug == 1 ]]; then
+        echo "Options `--debug` and `--release` cannot be combined."
+        exit 1
+      fi
       release=1
+    elif [[ $1 == '--debug' ]]; then
+      if [[ $release == 1 ]]; then
+        echo "Options `--debug` and `--release` cannot be combined."
+        exit 1
+      fi
+      debug=1
     elif [[ $1 == 'clean' ]]; then
       clean
     elif [[ $1 == 'build' ]]; then

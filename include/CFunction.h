@@ -49,6 +49,7 @@ namespace libcalculus {
 
     public:
         CFunction() {}
+        CFunction(CFunction const &cf) : _f{cf._f}, _latex{cf._latex}, _last_op{cf._last_op} {}
         CFunction(function const &f) : _f{f} {}
         CFunction(function const &f, std::string const &latex, OP_TYPE const last_op) : _f{f}, _latex{latex}, _last_op{last_op} {}
         inline Ran operator()(Dom z) const { return this->_f(z); };

@@ -24,6 +24,7 @@ namespace libcalculus {
         std::function<bool(Dom)> eval = [](Dom z) { return true; };
 
         CComparison() {}
+        CComparison(CComparison const &cc) : latex{cc.latex}, eval{cc.eval} {}
         CComparison(std::function<bool(Dom)> const &eval, std::string const &latex) : latex{latex}, eval{eval} {}
 
         // Unary operators

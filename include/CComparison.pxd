@@ -5,6 +5,8 @@ cdef extern from "CComparison.cpp" nogil:
 
 cdef extern from "CComparison.h" namespace "libcalculus" nogil:
   cdef cppclass CComparison[Dom]:
+    CComparison() except +
+    CComparison(CComparison[Dom] cc) except +
     cbool eval(Dom z) except +
     # Unary operators
     CComparison[Dom] operator~() except +
