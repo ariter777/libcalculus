@@ -37,7 +37,11 @@ def derivative(f, const size_t order=1, const REAL tol=1e-3, const REAL radius=1
   cdef RealFunction real_result
   cdef Contour contour_result
   if order == 1:
-    if isinstance(f, ComplexFunction):
+    if isinstance(f, Function):
+      return Function(derivative((<Function>f).realfunction, 1, tol, radius) if (<Function>f).realfunction is not None else None,
+                      derivative((<Function>f).contour, 1, tol, radius) if (<Function>f).contour is not None else None,
+                      derivative((<Function>f).complexfunction, 1, tol, radius) if (<Function>f).complexfunction is not None else None)
+    elif isinstance(f, ComplexFunction):
       complex_result = ComplexFunction()
       complex_result.cfunction = Derivative((<ComplexFunction>f).cfunction, tol, radius)
       return complex_result
