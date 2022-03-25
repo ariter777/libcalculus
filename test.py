@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import libcalculus
 from libcalculus import ComplexFunction, RealFunction, Contour, integrate
 
 import numpy as np
@@ -18,6 +19,25 @@ class Tester:
         print(f"\033[1;92mDone: {type(self).__name__}.\033[0m\n")
 
 class FunctionTester(Tester):
+    BASE_FUNCTIONS = {libcalculus.constant: None,
+                      libcalculus.identity: lambda z: z,
+                      libcalculus.real: lambda z: np.real(z),
+                      libcalculus.imag: lambda z: np.imag(z),
+                      libcalculus.conj: lambda z: np.conj(z),
+                      libcalculus.abs: lambda z: np.abs(z),
+                      libcalculus.exp: lambda z: complex(np.exp(z)),
+                      libcalculus.sin: lambda z: complex(np.sin(z)),
+                      libcalculus.cos: lambda z: complex(np.cos(z)),
+                      libcalculus.tan: lambda z: complex(np.tan(z)),
+                      libcalculus.sec: lambda z: complex(1.) / complex(np.cos(z)),
+                      libcalculus.csc: lambda z: complex(1.) / complex(np.sin(z)),
+                      libcalculus.cot: lambda z: complex(1.) / complex(np.tan(z)),
+                      libcalculus.sinh: lambda z: complex(np.sinh(z)),
+                      libcalculus.cosh: lambda z: complex(np.cosh(z)),
+                      libcalculus.tanh: lambda z: complex(np.tanh(z)),
+                      libcalculus.sech: lambda z: complex(1.) / complex(np.cosh(z)),
+                      libcalculus.csch: lambda z: complex(1.) / complex(np.sinh(z)),
+                      libcalculus.coth: lambda z: complex(1.) / complex(np.tanh(z))}
     BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow,
                          operator.matmul]
@@ -29,14 +49,18 @@ class FunctionTester(Tester):
     MAX_ERRORS = 20
     N_JOBS = mp.cpu_count()
 
+    def _rand(self, n=1):
+        real, imag = np.random.uniform(-self.BOUND, self.BOUND, size=(2, n))
+        return (real + 1j * imag) if n > 1 else (real[0] + 1j * imag[0])
+
     def _random_base_function(self):
         """Returns a random function object and its corresponding lambda."""
         func = np.random.choice(list(self.BASE_FUNCTIONS.keys()))
-        if func is ComplexFunction.Constant or func is RealFunction.Constant or func is Contour.Constant:
+        if func is ComplexFunction.Constant or func is RealFunction.Constant or func is Contour.Constant or func is libcalculus.constant:
             c = self._rand()
             return func(c), lambda z, v=c: v
         else:
-            return func(), self.BASE_FUNCTIONS[func]
+            return func if isinstance(func, libcalculus.Function) else func(), self.BASE_FUNCTIONS[func]
 
     def _gen_function(self, n_ops=None):
         """Generate a random function object with n operations of any kind."""
@@ -65,31 +89,6 @@ class FunctionTester(Tester):
                 func = op(func)
                 comp_func = lambda z, op_=op, comp_func_=comp_func: op_(comp_func_(z))
         return func, comp_func
-
-class ComplexFunctionTester(FunctionTester):
-    BASE_FUNCTIONS = {ComplexFunction.Constant: None,
-                      ComplexFunction.Identity: lambda z: z,
-                      ComplexFunction.Re: lambda z: np.real(z),
-                      ComplexFunction.Im: lambda z: np.imag(z),
-                      ComplexFunction.Conj: lambda z: np.conj(z),
-                      ComplexFunction.Abs: lambda z: np.abs(z),
-                      ComplexFunction.Exp: lambda z: complex(np.exp(z)),
-                      ComplexFunction.Sin: lambda z: complex(np.sin(z)),
-                      ComplexFunction.Cos: lambda z: complex(np.cos(z)),
-                      ComplexFunction.Tan: lambda z: complex(np.tan(z)),
-                      ComplexFunction.Sec: lambda z: complex(1.) / complex(np.cos(z)),
-                      ComplexFunction.Csc: lambda z: complex(1.) / complex(np.sin(z)),
-                      ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z)),
-                      ComplexFunction.Sinh: lambda z: complex(np.sinh(z)),
-                      ComplexFunction.Cosh: lambda z: complex(np.cosh(z)),
-                      ComplexFunction.Tanh: lambda z: complex(np.tanh(z)),
-                      ComplexFunction.Sech: lambda z: complex(1.) / complex(np.cosh(z)),
-                      ComplexFunction.Csch: lambda z: complex(1.) / complex(np.sinh(z)),
-                      ComplexFunction.Coth: lambda z: complex(1.) / complex(np.tanh(z))}
-
-    def _rand(self, n=1):
-       real, imag = np.random.uniform(-self.BOUND, self.BOUND, size=(2, n))
-       return (real + 1j * imag) if n > 1 else (real[0] + 1j * imag[0])
 
     def _run_func(self, n_vals, n_ops=None):
         np.seterr(all="ignore")
@@ -121,6 +120,7 @@ class ComplexFunctionTester(FunctionTester):
                 if n_tries > self.MAX_TRIES:
                     break
 
+
     def run(self, n_funcs, n_vals):
         """Generate n_funcs random functions and check them on n_values values."""
         super().run()
@@ -135,6 +135,27 @@ class ComplexFunctionTester(FunctionTester):
                             self._run_func, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
 
         super()._done()
+
+class ComplexFunctionTester(FunctionTester):
+    BASE_FUNCTIONS = {ComplexFunction.Constant: None,
+                      ComplexFunction.Identity: lambda z: z,
+                      ComplexFunction.Re: lambda z: np.real(z),
+                      ComplexFunction.Im: lambda z: np.imag(z),
+                      ComplexFunction.Conj: lambda z: np.conj(z),
+                      ComplexFunction.Abs: lambda z: np.abs(z),
+                      ComplexFunction.Exp: lambda z: complex(np.exp(z)),
+                      ComplexFunction.Sin: lambda z: complex(np.sin(z)),
+                      ComplexFunction.Cos: lambda z: complex(np.cos(z)),
+                      ComplexFunction.Tan: lambda z: complex(np.tan(z)),
+                      ComplexFunction.Sec: lambda z: complex(1.) / complex(np.cos(z)),
+                      ComplexFunction.Csc: lambda z: complex(1.) / complex(np.sin(z)),
+                      ComplexFunction.Cot: lambda z: complex(1.) / complex(np.tan(z)),
+                      ComplexFunction.Sinh: lambda z: complex(np.sinh(z)),
+                      ComplexFunction.Cosh: lambda z: complex(np.cosh(z)),
+                      ComplexFunction.Tanh: lambda z: complex(np.tanh(z)),
+                      ComplexFunction.Sech: lambda z: complex(1.) / complex(np.cosh(z)),
+                      ComplexFunction.Csch: lambda z: complex(1.) / complex(np.sinh(z)),
+                      ComplexFunction.Coth: lambda z: complex(1.) / complex(np.tanh(z))}
 
 class RealFunctionTester(ComplexFunctionTester):
     BOUND = 20.
@@ -261,6 +282,7 @@ class LatexTester(Tester):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test suite for libcalculus.")
     parser.add_argument("-a", "--all", action="store_true")
+    parser.add_argument("--Function", action="store_true")
     parser.add_argument("--ComplexFunction", action="store_true")
     parser.add_argument("--RealFunction", action="store_true")
     parser.add_argument("--Contour", action="store_true")
@@ -270,15 +292,19 @@ if __name__ == "__main__":
 
     if args.ComplexFunction or args.all:
         tester = ComplexFunctionTester()
-        tester.run(100, 10)
+        tester.run(500, 10)
+
+    if args.Function or args.all:
+        tester = FunctionTester()
+        tester.run(500, 10)
 
     if args.RealFunction or args.all:
         tester = RealFunctionTester()
-        tester.run(100, 10)
+        tester.run(500, 10)
 
     if args.Contour or args.all:
         tester = ContourTester()
-        tester.run(100, 10)
+        tester.run(500, 10)
 
     if args.Integral or args.all:
         tester = IntegralTester()
