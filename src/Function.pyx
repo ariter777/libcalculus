@@ -189,3 +189,10 @@ cdef class Function:
       result = Function((<Function>rhs).realfunction, (<Function>rhs).contour, (<Function>rhs).complexfunction)
       result **= lhs
     return result
+
+  def __matmul__(Function lhs, Function rhs):
+    """Compose the function with another function."""
+    cdef RealFunction realfunction = lhs.realfunction @ rhs.realfunction if lhs.realfunction is not None and rhs.realfunction is not None else None
+    cdef Contour contour = lhs.complexfunction @ rhs.contour if lhs.complexfunction is not None and rhs.contour is not None else None
+    cdef ComplexFunction complexfunction = lhs.complexfunction @ rhs.complexfunction if lhs.complexfunction is not None and rhs.complexfunction is not None else None
+    return Function(realfunction, contour, complexfunction)
