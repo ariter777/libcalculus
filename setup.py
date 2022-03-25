@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 from setuptools import setup, Extension
 from Cython.Build import cythonize
-import sys
+import sys, os
 import numpy as np
 sys.path.append("./include")
 
 if sys.platform == "linux":
-    import os
     os.environ["CC"] = os.environ.get("CC", "g++")
     os.environ["CXX"] = os.environ.get("CXX", "g++")
     os.environ["LDSHARED"] = os.environ.get("LDSHARED", "g++ -shared")
@@ -26,7 +25,7 @@ with open("README.md", "r") as rfd:
     long_description = rfd.read()
 
 setup(name="libcalculus",
-version="0.3.1",
+version="0.3.1.1",
 description="Real/Complex analysis library for Python 3.",
 long_description=long_description,
 long_description_content_type="text/markdown",

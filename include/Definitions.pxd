@@ -12,10 +12,10 @@ ctypedef np.complex128_t COMPLEX
 cimport cython
 
 cdef inline cbool _isrealscalar(x):
-  return isinstance(x, (int, float, np.int8, np.int16, np.int32, np.int64, np.float16, np.float32, np.float64, np.float128, np.double))
+  return isinstance(x, (int, float, np.int8, np.int16, np.int32, np.int64, np.float16, np.float32, np.float64, np.double))
 
 cdef inline cbool _isrealarray(x):
-  return isinstance(x, np.ndarray) and x.dtype in (int, float, np.int8, np.int16, np.int32, np.int64, np.float16, np.float32, np.float64, np.float128, np.double)
+  return isinstance(x, np.ndarray) and x.dtype in (int, float, np.int8, np.int16, np.int32, np.int64, np.float16, np.float32, np.float64, np.double)
 
 cdef inline cbool _iscomplexscalar(x):
   return isinstance(x, (complex, np.complex64, np.complex128))
