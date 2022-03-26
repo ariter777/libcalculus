@@ -50,7 +50,7 @@ cdef class ComplexFunction:
 
   def _compose_contour(ComplexFunction self, Contour rhs):
     """Compose the function with a contour, producing another contour."""
-    cdef Contour F = Contour((<Contour>rhs)._start, (<Contour>rhs)._end)
+    cdef Contour F = Contour()
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
     return F
 
@@ -210,10 +210,10 @@ cdef class ComplexFunction:
       raise NotImplementedError(type(lhs), type(rhs))
     return result
 
-  def zeros(ComplexFunction self, Contour contour):
+  def zeros(ComplexFunction self, Contour contour, const REAL start=0., const REAL end=1.):
     """Calculates the number of zeros the functions has inside a closed contour, assuming it is holomorphic."""
-    assert np.allclose(contour(contour.start), contour(contour.end)), "Number of zeros defined only for closed contour."
-    return (self @ contour)[0.]
+    assert np.allclose(contour(start), contour(end)), "Number of zeros defined only for closed contour."
+    return (self @ contour).index(0., start, end)
 
   @staticmethod
   def Constant(const COMPLEX c):

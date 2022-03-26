@@ -10,20 +10,21 @@ cdef extern from "CCalculus.h" namespace "libcalculus":
   Ran Integrate[Dom, Ran, ContDom](CFunction[Dom, Ran] f, CFunction[ContDom, Dom] contour,
                                    const ContDom start, const ContDom end, const REAL tol) except +
 
-def integrate(f, contour, start=None, end=None, const REAL tol=1e-3):
+def integrate(f, contour, const REAL start=0., const REAL end=1., const REAL tol=1e-3):
   """Integrate f along a contour."""
-  if isinstance(f, ComplexFunction) and isinstance(contour, Contour):
+  if isinstance(f, ComplexFunction) and isinstance(contour, Contour) and start is not None and end is not None:
     return Integrate[COMPLEX, COMPLEX, REAL]((<ComplexFunction>f).cfunction, (<Contour>contour).cfunction,
-                                             start if start is not None else contour.start, end if end is not None else contour.end, tol)
-  elif isinstance(f, Function) and (<Function>f).complexfunction is not None and isinstance(contour, Contour):
+                                             start, end, tol)
+  elif isinstance(f, Function) and (<Function>f).complexfunction is not None and isinstance(contour, Contour) and start is not None and end is not None:
       return Integrate[COMPLEX, COMPLEX, REAL]((<Function>f).complexfunction.cfunction, (<Contour>contour).cfunction,
-                                               start if start is not None else 0., end if end is not None else 1., tol)
-  elif isinstance(f, ComplexFunction) and isinstance(contour, Function) and (<Function>contour).contour is not None:
+                                               start, end, tol)
+  elif isinstance(f, ComplexFunction) and isinstance(contour, Function) and (<Function>contour).contour is not None and start is not None and end is not None:
       return Integrate[COMPLEX, COMPLEX, REAL]((<ComplexFunction>f).cfunction, (<Function>contour).contour.cfunction,
-                                               start if start is not None else 0., end if end is not None else 1., tol)
-  elif isinstance(f, Function) and (<Function>f).complexfunction is not None and isinstance(contour, Function) and (<Function>f).contour is not None:
+                                               start, end, tol)
+  elif isinstance(f, Function) and (<Function>f).complexfunction is not None and isinstance(contour, Function) and (<Function>f).contour is not None \
+     and start is not None and end is not None:
       return Integrate[COMPLEX, COMPLEX, REAL]((<Function>f).complexfunction.cfunction, (<Function>contour).contour.cfunction,
-                                               start if start is not None else 0., end if end is not None else 1., tol)
+                                               start, end, tol)
   elif isinstance(f, RealFunction) and isinstance(contour, np.ndarray) and np.issubdtype(contour.dtype, np.number) and contour.shape == (2,):
       return Integrate[REAL, REAL, REAL]((<RealFunction>f).cfunction, (<RealFunction>RealFunction.Identity()).cfunction, contour[0], contour[1], tol)
   elif isinstance(f, Function) and (<Function>f).realfunction is not None and isinstance(contour, np.ndarray) and np.issubdtype(contour.dtype, np.number) and contour.shape == (2,):

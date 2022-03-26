@@ -206,7 +206,6 @@ class ContourTester(ComplexFunctionTester):
 
     def _gen_function(self, n_ops=None):
         c, cc = super()._gen_function(n_ops)
-        c.start, c.end = self._rand(2)
         return c, cc
 
 class IntegralTester(FunctionTester):
@@ -227,10 +226,7 @@ class IntegralTester(FunctionTester):
     def _random_contour(self):
         radius = abs(self.ct._rand())
         center = self.cft._rand()
-        start, end = self.ct._rand(2)
         c = Contour.Sphere(radius=radius, center=center)
-        c.start = start
-        c.end = end
         cc = lambda t: center + radius * np.exp(1j * t)
         return c, cc
 
@@ -238,17 +234,18 @@ class IntegralTester(FunctionTester):
         f, cf = self.cft._gen_function(self.MAX_OPS)
         with warnings.catch_warnings(record=True) as w:
             for _ in range(n_integrals):
-                    warnings.simplefilter("always")
-                    c, cc = self._random_contour()
-                    dcc = lambda t: scipy.misc.derivative(cc, t, dx=self.TOL)
+                warnings.simplefilter("always")
+                c, cc = self._random_contour()
+                start, end = self.ct._rand(2)
+                dcc = lambda t: scipy.misc.derivative(cc, t, dx=self.TOL)
 
-                    integral = integrate(f, c, tol=self.TOL)
-                    cintegral = self._scipy_integrate(lambda t: cf(cc(t)) * dcc(t), c.start, c.end, tol=self.TOL)
-                    if len(w) > 1 or np.isnan(integral) or np.isnan(cintegral):
-                        return self._run_integral(n_integrals) # Run a random function again
-                    elif not np.allclose(integral, cintegral, rtol=10. * self.TOL, atol=10. * self.TOL):
-                        raise ValueError(f"\033[1;41mERROR IN {type(self).__name__}:\033[0m {f.latex()}\n\t "
-                                         f"integrating along {c.latex()} from {c.start} to {c.end}: {integral} vs actual {cintegral}")
+                integral = integrate(f, c, start, end, tol=self.TOL)
+                cintegral = self._scipy_integrate(lambda t: cf(cc(t)) * dcc(t), start, end, tol=self.TOL)
+                if len(w) > 1 or np.isnan(integral) or np.isnan(cintegral):
+                    return self._run_integral(n_integrals) # Run a random function again
+                elif not np.allclose(integral, cintegral, rtol=10. * self.TOL, atol=10. * self.TOL):
+                    raise ValueError(f"\033[1;41mERROR IN {type(self).__name__}:\033[0m {f.latex()}\n\t "
+                                     f"integrating along {c.latex()} from {c.start} to {c.end}: {integral} vs actual {cintegral}")
 
     def run(self, n_funcs, n_integrals):
         """Generate n_funcs random functions and check n_integrals random integrals on each function."""

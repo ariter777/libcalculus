@@ -46,7 +46,7 @@ namespace libcalculus {
     CFunction<Dom, Ran> &CFunction<Dom, Ran>::operator*=(CFunction<Dom, Ran> const &rhs) {
         this->_f = [lhs_f = this->_f, rhs_f = rhs._f](Dom const z) noexcept { return lhs_f(z) * rhs_f(z); };
         this->_latex = Latex::parenthesize_if(this->_latex, OP_TYPE::MUL, this->_last_op);
-        if (rhs._last_op == OP_TYPE::MULCONST || rhs._last_op == OP_TYPE::CONST) this->_latex.append(" \\cdot ");
+        this->_latex.append((rhs._last_op == OP_TYPE::MULCONST || rhs._last_op == OP_TYPE::CONST) ? " \\cdot ": " ");
         this->_latex.append(Latex::parenthesize_if(rhs._latex, OP_TYPE::MUL, rhs._last_op));
         this->_last_op = this->_last_op == OP_TYPE::CONST || this->_last_op == OP_TYPE::MULCONST ? OP_TYPE::MULCONST : OP_TYPE::MUL;
         return *this;
@@ -105,7 +105,7 @@ namespace libcalculus {
         if (!Traits<Ran>::close(c, 1)) {
             this->_f = [c = c, old_f = this->_f](Dom const z) noexcept { return c * old_f(z); };
             std::string new_latex = Latex::fmt_const(c, true);
-            if (this->_last_op == OP_TYPE::MULCONST || this->_last_op == OP_TYPE::CONST) new_latex.append(" \\cdot ");
+            new_latex.append((this->_last_op == OP_TYPE::MULCONST || this->_last_op == OP_TYPE::CONST) ? " \\cdot " : " ");
             new_latex.append(Latex::parenthesize_if(this->_latex, OP_TYPE::MUL, this->_last_op));
             this->_latex = new_latex;
             this->_last_op = OP_TYPE::MULCONST;
@@ -177,7 +177,7 @@ namespace libcalculus {
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> operator*(CFunction<Dom, Ran> const &lhs, Ran const c) {
         std::string new_latex = Latex::fmt_const(c, true);
-        if (lhs._last_op == OP_TYPE::MULCONST) new_latex.append(" \\cdot ");
+        new_latex.append(lhs._last_op == OP_TYPE::MULCONST ? " \\cdot " : " ");
         new_latex.append(Latex::parenthesize_if(lhs._latex, OP_TYPE::MUL, lhs._last_op));
         return CFunction<Dom, Ran>([c = c, lhs_f = lhs._f](Dom const z) noexcept { return lhs_f(z) * c; }, new_latex, OP_TYPE::MULCONST);
     }

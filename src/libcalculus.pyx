@@ -106,8 +106,25 @@ def piecewise(Comparison comp_, Function then_ not None, Function else_=constant
                   ComplexFunction.If(comp_.complexcomparison, then_.complexfunction, else_.complexfunction) \
                     if comp_.complexcomparison is not None and then_.complexfunction is not None and else_.complexfunction is not None else None)
 
-# Line
+
 def line(const COMPLEX z1, const COMPLEX z2):
   return Function(None,
                   Contour.Line(z1, z2),
                   None)
+
+def sphere(const COMPLEX center=0., const REAL radius=1., const cbool ccw=False):
+  return Function(None,
+                  center + (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (2j * Contour.Pi() * Contour.Identity())),
+                  None)
+
+def index(const COMPLEX z0, Function contour not None, const REAL start=0., const REAL end=1.):
+  if contour.contour is None:
+    raise ValueError("The contour passed is malformed.")
+  return contour.contour.index(z0, start, end)
+
+def zeros(Function f not None, Function contour not None, const REAL start=0., const REAL end=1.):
+  """Calculates the number of zeros the functions has inside a closed contour, assuming it is holomorphic."""
+  if f.complexfunction is None or contour.contour is None:
+    raise ValueError("The function or contour passed are malformed.")
+  else:
+    return f.complexfunction.zeros(contour.contour, start, end)
