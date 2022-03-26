@@ -105,3 +105,9 @@ def piecewise(Comparison comp_, Function then_ not None, Function else_=constant
                     if comp_.complexcomparison is not None and then_.contour is not None and else_.contour is not None else None,
                   ComplexFunction.If(comp_.complexcomparison, then_.complexfunction, else_.complexfunction) \
                     if comp_.complexcomparison is not None and then_.complexfunction is not None and else_.complexfunction is not None else None)
+
+# Line
+def line(const COMPLEX z1, const COMPLEX z2):
+  return Function(None,
+                  Contour.Line(z1, z2),
+                  None)

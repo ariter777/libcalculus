@@ -24,23 +24,23 @@ pip install libcalculus
 Here is a snippet demonstrating some of the library's features:
 ```python
 >>> import libcalculus, numpy as np
->>> f = libcalculus.identity ** 2 * (libcalculus.sin @ (3 / libcalculus.identity)) # represents z^2 * sin(3/z)
+>>> f = libcalculus.csc @ (1 / libcalculus.identity)
 >>> f(1 + 2j)
-(1.9161297498044316+7.826928799856612j)
->>> libcalculus.residue(f, 0, tol=1e-4) # residue of f around z=0, with an error tolerance of 1e-4
-(-4.499999999971643+1.3805827092608378e-05j)
->>> print(f.latex("t"))
-{t}^{2}\sin\left( \frac{3}{t}\right)
->>> contour = libcalculus.exp @ (1j * libcalculus.identity) # represents the contour e^(i*t)
->>> libcalculus.integrate(f, contour, 1, 2) # integrate along the contour between t=1 and t=2
-(-0.0607129128779003-8.877187778245547j)
+(1.0316491868272164+1.9336686363989997j)
+>>> libcalculus.residue(f, 0, tol=1e-4)
+(0.16666666639893526-8.181230860681676e-06j)
+>>> print(f.latex("z"))
+
+\csc\left( \frac{1}{z}\right)
+>>> contour = libcalculus.line(2, 1 + 1j) # 2(1 - t) + (1 + 1i)t
+>>> libcalculus.integrate(f, contour, 0, 1) # integrate along the contour between t=0 and t=1
+(-2.0551412843830605+1.1351565349386723j)
+
 >>> libcalculus.threads(4) # Enable threading
 >>> arr = np.array([[1, 2j, 3], [4 + 1j, 5 + 2j, 7 + 3j]])
->>> f(arr)
-array([[1.41120008e-01+0.j        , 1.04304611e-15+8.51711782j,
-        7.57323886e+00+0.j        ],
-       [1.09624856e+01+3.24567376j, 1.42295657e+01+6.29864507j,
-        2.04585023e+01+9.22847707j]])
+>>> print(f(arr))
+[[ 1.18839511+0.j         -0.        +1.91903475j  3.05628425+0.j        ]
+ [ 4.03942207+0.99000843j  5.02878731+1.98839211j  7.02013025+2.99133798j]]
 ```
 
 ## License
