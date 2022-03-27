@@ -41,11 +41,11 @@ cdef class RealComparison:
     return result
 
   def __iand__(RealComparison self, RealComparison rhs not None):
-    self.ccomparison &= rhs.ccomparison
+    self.ccomparison.iand(rhs.ccomparison)
     return self
 
   def __ior__(RealComparison self, RealComparison rhs not None):
-    self.ccomparison |= rhs.ccomparison
+    self.ccomparison.iand(rhs.ccomparison)
     return self
 
   def __and__(RealComparison lhs not None, RealComparison rhs not None):

@@ -98,7 +98,7 @@ def __getattr__(name):
    raise AttributeError(f"module {__name__} has no attribute {name}")
 
 # Piecewise functions
-def piecewise(Comparison comp_, Function then_ not None, Function else_=constant(0)):
+def piecewise(Comparison comp_ not None, Function then_ not None, Function else_ not None=constant(0)):
   return Function(RealFunction.If(comp_.realcomparison, then_.realfunction, else_.realfunction) \
                     if comp_.realcomparison is not None and then_.realfunction is not None and else_.realfunction is not None else None,
                   Contour.If(comp_.complexcomparison, then_.contour, else_.contour) \

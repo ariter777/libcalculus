@@ -35,22 +35,22 @@ cdef class Comparison:
 
   def __iand__(Comparison self, Comparison rhs not None):
     if self.realcomparison is not None and rhs.realcomparison is not None:
-      self.realcomparison &= rhs.realcomparison
+      self.realcomparison.iand(rhs.realcomparison)
     else:
       self.realcomparison = None
     if self.complexcomparison is not None and rhs.complexcomparison is not None:
-      self.complexcomparison &= rhs.complexcomparison
+      self.complexcomparison.iand(rhs.complexcomparison)
     else:
       self.complexcomparison = None
     return self
 
   def __ior__(Comparison self, Comparison rhs not None):
     if self.realcomparison is not None and rhs.realcomparison is not None:
-      self.realcomparison |= rhs.realcomparison
+      self.realcomparison.ior(rhs.realcomparison)
     else:
       self.realcomparison = None
     if self.complexcomparison is not None and rhs.complexcomparison is not None:
-      self.complexcomparison |= rhs.complexcomparison
+      self.complexcomparison.ior(rhs.complexcomparison)
     else:
       self.complexcomparison = None
     return self

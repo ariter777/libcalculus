@@ -42,13 +42,13 @@ cdef class ComplexFunction:
     """Generate LaTeX markup for the function."""
     return self.cfunction.latex(varname.encode()).decode()
 
-  def _compose(ComplexFunction self, ComplexFunction rhs):
+  def _compose(ComplexFunction self, ComplexFunction rhs not None):
     """Compose the function with another ComplexFunction."""
     cdef ComplexFunction F = ComplexFunction()
     F.cfunction = self.cfunction.compose[COMPLEX](rhs.cfunction)
     return F
 
-  def _compose_contour(ComplexFunction self, Contour rhs):
+  def _compose_contour(ComplexFunction self, Contour rhs not None):
     """Compose the function with a contour, producing another contour."""
     cdef Contour F = Contour()
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
@@ -63,9 +63,9 @@ cdef class ComplexFunction:
   def __iadd__(ComplexFunction self, rhs):
     """Add the function in-place with a constant or another ComplexFunction."""
     if isinstance(rhs, ComplexFunction):
-      self.cfunction += (<ComplexFunction>rhs).cfunction
+      self.cfunction.iadd((<ComplexFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction += <COMPLEX>rhs
+      self.cfunction.iadd(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -73,9 +73,9 @@ cdef class ComplexFunction:
   def __isub__(ComplexFunction self, rhs):
     """Subtract a constant or another ComplexFunction from the function, in-place."""
     if isinstance(rhs, ComplexFunction):
-      self.cfunction -= (<ComplexFunction>rhs).cfunction
+      self.cfunction.isub((<ComplexFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction -= <COMPLEX>rhs
+      self.cfunction.isub(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -83,9 +83,9 @@ cdef class ComplexFunction:
   def __imul__(ComplexFunction self, rhs):
     """Multiply the function in-place with a constant or another ComplexFunction."""
     if isinstance(rhs, ComplexFunction):
-      self.cfunction *= (<ComplexFunction>rhs).cfunction
+      self.cfunction.imul((<ComplexFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction *= <COMPLEX>rhs
+      self.cfunction.imul(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -93,9 +93,9 @@ cdef class ComplexFunction:
   def __itruediv__(ComplexFunction self, rhs):
     """Divide the function in-place by a constant or another ComplexFunction."""
     if isinstance(rhs, ComplexFunction):
-      self.cfunction /= (<ComplexFunction>rhs).cfunction
+      self.cfunction.idiv((<ComplexFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction /= <COMPLEX>rhs
+      self.cfunction.idiv(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -210,7 +210,7 @@ cdef class ComplexFunction:
       raise NotImplementedError(type(lhs), type(rhs))
     return result
 
-  def zeros(ComplexFunction self, Contour contour, const REAL start=0., const REAL end=1.):
+  def zeros(ComplexFunction self, Contour contour not None, const REAL start=0., const REAL end=1.):
     """Calculates the number of zeros the functions has inside a closed contour, assuming it is holomorphic."""
     assert np.allclose(contour(start), contour(end)), "Number of zeros defined only for closed contour."
     return (self @ contour).index(0., start, end)
@@ -361,7 +361,7 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
-  def If(ComplexComparison comp_ not None, ComplexFunction then_ not None, ComplexFunction else_=ComplexFunction.Constant(0)):
+  def If(ComplexComparison comp_ not None, ComplexFunction then_ not None, ComplexFunction else_ not None=ComplexFunction.Constant(0)):
     """A function that evaluates to a certain function when a ComplexComparison is True, and otherwise evaluates to another function."""
     F = ComplexFunction()
     F.cfunction = CFunction[COMPLEX, COMPLEX].If(comp_.ccomparison, then_.cfunction, else_.cfunction)

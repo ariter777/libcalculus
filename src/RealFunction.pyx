@@ -37,11 +37,11 @@ cdef class RealFunction:
     else:
       raise NotImplementedError(type(t))
 
-  def latex(RealFunction self, str varname="t"):
+  def latex(RealFunction self, str varname not None="t"):
     """Generate LaTeX markup for the function."""
     return self.cfunction.latex(varname.encode()).decode()
 
-  def _compose(RealFunction self, RealFunction rhs):
+  def _compose(RealFunction self, RealFunction rhs not None):
     """Compose the function with another RealFunction."""
     cdef RealFunction F = RealFunction()
     F.cfunction = self.cfunction.compose[REAL](rhs.cfunction)
@@ -56,9 +56,9 @@ cdef class RealFunction:
   def __iadd__(RealFunction self, rhs):
     """Add the function in-place with a constant or another RealFunction."""
     if isinstance(rhs, RealFunction):
-      self.cfunction += (<RealFunction>rhs).cfunction
+      self.cfunction.iadd((<RealFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction += <REAL>rhs
+      self.cfunction.iadd(<REAL>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -66,9 +66,9 @@ cdef class RealFunction:
   def __isub__(RealFunction self, rhs):
     """Subtract a constant or another RealFunction from the function, in-place."""
     if isinstance(rhs, RealFunction):
-      self.cfunction -= (<RealFunction>rhs).cfunction
+      self.cfunction.isub((<RealFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction -= <REAL>rhs
+      self.cfunction.isub(<REAL>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -76,9 +76,9 @@ cdef class RealFunction:
   def __imul__(RealFunction self, rhs):
     """Multiply the function in-place with a constant or another RealFunction."""
     if isinstance(rhs, RealFunction):
-      self.cfunction *= (<RealFunction>rhs).cfunction
+      self.cfunction.imul((<RealFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction *= <REAL>rhs
+      self.cfunction.imul(<REAL>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -86,9 +86,9 @@ cdef class RealFunction:
   def __itruediv__(RealFunction self, rhs):
     """Divide the function in-place by a constant or another RealFunction."""
     if isinstance(rhs, RealFunction):
-      self.cfunction /= (<RealFunction>rhs).cfunction
+      self.cfunction.idiv((<RealFunction>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction /= <REAL>rhs
+      self.cfunction.idiv(<REAL>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self

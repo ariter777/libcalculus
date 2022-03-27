@@ -16,5 +16,5 @@ cdef extern from "CComparison.h" namespace "libcalculus" nogil:
     CComparison[Dom] operator&(CComparison[Dom] &rhs) except +
 
     # In-place binary operators
-    CComparison[Dom] &operator|=(CComparison[Dom] &rhs) except +
-    CComparison[Dom] &operator&=(CComparison[Dom] &rhs) except +
+    CComparison[Dom] &ior "operator|="(CComparison[Dom] &rhs) except +
+    CComparison[Dom] &iand "operator&="(CComparison[Dom] &rhs) except +

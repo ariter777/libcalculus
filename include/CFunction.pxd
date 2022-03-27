@@ -19,17 +19,17 @@ cdef extern from "CFunction.h" namespace "libcalculus" nogil:
     CFunction[Predom, Ran] compose[Predom](CFunction[Predom, Dom] &rhs) except +
 
     # In-place function-with-function operators
-    CFunction[Dom, Ran] &operator+=(CFunction[Dom, Ran] &rhs) except +
-    CFunction[Dom, Ran] &operator-=(CFunction[Dom, Ran] &rhs) except +
-    CFunction[Dom, Ran] &operator*=(CFunction[Dom, Ran] &rhs) except +
-    CFunction[Dom, Ran] &operator/=(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &iadd "operator+="(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &isub "operator-="(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &imul "operator*="(CFunction[Dom, Ran] &rhs) except +
+    CFunction[Dom, Ran] &idiv "operator/="(CFunction[Dom, Ran] &rhs) except +
     CFunction[Dom, Ran] &ipow(CFunction[Dom, Ran] &rhs) except +
 
     # In-place function-with-constant operators
-    CFunction[Dom, Ran] &operator+=(Ran c) except +
-    CFunction[Dom, Ran] &operator-=(Ran c) except +
-    CFunction[Dom, Ran] &operator*=(Ran c) except +
-    CFunction[Dom, Ran] &operator/=(Ran c) except +
+    CFunction[Dom, Ran] &iadd "operator+="(Ran c) except +
+    CFunction[Dom, Ran] &isub "operator-="(Ran c) except +
+    CFunction[Dom, Ran] &imul "operator*="(Ran c) except +
+    CFunction[Dom, Ran] &idiv "operator/="(Ran c) except +
     CFunction[Dom, Ran] &ipow(Ran c) except +
 
     # Function additive inverse

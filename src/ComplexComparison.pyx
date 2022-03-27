@@ -36,11 +36,11 @@ cdef class ComplexComparison:
     return result
 
   def __iand__(ComplexComparison self, ComplexComparison rhs not None):
-    self.ccomparison &= rhs.ccomparison
+    self.ccomparison.iand(rhs.ccomparison)
     return self
 
   def __ior__(ComplexComparison self, ComplexComparison rhs not None):
-    self.ccomparison |= rhs.ccomparison
+    self.ccomparison.ior(rhs.ccomparison)
     return self
 
   def __and__(ComplexComparison lhs not None, ComplexComparison rhs not None):

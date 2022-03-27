@@ -54,41 +54,41 @@ cdef class Contour:
     return F
 
   def __iadd__(Contour self, rhs):
-    """Add the function in-place with a constant or another ComplexFunction."""
+    """Add the function in-place with a constant or another Contour."""
     if isinstance(rhs, Contour):
-      self.cfunction += (<Contour>rhs).cfunction
+      self.cfunction.iadd((<Contour>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction += <COMPLEX>rhs
+      self.cfunction.iadd(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
 
   def __isub__(Contour self, rhs):
-    """Subtract a constant or another ComplexFunction from the function, in-place."""
+    """Subtract a constant or another Contour from the function, in-place."""
     if isinstance(rhs, Contour):
-      self.cfunction -= (<Contour>rhs).cfunction
+      self.cfunction.isub((<Contour>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction -= <COMPLEX>rhs
+      self.cfunction.isub(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
 
   def __imul__(Contour self, rhs):
-    """Multiply the function in-place with a constant or another ComplexFunction."""
+    """Multiply the function in-place with a constant or another Contour."""
     if isinstance(rhs, Contour):
-      self.cfunction *= (<Contour>rhs).cfunction
+      self.cfunction.imul((<Contour>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction *= <COMPLEX>rhs
+      self.cfunction.imul(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
 
   def __itruediv__(Contour self, rhs):
-    """Divide the function in-place by a constant or another ComplexFunction."""
+    """Divide the function in-place by a constant or another Contour."""
     if isinstance(rhs, Contour):
-      self.cfunction /= (<Contour>rhs).cfunction
+      self.cfunction.idiv((<Contour>rhs).cfunction)
     elif isinstance(rhs, (int, float, complex)):
-      self.cfunction /= <COMPLEX>rhs
+      self.cfunction.idiv(<COMPLEX>rhs)
     else:
       raise NotImplementedError(type(self), type(rhs))
     return self
@@ -104,7 +104,7 @@ cdef class Contour:
     return self
 
   def __add__(lhs, rhs):
-    """Add the function with a constant or another ComplexFunction."""
+    """Add the function with a constant or another Contour."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour()
@@ -119,7 +119,7 @@ cdef class Contour:
     return result
 
   def __sub__(lhs, rhs):
-    """Subtract a constant or another ComplexFunction from the function."""
+    """Subtract a constant or another Contour from the function."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour()
@@ -133,7 +133,7 @@ cdef class Contour:
     return result
 
   def __mul__(lhs, rhs):
-    """Multiply the function with a constant or another ComplexFunction."""
+    """Multiply the function with a constant or another Contour."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour()
@@ -148,7 +148,7 @@ cdef class Contour:
     return result
 
   def __truediv__(lhs, rhs):
-    """Divide the function by a constant or another ComplexFunction."""
+    """Divide the function by a constant or another Contour."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, (Contour, int, float, complex)):
       result = Contour()
@@ -162,7 +162,7 @@ cdef class Contour:
     return result
 
   def __pow__(lhs, rhs, mod):
-    """Raise the function to the power of a constant or another ComplexFunction."""
+    """Raise the function to the power of a constant or another Contour."""
     cdef Contour result
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result = Contour()
@@ -194,7 +194,7 @@ cdef class Contour:
       return int(np.rint(result))
 
   def __eq__(lhs, rhs):
-    """Return a RealComparison that evaluates to True wherever equals another Contour or a constant."""
+    """Return a RealComparison that evaluates to True wherever the Contour equals another Contour or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction == (<Contour>rhs).cfunction
@@ -208,7 +208,7 @@ cdef class Contour:
     return result
 
   def __ne__(lhs, rhs):
-    """Return a RealComparison that evaluates to True wherever isn't equal to another Contour or a constant."""
+    """Return a RealComparison that evaluates to True wherever the Contour isn't equal to another Contour or a constant."""
     cdef RealComparison result = RealComparison()
     if isinstance(lhs, Contour) and isinstance(rhs, Contour):
       result.ccomparison = (<Contour>lhs).cfunction != (<Contour>rhs).cfunction
@@ -346,7 +346,7 @@ cdef class Contour:
     return F
 
   @staticmethod
-  def If(RealComparison comp_, Contour then_, Contour else_=Contour.Constant(0), ):
+  def If(RealComparison comp_ not None, Contour then_ not None, Contour else_ not None=Contour.Constant(0), ):
     """A function that evaluates to a certain function when a RealComparison is True, and otherwise evaluates to another function."""
     F = Contour()
     F.cfunction = CFunction[REAL, COMPLEX].If(comp_.ccomparison, then_.cfunction, else_.cfunction)

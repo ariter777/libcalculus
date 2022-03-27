@@ -27,7 +27,7 @@ copyright = '2022, Ariel Terkeltoub'
 author = 'Ariel Terkeltoub'
 
 # The full version, including alpha/beta/rc tags
-release = '0.3.1.3'
+release = '0.3.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,7 +35,7 @@ release = '0.3.1.3'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.todo', 'sphinx.ext.viewcode', 'sphinx.ext.autodoc', "sphinx_rtd_theme"]
+extensions = ['sphinx.ext.autodoc', "sphinx_rtd_theme"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

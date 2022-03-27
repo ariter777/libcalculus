@@ -29,9 +29,10 @@ Here is a snippet demonstrating some of the library's features:
 (1.0316491868272164+1.9336686363989997j)
 >>> libcalculus.residue(f, 0, tol=1e-4)
 (0.16666666639893526-8.181230860681676e-06j)
->>> print(f.latex("z"))
 
+>>> print(f.latex("z"))
 \csc\left( \frac{1}{z}\right)
+
 >>> contour = libcalculus.line(2, 1 + 1j) # 2(1 - t) + (1 + 1i)t
 >>> libcalculus.integrate(f, contour, 0, 1) # integrate along the contour between t=0 and t=1
 (-2.0551412843830605+1.1351565349386723j)
