@@ -6,7 +6,7 @@ release=0
 
 function clean {
   echo $'\e[92mCleaning.\e[0m'
-  rm -vrf src/libcalculus.cpp build dist/* annotations docs/{html,doctrees}
+  rm -vrf src/libcalculus.cpp src/*.html build dist/* annotations __pycache__ libcalculus.egg-info docs/{html,doctrees}
   echo
 }
 

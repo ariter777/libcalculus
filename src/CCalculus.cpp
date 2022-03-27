@@ -1,4 +1,3 @@
-#pragma once
 #include "CCalculus.h"
 
 namespace libcalculus {

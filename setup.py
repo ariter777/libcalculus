@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
 import sys, os
 import numpy as np
 sys.path.append("./include")
+
+SOURCES = ["src/libcalculus." + ("pyx" if os.path.isfile("src/libcalculus.pyx") else "cpp")]
+INCLUDE_DIRS = [np.get_include(), "./include"]
 
 if sys.platform == "linux":
     os.environ["CC"] = os.environ.get("CC", "g++")
@@ -25,7 +28,7 @@ with open("README.md", "r") as rfd:
     long_description = rfd.read()
 
 setup(name="libcalculus",
-version="0.3.2",
+version="0.3.3",
 description="Real/Complex analysis library for Python 3.",
 long_description=long_description,
 long_description_content_type="text/markdown",
@@ -47,6 +50,6 @@ classifiers=[
 license_files=["LICENSE.txt"],
 project_urls = {"Documentation": "https://libcalculus.readthedocs.io/en/latest/",
                 "Source Code": "https://gitlab.com/ariter777/libcalculus"},
-ext_modules=cythonize(Extension("libcalculus", ["src/libcalculus.pyx"],
-                                      extra_compile_args=COMPILER_ARGS, extra_link_args=LINKER_ARGS, library_dirs=LIBRARY_DIRS, include_dirs=[np.get_include()]),
-                                      language_level=3, nthreads=4, annotate=True, compiler_directives={"embedsignature": True}))
+ext_modules=cythonize(Extension("libcalculus", SOURCES,
+                                extra_compile_args=COMPILER_ARGS, extra_link_args=LINKER_ARGS, library_dirs=LIBRARY_DIRS, include_dirs=INCLUDE_DIRS),
+                      language_level=3, nthreads=4, annotate=False, compiler_directives={"embedsignature": True}))

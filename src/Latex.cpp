@@ -1,4 +1,5 @@
 #include "Latex.h"
+#include "CFunction.h"
 
 namespace libcalculus {
     namespace Latex {
