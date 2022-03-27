@@ -28,7 +28,7 @@ with open("README.md", "r") as rfd:
     long_description = rfd.read()
 
 setup(name="libcalculus",
-version="0.3.3",
+version="0.3.3.3",
 description="Real/Complex analysis library for Python 3.",
 long_description=long_description,
 long_description_content_type="text/markdown",
@@ -38,6 +38,7 @@ author_email="ariter777@gmail.com",
 keywords=["analysis", "real", "complex", "integral", "derivative"],
 install_requires=[
     "numpy>=1.21",
+    "Cython>=0.29.28"
 ],
 classifiers=[
     "Development Status :: 4 - Beta",

@@ -51,7 +51,7 @@ def derivative(f, const size_t order=1, const REAL tol=1e-3, const REAL radius=1
       real_result.cfunction = Derivative((<RealFunction>f).cfunction, tol, radius)
       return real_result
     elif isinstance(f, Contour):
-      contour_result = Contour(f.start, f.end)
+      contour_result = Contour()
       contour_result.cfunction = Derivative((<Contour>f).cfunction, tol, radius)
       return contour_result
     else:
@@ -69,4 +69,4 @@ def residue(f, z0, const REAL radius=1., const REAL tol=1e-3):
     contour = Contour.Sphere(z0(0.), radius)
   else:
     raise NotImplementedError(f"Point of residue calculation should be a number or a constant function, not {type(z0)}.")
-  return integrate(f, contour, contour.start, contour.end, tol) / complex(2j * M_PI)
+  return integrate(f, contour, 0., 1., tol) / complex(2j * M_PI)

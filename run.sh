@@ -24,7 +24,16 @@ function build {
   cd docs
   make html
   cd - &> /dev/null
-  echo;
+  echo
+}
+
+function sdist {
+  python setup.py sdist
+  echo
+}
+
+function bdist_wheel {
+  python setup.py bdist_wheel -p manylinux2014_x86_64
 }
 
 function run_tests {
@@ -51,6 +60,10 @@ else
       debug=1
     elif [[ $1 == 'clean' ]]; then
       clean
+    elif [[ $1 == 'sdist' ]]; then
+      sdist
+    elif [[ $1 == 'bdist_wheel' ]]; then
+      bdist_wheel
     elif [[ $1 == 'build' ]]; then
       build
     elif [[ $1 == 'test' ]]; then
