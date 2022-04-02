@@ -245,11 +245,11 @@ class IntegralTester(FunctionTester):
                     return self._run_integral(n_integrals) # Run a random function again
                 elif not np.allclose(integral, cintegral, rtol=10. * self.TOL, atol=10. * self.TOL):
                     raise ValueError(f"\033[1;41mERROR IN {type(self).__name__}:\033[0m {f.latex()}\n\t "
-                                     f"integrating along {c.latex()} from {c.start} to {c.end}: {integral} vs actual {cintegral}")
+                                     f"integrating along {c.latex()} from {start} to {end}: {integral} vs actual {cintegral}")
 
     def run(self, n_funcs, n_integrals):
         """Generate n_funcs random functions and check n_integrals random integrals on each function."""
-        super().run()
+        print(f"\033[1mStarting {type(self).__name__}:\033[0m")
         pqdm.processes.pqdm([[n_integrals]] * n_funcs, self._run_integral, n_jobs=self.N_JOBS, argument_type="args", exception_behaviour="immediate", bounded=True)
         super()._done()
 

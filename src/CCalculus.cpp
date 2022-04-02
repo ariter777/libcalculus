@@ -63,42 +63,28 @@ namespace libcalculus {
 
     template<>
     COMPLEX Integrate(CFunction<COMPLEX, COMPLEX> const &f,
-                                   CFunction<REAL, COMPLEX> const &contour, REAL const start, REAL const end, REAL const tol) {
-        COMPLEX prev_result, result = 0.;
-        size_t while_iters = 0, n = INTEGRATION_SUBDIV_FACTOR / tol;
-        while (while_iters < 2 || !Traits<COMPLEX>::close(prev_result, result, tol)) {
-            n *= 2;
-            prev_result = result;
-            result = 0.;
-            COMPLEX z, prev_z = contour(start);
+                      CFunction<REAL, COMPLEX> const &contour, REAL const start, REAL const end, REAL const tol) {
+         COMPLEX prev_result, result = 0.;
+         size_t while_iters = 0, n = INTEGRATION_SUBDIV_FACTOR / tol;
+         while (while_iters < 2 || !Traits<COMPLEX>::close(prev_result, result, tol)) {
+             n *= 2;
+             prev_result = result;
+             result = 0.;
+             COMPLEX z, prev_z = contour(start);
 
-            for (size_t k = 1; k <= n; ++k) {
-                z = contour(start + (end - start) * k / n);
-                result += f(z) * (z - prev_z);
-                prev_z = z;
-            }
-            ++while_iters;
-        }
-        return result;
+             for (size_t k = 1; k <= n; ++k) {
+                 z = contour(start + (end - start) * k / n);
+                 result += f(z) * (z - prev_z);
+                 prev_z = z;
+             }
+             ++while_iters;
+         }
+         return result;
     }
 
     template<>
     REAL Integrate(CFunction<REAL, REAL> const &f, CFunction<REAL, REAL> const &contour, REAL const start, REAL const end, REAL const tol) {
-        REAL prev_result, result = 0., dx;
-        size_t while_iters = 0, n = INTEGRATION_SUBDIV_FACTOR / tol;
-        while (while_iters < 2 || !Traits<REAL>::close(prev_result, result, tol)) {
-            n *= 2;
-            dx = (end - start) / n;
-            prev_result = result;
-            result = 0.;
-
-            #pragma omp parallel for reduction(+:result)
-            for (size_t k = 1; k <= n; ++k) {
-                result += f(start + k * dx);
-            }
-            result *= dx;
-            ++while_iters;
-        }
-        return result;
+        auto const reverse = start > end;
+        return (reverse ? -1. : 1.) * boost::math::quadrature::gauss_kronrod<REAL, 61>::integrate(f, contour(reverse ? end : start), contour(reverse ? start : end), 15, tol);
     }
 }

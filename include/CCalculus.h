@@ -1,5 +1,6 @@
 #pragma once
 #include "CFunction.h"
+#include <boost/math/quadrature/gauss_kronrod.hpp>
 
 namespace libcalculus {
     template<typename Dom, typename Ran>
