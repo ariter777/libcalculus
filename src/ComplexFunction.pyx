@@ -347,6 +347,90 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
+  def Arcsin():
+    """Inverse sine."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arcsin()
+    return F
+
+  @staticmethod
+  def Arccos():
+    """Inverse cosine."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arccos()
+    return F
+
+  @staticmethod
+  def Arctan():
+    """Inverse tangent"""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arctan()
+    return F
+
+  @staticmethod
+  def Arccsc():
+    """Inverse cosecant."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arccsc()
+    return F
+
+  @staticmethod
+  def Arcsec():
+    """Inverse secant."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arcsec()
+    return F
+
+  @staticmethod
+  def Arccot():
+    """Inverse cotangent"""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arccot()
+    return F
+
+  @staticmethod
+  def Arsinh():
+    """Inverse sine."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arsinh()
+    return F
+
+  @staticmethod
+  def Arcosh():
+    """Inverse hyperbolic cosine."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arcosh()
+    return F
+
+  @staticmethod
+  def Artanh():
+    """Inverse hyperbolic tangent"""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Artanh()
+    return F
+
+  @staticmethod
+  def Arcsch():
+    """Inverse hyperbolic cosecant."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arcsch()
+    return F
+
+  @staticmethod
+  def Arsech():
+    """Inverse hyperbolic secant."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arsech()
+    return F
+
+  @staticmethod
+  def Arcoth():
+    """Inverse hyperbolic cotangent"""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arcoth()
+    return F
+
+  @staticmethod
   def Pi():
     """Constant function equal to pi; useful for the LaTeX output."""
     cdef ComplexFunction F = ComplexFunction()

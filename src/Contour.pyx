@@ -332,6 +332,90 @@ cdef class Contour:
     return F
 
   @staticmethod
+  def Arcsin():
+    """Inverse sine."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arcsin()
+    return F
+
+  @staticmethod
+  def Arccos():
+    """Inverse cosine."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arccos()
+    return F
+
+  @staticmethod
+  def Arctan():
+    """Inverse tangent"""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arctan()
+    return F
+
+  @staticmethod
+  def Arccsc():
+    """Inverse cosecant."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arccsc()
+    return F
+
+  @staticmethod
+  def Arcsec():
+    """Inverse secant."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arcsec()
+    return F
+
+  @staticmethod
+  def Arccot():
+    """Inverse cotangent"""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arccot()
+    return F
+
+  @staticmethod
+  def Arsinh():
+    """Inverse sine."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arsinh()
+    return F
+
+  @staticmethod
+  def Arcosh():
+    """Inverse hyperbolic cosine."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arcosh()
+    return F
+
+  @staticmethod
+  def Artanh():
+    """Inverse hyperbolic tangent"""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Artanh()
+    return F
+
+  @staticmethod
+  def Arcsch():
+    """Inverse hyperbolic cosecant."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arcsch()
+    return F
+
+  @staticmethod
+  def Arsech():
+    """Inverse hyperbolic secant."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arsech()
+    return F
+
+  @staticmethod
+  def Arcoth():
+    """Inverse hyperbolic cotangent"""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arcoth()
+    return F
+
+  @staticmethod
   def Pi():
     """Constant function equal to pi; useful for the LaTeX output."""
     cdef Contour F = Contour()

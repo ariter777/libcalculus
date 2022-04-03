@@ -44,6 +44,18 @@ namespace libcalculus {
         static CFunction const _Sech;
         static CFunction const _Csch;
         static CFunction const _Coth;
+        static CFunction const _Arcsin;
+        static CFunction const _Arccos;
+        static CFunction const _Arctan;
+        static CFunction const _Arccsc;
+        static CFunction const _Arcsec;
+        static CFunction const _Arccot;
+        static CFunction const _Arsinh;
+        static CFunction const _Arcosh;
+        static CFunction const _Artanh;
+        static CFunction const _Arcsch;
+        static CFunction const _Arsech;
+        static CFunction const _Arcoth;
         static CFunction const _Pi;
         static CFunction const _E;
 
@@ -117,12 +129,28 @@ namespace libcalculus {
         static inline CFunction Sec() { return CFunction::_Sec; }
         static inline CFunction Csc() { return CFunction::_Csc; }
         static inline CFunction Cot() { return CFunction::_Cot; }
+
         static inline CFunction Sinh() { return CFunction::_Sinh; }
         static inline CFunction Cosh() { return CFunction::_Cosh; }
         static inline CFunction Tanh() { return CFunction::_Tanh; }
         static inline CFunction Sech() { return CFunction::_Sech; }
         static inline CFunction Csch() { return CFunction::_Csch; }
         static inline CFunction Coth() { return CFunction::_Coth; }
+
+        static inline CFunction Arcsin() { return CFunction::_Arcsin; }
+        static inline CFunction Arccos() { return CFunction::_Arccos; }
+        static inline CFunction Arctan() { return CFunction::_Arctan; }
+        static inline CFunction Arcsec() { return CFunction::_Arcsec; }
+        static inline CFunction Arccsc() { return CFunction::_Arccsc; }
+        static inline CFunction Arccot() { return CFunction::_Arccot; }
+
+        static inline CFunction Arsinh() { return CFunction::_Arsinh; }
+        static inline CFunction Arcosh() { return CFunction::_Arcosh; }
+        static inline CFunction Artanh() { return CFunction::_Artanh; }
+        static inline CFunction Arsech() { return CFunction::_Arsech; }
+        static inline CFunction Arcsch() { return CFunction::_Arcsch; }
+        static inline CFunction Arcoth() { return CFunction::_Arcoth; }
+
         static inline CFunction Pi() { return CFunction::_Pi; }
         static inline CFunction E() { return CFunction::_E; }
         static inline CFunction If(CComparison<Dom> const &cond_, CFunction const &then_,
@@ -193,6 +221,42 @@ namespace libcalculus {
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Coth = CFunction<Dom, Ran>([](Dom const z) noexcept { return 1. / std::tanh(z); }, "\\coth\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arcsin = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::asin(z); }, "\\text{arcsin}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arccos = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::acos(z); }, "\\text{arccos}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arctan = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::atan(z); }, "\\text{arctan}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arccsc = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::asin(1. / z); }, "\\text{arccsc}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arcsec = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::acos(1. / z); }, "\\text{arcsec}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arccot = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::atan(1. / z); }, "\\text{arccot}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arsinh = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::asinh(z); }, "\\text{arsinh}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arcosh = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::acosh(z); }, "\\text{arcosh}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Artanh = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::atanh(z); }, "\\text{artanh}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arcsch = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::asinh(1. / z); }, "\\text{arcsch}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arsech = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::acosh(1. / z); }, "\\text{arsech}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arcoth = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::atanh(1. / z); }, "\\text{arcoth}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Pi = CFunction<Dom, Ran>([](Dom const z) noexcept { return M_PI; }, "\\pi", OP_TYPE::NOP);

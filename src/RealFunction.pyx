@@ -379,6 +379,90 @@ cdef class RealFunction:
     return F
 
   @staticmethod
+  def Arcsin():
+    """Inverse sine."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arcsin()
+    return F
+
+  @staticmethod
+  def Arccos():
+    """Inverse cosine."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arccos()
+    return F
+
+  @staticmethod
+  def Arctan():
+    """Inverse tangent"""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arctan()
+    return F
+
+  @staticmethod
+  def Arccsc():
+    """Inverse cosecant."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arccsc()
+    return F
+
+  @staticmethod
+  def Arcsec():
+    """Inverse secant."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arcsec()
+    return F
+
+  @staticmethod
+  def Arccot():
+    """Inverse cotangent"""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arccot()
+    return F
+
+  @staticmethod
+  def Arsinh():
+    """Inverse sine."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arsinh()
+    return F
+
+  @staticmethod
+  def Arcosh():
+    """Inverse hyperbolic cosine."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arcosh()
+    return F
+
+  @staticmethod
+  def Artanh():
+    """Inverse hyperbolic tangent"""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Artanh()
+    return F
+
+  @staticmethod
+  def Arcsch():
+    """Inverse hyperbolic cosecant."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arcsch()
+    return F
+
+  @staticmethod
+  def Arsech():
+    """Inverse hyperbolic secant."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arsech()
+    return F
+
+  @staticmethod
+  def Arcoth():
+    """Inverse hyperbolic cotangent"""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arcoth()
+    return F
+
+  @staticmethod
   def Pi():
     """Constant function equal to pi; useful for the LaTeX output."""
     cdef RealFunction F = RealFunction()

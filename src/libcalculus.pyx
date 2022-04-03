@@ -50,43 +50,71 @@ def __getattr__(name):
   elif name == "identity":
     return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Identity())
   elif name == "real":
-   return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Re())
+    return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Re())
   elif name == "imag":
-   return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Im())
+    return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Im())
   elif name == "abs":
-   return Function(RealFunction.Abs(), Contour.Abs(), ComplexFunction.Abs())
+    return Function(RealFunction.Abs(), Contour.Abs(), ComplexFunction.Abs())
   elif name == "conj":
-   return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Conj())
+    return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Conj())
   elif name == "exp":
-   return Function(RealFunction.Exp(), Contour.Exp(), ComplexFunction.Exp())
+    return Function(RealFunction.Exp(), Contour.Exp(), ComplexFunction.Exp())
 
   # Trigonometric functions
   elif name == "sin":
-   return Function(RealFunction.Sin(), Contour.Sin(), ComplexFunction.Sin())
+    return Function(RealFunction.Sin(), Contour.Sin(), ComplexFunction.Sin())
   elif name == "cos":
-   return Function(RealFunction.Cos(), Contour.Cos(), ComplexFunction.Cos())
+    return Function(RealFunction.Cos(), Contour.Cos(), ComplexFunction.Cos())
   elif name == "tan":
-   return Function(RealFunction.Tan(), Contour.Tan(), ComplexFunction.Tan())
+    return Function(RealFunction.Tan(), Contour.Tan(), ComplexFunction.Tan())
   elif name == "csc":
-   return Function(RealFunction.Csc(), Contour.Csc(), ComplexFunction.Csc())
+    return Function(RealFunction.Csc(), Contour.Csc(), ComplexFunction.Csc())
   elif name == "sec":
-   return Function(RealFunction.Sec(), Contour.Sec(), ComplexFunction.Sec())
+    return Function(RealFunction.Sec(), Contour.Sec(), ComplexFunction.Sec())
   elif name == "cot":
-   return Function(RealFunction.Cot(), Contour.Cot(), ComplexFunction.Cot())
+    return Function(RealFunction.Cot(), Contour.Cot(), ComplexFunction.Cot())
 
   # Hyperbolic functions
   elif name == "sinh":
-   return Function(RealFunction.Sinh(), Contour.Sinh(), ComplexFunction.Sinh())
+    return Function(RealFunction.Sinh(), Contour.Sinh(), ComplexFunction.Sinh())
   elif name == "cosh":
-   return Function(RealFunction.Cosh(), Contour.Cosh(), ComplexFunction.Cosh())
+    return Function(RealFunction.Cosh(), Contour.Cosh(), ComplexFunction.Cosh())
   elif name == "tanh":
-   return Function(RealFunction.Tanh(), Contour.Tanh(), ComplexFunction.Tanh())
+    return Function(RealFunction.Tanh(), Contour.Tanh(), ComplexFunction.Tanh())
   elif name == "csch":
-   return Function(RealFunction.Csch(), Contour.Csch(), ComplexFunction.Csch())
+    return Function(RealFunction.Csch(), Contour.Csch(), ComplexFunction.Csch())
   elif name == "sech":
-   return Function(RealFunction.Sech(), Contour.Sech(), ComplexFunction.Sech())
+    return Function(RealFunction.Sech(), Contour.Sech(), ComplexFunction.Sech())
   elif name == "coth":
-   return Function(RealFunction.Coth(), Contour.Coth(), ComplexFunction.Coth())
+    return Function(RealFunction.Coth(), Contour.Coth(), ComplexFunction.Coth())
+
+  # Inverse trigonometric functions
+  elif name == "arcsin":
+    return Function(RealFunction.Arcsin(), Contour.Arcsin(), ComplexFunction.Arcsin())
+  elif name == "arccos":
+    return Function(RealFunction.Arccos(), Contour.Arccos(), ComplexFunction.Arccos())
+  elif name == "arctan":
+    return Function(RealFunction.Arctan(), Contour.Arctan(), ComplexFunction.Arctan())
+  elif name == "arccsc":
+    return Function(RealFunction.Arccsc(), Contour.Arccsc(), ComplexFunction.Arccsc())
+  elif name == "arcsec":
+    return Function(RealFunction.Arcsec(), Contour.Arcsec(), ComplexFunction.Arcsec())
+  elif name == "arccot":
+    return Function(RealFunction.Arccot(), Contour.Arccot(), ComplexFunction.Arccot())
+
+ # Inverse hyperbolic functions
+  elif name == "arsinh":
+    return Function(RealFunction.Arsinh(), Contour.Arsinh(), ComplexFunction.Arsinh())
+  elif name == "arcosh":
+    return Function(RealFunction.Arcosh(), Contour.Arcosh(), ComplexFunction.Arcosh())
+  elif name == "artanh":
+    return Function(RealFunction.Artanh(), Contour.Artanh(), ComplexFunction.Artanh())
+  elif name == "arcsch":
+    return Function(RealFunction.Arcsch(), Contour.Arcsch(), ComplexFunction.Arcsch())
+  elif name == "arsech":
+    return Function(RealFunction.Arsech(), Contour.Arsech(), ComplexFunction.Arsech())
+  elif name == "arcoth":
+    return Function(RealFunction.Arcoth(), Contour.Arcoth(), ComplexFunction.Arcoth())
 
   # Constants
   elif name == "pi":

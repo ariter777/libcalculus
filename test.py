@@ -37,7 +37,19 @@ class FunctionTester(Tester):
                       libcalculus.tanh: lambda z: complex(np.tanh(z)),
                       libcalculus.sech: lambda z: complex(1.) / complex(np.cosh(z)),
                       libcalculus.csch: lambda z: complex(1.) / complex(np.sinh(z)),
-                      libcalculus.coth: lambda z: complex(1.) / complex(np.tanh(z))}
+                      libcalculus.coth: lambda z: complex(1.) / complex(np.tanh(z)),
+                      libcalculus.arcsin: lambda z: complex(np.arcsin(z)),
+                      libcalculus.arccos: lambda z: complex(np.arccos(z)),
+                      libcalculus.arctan: lambda z: complex(np.arctan(z)),
+                      libcalculus.arcsec: lambda z: complex(np.arccos(1. / z)),
+                      libcalculus.arccsc: lambda z: complex(np.arcsin(1. / z)),
+                      libcalculus.arccot: lambda z: complex(np.arctan(1. / z)),
+                      libcalculus.arsinh: lambda z: complex(np.arcsinh(z)),
+                      libcalculus.arcosh: lambda z: complex(np.arccosh(z)),
+                      libcalculus.artanh: lambda z: complex(np.arctanh(z)),
+                      libcalculus.arsech: lambda z: complex(np.arccosh(1. / z)),
+                      libcalculus.arcsch: lambda z: complex(np.arcsinh(1. / z)),
+                      libcalculus.arcoth: lambda z: complex(np.arctanh(1. / z)),}
     BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow,
                          operator.matmul]
@@ -155,7 +167,19 @@ class ComplexFunctionTester(FunctionTester):
                       ComplexFunction.Tanh: lambda z: complex(np.tanh(z)),
                       ComplexFunction.Sech: lambda z: complex(1.) / complex(np.cosh(z)),
                       ComplexFunction.Csch: lambda z: complex(1.) / complex(np.sinh(z)),
-                      ComplexFunction.Coth: lambda z: complex(1.) / complex(np.tanh(z))}
+                      ComplexFunction.Coth: lambda z: complex(1.) / complex(np.tanh(z)),
+                      ComplexFunction.Arcsin: lambda z: complex(np.arcsin(z)),
+                      ComplexFunction.Arccos: lambda z: complex(np.arccos(z)),
+                      ComplexFunction.Arctan: lambda z: complex(np.arctan(z)),
+                      ComplexFunction.Arcsec: lambda z: complex(np.arccos(1. / z)),
+                      ComplexFunction.Arccsc: lambda z: complex(np.arcsin(1. / z)),
+                      ComplexFunction.Arccot: lambda z: complex(np.arctan(1. / z)),
+                      ComplexFunction.Arsinh: lambda z: complex(np.arcsinh(z)),
+                      ComplexFunction.Arcosh: lambda z: complex(np.arccosh(z)),
+                      ComplexFunction.Artanh: lambda z: complex(np.arctanh(z)),
+                      ComplexFunction.Arsech: lambda z: complex(np.arccosh(1. / z)),
+                      ComplexFunction.Arcsch: lambda z: complex(np.arcsinh(1. / z)),
+                      ComplexFunction.Arcoth: lambda z: complex(np.arctanh(1. / z))}
 
 class RealFunctionTester(ComplexFunctionTester):
     BOUND = 20.
@@ -174,7 +198,19 @@ class RealFunctionTester(ComplexFunctionTester):
                       RealFunction.Tanh: lambda z: np.tanh(z),
                       RealFunction.Sech: lambda z: 1. / np.cosh(z),
                       RealFunction.Csch: lambda z: 1. / np.sinh(z),
-                      RealFunction.Coth: lambda z: 1. / np.tanh(z)}
+                      RealFunction.Coth: lambda z: 1. / np.tanh(z),
+                      RealFunction.Arcsin: lambda z: np.arcsin(z),
+                      RealFunction.Arccos: lambda z: np.arccos(z),
+                      RealFunction.Arctan: lambda z: np.arctan(z),
+                      RealFunction.Arcsec: lambda z: np.arccos(1. / z),
+                      RealFunction.Arccsc: lambda z: np.arcsin(1. / z),
+                      RealFunction.Arccot: lambda z: np.arctan(1. / z),
+                      RealFunction.Arsinh: lambda z: np.arcsinh(z),
+                      RealFunction.Arcosh: lambda z: np.arccosh(z),
+                      RealFunction.Artanh: lambda z: np.arctanh(z),
+                      RealFunction.Arsech: lambda z: np.arccosh(1. / z),
+                      RealFunction.Arcsch: lambda z: np.arcsinh(1. / z),
+                      RealFunction.Arcoth: lambda z: np.arctanh(1. / z)}
 
     def _rand(self, n=1):
         return np.random.uniform(-self.BOUND, self.BOUND, size=n) if n > 1 else np.random.uniform(-self.BOUND, self.BOUND)
@@ -196,7 +232,19 @@ class ContourTester(ComplexFunctionTester):
                       Contour.Tanh: lambda t: complex(np.tanh(t)),
                       Contour.Sech: lambda t: complex(1.) / complex(np.cosh(t)),
                       Contour.Csch: lambda t: complex(1.) / complex(np.sinh(t)),
-                      Contour.Coth: lambda t: complex(1.) / complex(np.tanh(t))}
+                      Contour.Coth: lambda t: complex(1.) / complex(np.tanh(t)),
+                      Contour.Arcsin: lambda z: complex(np.arcsin(z)),
+                      Contour.Arccos: lambda z: complex(np.arccos(z)),
+                      Contour.Arctan: lambda z: complex(np.arctan(z)),
+                      Contour.Arcsec: lambda z: complex(np.arccos(1. / z)),
+                      Contour.Arccsc: lambda z: complex(np.arcsin(1. / z)),
+                      Contour.Arccot: lambda z: complex(np.arctan(1. / z)),
+                      Contour.Arsinh: lambda z: complex(np.arcsinh(z)),
+                      Contour.Arcosh: lambda z: complex(np.arccosh(z)),
+                      Contour.Artanh: lambda z: complex(np.arctanh(z)),
+                      Contour.Arsech: lambda z: complex(np.arccosh(1. / z)),
+                      Contour.Arcsch: lambda z: complex(np.arcsinh(1. / z)),
+                      Contour.Arcoth: lambda z: complex(np.arctanh(1. / z))}
 
     BINARY_OPERATIONS = [operator.iadd, operator.isub, operator.imul, operator.itruediv, operator.ipow,
                          operator.add, operator.sub, operator.mul, operator.truediv, operator.pow]
