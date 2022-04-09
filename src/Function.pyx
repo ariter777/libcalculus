@@ -168,8 +168,17 @@ cdef class Function:
       result = Function((<Function>lhs).realfunction, (<Function>lhs).contour, (<Function>lhs).complexfunction)
       result -= rhs
     elif isinstance(rhs, Function):
-      result = Function((<Function>rhs).realfunction, (<Function>rhs).contour, (<Function>rhs).complexfunction)
-      result -= lhs
+      if isinstance(lhs, Function):
+        result = Function((<Function>lhs).realfunction, (<Function>lhs).contour, (<Function>lhs).complexfunction)
+        result -= rhs
+      elif _isrealscalar(lhs):
+        result = Function(lhs - (<Function>rhs).realfunction if (<Function>rhs).realfunction is not None else None,
+                          lhs - (<Function>rhs).contour if (<Function>rhs).contour is not None else None,
+                          lhs - (<Function>rhs).complexfunction if (<Function>rhs).complexfunction is not None else None)
+      elif _iscomplexscalar(lhs):
+        result = Function(None,
+                          lhs - (<Function>rhs).contour if (<Function>rhs).contour is not None else None,
+                          lhs - (<Function>rhs).complexfunction if (<Function>rhs).complexfunction is not None else None)
     return result
 
   def __mul__(lhs, rhs):

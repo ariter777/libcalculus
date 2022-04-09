@@ -251,6 +251,13 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
+  def Arg():
+    """Complex argument."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Arg()
+    return F
+
+  @staticmethod
   def Identity():
     """Identity function."""
     return ComplexFunction()

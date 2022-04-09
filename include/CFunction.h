@@ -31,6 +31,7 @@ namespace libcalculus {
         static CFunction const _Im;
         static CFunction const _Conj;
         static CFunction const _Abs;
+        static CFunction const _Arg;
         static CFunction const _Exp;
         static CFunction const _Sin;
         static CFunction const _Cos;
@@ -122,6 +123,7 @@ namespace libcalculus {
         static inline CFunction Im() { return CFunction::_Im; }
         static inline CFunction Conj() { return CFunction::_Conj; }
         static inline CFunction Abs() { return CFunction::_Abs; }
+        static inline CFunction Arg() { return CFunction::_Arg; }
         static inline CFunction Exp() { return CFunction::_Exp; }
         static inline CFunction Sin() { return CFunction::_Sin; }
         static inline CFunction Cos() { return CFunction::_Cos; }
@@ -178,10 +180,18 @@ namespace libcalculus {
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Im = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::imag(z); }, "\\text{Im}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
-    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Conj = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::conj(z); }, "\\overline{" LATEX_VAR "}", OP_TYPE::NOP);
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Conj = CFunction<Dom, Ran>(([]() constexpr {
+                                                                                                if constexpr (std::is_same<Ran, COMPLEX>::value)
+                                                                                                    return [](Dom const z) noexcept { return std::conj(z); };
+                                                                                                else
+                                                                                                    return [](Dom const z) noexcept { return z; };
+                                                                                              })(), "\\overline{" LATEX_VAR "}", OP_TYPE::NOP);
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Abs = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::abs(z); }, "\\left|" LATEX_VAR "\\right|", OP_TYPE::FUNC);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Arg = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::arg(z); }, "\\text{arg}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Exp = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP);

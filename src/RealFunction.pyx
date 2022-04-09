@@ -276,10 +276,38 @@ cdef class RealFunction:
     return F
 
   @staticmethod
+  def Re():
+    """Real part."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Re()
+    return F
+
+  @staticmethod
+  def Im():
+    """Imaginary part."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Im()
+    return F
+
+  @staticmethod
+  def Conj():
+    """Complex conjugate."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Conj()
+    return F
+
+  @staticmethod
   def Abs():
     """Absolute value."""
     cdef RealFunction F = RealFunction()
     F.cfunction = CFunction[REAL, REAL].Abs()
+    return F
+
+  @staticmethod
+  def Arg():
+    """Complex argument."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Arg()
     return F
 
   @staticmethod

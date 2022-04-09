@@ -25,6 +25,7 @@ class FunctionTester(Tester):
                       libcalculus.imag: lambda z: np.imag(z),
                       libcalculus.conj: lambda z: np.conj(z),
                       libcalculus.abs: lambda z: np.abs(z),
+                      libcalculus.arg: lambda z: np.angle(z),
                       libcalculus.exp: lambda z: complex(np.exp(z)),
                       libcalculus.sin: lambda z: complex(np.sin(z)),
                       libcalculus.cos: lambda z: complex(np.cos(z)),
@@ -58,7 +59,7 @@ class FunctionTester(Tester):
     BOUND = 20
     MAX_OPS = 5
     MAX_TRIES = 20
-    MAX_ERRORS = 20
+    MAX_ERRORS = 10
     N_JOBS = mp.cpu_count()
 
     def _rand(self, n=1):
@@ -123,7 +124,7 @@ class FunctionTester(Tester):
                     except (OverflowError, ZeroDivisionError):
                         n_tries += 1
                     finally:
-                        if n_tries > self.MAX_TRIES: # We've hit a functional division by zero (e.g. 1 / (z - z)):
+                        if n_tries > self.MAX_TRIES: # We've probably hit a functional division by zero (e.g. 1 / (z - z)):
                             break
 
                 if n_errors >= self.MAX_ERRORS:
@@ -155,6 +156,7 @@ class ComplexFunctionTester(FunctionTester):
                       ComplexFunction.Im: lambda z: np.imag(z),
                       ComplexFunction.Conj: lambda z: np.conj(z),
                       ComplexFunction.Abs: lambda z: np.abs(z),
+                      ComplexFunction.Arg: lambda z: np.angle(z),
                       ComplexFunction.Exp: lambda z: complex(np.exp(z)),
                       ComplexFunction.Sin: lambda z: complex(np.sin(z)),
                       ComplexFunction.Cos: lambda z: complex(np.cos(z)),

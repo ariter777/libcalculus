@@ -229,10 +229,38 @@ cdef class Contour:
     return F
 
   @staticmethod
+  def Re():
+    """Real part."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Re()
+    return F
+
+  @staticmethod
+  def Im():
+    """Imaginary part."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Im()
+    return F
+
+  @staticmethod
+  def Conj():
+    """Complex conjugate."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Conj()
+    return F
+
+  @staticmethod
   def Abs():
     """Absolute value."""
     cdef Contour F = Contour()
     F.cfunction = CFunction[REAL, COMPLEX].Abs()
+    return F
+
+  @staticmethod
+  def Arg():
+    """Complex argument."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Arg()
     return F
 
   @staticmethod

@@ -59,6 +59,10 @@ Builtin Functions
      - :math:`z\mapsto\text{arctan}\left(z\right)`
      - Inverse tangent
 
+   * - ``arg``
+     - :math:`z\mapsto\text{arg}\left(z\right)`
+     - Complex argument
+
    * - ``arsech``
      - :math:`z\mapsto\text{arsech}\left(z\right)`
      - Inverse hyperbolic secant
@@ -129,7 +133,7 @@ Builtin Functions
 
    * - ``piecewise(comp_, then_, else_)``
      - :math:`z\mapsto \begin{cases} \text{then_}\left(z \right ) & ; \;\text{comp_}\left(z \right )=\mathbb{T} \\ \text{else_}\left(z \right ) & ; \;\text{comp_}\left(z \right )=\mathbb{F} \end{cases}`
-     - If ``comp_`` (a RealComparison or ComplexComparison) returns true at ``z`` return ``then_(z)``, otherwise return ``else_(z)``.
+     - If ``comp_`` returns ``True`` at ``z`` return ``then_(z)``, otherwise return ``else_(z)``.
 
    * - ``real``
      - :math:`z\mapsto\text{Re}\left(z\right)`

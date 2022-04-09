@@ -50,13 +50,15 @@ def __getattr__(name):
   elif name == "identity":
     return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Identity())
   elif name == "real":
-    return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Re())
+    return Function(RealFunction.Re(), Contour.Re(), ComplexFunction.Re())
   elif name == "imag":
-    return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Im())
+    return Function(RealFunction.Im(), Contour.Im(), ComplexFunction.Im())
   elif name == "abs":
     return Function(RealFunction.Abs(), Contour.Abs(), ComplexFunction.Abs())
+  elif name == "arg":
+    return Function(RealFunction.Arg(), Contour.Arg(), ComplexFunction.Arg())
   elif name == "conj":
-    return Function(RealFunction.Identity(), Contour.Identity(), ComplexFunction.Conj())
+    return Function(RealFunction.Conj(), Contour.Conj(), ComplexFunction.Conj())
   elif name == "exp":
     return Function(RealFunction.Exp(), Contour.Exp(), ComplexFunction.Exp())
 

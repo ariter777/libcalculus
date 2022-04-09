@@ -29,4 +29,17 @@ namespace libcalculus {
     using COMPLEX = std::complex<double>;
     static inline double constexpr INTEGRATION_SUBDIV_FACTOR = .05; // With integration tolerance tol, the domain will
                                                                     // divided into INTEGRATION_SUBDIV_FACTOR / tol rectangles.
+
+    template<typename T>
+    struct Traits {
+    public:
+        static constexpr REAL tol = [] {
+            if constexpr (std::is_same<T, REAL>::value)
+                return 1e-6;
+            else if constexpr (std::is_same<T, COMPLEX>::value)
+                return 1e-6;
+        }();
+
+        inline static bool close(T const a, T const b, REAL const tol=Traits<T>::tol) noexcept { return std::abs(a - b) < tol; }
+    };
 }
