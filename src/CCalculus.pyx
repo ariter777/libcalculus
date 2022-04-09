@@ -73,8 +73,6 @@ def residue(f, z0, const REAL radius=1., const REAL tol=1e-3):
     raise NotImplementedError(f"Point of residue calculation should be a number or a constant function, not {type(z0)}.")
   return integrate(f, contour, 0., 1., tol) / complex(2j * M_PI)
 
-
-
 def index(const COMPLEX z0, Function contour not None, const REAL start=0., const REAL end=1.):
   if contour.contour is None:
     raise ValueError("The contour passed is malformed.")

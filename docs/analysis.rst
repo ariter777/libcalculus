@@ -5,6 +5,27 @@ Analysis Methods
 .. toctree::
   :caption: Contents:
 
+Differentiation
+---------------
+.. autofunction:: libcalculus.derivative
+
+Summary
+~~~~~~~
+This method performs numerical differentiation of real and complex valued functions. Note that it returns a ``libcalculus.Function`` object which can be evaluated at different points.
+
+Examples
+~~~~~~~~
+>>> f = libcalculus.derivative(libcalculus.sin)
+>>> f(0)
+0.9998372475304346
+>>> g = libcalculus.derivative(libcalculus.sin, tol=1e-6)
+>>> g(0)
+0.9999998410542882
+>>> g.latex()
+'\\frac{\\text{d}}{\\text{d}x}\\left(\\sin\\left(x\\right)\\right)'
+
+Note how an error tolerance can be specified for either faster or more accurate calculation. Since the library supports only numerical differentiation (as opposed to symbolic), the LaTeX representation of a derivative is not simplified - i.e., ``libcalculus.derivative(libcalculus.sin).latex()`` returns :math:`\frac{\text{d}}{\text{d}x}\left(\sin\left(x\right)\right)`.
+
 Integration
 -----------
 .. autofunction:: libcalculus.integrate
