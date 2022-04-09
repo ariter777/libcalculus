@@ -72,3 +72,17 @@ def residue(f, z0, const REAL radius=1., const REAL tol=1e-3):
   else:
     raise NotImplementedError(f"Point of residue calculation should be a number or a constant function, not {type(z0)}.")
   return integrate(f, contour, 0., 1., tol) / complex(2j * M_PI)
+
+
+
+def index(const COMPLEX z0, Function contour not None, const REAL start=0., const REAL end=1.):
+  if contour.contour is None:
+    raise ValueError("The contour passed is malformed.")
+  return contour.contour.index(z0, start, end)
+
+def zeros(Function f not None, Function contour not None, const REAL start=0., const REAL end=1.):
+  """Calculates the number of zeros the functions has inside a closed contour, assuming it is holomorphic."""
+  if f.complexfunction is None or contour.contour is None:
+    raise ValueError("The function or contour passed are malformed.")
+  else:
+    return f.complexfunction.zeros(contour.contour, start, end)

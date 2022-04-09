@@ -1,9 +1,9 @@
+.. _analysis:
+
 Analysis Methods
 ================
 .. toctree::
   :caption: Contents:
-
-.. _analysis:
 
 Integration
 -----------
@@ -36,7 +36,7 @@ Residues
 
 Summary
 ~~~~~~~
-This method for the calculation of residues of complex functions.
+This method is used for the calculation of residues of complex functions.
 
 Examples
 ~~~~~~~~
@@ -47,3 +47,56 @@ Examples
 
 - | In the first example, we compute once again :math:`\underset{z=0}{\text{Res}}\left(\text{csc}(2z) \right )`; this returns approximately :math:`\frac{1}{2}` as expected.
 - | In the second example we again achieve better accuracy by specifying a desired error tolerance.
+
+
+Contour Index
+-------------
+.. autofunction:: libcalculus.index
+
+Summary
+~~~~~~~
+This method calculates the index of a point with respect to a contour.
+
+Examples
+~~~~~~~~
+>>> libcalculus.index(.5j, libcalculus.sphere(0, 1), 0, 1)
+1
+>>> libcalculus.index(.5j, libcalculus.sphere(0, 1), 0, 2)
+2
+>>> libcalculus.index(.5j, libcalculus.sphere(0, 1), 0, 2.5)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "src/libcalculus.pyx", line 151, in libcalculus.index
+  File "src/Contour.pyx", line 189, in libcalculus.Contour.index
+    assert np.allclose(self(start), self(end)), "Index defined only for closed contour."
+AssertionError: Index defined only for closed contour.
+
+- | In the first example, we compute :math:`\text{ind}_{\partial\mathbb{B}_1\left(0\right)}\left(\frac{i}{2}\right)`.
+- | In the second example we use the same contour, but run :math:`t\in\left[0, 2\right]` - in other words, concatenating the unit circle with itself, producing two revolutions and thus the result :math:`2`.
+- | We cannot use a non-closed contour: in the third example we attempt to do so with two and a half revolutions (clockwise) around the unit circle.
+
+
+Counting Zeros
+--------------
+.. autofunction:: libcalculus.zeros
+
+Summary
+~~~~~~~
+This method counts the number of zeros a complex function has inside a closed contour. This is done using the well-known formula:
+:math:`\text{N}_f\left(\Omega\right)=\oint_{\partial\Omega}\frac{f'\left(z\right)}{f\left(z\right)}\text{d}z=\text{ind}_{f\circ\partial\Omega}\left(0\right)`
+
+Examples
+~~~~~~~~
+>>> libcalculus.zeros(libcalculus.sin, libcalculus.sphere(0, 6), 0, 1)
+3
+>>> libcalculus.zeros(libcalculus.sin, libcalculus.sphere(0, 6), 0, .5)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "src/libcalculus.pyx", line 158, in libcalculus.zeros
+  File "src/ComplexFunction.pyx", line 215, in libcalculus.ComplexFunction.zeros
+    assert np.allclose(contour(start), contour(end)), "Number of zeros defined only for closed contour."
+AssertionError: Number of zeros defined only for closed contour.
+
+- | In the first example, we count the number of zeros the sine function has inside the area enclosed :math:`\partial\mathbb{B}_6\left(0\right)` - that is, a circle of radius :math:`6` centered at the origin.
+  | We pass the function to examine, and the contour function with the start and end points (in this case, :math:`t\mapsto 6e^{2\pi it}` with :math:`t\in\left[0, 1\right]`).
+- | We cannot use a non-closed contour: in the second example we attempt to do so with the upper half of :math:`\partial\mathbb{B}_6\left(0\right)`.
