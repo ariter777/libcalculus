@@ -26,6 +26,8 @@ Examples
 
 Note how an error tolerance can be specified for either faster or more accurate calculation. Since the library supports only numerical differentiation (as opposed to symbolic), the LaTeX representation of a derivative is not simplified - i.e., ``libcalculus.derivative(libcalculus.sin).latex()`` returns :math:`\frac{\text{d}}{\text{d}x}\left(\sin\left(x\right)\right)`.
 
+The ``radius`` argument can be used to specify how close to the points of evaluation the derivative should be calculated - this can be useful when dealing with discontinuities that are close together, for example.
+
 Integration
 -----------
 .. autofunction:: libcalculus.integrate
