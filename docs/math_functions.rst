@@ -3,156 +3,174 @@ Mathematical Functions
 .. toctree::
   :caption: Contents:
 
-Remarks
--------
-The entries in the table below are the mathematical functions provided in the library. Each of them is a readymade instance of a :code:`libcalculus.Function`, which are callable for evaluation but can also be used in methods such as :code:`libcalculus.integrate`, :code:`libcalculus.residue` etc., as is documented in :ref:`Analysis Methods <analysis>`.
+Important Notes
+---------------
+The entries in the table below are the mathematical functions provided in the library. Each of them is a ready-made instance of a ``libcalculus.Function``, which are callable for evaluation but can also be used in methods such as ``libcalculus.integrate``, ``libcalculus.residue`` etc., as is documented in :ref:`Analysis Methods <analysis>`.
+
+Evaluating such a function is very simple - :math:`\text{sinh}(3)` can be evaluated using ``libcalculus.sinh(3)``. Please note that the variable name in the following table is mostly :math:`z` - this **is not** to imply that those functions can only accept complex inputs.
 
 .. list-table::
    :header-rows: 1
+   :class: tight-table
 
    * - Name
      - Mathematical Notation
      - Notes
-   * - :code:`abs`
+   * - ``abs``
      - :math:`z\mapsto\left|z\right|`
      - Absolute value
 
-   * - :code:`arccos`
+   * - ``arccos``
      - :math:`z\mapsto\text{arccos}\left(z\right)`
      - Inverse cosine
 
-   * - :code:`arccot`
+   * - ``arccot``
      - :math:`z\mapsto\text{arccot}\left(z\right)`
      - Inverse cotangent
 
-   * - :code:`arccsc`
+   * - ``arccsc``
      - :math:`z\mapsto\text{arccsc}\left(z\right)`
      - Inverse cosecant
 
-   * - :code:`arcosh`
+   * - ``arcosh``
      - :math:`z\mapsto\text{arcosh}\left(z\right)`
      - Inverse hyperbolic cosine
 
-   * - :code:`arcoth`
+   * - ``arcoth``
      - :math:`z\mapsto\text{arcoth}\left(z\right)`
      - Inverse hyperbolic cotangent
 
-   * - :code:`arcsch`
+   * - ``arcsch``
      - :math:`z\mapsto\text{arcsch}\left(z\right)`
      - Inverse hyperbolic cosecant
 
-   * - :code:`arcsec`
+   * - ``arcsec``
      - :math:`z\mapsto\text{arcsec}\left(z\right)`
      - Inverse secant
 
-   * - :code:`arcsin`
+   * - ``arcsin``
      - :math:`z\mapsto\text{arcsin}\left(z\right)`
      - Inverse sine
 
-   * - :code:`arctan`
+   * - ``arctan``
      - :math:`z\mapsto\text{arctan}\left(z\right)`
      - Inverse tangent
 
-   * - :code:`arsech`
+   * - ``arsech``
      - :math:`z\mapsto\text{arsech}\left(z\right)`
      - Inverse hyperbolic secant
 
-   * - :code:`arsinh`
+   * - ``arsinh``
      - :math:`z\mapsto\text{arsinh}\left(z\right)`
      - Inverse hyperbolic sine
 
-   * - :code:`artanh`
+   * - ``artanh``
      - :math:`z\mapsto\text{artanh}\left(z\right)`
      - Inverse hyperbolic tangent
 
-   * - :code:`conj`
+   * - ``conj``
      - :math:`z\mapsto\bar{z}`
      - Complex conjugate
 
-   * - :code:`constant(c)`
+   * - ``constant(c)``
      - :math:`z\mapsto c`
      - Constant function
 
-   * - :code:`cos`
+   * - ``cos``
      - :math:`z\mapsto\text{cos}\left(z\right)`
      - Cosine
 
-   * - :code:`cosh`
+   * - ``cosh``
      - :math:`z\mapsto\text{cosh}\left(z\right)`
      - Hyperbolic cosine
 
-   * - :code:`cot`
+   * - ``cot``
      - :math:`z\mapsto\text{cot}\left(z\right)`
      - Cotangent
 
-   * - :code:`coth`
+   * - ``coth``
      - :math:`z\mapsto\text{coth}\left(z\right)`
      - Hyperbolic cotangent
 
-   * - :code:`csc`
+   * - ``csc``
      - :math:`z\mapsto\text{csc}\left(z\right)`
      - Cosecant
 
-   * - :code:`csch`
+   * - ``csch``
      - :math:`z\mapsto\text{csch}\left(z\right)`
      - Hyperbolic cosecant
 
-   * - :code:`e`
+   * - ``e``
      - :math:`z\mapsto e`
      - Euler's number
 
-   * - :code:`exp`
+   * - ``exp``
      - :math:`z\mapsto e^z`
      - Exponential function
 
-   * - :code:`identity`
+   * - ``identity``
      - :math:`z\mapsto z`
      - Identity function
 
-   * - :code:`imag`
+   * - ``imag``
      - :math:`z\mapsto\text{Im}\left(z\right)`
      - Imaginary part
 
-   * - :code:`line(z1, z2)`
+   * - ``line(z1, z2)``
      - :math:`t\mapsto\left(1-t\right)z_1+tz_2`
      - Contour representing a line with :math:`t\in\left[0,1\right]`
 
-   * - :code:`pi`
+   * - ``pi``
      - :math:`z\mapsto \pi`
      - Constant π
 
-   * - :code:`piecewise(comp_, then_, else_)`
+   * - ``piecewise(comp_, then_, else_)``
      - :math:`z\mapsto \begin{cases} \text{then_}\left(z \right ) & ; \;\text{comp_}\left(z \right )=\mathbb{T} \\ \text{else_}\left(z \right ) & ; \;\text{comp_}\left(z \right )=\mathbb{F} \end{cases}`
-     - Constant π
+     - If ``comp_`` (a RealComparison or ComplexComparison) returns true at ``z`` return ``then_(z)``, otherwise return ``else_(z)``.
 
-   * - :code:`real`
+   * - ``real``
      - :math:`z\mapsto\text{Re}\left(z\right)`
      - Real part
 
-   * - :code:`sec`
+   * - ``sec``
      - :math:`z\mapsto\text{sec}\left(z\right)`
      - Secant
 
-   * - :code:`sech`
+   * - ``sech``
      - :math:`z\mapsto\text{sech}\left(z\right)`
      - Hyperbolic secant
 
-   * - :code:`sin`
+   * - ``sin``
      - :math:`z\mapsto\text{sin}\left(z\right)`
      - Sine
 
-   * - :code:`sinh`
+   * - ``sinh``
      - :math:`z\mapsto\text{sinh}\left(z\right)`
      - Hyperbolic sine
 
-   * - :code:`sphere(center=0, radius=1)`
+   * - ``sphere(center=0, radius=1)``
      - :math:`t\mapsto \text{center}+\text{radius}\cdot e^{2\pi it}`
      - Contour representing a circle with :math:`t\in\left[0,1\right]`
 
-   * - :code:`tan`
+   * - ``tan``
      - :math:`z\mapsto\text{tan}\left(z\right)`
      - Tangent
 
-   * - :code:`tanh`
+   * - ``tanh``
      - :math:`z\mapsto\text{tanh}\left(z\right)`
      - Hyperbolic tangent
+
+
+Other Remarks
+-------------
+Try to use library builtins as much as possible - this comes in handy with mathematical constants for example::
+
+  f = libcalculus.pi * libcalculus.sin
+  g = np.pi * libcalculus.sin
+
+
+In this instance, ``f.latex()`` will return ``"\\pi \\sin\\left(x\\right)"`` (corresponding to :math:`\pi \sin\left(x\right)`), while ``g.latex()`` will return ``"3.14159 \\sin\\left(x\\right)"`` (corresponding to :math:`3.14159 \sin\left(x\right)`).
+
+Caveats
+-------
+The library has a fundamental distinction between "purely complex-valued" functions and ones that occasionally might return a complex value: ``(1j * libcalculus.sin)(3)`` will call an underlying C++ function accepting a real input and returning a complex output; however, ``libcalculus.arcsin(3)`` **will actually return** ``np.nan``. To avoid this, cast to complex - ``libcalculus.arcsin(complex(3))`` will correctly return ``(1.5707963267948966+1.762747174039086j)``.
