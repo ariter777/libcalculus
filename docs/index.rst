@@ -11,7 +11,9 @@ Welcome to libcalculus's documentation!
    :caption: Contents:
 
    classes/Function.rst
+   classes/Comparison.rst
    Mathematical Functions <math_functions.rst>
+   Comparisons <comparisons.rst>
    Analysis Methods <analysis.rst>
 
 Indices and tables
