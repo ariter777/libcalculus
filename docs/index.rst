@@ -10,13 +10,7 @@ Welcome to libcalculus's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   classes/RealComparison.rst
-   classes/ComplexComparison.rst
-   classes/RealFunction.rst
-   classes/Contour.rst
-   classes/ComplexFunction.rst
    classes/Function.rst
-
    Mathematical Functions <math_functions.rst>
    Analysis Methods <analysis.rst>
 

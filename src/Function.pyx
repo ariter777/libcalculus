@@ -30,11 +30,17 @@ cdef class Function:
              self.contour._call_array(x.ravel().astype(np.double, copy=False)) if self.contour is not None else \
              self.complexfunction._call_array(x.ravel().astype(complex, copy=False))
     elif _iscomplexscalar(x):
-      return self.complexfunction.cfunction(<COMPLEX>x)
+      if self.complexfunction is not None:
+        return self.complexfunction.cfunction(<COMPLEX>x)
+      else:
+        raise ValueError(f"This function cannot accept input of type {type(x)}.")
     elif _iscomplexarray(x):
-      return self.complexfunction._call_array(x.ravel().astype(complex, copy=False)).reshape(x.shape)
+      if self.complexfunction is not None:
+        return self.complexfunction._call_array(x.ravel().astype(complex, copy=False)).reshape(x.shape)
+      else:
+        raise ValueError(f"This function cannot accept input of type {type(x)}.")
     else:
-      raise NotImplementedError(f"Input of type {type(x)} not supported.")
+      raise ValueError(f"Input of type {type(x)} not supported.")
 
   def latex(Function self, str varname="x"):
     """Generate LaTeX markup for the function."""
@@ -231,9 +237,9 @@ cdef class Function:
     """Return a Comparison that evaluates to True wherever the function is greater than another function or a constant."""
     cdef RealComparison realcomparison
     if isinstance(lhs, Function) and isinstance(rhs, Function):
-      realcomparison = ((<Function>lhs).realfunction > (<Function>rhs).realfunction).copy() if lhs.realfunction is not None and rhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction > (<Function>rhs).realfunction).copy() if (<Function> lhs).realfunction is not None and (<Function> rhs).realfunction is not None else None
     elif isinstance(lhs, Function) and _isrealscalar(rhs):
-      realcomparison = ((<Function>lhs).realfunction > <REAL>rhs).copy() if lhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction > <REAL>rhs).copy() if (<Function> lhs).realfunction is not None else None
     elif _isrealscalar(lhs) and isinstance(rhs, Function):
       realcomparison = (<REAL>lhs > (<Function>rhs).realfunction).copy()
     else:
@@ -244,11 +250,11 @@ cdef class Function:
     """Return a Comparison that evaluates to True wherever the function is smallar than another function or a constant."""
     cdef RealComparison realcomparison
     if isinstance(lhs, Function) and isinstance(rhs, Function):
-      realcomparison = ((<Function>lhs).realfunction < (<Function>rhs).realfunction).copy() if lhs.realfunction is not None and rhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction < (<Function>rhs).realfunction).copy() if (<Function> lhs).realfunction is not None and (<Function> rhs).realfunction is not None else None
     elif isinstance(lhs, Function) and _isrealscalar(rhs):
-      realcomparison = ((<Function>lhs).realfunction < <REAL>rhs).copy() if lhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction < <REAL>rhs).copy() if (<Function> lhs).realfunction is not None else None
     elif _isrealscalar(lhs) and isinstance(rhs, Function):
-      realcomparison = (<REAL>lhs < (<Function>rhs).realfunction).copy() if rhs.realfunction is not None else None
+      realcomparison = (<REAL>lhs < (<Function>rhs).realfunction).copy() if (<Function> rhs).realfunction is not None else None
     else:
       raise NotImplementedError(f"Operand types {type(lhs), type(rhs)} not supported.")
     return Comparison(realcomparison, None)
@@ -258,20 +264,20 @@ cdef class Function:
     cdef RealComparison realcomparison
     cdef ComplexComparison complexcomparison
     if isinstance(lhs, Function) and isinstance(rhs, Function):
-      realcomparison = ((<Function>lhs).realfunction == (<Function>rhs).realfunction).copy() if lhs.realfunction is not None and rhs.realfunction is not None else None
-      complexcomparison = ((<Function>lhs).complexfunction == (<Function>rhs).complexfunction).copy() if lhs.complexfunction is not None and rhs.complexfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction == (<Function>rhs).realfunction).copy() if (<Function> lhs).realfunction is not None and (<Function> rhs).realfunction is not None else None
+      complexcomparison = ((<Function>lhs).complexfunction == (<Function>rhs).complexfunction).copy() if (<Function> lhs).complexfunction is not None and (<Function> rhs).complexfunction is not None else None
     elif isinstance(lhs, Function) and _isrealscalar(rhs):
-      realcomparison = ((<Function>lhs).realfunction == <REAL>rhs).copy() if lhs.realfunction is not None else None
-      complexcomparison = ((<Function>lhs).complexfunction == <COMPLEX>rhs).copy() if lhs.complexfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction == <REAL>rhs).copy() if (<Function> lhs).realfunction is not None else None
+      complexcomparison = ((<Function>lhs).complexfunction == <COMPLEX>rhs).copy() if (<Function> lhs).complexfunction is not None else None
     elif isinstance(lhs, Function) and _iscomplexscalar(rhs):
       realcomparison = None
-      complexcomparison = ((<Function>lhs).complexfunction == <COMPLEX>rhs).copy() if lhs.complexfunction is not None else None
+      complexcomparison = ((<Function>lhs).complexfunction == <COMPLEX>rhs).copy() if (<Function> lhs).complexfunction is not None else None
     elif _isrealscalar(lhs) and isinstance(rhs, Function):
-      realcomparison = (<REAL>lhs == (<Function>rhs).realfunction).copy() if rhs.realfunction is not None else None
-      complexcomparison = (<COMPLEX>lhs == (<Function>rhs).complxfunction).copy() if rhs.complexfunction is not None else None
+      realcomparison = (<REAL>lhs == (<Function>rhs).realfunction).copy() if (<Function> rhs).realfunction is not None else None
+      complexcomparison = (<COMPLEX>lhs == (<Function>rhs).complxfunction).copy() if (<Function> rhs).complexfunction is not None else None
     elif  _iscomplexscalar(lhs) and isinstance(rhs, Function):
       realcomparison = None
-      complexcomparison = (<COMPLEX>lhs == (<Function>rhs).complexfunction).copy() if rhs.complexfunction is not None else None
+      complexcomparison = (<COMPLEX>lhs == (<Function>rhs).complexfunction).copy() if (<Function> rhs).complexfunction is not None else None
     else:
       raise NotImplementedError(f"Operand types {type(lhs), type(rhs)} not supported.")
     return Comparison(realcomparison, complexcomparison)
@@ -280,9 +286,9 @@ cdef class Function:
     """Return a Comparison that evaluates to True wherever the function is greater than or equal to another function or a constant."""
     cdef RealComparison realcomparison
     if isinstance(lhs, Function) and isinstance(rhs, Function):
-      realcomparison = ((<Function>lhs).realfunction >= (<Function>rhs).realfunction).copy() if lhs.realfunction is not None and rhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction >= (<Function>rhs).realfunction).copy() if (<Function> lhs).realfunction is not None and (<Function> rhs).realfunction is not None else None
     elif isinstance(lhs, Function) and _isrealscalar(rhs):
-      realcomparison = ((<Function>lhs).realfunction >= <REAL>rhs).copy() if lhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction >= <REAL>rhs).copy() if (<Function> lhs).realfunction is not None else None
     elif _isrealscalar(lhs) and isinstance(rhs, Function):
       realcomparison = (<REAL>lhs >= (<Function>rhs).realfunction).copy()
     else:
@@ -293,11 +299,11 @@ cdef class Function:
     """Return a Comparison that evaluates to True wherever the function is smallar than or equal to another function or a constant."""
     cdef RealComparison realcomparison
     if isinstance(lhs, Function) and isinstance(rhs, Function):
-      realcomparison = ((<Function>lhs).realfunction <= (<Function>rhs).realfunction).copy() if lhs.realfunction is not None and rhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction <= (<Function>rhs).realfunction).copy() if (<Function> lhs).realfunction is not None and (<Function> rhs).realfunction is not None else None
     elif isinstance(lhs, Function) and _isrealscalar(rhs):
-      realcomparison = ((<Function>lhs).realfunction <= <REAL>rhs).copy() if lhs.realfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction <= <REAL>rhs).copy() if (<Function> lhs).realfunction is not None else None
     elif _isrealscalar(lhs) and isinstance(rhs, Function):
-      realcomparison = (<REAL>lhs <= (<Function>rhs).realfunction).copy() if rhs.realfunction is not None else None
+      realcomparison = (<REAL>lhs <= (<Function>rhs).realfunction).copy() if (<Function> rhs).realfunction is not None else None
     else:
       raise NotImplementedError(f"Operand types {type(lhs), type(rhs)} not supported.")
     return Comparison(realcomparison, None)
@@ -307,20 +313,20 @@ cdef class Function:
     cdef RealComparison realcomparison
     cdef ComplexComparison complexcomparison
     if isinstance(lhs, Function) and isinstance(rhs, Function):
-      realcomparison = ((<Function>lhs).realfunction != (<Function>rhs).realfunction).copy() if lhs.realfunction is not None and rhs.realfunction is not None else None
-      complexcomparison = ((<Function>lhs).complexfunction != (<Function>rhs).complexfunction).copy() if lhs.complexfunction is not None and rhs.complexfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction != (<Function>rhs).realfunction).copy() if (<Function> lhs).realfunction is not None and (<Function> rhs).realfunction is not None else None
+      complexcomparison = ((<Function>lhs).complexfunction != (<Function>rhs).complexfunction).copy() if (<Function> lhs).complexfunction is not None and (<Function> rhs).complexfunction is not None else None
     elif isinstance(lhs, Function) and _isrealscalar(rhs):
-      realcomparison = ((<Function>lhs).realfunction != <REAL>rhs).copy() if lhs.realfunction is not None else None
-      complexcomparison = ((<Function>lhs).complexfunction != <COMPLEX>rhs).copy() if lhs.complexfunction is not None else None
+      realcomparison = ((<Function>lhs).realfunction != <REAL>rhs).copy() if (<Function> lhs).realfunction is not None else None
+      complexcomparison = ((<Function>lhs).complexfunction != <COMPLEX>rhs).copy() if (<Function> lhs).complexfunction is not None else None
     elif isinstance(lhs, Function) and _iscomplexscalar(rhs):
       realcomparison = None
-      complexcomparison = ((<Function>lhs).complexfunction != <COMPLEX>rhs).copy() if lhs.complexfunction is not None else None
+      complexcomparison = ((<Function>lhs).complexfunction != <COMPLEX>rhs).copy() if (<Function> lhs).complexfunction is not None else None
     elif _isrealscalar(lhs) and isinstance(rhs, Function):
-      realcomparison = (<REAL>lhs != (<Function>rhs).realfunction).copy() if rhs.realfunction is not None else None
-      complexcomparison = (<COMPLEX>lhs != (<Function>rhs).complxfunction).copy() if rhs.complexfunction is not None else None
+      realcomparison = (<REAL>lhs != (<Function>rhs).realfunction).copy() if (<Function> rhs).realfunction is not None else None
+      complexcomparison = (<COMPLEX>lhs != (<Function>rhs).complxfunction).copy() if (<Function> rhs).complexfunction is not None else None
     elif  _iscomplexscalar(lhs) and isinstance(rhs, Function):
       realcomparison = None
-      complexcomparison = (<COMPLEX>lhs != (<Function>rhs).complexfunction).copy() if rhs.complexfunction is not None else None
+      complexcomparison = (<COMPLEX>lhs != (<Function>rhs).complexfunction).copy() if (<Function> rhs).complexfunction is not None else None
     else:
       raise NotImplementedError(f"Operand types {type(lhs), type(rhs)} not supported.")
     return Comparison(realcomparison, complexcomparison)
