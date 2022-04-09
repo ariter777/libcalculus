@@ -29,7 +29,7 @@ include "Contour.pyx"
 include "RealFunction.pyx"
 include "Function.pyx"
 
-include "CCalculus.pyx"
+include "CAnalysis.pyx"
 
 
 def constant(c):
