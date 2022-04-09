@@ -140,9 +140,9 @@ def line(const COMPLEX z1, const COMPLEX z2):
                   Contour.Line(z1, z2),
                   None)
 
-def sphere(const COMPLEX center=0., const REAL radius=1., const cbool ccw=False):
+def sphere(const COMPLEX center=0., const REAL radius=1.):
   return Function(None,
-                  center + (-1. if ccw else 1.) * radius * (ComplexFunction.Exp() @ (2j * Contour.Pi() * Contour.Identity())),
+                  center + radius * (ComplexFunction.Exp() @ (2j * Contour.Pi() * Contour.Identity())),
                   None)
 
 def index(const COMPLEX z0, Function contour not None, const REAL start=0., const REAL end=1.):
