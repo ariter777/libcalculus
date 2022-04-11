@@ -6,7 +6,7 @@ cdef extern from "CAnalysis.cpp":
   pass
 
 cdef extern from "CAnalysis.h" namespace "libcalculus":
-  CFunction[Dom, Ran] Derivative[Dom, Ran](CFunction[Dom, Ran] f, const REAL tol, const REAL radius) except +
+  CFunction[Dom, Ran] Derivative[Dom, Ran](CFunction[Dom, Ran] f, const size_t order, const REAL tol, const REAL radius) except +
   Ran Integrate[Dom, Ran, ContDom](CFunction[Dom, Ran] f, CFunction[ContDom, Dom] contour,
                                    const ContDom start, const ContDom end, const REAL tol) except +
 
@@ -36,30 +36,47 @@ def integrate(f, contour, const REAL start=0., const REAL end=1., const REAL tol
 
 def derivative(f, const size_t order=1, const REAL tol=1e-3, const REAL radius=1.):
   """Returns a function object representing f's derivative."""
-  cdef ComplexFunction complex_result
   cdef RealFunction real_result
   cdef Contour contour_result
-  if order == 1:
-    if isinstance(f, Function):
-      return Function(derivative((<Function>f).realfunction, 1, tol, radius) if (<Function>f).realfunction is not None else None,
-                      derivative((<Function>f).contour, 1, tol, radius) if (<Function>f).contour is not None else None,
-                      derivative((<Function>f).complexfunction, 1, tol, radius) if (<Function>f).complexfunction is not None else None)
-    elif isinstance(f, ComplexFunction):
-      complex_result = ComplexFunction()
-      complex_result.cfunction = Derivative((<ComplexFunction>f).cfunction, tol, radius)
-      return complex_result
-    elif isinstance(f, RealFunction):
+  cdef ComplexFunction complex_result
+
+  if order == 0:
+    return f
+
+  if isinstance(f, Function):
+    if (<Function>f).realfunction is not None:
       real_result = RealFunction()
-      real_result.cfunction = Derivative((<RealFunction>f).cfunction, tol, radius)
-      return real_result
-    elif isinstance(f, Contour):
-      contour_result = Contour()
-      contour_result.cfunction = Derivative((<Contour>f).cfunction, tol, radius)
-      return contour_result
+      real_result.cfunction = Derivative((<Function>f).realfunction.cfunction, order, tol, radius)
     else:
-      raise NotImplementedError
+      real_result = None
+
+    if (<Function>f).contour is not None:
+      contour_result = Contour()
+      contour_result.cfunction = Derivative((<Function>f).contour.cfunction, order, tol, radius)
+    else:
+      contour_result = None
+
+    if (<Function>f).complexfunction is not None:
+      complex_result = ComplexFunction()
+      complex_result.cfunction = Derivative((<Function>f).complexfunction.cfunction, order, tol, radius)
+    else:
+      complex_result = None
+    return Function(real_result, contour_result, complex_result)
+
+  elif isinstance(f, ComplexFunction):
+    complex_result = ComplexFunction()
+    complex_result.cfunction = Derivative((<ComplexFunction>f).cfunction, order, tol, radius)
+    return complex_result
+  elif isinstance(f, RealFunction):
+    real_result = RealFunction()
+    real_result.cfunction = Derivative((<RealFunction>f).cfunction, order, tol, radius)
+    return real_result
+  elif isinstance(f, Contour):
+    contour_result = Contour()
+    contour_result.cfunction = Derivative((<Contour>f).cfunction, order, tol, radius)
+    return contour_result
   else:
-    return derivative(derivative(f, order - 1, tol, radius), 1, tol, radius)
+    raise NotImplementedError(f"Derivative not supported for type {type(f)}.")
 
 def residue(f, z0, const REAL radius=1., const REAL tol=1e-3):
   """Calculate the residue of f around z0, given that f does not have any further singularities inside
@@ -79,7 +96,7 @@ def index(const COMPLEX z0, Function contour not None, const REAL start=0., cons
   return contour.contour.index(z0, start, end)
 
 def zeros(Function f not None, Function contour not None, const REAL start=0., const REAL end=1.):
-  """Calculates the number of zeros the functions has inside a closed contour, assuming it is holomorphic."""
+  """Calculates the number of zeros the function has inside a closed contour, assuming it is holomorphic."""
   if f.complexfunction is None or contour.contour is None:
     raise ValueError("The function or contour passed are malformed.")
   else:

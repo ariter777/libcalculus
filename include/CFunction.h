@@ -21,7 +21,7 @@ namespace libcalculus {
         std::string _latex = LATEX_VAR;
         OP_TYPE _last_op = OP_TYPE::NOP;
         template<typename, typename> friend class CFunction;
-        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> Derivative(CFunction<Dom_, Ran_> const &f, REAL const tol, REAL const radius);
+        template<typename Dom_, typename Ran_> friend CFunction<Dom_, Ran_> Derivative(CFunction<Dom_, Ran_> const &f, size_t const order, REAL const tol, REAL const radius);
         template<typename Dom_, typename Ran_, typename ContDom_>
         friend Ran_ Integrate(CFunction<Dom_, Ran_> const &f, CFunction<ContDom_, Dom_> const &contour, ContDom_ const start, ContDom_ const End, double const tol);
 

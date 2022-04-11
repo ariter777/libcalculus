@@ -11,7 +11,8 @@ Differentiation
 
 Summary
 ~~~~~~~
-This method performs numerical differentiation of real and complex valued functions. Note that it returns a ``libcalculus.Function`` object which can be evaluated at different points.
+This method performs numerical differentiation of real and complex valued functions; it returns a ``libcalculus.Function`` object which can be evaluated at different points.
+
 
 Examples
 ~~~~~~~~
@@ -27,6 +28,8 @@ Examples
 Note how an error tolerance can be specified for either faster or more accurate calculation. Since the library supports only numerical differentiation (as opposed to symbolic), the LaTeX representation of a derivative is not simplified - i.e., ``libcalculus.derivative(libcalculus.sin).latex()`` returns :math:`\frac{\text{d}}{\text{d}x}\left(\sin\left(x\right)\right)`.
 
 The ``radius`` argument can be used to specify how close to the points of evaluation the derivative should be calculated - this can be useful when dealing with discontinuities that are close together, for example.
+
+You can pass an ``order`` argument to the method to calculate a higher-order derivative; naturally, the higher the order, the lower the tolerance must be to achieve accurate results.
 
 Integration
 -----------
@@ -120,6 +123,6 @@ Traceback (most recent call last):
     assert np.allclose(contour(start), contour(end)), "Number of zeros defined only for closed contour."
 AssertionError: Number of zeros defined only for closed contour.
 
-- | In the first example, we count the number of zeros the sine function has inside the area enclosed :math:`\partial\mathbb{B}_6\left(0\right)` - that is, a circle of radius :math:`6` centered at the origin.
+- | In the first example, we count the number of zeros the sine function has inside the area enclosed by :math:`\partial\mathbb{B}_6\left(0\right)` - that is, a circle of radius :math:`6` centered at the origin.
   | We pass the function to examine, and the contour function with the start and end points (in this case, :math:`t\mapsto 6e^{2\pi it}` with :math:`t\in\left[0, 1\right]`).
 - | We cannot use a non-closed contour: in the second example we attempt to do so with the upper half of :math:`\partial\mathbb{B}_6\left(0\right)`.
