@@ -99,7 +99,7 @@ AssertionError: Index defined only for closed contour.
 
 - | In the first example, we compute :math:`\text{ind}_{\partial\mathbb{B}_1\left(0\right)}\left(\frac{i}{2}\right)`.
 - | In the second example we use the same contour, but run :math:`t\in\left[0, 2\right]` - in other words, concatenating the unit circle with itself, producing two revolutions and thus the result :math:`2`.
-- | We cannot use a non-closed contour: in the third example we attempt to do so with two and a half revolutions (clockwise) around the unit circle.
+- | We cannot use a non-closed contour: in the third example we attempt to do so with two and a half revolutions (counterclockwise) around the unit circle.
 
 
 Counting Zeros
