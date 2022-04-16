@@ -3,6 +3,8 @@ set -e
 shopt -s extglob
 
 release=0
+SETUP_SCRIPT='./setup.py'
+TEST_SCRIPT='test.py'
 
 function clean {
   echo $'\e[92mCleaning.\e[0m'
@@ -17,7 +19,7 @@ function build {
   elif [[ $debug == 1 ]]; then
       export CXXFLAGS="$CXXFLAGS -Og -DNDEBUG"
   fi
-  python3 setup.py build_ext --inplac
+  python3 "$SETUP_SCRIPT" build_ext --inplace
   mkdir -p annotations
   find src/ include/ -type f -name '*.html' | xargs -i -r mv {} annotations/ && echo "Annotations saved in annotations/"
   echo "Successfully compiled $(wc -l src/!(libcalculus.cpp) include/* | tail -1 | sed -re 's/^\s*([0-9]+)\s+total\s*$/\1/g') lines."
@@ -28,17 +30,17 @@ function build {
 }
 
 function sdist {
-  python setup.py sdist
+  python "$SETUP_SCRIPT" sdist
   echo
 }
 
 function bdist_wheel {
-  python setup.py bdist_wheel -p manylinux2014_x86_64
+  python "$SETUP_SCRIPT" bdist_wheel -p manylinux2014_x86_64
 }
 
 function run_tests {
   echo $'\e[92mTesting.\e[0m'
-  python3 test.py --ComplexFunction --RealFunction --Contour --Function
+  python3 "$TEST_SCRIPT" --ComplexFunction --RealFunction --Contour --Function
   echo
 }
 
@@ -54,7 +56,7 @@ else
       release=1
     elif [[ $1 == '--debug' ]]; then
       if [[ $release == 1 ]]; then
-        echo "Options `--debug` and `--release` cannot be combined."
+        echo 'Options `--debug` and `--release` cannot be combined.'
         exit 1
       fi
       debug=1
