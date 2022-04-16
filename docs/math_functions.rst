@@ -127,6 +127,10 @@ Builtin Functions
      - :math:`t\mapsto\left(1-t\right)z_1+tz_2`
      - Contour representing a line with :math:`t\in\left[0,1\right]`
 
+   * - ``ln``
+     - :math:`z\mapsto\text{ln}\left(z\right)`
+     - Natural logarithm (principal branch)
+
    * - ``pi``
      - :math:`z\mapsto \pi`
      - Constant π

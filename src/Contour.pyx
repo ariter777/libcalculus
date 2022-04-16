@@ -276,6 +276,13 @@ cdef class Contour:
     return F
 
   @staticmethod
+  def Ln():
+    """Natural logarithm."""
+    cdef Contour F = Contour()
+    F.cfunction = CFunction[REAL, COMPLEX].Ln()
+    return F
+
+  @staticmethod
   def Sin():
     """Sine."""
     cdef Contour F = Contour()

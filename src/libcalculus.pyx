@@ -61,6 +61,8 @@ def __getattr__(name):
     return Function(RealFunction.Conj(), Contour.Conj(), ComplexFunction.Conj())
   elif name == "exp":
     return Function(RealFunction.Exp(), Contour.Exp(), ComplexFunction.Exp())
+  elif name == "ln":
+    return Function(RealFunction.Ln(), Contour.Ln(), ComplexFunction.Ln())
 
   # Trigonometric functions
   elif name == "sin":

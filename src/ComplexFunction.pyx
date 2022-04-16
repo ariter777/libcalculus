@@ -270,6 +270,13 @@ cdef class ComplexFunction:
     return F
 
   @staticmethod
+  def Ln():
+    """Natural logarithm (principal branch)."""
+    cdef ComplexFunction F = ComplexFunction()
+    F.cfunction = CFunction[COMPLEX, COMPLEX].Ln()
+    return F
+
+  @staticmethod
   def Sin():
     """Sine."""
     cdef ComplexFunction F = ComplexFunction()

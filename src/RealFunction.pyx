@@ -323,6 +323,13 @@ cdef class RealFunction:
     return F
 
   @staticmethod
+  def Ln():
+    """Natural logarithm."""
+    cdef RealFunction F = RealFunction()
+    F.cfunction = CFunction[REAL, REAL].Ln()
+    return F
+
+  @staticmethod
   def Sin():
     """Sine."""
     cdef RealFunction F = RealFunction()

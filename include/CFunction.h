@@ -33,6 +33,7 @@ namespace libcalculus {
         static CFunction const _Abs;
         static CFunction const _Arg;
         static CFunction const _Exp;
+        static CFunction const _Ln;
         static CFunction const _Sin;
         static CFunction const _Cos;
         static CFunction const _Tan;
@@ -125,6 +126,7 @@ namespace libcalculus {
         static inline CFunction Abs() { return CFunction::_Abs; }
         static inline CFunction Arg() { return CFunction::_Arg; }
         static inline CFunction Exp() { return CFunction::_Exp; }
+        static inline CFunction Ln() { return CFunction::_Ln; }
         static inline CFunction Sin() { return CFunction::_Sin; }
         static inline CFunction Cos() { return CFunction::_Cos; }
         static inline CFunction Tan() { return CFunction::_Tan; }
@@ -195,6 +197,9 @@ namespace libcalculus {
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Exp = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::exp(z); }, "e^{" LATEX_VAR "}", OP_TYPE::NOP);
+
+    template<typename Dom, typename Ran>
+    CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Ln = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::log(z); }, "\\text{ln}\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
 
     template<typename Dom, typename Ran>
     CFunction<Dom, Ran> const CFunction<Dom, Ran>::_Sin = CFunction<Dom, Ran>([](Dom const z) noexcept { return std::sin(z); }, "\\sin\\left(" LATEX_VAR "\\right)", OP_TYPE::FUNC);
