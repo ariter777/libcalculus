@@ -27,7 +27,7 @@ copyright = "2022, Ariel Terkeltoub"
 author = "Ariel Terkeltoub"
 
 # The full version, including alpha/beta/rc tags
-release = "0.3.6.2"
+release = "1.0.0.0"
 
 
 # -- General configuration ---------------------------------------------------
