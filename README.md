@@ -24,7 +24,7 @@ pip install libcalculus
 Here is a snippet demonstrating some of the library's features:
 ```python
 >>> import libcalculus, numpy as np
->>> f = libcalculus.csc @ (1 / libcalculus.identity)
+>>> f = libcalculus.csc @ (1 / libcalculus.identity) # csc(1 / z)
 >>> f(1 + 2j)
 (1.0316491868272164+1.9336686363989997j)
 >>> libcalculus.residue(f, 0, tol=1e-4)

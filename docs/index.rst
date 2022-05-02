@@ -15,6 +15,7 @@ Welcome to libcalculus's documentation!
    Mathematical Functions <math_functions.rst>
    Comparisons <comparisons.rst>
    Analysis Methods <analysis.rst>
+   Miscellaneous  <misc.rst>
 
 Indices and tables
 ==================
