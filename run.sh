@@ -44,8 +44,21 @@ function run_tests {
   echo
 }
 
+function display_help {
+  echo -e "Usage: $0 [option] ... command [command] ...\nCommands:"
+  echo $'bdist_wheel\t: Build the extension and create a python wheel (.whl) file in the dist/ directory.'
+  echo $'build\t: Build the extension in-place (will output an .so in the current directory).'
+  echo $'clean\t: Clean all previous builds and leftovers.'
+  echo $'sdist\t: Create a source distribution (.tar.gz) in the dist/ directory.'
+  echo $'test\t: Run full tests (applicable after the extension has been built).'
+  echo $'\nOptions:'
+  echo $'--debug\t: Use compiler and linker flags optimized for debugging.'
+  echo $'--release\t: Use compiler and linker flags with some common optimizations for release.'
+  exit 0
+}
+
 if [[ $# == 0 ]]; then # default action - build
-  build
+  display_help
 else
   while [[ $# > 0 ]]; do # switch case won't exit if a command fails, so an if must be used.
     if [[ $1 == '--release' ]]; then
@@ -60,6 +73,8 @@ else
         exit 1
       fi
       debug=1
+    elif [[ $1 == '-h' || $1 == "--help" ]]; then
+      display_help
     elif [[ $1 == 'clean' ]]; then
       clean
     elif [[ $1 == 'sdist' ]]; then

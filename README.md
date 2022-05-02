@@ -44,6 +44,26 @@ Here is a snippet demonstrating some of the library's features:
  [ 4.03942207+0.99000843j  5.02878731+1.98839211j  7.02013025+2.99133798j]]
 ```
 
+## Source Build
+Building from source can be beneficial when looking to tailor optimizations to one's specific CPU architecture or so as to modify source code privately.
+This can be done easily with the proper required libraries - Boost, Cython and NumPy.
+
+### Linux
+A convenient driver script for compilation with different options, testing etc. is available on Linux.
+```bash
+$ git clone https://gitlab.com/ariter777/libcalculus
+$ ./run.sh --debug build test # Run with -h (or without any flags) for help
+```
+Extra compiler and linker flags can be provided with the `CXXFLAGS` and `LDFLAGS` environment variables.
+
+### Windows
+On Windows you will need to run the individual scripts separately; `setup.py` for building, and `test.py` for testing.
+```batch
+> git clone https://gitlab.com/ariter777/libcalculus
+> python setup.py build_ext --inplace
+> python test.py --Function --RealFunction --Contour --ComplexFunction
+```
+
 ## License
 Copyright (c) 2022, Ariel Terkeltoub
 All rights reserved.
