@@ -51,7 +51,7 @@ This can be done easily with the proper required libraries - Boost, Cython and N
 ### Linux
 A convenient driver script for compilation with different options, testing etc. is available on Linux.
 ```bash
-$ git clone https://gitlab.com/ariter777/libcalculus
+$ git clone https://gitlab.com/ariter777/libcalculus && cd libcalculus
 $ ./run.sh --debug build test # Run with -h (or without any flags) for help
 ```
 Extra compiler and linker flags can be provided with the `CXXFLAGS` and `LDFLAGS` environment variables.
@@ -59,7 +59,7 @@ Extra compiler and linker flags can be provided with the `CXXFLAGS` and `LDFLAGS
 ### Windows
 On Windows you will need to run the individual scripts separately; `setup.py` for building, and `test.py` for testing.
 ```batch
-> git clone https://gitlab.com/ariter777/libcalculus
+> git clone https://gitlab.com/ariter777/libcalculus && cd libcalculus
 > python setup.py build_ext --inplace
 > python test.py --Function --RealFunction --Contour --ComplexFunction
 ```
